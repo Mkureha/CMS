@@ -76,7 +76,7 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/employee/detail/{employee_no}", method=RequestMethod.GET)
-	private String tosyoDetail(@PathVariable String employee_no, @ModelAttribute employee page, Model model)
+	private String employeeDetail(@PathVariable String employee_no, @ModelAttribute employee page, Model model)
 			throws Exception {
 
 		model.addAttribute("detail", employeeService.employeeDetailService(employee_no));
@@ -84,12 +84,12 @@ public class CompanyController {
 	}
 
 	@RequestMapping("/employee/insert") // 도서등록폼호출
-	private String tosyoInsertForm() {
+	private String employeeInsertForm() {
 		return "employee_insert";
 	}
 
 	@RequestMapping("/insertProc")
-	private String tosyoInsertProc(employee employee, MultipartFile file) throws Exception {
+	private String employeeInsertProc(employee employee, MultipartFile file) throws Exception {
 		
 		employeeService.employeeInsertService(employee);
 
@@ -106,7 +106,7 @@ public class CompanyController {
 
 	@PostMapping("/updateProc")
 	@GetMapping
-	private String tosyoUpdateProc(HttpServletRequest request) throws Exception {
+	private String employeeUpdateProc(HttpServletRequest request) throws Exception {
 
 		employee employee = new employee();
 

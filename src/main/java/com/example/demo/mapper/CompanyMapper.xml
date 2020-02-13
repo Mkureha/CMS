@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="com.example.demo.mapper.CompanyMapper">
 
-	<select id="employeecount" resultType="int">
+	<select id="employeecount" resultType="String">
 		SELECT COUNT(*)
 		FROM
 		employee
@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		#{contentnum}
 	</select>
 
-	<select id="employeeDetail" parameterType="int"
+	<select id="employeeDetail" parameterType="String"
 		resultType="com.example.demo.domain.employee">
 		SELECT *
 		FROM employee
@@ -129,7 +129,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		WHERE employee_no = #{employee_no}
 	</update>
 
-	<delete id="employeeDelete" parameterType="int">
+	<delete id="employeeDelete" parameterType="String">
 		DELETE FROM employee
 		WHERE employee_no = #{employee_no}
 	</delete>
