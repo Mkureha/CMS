@@ -69,7 +69,6 @@
 					class="form-control" id="employee_memo" name="employee_memo"
 					value="${detail.employee_memo }">
 			</div>
-			<input type="hidden" name="tosyo_number" value="${tosyo_number }" />
 			<button type="submit" class="btn btn-primary">修正</button>
 			<input type="button" value="戻る" class="btn btn-primary"
 				OnClick="javascript:history.back(-1)">
