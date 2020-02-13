@@ -21,13 +21,13 @@
 			</div>
 			<div class="form-group">
 				<label for="employee_rank_code">部署コード</label> <input type="text"
-					class="form-control" id="employee_rank_code" name="employee_rank_code"
-					value="${detail.employee_no }">
+					class="form-control" id="employee_rank_code"
+					name="employee_rank_code" value="${detail.employee_no }">
 			</div>
 			<div class="form-group">
 				<label for="employee_position_code">職責コード</label> <input type="text"
-					class="form-control" id="employee_position_code" name="employee_position_code"
-					value="${detail.employee_no }">
+					class="form-control" id="employee_position_code"
+					name="employee_position_code" value="${detail.employee_no }">
 			</div>
 			<div class="form-group">
 				<label for="employee_name">社員名</label> <input type="text"
@@ -36,8 +36,8 @@
 			</div>
 			<div class="form-group">
 				<label for="employee_type_code">区分コード</label> <input type="text"
-					class="form-control" id="employee_type_code" name="employee_type_code"
-					value="${detail.employee_no }">
+					class="form-control" id="employee_type_code"
+					name="employee_type_code" value="${detail.employee_no }">
 			</div>
 			<div class="form-group">
 				<label for="gender">性別</label> <input type="text"
@@ -69,6 +69,10 @@
 					class="form-control" id="employee_memo" name="employee_memo"
 					value="${detail.employee_memo }">
 			</div>
-	<%@ include file="bootstrap.jsp"%>
+			<input type="hidden" name="tosyo_number" value="${tosyo_number }" />
+			<button type="submit" class="btn btn-primary">修正</button>
+			<input type="button" value="戻る" class="btn btn-primary"
+				OnClick="javascript:history.back(-1)">
+			<%@ include file="bootstrap.jsp"%>
 </body>
 </html>

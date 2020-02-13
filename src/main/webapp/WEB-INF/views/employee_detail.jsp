@@ -20,7 +20,7 @@
 		</div>
 	</div>
 	<div class="container">
-		<form action="GS/detail/${detail.employee_no }" method="get">
+		<form action="employee/detail/${detail.employee_no }" method="get">
 			<div class="inputArea">
 				<label for="employee_no">社員コード</label>
 				<p>${detail.employee_no }</p>
