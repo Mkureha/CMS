@@ -3,7 +3,10 @@ package com.example.demo.domain;
 public class employee {
 
 	private String employee_no;
+	private String employee_rank_code;
+	private String employee_position_code;
 	private String employee_name;
+	private String employee_type_code;
 	private String gender;
 	private String birthday;
 	private String postal_code;
@@ -17,11 +20,29 @@ public class employee {
 	public void setemployee_no(String employee_no) {
 		this.employee_no = employee_no;
 	}
+	public String getemployee_rank_code() {
+		return employee_rank_code;
+	}
+	public void setemployee_rank_code(String employee_rank_code) {
+		this.employee_rank_code = employee_rank_code;
+	}
+	public String getemployee_position_code() {
+		return employee_position_code;
+	}
+	public void setemployee_position_code(String employee_position_code) {
+		this.employee_position_code = employee_position_code;
+	}
 	public String getemployee_name() {
 		return employee_name;
 	}
 	public void setemployee_name(String employee_name) {
 		this.employee_name = employee_name;
+	}
+	public String getemployee_type_code() {
+		return employee_type_code;
+	}
+	public void setemployee_type_code(String employee_type_code) {
+		this.employee_type_code = employee_type_code;
 	}
 	public String getgender() {
 		return gender;

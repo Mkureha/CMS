@@ -21,27 +21,30 @@
 			<thead>
 				<tr>
 					<th scope="col">社員コード</th>
+					<th scope="col">部署コード</th>
+					<th scope="col">職責コード</th>
 					<th scope="col">社員名</th>
-					<th scope="col">入社日</th>
+					<th scope="col">区分コード</th>
 					<th scope="col">性別</th>
 					<th scope="col">生年月日</th>
+					<th scope="col">郵便番号</th>
 					<th scope="col">住所1</th>
 					<th scope="col">住所2</th>
-					<th scope="col">メモ</th>
-
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="cpn" items="${list}">
 					<tr>
 						<td scope="row"><a href="/employee/detail/${cpn.employee_no}">${cpn.employee_no}</a></td>
+						<td>${cpn.employee_rank_code}</td>
+						<td>${cpn.employee_position_code}</td>
 						<td>${cpn.employee_name}</td>
+						<td>${cpn.employee_type_code}</td>
 						<td>${cpn.gender}</td>
 						<td>${cpn.birthday}</td>
 						<td>${cpn.postal_code}</td>
 						<td>${cpn.address_1}</td>
 						<td>${cpn.address_2}</td>
-						<td>${cpn.employee_memo}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -76,7 +79,13 @@
 				<option value="employee_no">社員コード</option>
 				<option value="employee_rank_code">部署コード</option>
 				<option value="employee_position_code">職責コード</option>
+				<option value="employee_type_code">社員名</option>
 				<option value="employee_type_code">区分コード</option>
+				<option value="employee_type_code">性別</option>
+				<option value="employee_type_code">生年月日</option>
+				<option value="employee_type_code">郵便番号</option>
+				<option value="employee_type_code">住所1</option>
+				<option value="employee_type_code">住所2</option>
 			</select>
 		</div>
 		<div>
