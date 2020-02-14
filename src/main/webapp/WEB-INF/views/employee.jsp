@@ -13,7 +13,10 @@
 	<div class="container centered text-center">
 		<h2>社員リスト</h2>
 	</div>
-	<button class="btn btn-warning" onclick="location.href='/employee/insert'">社員登録</button>
+	<button class="btn btn-danger"
+		onclick="location.href='/index'">メニュー</button>
+	<button class="btn btn-warning"
+		onclick="location.href='/employee/insert'">社員登録</button>
 	<br>
 
 	<div class="container">
@@ -79,13 +82,13 @@
 				<option value="employee_no">社員コード</option>
 				<option value="employee_rank_code">部署コード</option>
 				<option value="employee_position_code">職責コード</option>
-				<option value="employee_type_code">社員名</option>
+				<option value="employee_name">社員名</option>
 				<option value="employee_type_code">区分コード</option>
-				<option value="employee_type_code">性別</option>
-				<option value="employee_type_code">生年月日</option>
-				<option value="employee_type_code">郵便番号</option>
-				<option value="employee_type_code">住所1</option>
-				<option value="employee_type_code">住所2</option>
+				<option value="gender">性別</option>
+				<option value="birthday">生年月日</option>
+				<option value="postal_code">郵便番号</option>
+				<option value="address_1">住所1</option>
+				<option value="address_2">住所2</option>
 			</select>
 		</div>
 		<div>
@@ -100,6 +103,7 @@
 	</form>
 
 	<script type="text/javascript">
+	
 	<!-- Paging -->
 	function page(idx) {
 		var pagenum = idx;
@@ -112,6 +116,7 @@
 		location.href = url;
 		
 	};
+	
 <!-- Search -->
 	$(document).on('click', '#btnSearch', function(e){
 		e.preventDefault();
@@ -121,6 +126,7 @@
 		location.href = url;
 		console.log(url);
 	});	
+	
 <!-- Input Limit -->
 function characterCheck() {
     var RegExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;

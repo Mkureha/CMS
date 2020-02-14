@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="com.example.demo.mapper.CompanyMapper">
 
-	<select id="employeecount" resultType="String">
+	<select id="employeecount" resultType="int">
 		SELECT COUNT(*)
 		FROM
 		employee
@@ -21,8 +21,32 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 				WHERE employee_position_code like CONCAT('%', #{keyword},
 				'%')
 			</if>
+			<if test="searchtype.equals('employee_name')">
+				WHERE employee_name like CONCAT('%', #{keyword},
+				'%')
+			</if>
 			<if test="searchtype.equals('employee_type_code')">
 				WHERE employee_type_code like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('gender')">
+				WHERE gender like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('birthday')">
+				WHERE birthday like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('postal_code')">
+				WHERE postal_code like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('address_1')">
+				WHERE address_1 like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('address_2')">
+				WHERE address_2 like CONCAT('%', #{keyword},
 				'%')
 			</if>
 		</if>
@@ -45,8 +69,32 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			WHERE employee_position_code like CONCAT('%', #{keyword}, '%')
 		</if>
 		<if
+			test="searchtype.equals('employee_name') and keyword != null and keyword != '' ">
+			WHERE employee_name like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
 			test="searchtype.equals('employee_type_code') and keyword != null and keyword != '' ">
 			WHERE employee_type_code like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('gender') and keyword != null and keyword != '' ">
+			WHERE gender like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('birthday') and keyword != null and keyword != '' ">
+			WHERE birthday like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('postal_code') and keyword != null and keyword != '' ">
+			WHERE postal_code like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('address_1') and keyword != null and keyword != '' ">
+			WHERE address_1 like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('address_2') and keyword != null and keyword != '' ">
+			WHERE address_2 like CONCAT('%', #{keyword}, '%')
 		</if>
 		ORDER BY employee_no ASC
 		LIMIT

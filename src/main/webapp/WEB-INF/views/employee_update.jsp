@@ -20,14 +20,28 @@
 					value="${detail.employee_no }">
 			</div>
 			<div class="form-group">
-				<label for="employee_rank_code">部署コード</label> <input type="text"
-					class="form-control" id="employee_rank_code"
-					name="employee_rank_code" value="${detail.employee_no }">
+				<label for="employee_rank_code">部署コード</label> <select
+					class="form-control form-control-sm" name="employee_rank_code"
+					id="employee_rank_code" style="width: 250px;">
+					<option value="${detail.employee_rank_code }" selected="selected">${detail.employee_rank_code }</option>
+					<option value="99">未配置</option>
+					<option value="00">本社</option>
+					<option value="01">第1グループ</option>
+					<option value="02">第2グループ</option>
+				</select>
 			</div>
 			<div class="form-group">
-				<label for="employee_position_code">職責コード</label> <input type="text"
-					class="form-control" id="employee_position_code"
-					name="employee_position_code" value="${detail.employee_no }">
+				<label for="employee_position_code">職責コード</label> <select
+					class="form-control form-control-sm" name="employee_position_code"
+					id="employee_position_code" style="width: 250px;">
+					<option value="${detail.employee_position_code }"
+						selected="selected">${detail.employee_position_code }</option>
+					<option value="99">未配置</option>
+					<option value="01">部長</option>
+					<option value="02">課長</option>
+					<option value="03">主任</option>
+					<option value="04">社員</option>
+				</select>
 			</div>
 			<div class="form-group">
 				<label for="employee_name">社員名</label> <input type="text"
@@ -35,14 +49,26 @@
 					value="${detail.employee_name }">
 			</div>
 			<div class="form-group">
-				<label for="employee_type_code">区分コード</label> <input type="text"
-					class="form-control" id="employee_type_code"
-					name="employee_type_code" value="${detail.employee_no }">
+				<label for="employee_type_code">区分コード</label> <select
+					class="form-control form-control-sm" name="employee_type_code"
+					id="employee_type_code" style="width: 250px;">
+					<option value="${detail.employee_type_code }" selected="selected">${detail.employee_type_code }</option>
+					<option value="0">未配置</option>
+					<option value="1">役員</option>
+					<option value="2">正社員</option>
+					<option value="3">契約社員</option>
+					<option value="4">パート</option>
+				</select>
 			</div>
 			<div class="form-group">
-				<label for="gender">性別</label> <input type="text"
-					class="form-control" id="gender" name="gender"
-					value="${detail.gender }">
+				<label for="gender">性別</label> <select
+					class="form-control form-control-sm" name="gender" id="gender"
+					style="width: 250px;">
+					<option value="${detail.gender }" selected="selected">${detail.gender }</option>
+					<option value="不明">不明</option>
+					<option value="男">男</option>
+					<option value="女">女</option>
+				</select>
 			</div>
 			<div class="form-group">
 				<label for="birthday">誕生日</label> <input type="text"

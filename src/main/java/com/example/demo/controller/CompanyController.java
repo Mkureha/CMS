@@ -93,7 +93,7 @@ public class CompanyController {
 		
 		employeeService.employeeInsertService(employee);
 
-		return "redirect:/employee?pagenum=1&contentnum=10&searchtype=tosyo_num&keyword=";
+		return "redirect:/employee";
 	}
 
 	@RequestMapping("employee/update/{employee_no}") // 게시글수정폼호출
@@ -111,7 +111,10 @@ public class CompanyController {
 		employee employee = new employee();
 
 		employee.setemployee_no(request.getParameter("employee_no"));
+		employee.setemployee_rank_code(request.getParameter("employee_rank_code"));
+		employee.setemployee_position_code(request.getParameter("employee_position_code"));
 		employee.setemployee_name(request.getParameter("employee_name"));
+		employee.setemployee_type_code(request.getParameter("employee_type_code"));
 		employee.setgender(request.getParameter("gender"));
 		employee.setbirthday(request.getParameter("birthday"));
 		employee.setpostal_code(request.getParameter("postal_code"));
@@ -128,6 +131,6 @@ public class CompanyController {
 	private String employeeDelete(@PathVariable String employee_no) throws Exception {
 		employeeService.employeeDeleteService(employee_no);
 
-		return "redirect:employee?pagenum=1&contentnum=10&searchtype=tosyo_num&keyword=";
+		return "redirect:/employee";
 	}
 }

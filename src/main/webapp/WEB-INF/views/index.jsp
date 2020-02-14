@@ -14,7 +14,7 @@
 
 	<div>
 		<a role="button" class="btn btn-primary"
-			href="/employee?pagenum=1&contentnum=10&searchtype=tosyo_num&keyword=">社員リストへ</a>
+			href="/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=">社員リストへ</a>
 		<a role="button" class="btn btn-info" href="/rank">部署リストへ</a> <a
 			role="button" class="btn btn-light" href="/position">職責リストへ</a>
 	</div>
