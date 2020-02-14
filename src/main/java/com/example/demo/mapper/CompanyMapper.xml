@@ -13,20 +13,20 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			<if test="searchtype.equals('employee_no')">
 				WHERE employee_no like CONCAT('%', #{keyword}, '%')
 			</if>
-			<if test="searchtype.equals('employee_rank_code')">
-				WHERE employee_rank_code like CONCAT('%', #{keyword},
+			<if test="searchtype.equals('rank_code')">
+				WHERE rank_code like CONCAT('%', #{keyword},
 				'%')
 			</if>
-			<if test="searchtype.equals('employee_position_code')">
-				WHERE employee_position_code like CONCAT('%', #{keyword},
+			<if test="searchtype.equals('position_code')">
+				WHERE position_code like CONCAT('%', #{keyword},
 				'%')
 			</if>
 			<if test="searchtype.equals('employee_name')">
 				WHERE employee_name like CONCAT('%', #{keyword},
 				'%')
 			</if>
-			<if test="searchtype.equals('employee_type_code')">
-				WHERE employee_type_code like CONCAT('%', #{keyword},
+			<if test="searchtype.equals('type_code')">
+				WHERE type_code like CONCAT('%', #{keyword},
 				'%')
 			</if>
 			<if test="searchtype.equals('gender')">
@@ -54,27 +54,37 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 	<select id="listpage"
 		resultType="com.example.demo.domain.employee">
-		SELECT *
+		SELECT employee_no
+		,rank_code
+		,position_code
+		,employee_name
+		,type_code
+		,gender
+		,birthday
+		,postal_code
+		,address_1
+		,address_2
+		,employee_memo
 		FROM employee
 		<if
 			test="keyword != null and keyword != '' and searchtype.equals('employee_no')">
 			WHERE employee_no like CONCAT('%', #{keyword}, '%')
 		</if>
 		<if
-			test="searchtype.equals('employee_rank_code') and keyword != null and keyword != '' ">
-			WHERE employee_rank_code like CONCAT('%', #{keyword}, '%')
+			test="searchtype.equals('rank_code') and keyword != null and keyword != '' ">
+			WHERE rank_code like CONCAT('%', #{keyword}, '%')
 		</if>
 		<if
-			test="searchtype.equals('employee_position_code') and keyword != null and keyword != '' ">
-			WHERE employee_position_code like CONCAT('%', #{keyword}, '%')
+			test="searchtype.equals('position_code') and keyword != null and keyword != '' ">
+			WHERE position_code like CONCAT('%', #{keyword}, '%')
 		</if>
 		<if
 			test="searchtype.equals('employee_name') and keyword != null and keyword != '' ">
 			WHERE employee_name like CONCAT('%', #{keyword}, '%')
 		</if>
 		<if
-			test="searchtype.equals('employee_type_code') and keyword != null and keyword != '' ">
-			WHERE employee_type_code like CONCAT('%', #{keyword}, '%')
+			test="searchtype.equals('type_code') and keyword != null and keyword != '' ">
+			WHERE type_code like CONCAT('%', #{keyword}, '%')
 		</if>
 		<if
 			test="searchtype.equals('gender') and keyword != null and keyword != '' ">
@@ -96,7 +106,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			test="searchtype.equals('address_2') and keyword != null and keyword != '' ">
 			WHERE address_2 like CONCAT('%', #{keyword}, '%')
 		</if>
-		ORDER BY employee_no ASC
+		ORDER BY employee_no
+		ASC
 		LIMIT
 		#{pagenum},
 		#{contentnum}
@@ -114,10 +125,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		parameterType="com.example.demo.domain.employee">
 		INSERT INTO employee
 		(employee_no
-		,employee_rank_code
-		,employee_position_code
+		,rank_code
+		,position_code
 		,employee_name
-		,employee_type_code
+		,type_code
 		,gender
 		,birthday
 		,postal_code
@@ -126,10 +137,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,employee_memo)
 		VALUES
 		(#{employee_no}
-		,#{employee_rank_code}
-		,#{employee_position_code}
+		,#{rank_code}
+		,#{position_code}
 		,#{employee_name}
-		,#{employee_type_code}
+		,#{type_code}
 		,#{gender}
 		,#{birthday}
 		,#{postal_code}
@@ -146,21 +157,21 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			employee_no = #{employee_no}
 		</if>
 		<if
-			test="employee_no != null and employee_rank_code != null and employee_position_code != null and employee_type_code != null"> , </if>
+			test="employee_no != null and rank_code != null and position_code != null and type_code != null"> , </if>
 		<if test="employee_no != null">
 			employee_no = #{employee_no}
 		</if>
-		<if test="employee_rank_code != null">
-			,employee_rank_code = #{employee_rank_code}
+		<if test="rank_code != null">
+			,rank_code = #{rank_code}
 		</if>
-		<if test="employee_position_code != null">
-			,employee_position_code = #{employee_position_code}
+		<if test="position_code != null">
+			,position_code = #{position_code}
 		</if>
 		<if test="employee_name != null">
 			,employee_name = #{employee_name}
 		</if>
-		<if test="employee_type_code != null">
-			,employee_type_code = #{employee_type_code}
+		<if test="type_code != null">
+			,type_code = #{type_code}
 		</if>
 		<if test="postal_code != null">
 			,postal_code = #{postal_code}

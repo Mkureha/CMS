@@ -26,10 +26,10 @@ public class CompanyController {
 
 	@Resource(name = "com.example.demo.mapper.CompanyMapper")
 	CompanyMapper mapper;
-	
+
 	@Resource(name = "com.example.demo.service.CompanyService")
 	CompanyService employeeService;
-	
+
 	@GetMapping("/index")
 	public String home(Model model) {
 		model.addAttribute("WEB-INF", "views/index");
@@ -75,7 +75,7 @@ public class CompanyController {
 		return "employee";
 	}
 
-	@RequestMapping(value = "/employee/detail/{employee_no}", method=RequestMethod.GET)
+	@RequestMapping(value = "/employee/detail/{employee_no}", method = RequestMethod.GET)
 	private String employeeDetail(@PathVariable String employee_no, @ModelAttribute employee page, Model model)
 			throws Exception {
 
@@ -88,9 +88,9 @@ public class CompanyController {
 		return "employee_insert";
 	}
 
-	@RequestMapping("/insertProc")
+	@RequestMapping("/employee/insertProc")
 	private String employeeInsertProc(employee employee, MultipartFile file) throws Exception {
-		
+
 		employeeService.employeeInsertService(employee);
 
 		return "redirect:/employee";
@@ -104,17 +104,17 @@ public class CompanyController {
 		return "employee_update";
 	}
 
-	@PostMapping("/updateProc")
+	@PostMapping("/employee/updateProc")
 	@GetMapping
 	private String employeeUpdateProc(HttpServletRequest request) throws Exception {
 
 		employee employee = new employee();
 
 		employee.setemployee_no(request.getParameter("employee_no"));
-		employee.setemployee_rank_code(request.getParameter("employee_rank_code"));
-		employee.setemployee_position_code(request.getParameter("employee_position_code"));
+		employee.setrank_code(request.getParameter("rank_code"));
+		employee.setposition_code(request.getParameter("position_code"));
 		employee.setemployee_name(request.getParameter("employee_name"));
-		employee.setemployee_type_code(request.getParameter("employee_type_code"));
+		employee.settype_code(request.getParameter("type_code"));
 		employee.setgender(request.getParameter("gender"));
 		employee.setbirthday(request.getParameter("birthday"));
 		employee.setpostal_code(request.getParameter("postal_code"));
@@ -123,7 +123,7 @@ public class CompanyController {
 		employee.setemployee_memo(request.getParameter("employee_memo"));
 
 		employeeService.employeeUpdateService(employee);
-		return "redirect:employee/detail/" + request.getParameter("employee_no");
+		return "redirect:/employee/detail/" + request.getParameter("employee_no");
 	}
 
 	@RequestMapping("employee/delete/{employee_no}")

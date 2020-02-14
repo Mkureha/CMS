@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.PositionMapper">
+
+	<select id="Positioncount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		position
+		<if test="keyword != null and keyword != '' ">
+			<if test="searchtype.equals('position_code')">
+				WHERE position_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('position_name')">
+				WHERE position_name like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('position_name_small')">
+				WHERE position_name_small like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('position_start')">
+				WHERE position_start like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('position_end')">
+				WHERE position_end like CONCAT('%', #{keyword},
+				'%')
+			</if>
+		</if>
+	</select>
+
+	<select id="listpage" resultType="com.example.demo.domain.position">
+		SELECT position_code
+		,position_name
+		,position_start
+		,position_end
+		FROM position
+		<if
+			test="keyword != null and keyword != '' and searchtype.equals('position_code')">
+			WHERE position_code like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('position_name') and keyword != null and keyword != '' ">
+			WHERE position_name like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('position_name_small') and keyword != null and keyword != '' ">
+			WHERE position_name_small like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('position_start') and keyword != null and keyword != '' ">
+			WHERE position_start like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('position_end') and keyword != null and keyword != '' ">
+			WHERE position_end like CONCAT('%', #{keyword}, '%')
+		</if>
+		ORDER BY position_code
+		ASC
+		LIMIT
+		#{pagenum},
+		#{contentnum}
+	</select>
+
+	<select id="PositionDetail" parameterType="String"
+		resultType="com.example.demo.domain.position">
+		SELECT *
+		FROM position
+		WHERE position_code =
+		#{position_code}
+	</select>
+
+	<insert id="PositionInsert"
+		parameterType="com.example.demo.domain.position">
+		INSERT INTO position
+		(position_code
+		,position_name
+		,position_name_small
+		,position_start
+		,position_end)
+		VALUES
+		(#{position_code}
+		,#{position_name}
+		,#{position_name_small}
+		,#{position_start}
+		,#{position_end})
+	</insert>
+
+	<update id="PositionUpdate"
+		parameterType="com.example.demo.domain.position">
+		UPDATE position
+		SET
+		<if test="position_code != null">
+			position_code = #{position_code}
+		</if>
+		<if
+			test="position_code != null and position_code != null and position_code != null and type_code != null"> , </if>
+		<if test="position_code != null">
+			position_code = #{position_code}
+		</if>
+		<if test="position_name != null">
+			,position_name = #{position_name}
+		</if>
+		<if test="position_name_small != null">
+			,position_name_small = #{position_name_small}
+		</if>
+		<if test="position_start != null">
+			,position_start = #{position_start}
+		</if>
+		<if test="position_end != null">
+			,position_end = #{position_end}
+		</if>
+		WHERE position_code = #{position_code}
+	</update>
+
+	<delete id="PositionDelete" parameterType="String">
+		DELETE FROM position
+		WHERE
+		position_code = #{position_code}
+	</delete>
+
+</mapper>

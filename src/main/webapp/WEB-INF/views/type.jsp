@@ -7,37 +7,37 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-<title>職責リスト</title>
+<title>役職リスト</title>
 </head>
 <body>
 	<div class="container centered text-center">
-		<h2>職責リスト</h2>
+		<h2>役職リスト</h2>
 	</div>
 	<button class="btn btn-danger"
 		onclick="location.href='/index'">メニュー</button>
 	<button class="btn btn-warning"
-		onclick="location.href='/position/insert'">職責登録</button>
+		onclick="location.href='/type/insert'">役職登録</button>
 	<br>
 
 	<div class="container">
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="col">職責コード</th>
-					<th scope="col">職責名</th>
-					<th scope="col">職責省略名</th>
-					<th scope="col">職責開始日</th>
-					<th scope="col">職責終了日</th>
+					<th scope="col">役職コード</th>
+					<th scope="col">役職名</th>
+					<th scope="col">役職省略名</th>
+					<th scope="col">役職開始日</th>
+					<th scope="col">役職終了日</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="cpn" items="${list}">
 					<tr>
-						<td scope="row"><a href="/position/detail/${cpn.position_code}">${cpn.position_code}</a></td>
-						<td>${cpn.position_name}</td>
-						<td>${cpn.position_name_small}</td>
-						<td>${cpn.position_start}</td>
-						<td>${cpn.position_end}</td>
+						<td scope="row"><a href="/type/detail/${cpn.type_code}">${cpn.type_code}</a></td>
+						<td>${cpn.type_name}</td>
+						<td>${cpn.type_name_small}</td>
+						<td>${cpn.type_start}</td>
+						<td>${cpn.type_end}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -69,11 +69,11 @@
 			<select class="form-control form-control-sm" name="searchtype"
 				id="searchtype"
 				style="width: 350px; height: 35px; margin-left: auto; margin-right: auto;">
-				<option value="position_code">職責コード</option>
-				<option value="position_name">職責名</option>
-				<option value="position_name_small">職責省略名</option>
-				<option value="position_start">職責開始日</option>
-				<option value="position_end">職責終了日</option>
+				<option value="type_code">役職コード</option>
+				<option value="type_name">役職名</option>
+				<option value="type_name_small">役職省略名</option>
+				<option value="type_start">役職開始日</option>
+				<option value="type_end">役職終了日</option>
 			</select>
 		</div>
 		<div>
@@ -95,7 +95,7 @@
 		var contentnum = 10;
 		var searchtype = $('#searchtype').val()
 		var keyword = $('#keyword').val()
-		var url = "${pageContext.request.contextPath}/position?pagenum=" + pagenum + "&contentnum=" + contentnum;
+		var url = "${pageContext.request.contextPath}/type?pagenum=" + pagenum + "&contentnum=" + contentnum;
 		url = url + "&searchtype=" + searchtype;
 		url = url + "&keyword=" + keyword;
 		location.href = url;
@@ -105,7 +105,7 @@
 <!-- Search -->
 	$(document).on('click', '#btnSearch', function(e){
 		e.preventDefault();
-		var url = "${pageContext.request.contextPath}/position?pagenum=1&contentnum=10";
+		var url = "${pageContext.request.contextPath}/type?pagenum=1&contentnum=10";
 		url = url + "&searchtype=" + $('#searchtype').val();
 		url = url + "&keyword=" + $('#keyword').val();
 		location.href = url;

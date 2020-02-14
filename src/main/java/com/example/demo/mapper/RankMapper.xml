@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.RankMapper">
+
+	<select id="Rankcount" resultType="int">
+		SELECT COUNT(*)
+		FROM `rank`
+		<if test="keyword != null and keyword != '' ">
+			<if test="searchtype.equals('rank_code')">
+				WHERE rank_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('rank_name')">
+				WHERE rank_name like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('rank_name_small')">
+				WHERE rank_name_small like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('rank_start')">
+				WHERE rank_start like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('rank_end')">
+				WHERE rank_end like CONCAT('%', #{keyword},
+				'%')
+			</if>
+		</if>
+	</select>
+
+	<select id="listpage" resultType="com.example.demo.domain.rank">
+		SELECT rank_code
+		,rank_name
+		,rank_start
+		,rank_end
+		FROM `rank`
+		<if
+			test="keyword != null and keyword != '' and searchtype.equals('rank_code')">
+			WHERE rank_code like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('rank_name') and keyword != null and keyword != '' ">
+			WHERE rank_name like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('rank_name_small') and keyword != null and keyword != '' ">
+			WHERE rank_name_small like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('rank_start') and keyword != null and keyword != '' ">
+			WHERE rank_start like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('rank_end') and keyword != null and keyword != '' ">
+			WHERE rank_end like CONCAT('%', #{keyword}, '%')
+		</if>
+		ORDER BY rank_code
+		ASC
+		LIMIT
+		#{pagenum},
+		#{contentnum}
+	</select>
+
+	<select id="RankDetail" parameterType="String"
+		resultType="com.example.demo.domain.rank">
+		SELECT *
+		FROM `rank`
+		WHERE rank_code =
+		#{rank_code}
+	</select>
+
+	<insert id="RankInsert"
+		parameterType="com.example.demo.domain.rank">
+		INSERT INTO `rank`
+		(rank_code
+		,rank_name
+		,rank_name_small
+		,rank_start
+		,rank_end)
+		VALUES
+		(#{rank_code}
+		,#{rank_name}
+		,#{rank_name_small}
+		,#{rank_start}
+		,#{rank_end})
+	</insert>
+
+	<update id="RankUpdate"
+		parameterType="com.example.demo.domain.rank">
+		UPDATE `rank`
+		SET
+		<if test="rank_code != null">
+			rank_code = #{rank_code}
+		</if>
+		<if
+			test="rank_code != null and rank_code != null and rank_code != null and type_code != null"> , </if>
+		<if test="rank_code != null">
+			rank_code = #{rank_code}
+		</if>
+		<if test="rank_name != null">
+			,rank_name = #{rank_name}
+		</if>
+		<if test="rank_name_small != null">
+			,rank_name_small = #{rank_name_small}
+		</if>
+		<if test="rank_start != null">
+			,rank_start = #{rank_start}
+		</if>
+		<if test="rank_end != null">
+			,rank_end = #{rank_end}
+		</if>
+		WHERE rank_code = #{rank_code}
+	</update>
+
+	<delete id="RankDelete" parameterType="String">
+		DELETE FROM `rank`
+		WHERE
+		rank_code = #{rank_code}
+	</delete>
+
+</mapper>

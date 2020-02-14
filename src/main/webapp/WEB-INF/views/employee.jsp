@@ -39,10 +39,10 @@
 				<c:forEach var="cpn" items="${list}">
 					<tr>
 						<td scope="row"><a href="/employee/detail/${cpn.employee_no}">${cpn.employee_no}</a></td>
-						<td>${cpn.employee_rank_code}</td>
-						<td>${cpn.employee_position_code}</td>
+						<td>${cpn.rank_code}</td>
+						<td>${cpn.position_code}</td>
 						<td>${cpn.employee_name}</td>
-						<td>${cpn.employee_type_code}</td>
+						<td>${cpn.type_code}</td>
 						<td>${cpn.gender}</td>
 						<td>${cpn.birthday}</td>
 						<td>${cpn.postal_code}</td>
@@ -80,10 +80,10 @@
 				id="searchtype"
 				style="width: 350px; height: 35px; margin-left: auto; margin-right: auto;">
 				<option value="employee_no">社員コード</option>
-				<option value="employee_rank_code">部署コード</option>
-				<option value="employee_position_code">職責コード</option>
+				<option value="rank_code">部署コード</option>
+				<option value="position_code">職責コード</option>
 				<option value="employee_name">社員名</option>
-				<option value="employee_type_code">区分コード</option>
+				<option value="type_code">区分コード</option>
 				<option value="gender">性別</option>
 				<option value="birthday">生年月日</option>
 				<option value="postal_code">郵便番号</option>

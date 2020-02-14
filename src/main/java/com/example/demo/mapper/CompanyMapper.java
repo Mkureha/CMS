@@ -9,9 +9,8 @@ import com.example.demo.domain.employee;
 
 
 @Repository("com.example.demo.mapper.CompanyMapper")
-public interface CompanyMapper {
-	
-	// 사원수
+public interface CompanyMapper {	
+	    // 사원수
 		public int employeecount(@Param("searchtype") String searchtype,@Param("keyword") String keyword);
 
 		// 사원목록페이징

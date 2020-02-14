@@ -12,7 +12,7 @@
 		<h2>社員 登録</h2>
 	</div>
 
-	<form role="form" action="/insertProc" method="post"
+	<form role="form" action="/employee/insertProc" method="post"
 		enctype="multipart/form-data" autocomplete="off">
 		<div class="inputArea" style="margin: 10px 0;">
 			<div class="form-group">
@@ -22,10 +22,9 @@
 					style="width: 250px;">
 			</div>
 			<div class="form-group">
-				<label for="employee_rank_code" style="width: 500px; padding: 10px;">部署コード
-				</label> <select class="form-control form-control-sm"
-					name="employee_rank_code" id="employee_rank_code"
-					style="width: 250px;">
+				<label for="rank_code" style="width: 500px; padding: 10px;">部署コード
+				</label> <select class="form-control form-control-sm" name="rank_code"
+					id="rank_code" style="width: 250px;">
 					<option value="99" selected="selected">未配置</option>
 					<option value="00">本社</option>
 					<option value="01">第1グループ</option>
@@ -33,10 +32,9 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="employee_position_code"
-					style="width: 500px; padding: 10px;">職責コード </label> <select
-					class="form-control form-control-sm" name="employee_position_code"
-					id="employee_position_code" style="width: 250px;">
+				<label for="position_code" style="width: 500px; padding: 10px;">職責コード
+				</label> <select class="form-control form-control-sm" name="position_code"
+					id="position_code" style="width: 250px;">
 					<option value="99" selected="selected">未配置</option>
 					<option value="01">部長</option>
 					<option value="02">課長</option>
@@ -51,10 +49,9 @@
 					style="width: 250px;">
 			</div>
 			<div class="form-group">
-				<label for="employee_type_code" style="width: 500px; padding: 10px;">区分コード
-				</label> <select class="form-control form-control-sm"
-					name="employee_type_code" id="employee_type_code"
-					style="width: 250px;">
+				<label for="type_code" style="width: 500px; padding: 10px;">区分コード
+				</label> <select class="form-control form-control-sm" name="type_code"
+					id="type_code" style="width: 250px;">
 					<option value="0" selected="selected">未配置</option>
 					<option value="1">役員</option>
 					<option value="2">正社員</option>
@@ -77,8 +74,8 @@
 					name="birthday" placeholder="誕生日を入力してください" style="width: 250px;">
 			</div>
 			<div class="inputArea">
-				<label for="postal_code" style="width: 500px; padding: 10px;">郵便番号</label>
-				<input type="text" class="form-control" id="postal_code"
+				<label for="postal_code" style="width: 500px; padding: 10px;">郵便番号<br>('-'なしで入力してください)
+				</label> <input type="text" class="form-control" id="postal_code"
 					name="postal_code" placeholder="郵便番号を入力してください"
 					style="width: 150px;">
 			</div>

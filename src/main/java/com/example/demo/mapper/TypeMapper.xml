@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.TypeMapper">
+
+	<select id="Typecount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		type
+		<if test="keyword != null and keyword != '' ">
+			<if test="searchtype.equals('type_code')">
+				WHERE type_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('type_name')">
+				WHERE type_name like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('type_name_small')">
+				WHERE type_name_small like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('type_start')">
+				WHERE type_start like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('type_end')">
+				WHERE type_end like CONCAT('%', #{keyword},
+				'%')
+			</if>
+		</if>
+	</select>
+
+	<select id="listpage" resultType="com.example.demo.domain.type">
+		SELECT type_code
+		,type_name
+		,type_start
+		,type_end
+		FROM type
+		<if
+			test="keyword != null and keyword != '' and searchtype.equals('type_code')">
+			WHERE type_code like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('type_name') and keyword != null and keyword != '' ">
+			WHERE type_name like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('type_name_small') and keyword != null and keyword != '' ">
+			WHERE type_name_small like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('type_start') and keyword != null and keyword != '' ">
+			WHERE type_start like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('type_end') and keyword != null and keyword != '' ">
+			WHERE type_end like CONCAT('%', #{keyword}, '%')
+		</if>
+		ORDER BY type_code
+		ASC
+		LIMIT
+		#{pagenum},
+		#{contentnum}
+	</select>
+
+	<select id="TypeDetail" parameterType="String"
+		resultType="com.example.demo.domain.type">
+		SELECT *
+		FROM type
+		WHERE type_code =
+		#{type_code}
+	</select>
+
+	<insert id="TypeInsert"
+		parameterType="com.example.demo.domain.type">
+		INSERT INTO type
+		(type_code
+		,type_name
+		,type_name_small
+		,type_start
+		,type_end)
+		VALUES
+		(#{type_code}
+		,#{type_name}
+		,#{type_name_small}
+		,#{type_start}
+		,#{type_end})
+	</insert>
+
+	<update id="TypeUpdate"
+		parameterType="com.example.demo.domain.type">
+		UPDATE type
+		SET
+		<if test="type_code != null">
+			type_code = #{type_code}
+		</if>
+		<if
+			test="type_code != null and type_code != null and type_code != null and type_code != null"> , </if>
+		<if test="type_code != null">
+			type_code = #{type_code}
+		</if>
+		<if test="type_name != null">
+			,type_name = #{type_name}
+		</if>
+		<if test="type_name_small != null">
+			,type_name_small = #{type_name_small}
+		</if>
+		<if test="type_start != null">
+			,type_start = #{type_start}
+		</if>
+		<if test="type_end != null">
+			,type_end = #{type_end}
+		</if>
+		WHERE type_code = #{type_code}
+	</update>
+
+	<delete id="TypeDelete" parameterType="String">
+		DELETE FROM type
+		WHERE
+		type_code = #{type_code}
+	</delete>
+
+</mapper>

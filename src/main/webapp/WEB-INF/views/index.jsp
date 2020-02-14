@@ -15,8 +15,12 @@
 	<div>
 		<a role="button" class="btn btn-primary"
 			href="/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=">社員リストへ</a>
-		<a role="button" class="btn btn-info" href="/rank">部署リストへ</a> <a
-			role="button" class="btn btn-light" href="/position">職責リストへ</a>
+		<a role="button" class="btn btn-info"
+			href="/rank?pagenum=1&contentnum=10&searchtype=rank_code&keyword=">部署リストへ</a>
+		<a role="button" class="btn btn-light"
+			href="/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=">職責リストへ</a>
+		<a role="button" class="btn btn-danger"
+			href="/position?pagenum=1&contentnum=10&searchtype=type_code&keyword=">役職リストへ</a>
 	</div>
 
 	<div class="text-center" style="float: none; margin: 0 auto;">

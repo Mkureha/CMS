@@ -26,20 +26,20 @@
 				<p>${detail.employee_no }</p>
 			</div>
 			<div class="inputArea">
-				<label for="employee_rank_code">部署コード</label>
-				<p>${detail.employee_rank_code }</p>
+				<label for="rank_code">部署コード</label>
+				<p>${detail.rank_code }</p>
 			</div>
 			<div class="inputArea">
-				<label for="employee_position_code">職責コード</label>
-				<p>${detail.employee_position_code }</p>
+				<label for="position_code">職責コード</label>
+				<p>${detail.position_code }</p>
 			</div>
 			<div class="inputArea">
 				<label for="employee_name">社員名</label>
 				<p>${detail.employee_name }</p>
 			</div>
 			<div class="inputArea">
-				<label for="employee_type_code">区分コード</label>
-				<p>${detail.employee_type_code }</p>
+				<label for="type_code">区分コード</label>
+				<p>${detail.type_code }</p>
 			</div>
 			<div class="inputArea">
 				<label for="gender">性別</label>

@@ -13,17 +13,17 @@
 	</div>
 
 	<div class="container">
-		<form action="/updateProc" method="post">
+		<form action="/employee/updateProc" method="post">
 			<div class="form-group">
 				<label for="employee_no">社員コード</label> <input type="text"
 					class="form-control" id="employee_no" name="employee_no"
 					value="${detail.employee_no }">
 			</div>
 			<div class="form-group">
-				<label for="employee_rank_code">部署コード</label> <select
-					class="form-control form-control-sm" name="employee_rank_code"
-					id="employee_rank_code" style="width: 250px;">
-					<option value="${detail.employee_rank_code }" selected="selected">${detail.employee_rank_code }</option>
+				<label for="rank_code">部署コード</label> <select
+					class="form-control form-control-sm" name="rank_code"
+					id="rank_code" style="width: 250px;">
+					<option value="${detail.rank_code }" selected="selected">${detail.rank_code }</option>
 					<option value="99">未配置</option>
 					<option value="00">本社</option>
 					<option value="01">第1グループ</option>
@@ -31,11 +31,10 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="employee_position_code">職責コード</label> <select
-					class="form-control form-control-sm" name="employee_position_code"
-					id="employee_position_code" style="width: 250px;">
-					<option value="${detail.employee_position_code }"
-						selected="selected">${detail.employee_position_code }</option>
+				<label for="position_code">職責コード</label> <select
+					class="form-control form-control-sm" name="position_code"
+					id="position_code" style="width: 250px;">
+					<option value="${detail.position_code }" selected="selected">${detail.position_code }</option>
 					<option value="99">未配置</option>
 					<option value="01">部長</option>
 					<option value="02">課長</option>
@@ -49,10 +48,10 @@
 					value="${detail.employee_name }">
 			</div>
 			<div class="form-group">
-				<label for="employee_type_code">区分コード</label> <select
-					class="form-control form-control-sm" name="employee_type_code"
-					id="employee_type_code" style="width: 250px;">
-					<option value="${detail.employee_type_code }" selected="selected">${detail.employee_type_code }</option>
+				<label for="type_code">区分コード</label> <select
+					class="form-control form-control-sm" name="type_code"
+					id="type_code" style="width: 250px;">
+					<option value="${detail.type_code }" selected="selected">${detail.type_code }</option>
 					<option value="0">未配置</option>
 					<option value="1">役員</option>
 					<option value="2">正社員</option>
@@ -76,9 +75,9 @@
 					value="${detail.birthday }">
 			</div>
 			<div class="form-group">
-				<label for="postal_code">郵便番号</label> <input type="text"
-					class="form-control" id="postal_code" name="postal_code"
-					value="${detail.postal_code }">
+				<label for="postal_code">郵便番号<br>('-'なしで入力してください)
+				</label> <input type="text" class="form-control" id="postal_code"
+					name="postal_code" value="${detail.postal_code }">
 			</div>
 			<div class="form-group">
 				<label for="address_1">住所1</label> <input type="text"
