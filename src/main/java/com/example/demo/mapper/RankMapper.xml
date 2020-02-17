@@ -9,8 +9,14 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT COUNT(*)
 		FROM rank_syou
 		<if test="keyword != null and keyword != '' ">
-			<if test="searchtype.equals('rank_code')">
-				WHERE rank_code like CONCAT('%', #{keyword}, '%')
+			<if test="searchtype.equals('busyo_dai_code')">
+				WHERE busyo_dai_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('busyo_cyu_code')">
+				WHERE busyo_cyu_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('busyo_syou_code')">
+				WHERE busyo_syou_code like CONCAT('%', #{keyword}, '%')
 			</if>
 			<if test="searchtype.equals('busyo_name')">
 				WHERE busyo_name like CONCAT('%', #{keyword},
@@ -33,14 +39,24 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 	<select id="listpage"
 		resultType="com.example.demo.domain.rank_syou">
-		SELECT rank_code
+		SELECT busyo_dai_code
+		,busyo_cyu_code
+		,busyo_syou_code
 		,busyo_name
 		,busyo_start
 		,busyo_end
 		FROM rank_syou
 		<if
-			test="keyword != null and keyword != '' and searchtype.equals('rank_code')">
-			WHERE rank_code like CONCAT('%', #{keyword}, '%')
+			test="keyword != null and keyword != '' and searchtype.equals('busyo_dai_code')">
+			WHERE busyo_dai_code like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="keyword != null and keyword != '' and searchtype.equals('busyo_cyu_code')">
+			WHERE busyo_cyu_code like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="keyword != null and keyword != '' and searchtype.equals('busyo_syou_code')">
+			WHERE busyo_syou_code like CONCAT('%', #{keyword}, '%')
 		</if>
 		<if
 			test="searchtype.equals('busyo_name') and keyword != null and keyword != '' ">
@@ -58,7 +74,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			test="searchtype.equals('busyo_end') and keyword != null and keyword != '' ">
 			WHERE busyo_end like CONCAT('%', #{keyword}, '%')
 		</if>
-		ORDER BY rank_code
+		ORDER BY busyo_dai_code, busyo_cyu_code, busyo_syou_code
 		ASC
 		LIMIT
 		#{pagenum},
@@ -69,7 +85,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		resultType="com.example.demo.domain.rank_syou">
 		SELECT *
 		FROM rank_syou
-		WHERE rank_code = #{rank_code}
+		WHERE busyo_dai_code =
+		#{busyo_dai_code}
+		AND busyo_cyu_code = #{busyo_cyu_code}
+		AND
+		busyo_syou_code = #{busyo_syou_code}
 		AND
 		busyo_start = #{busyo_start}
 	</select>
@@ -77,8 +97,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<insert id="RankInsert"
 		parameterType="com.example.demo.domain.rank_syou">
 		INSERT INTO rank_syou
-		(rank_code
-		,busyo_dai_code
+		(busyo_dai_code
 		,busyo_cyu_code
 		,busyo_syou_code
 		,busyo_name
@@ -86,8 +105,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,busyo_start
 		,busyo_end)
 		VALUES
-		(#{rank_code}
-		,#{busyo_dai_code}
+		(#{busyo_dai_code}
 		,#{busyo_cyu_code}
 		,#{busyo_syou_code}
 		,#{busyo_name}
@@ -96,18 +114,60 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,#{busyo_end})
 	</insert>
 
+	<insert id="RankInsertcyu"
+		parameterType="com.example.demo.domain.rank_cyu">
+		INSERT INTO rank_cyu
+		(busyo_dai_code
+		,busyo_cyu_code
+		,busyo_name
+		,busyo_name_small
+		,busyo_start
+		,busyo_end)
+		VALUES
+		(#{busyo_dai_code}
+		,#{busyo_cyu_code}
+		,#{busyo_name}
+		,#{busyo_name_small}
+		,#{busyo_start}
+		,#{busyo_end})
+	</insert>
+	
+	<insert id="RankInsertdai"
+		parameterType="com.example.demo.domain.rank_dai">
+		INSERT INTO rank_dai
+		(busyo_dai_code
+		,busyo_name
+		,busyo_name_small
+		,busyo_start
+		,busyo_end)
+		VALUES
+		(#{busyo_dai_code}
+		,#{busyo_name}
+		,#{busyo_name_small}
+		,#{busyo_start}
+		,#{busyo_end})
+	</insert>
+
+	<insert id="listdai"
+		parameterType="com.example.demo.domain.rank_dai">
+		SELECT busyo_dai_code
+		,busyo_name
+		FROM rank_dai
+	</insert>
+
 	<update id="RankUpdate"
 		parameterType="com.example.demo.domain.rank_syou">
 		UPDATE rank_syou
 		SET
-		<if test="rank_code != null">
-			rank_code = #{rank_code}
+		<if
+			test="busyo_dai_bunrui != null AND busyo_cyu_bunrui != null AND busyo_syou_bunrui != null">
+			busyo_dai_bunrui = #{busyo_dai_bunrui}
+			,busyo_cyu_bunrui =
+			#{busyo_cyu_bunrui}
+			,busyo_syou_bunrui = #{busyo_syou_bunrui}
 		</if>
 		<if
-			test="rank_code != null and busyo_name != null and busyo_name_small != null and busyo_start != null and busyo_end != null"> , </if>
-		<if test="rank_code != null">
-			rank_code = #{rank_code}
-		</if>
+			test="busyo_dai_bunrui != null AND busyo_cyu_bunrui != null AND busyo_syou_bunrui != null and busyo_name != null and busyo_name_small != null and busyo_start != null and busyo_end != null"> , </if>
 		<if test="busyo_name != null">
 			,busyo_name = #{busyo_name}
 		</if>
@@ -120,14 +180,21 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		<if test="busyo_end != null">
 			,busyo_end = #{busyo_end}
 		</if>
-		WHERE rank_code = #{rank_code}
-		AND busyo_start = #{busyo_start}
+		WHERE busyo_dai_code = #{busyo_dai_code}
+		AND busyo_cyu_code =
+		#{busyo_cyu_code}
+		AND busyo_syou_code = #{busyo_syou_code}
+		AND
+		busyo_start = #{busyo_start}
 	</update>
 
 	<delete id="RankDelete">
 		DELETE FROM rank_syou
-		WHERE
-		rank_code = #{rank_code}
+		WHERE busyo_dai_code =
+		#{busyo_dai_code}
+		AND busyo_cyu_code = #{busyo_cyu_code}
+		AND
+		busyo_syou_code = #{busyo_syou_code}
 		AND busyo_start = #{busyo_start}
 	</delete>
 

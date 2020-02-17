@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.domain.rank_cyu;
+import com.example.demo.domain.rank_dai;
 import com.example.demo.domain.rank_syou;
 import com.example.demo.mapper.RankMapper;
 import com.example.demo.service.RankService;
@@ -62,6 +65,8 @@ public class RankController {
 
 		System.out.println("Parameter keyword : " + request.getParameter("keyword"));
 		System.out.println("Board keyword : " + Rank.getkeyword());
+		System.out.println("Parameter busyo_dai_code : " + request.getParameter("busyo_dai_code"));
+		System.out.println("Parameter busyo_name : " + request.getParameter("busyo_name"));
 
 		request.setAttribute("list", listpage);
 		request.setAttribute("page", Rank);
@@ -69,38 +74,70 @@ public class RankController {
 		return "rank";
 	}
 
-	@RequestMapping(value = "/rank/detail/{rank_code}/{busyo_start}", method = RequestMethod.GET)
-	private String RankDetail(@PathVariable String rank_code, @PathVariable String busyo_start,
-			@ModelAttribute rank_syou page, Model model) throws Exception {
+	@RequestMapping(value = "/rank/detail/{busyo_dai_code}{busyo_cyu_code}{busyo_syou_code}/{busyo_start}", method = RequestMethod.GET)
+	private String RankDetail(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
+			@PathVariable String busyo_syou_code, @PathVariable String busyo_start, @ModelAttribute rank_syou page,
+			Model model) throws Exception {
 
-		System.out.println("rank code : " + rank_code);
-		System.out.println("rank start : " + busyo_start);
-
-		model.addAttribute("detail", RankService.RankDetailService(rank_code, busyo_start));
+		model.addAttribute("detail",
+				RankService.RankDetailService(busyo_dai_code, busyo_cyu_code, busyo_syou_code, busyo_start));
 		return "rank_detail";
 	}
 
-	@RequestMapping("/rank/insert") // 도서등록폼호출
+	// 小分類入力
+	@RequestMapping("/rank/insertsyou") // 도서등록폼호출
 	private String RankInsertForm() {
 		return "rank_insert";
 	}
 
-	@RequestMapping("/rank/insertProc")
+	@RequestMapping("/ranksyou/insertProc")
 	private String RankInsertProc(rank_syou rank, MultipartFile file) throws Exception {
 
 		RankService.RankInsertService(rank);
 
-		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
+		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
 	}
 
-	@RequestMapping("rank/update/{rank_code}/{busyo_start}") // 게시글수정폼호출
-	private String RankUpdateForm(@PathVariable String rank_code, @PathVariable String busyo_start, Model model)
-			throws Exception {
+	// 中分類入力
+	@RequestMapping("/rank/insertcyu") // 도서등록폼호출
+	private String RankInsertcyuForm(HttpServletRequest request) throws Exception{
+		
+		return "rank_cyu_insert";
+	}
 
-		model.addAttribute("detail", RankService.RankDetailService(rank_code, busyo_start));
+	@RequestMapping("/rankcyu/insertProc")
+	private String RankInsertProc(rank_cyu rank, MultipartFile file) throws Exception {
+		
+		RankService.RankInsertcyuService(rank);
+
+		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
+	}
+	// END
+
+	// 大分類入力
+	@RequestMapping("/rank/insertdai") // 도서등록폼호출
+	private String RankInsertdaiForm() {
+		return "rank_dai_insert";
+	}
+
+	@RequestMapping("/rankdai/insertProc")
+	private String RankInsertProc(rank_dai rank, MultipartFile file) throws Exception {
+
+		RankService.RankInsertdaiService(rank);
+
+		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
+	}
+
+	@RequestMapping("rank/update/{busyo_dai_code}{busyo_cyu_code}{busyo_syou_code}/{busyo_start}") // 게시글수정폼호출
+	private String RankUpdateForm(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
+			@PathVariable String busyo_syou_code, @PathVariable String busyo_start, Model model) throws Exception {
+
+		model.addAttribute("detail",
+				RankService.RankDetailService(busyo_dai_code, busyo_cyu_code, busyo_syou_code, busyo_start));
 
 		return "rank_update";
 	}
+	// END
 
 	@PostMapping("/rank/updateProc")
 	@GetMapping
@@ -121,11 +158,12 @@ public class RankController {
 		return "redirect:/rank/detail/" + request.getParameter("rank_code") + "/" + request.getParameter("busyo_start");
 	}
 
-	@RequestMapping("/rank/delete/{rank_code}/{busyo_start}")
+	@RequestMapping("/rank/delete/{busyo_dai_code}{busyo_cyu_code}{busyo_syou_code}/{busyo_start}")
 	@GetMapping
-	private String RankDelete(@PathVariable String rank_code, @PathVariable String busyo_start) throws Exception {
-		RankService.RankDeleteService(rank_code, busyo_start);
+	private String RankDelete(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
+			@PathVariable String busyo_syou_code, @PathVariable String busyo_start) throws Exception {
+		RankService.RankDeleteService(busyo_dai_code, busyo_cyu_code, busyo_syou_code, busyo_start);
 
-		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
+		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
 	}
 }

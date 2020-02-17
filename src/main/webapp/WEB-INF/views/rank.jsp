@@ -13,17 +13,23 @@
 	<div class="container centered text-center">
 		<h2>部署リスト</h2>
 	</div>
-	<button class="btn btn-danger"
-		onclick="location.href='/index'">メニュー</button>
+	<button class="btn btn-danger" onclick="location.href='/index'">メニュー</button>
 	<button class="btn btn-warning"
-		onclick="location.href='/rank/insert'">部署登録</button>
+		onclick="location.href='/rank/insertdai'">部署(大分類)登録</button>
+	<button class="btn btn-warning"
+		onclick="location.href='/rank/insertcyu'">部署(中分類)登録</button>
+	<button class="btn btn-warning"
+		onclick="location.href='/rank/insertsyou'">部署(小分類)登録</button>
 	<br>
 
 	<div class="container">
-		<table class="table table-striped">
+		<table class="table table-striped" style="width: 900px;">
 			<thead>
 				<tr>
 					<th scope="col">部署コード</th>
+					<th scope="col">大分類コード</th>
+					<th scope="col">中分類コード</th>
+					<th scope="col">小分類コード</th>
 					<th scope="col">部署名</th>
 					<th scope="col">部署省略名</th>
 					<th scope="col">部署開始日</th>
@@ -33,7 +39,11 @@
 			<tbody>
 				<c:forEach var="cpn" items="${list}">
 					<tr>
-						<td scope="row"><a href="/rank/detail/${cpn.rank_code}/${cpn.busyo_start}">${cpn.rank_code}</a></td>
+						<td scope="row"><a
+							href="/rank/detail/${cpn.busyo_dai_code}${cpn.busyo_cyu_code}${cpn.busyo_syou_code}/${cpn.busyo_start}">${cpn.busyo_dai_code}${cpn.busyo_cyu_code}${cpn.busyo_syou_code}</a></td>
+						<td>${cpn.busyo_dai_code}</td>
+						<td>${cpn.busyo_cyu_code}</td>
+						<td>${cpn.busyo_syou_code}</td>
 						<td>${cpn.busyo_name}</td>
 						<td>${cpn.busyo_name_small}</td>
 						<td>${cpn.busyo_start}</td>
@@ -69,7 +79,9 @@
 			<select class="form-control form-control-sm" name="searchtype"
 				id="searchtype"
 				style="width: 350px; height: 35px; margin-left: auto; margin-right: auto;">
-				<option value="rank_code">部署コード</option>
+				<option value="busyo_dai_code">大分類コード</option>
+				<option value="busyo_cyu_code">中分類コード</option>
+				<option value="busyo_syou_code">小分類コード</option>
 				<option value="busyo_name">部署名</option>
 				<option value="busyo_name_small">部署省略名</option>
 				<option value="busyo_start">部署開始日</option>

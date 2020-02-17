@@ -1,9 +1,9 @@
 package com.example.demo.domain;
 
-public class rank_syou {
+public class rank_syou extends rank_cyu {
 	
-	private String busyo_dai_code;
-	private String busyo_cyu_code;
+	public String busyo_dai_code;
+	public String busyo_cyu_code;
 	private String busyo_syou_code;
 	private String busyo_name;
 	private String busyo_name_small;

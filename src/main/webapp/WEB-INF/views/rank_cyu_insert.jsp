@@ -5,14 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-<title>部署情報入力 - 簡単</title>
+<title>部署情報入力(中分類) - 簡単</title>
 </head>
 <body>
 	<div class="container centered text-center">
-		<h2>部署 登録</h2>
+		<h2>部署（中分類) 登録</h2>
 	</div>
 
-	<form role="form" action="/ranksyou/insertProc" method="post"
+	<form role="form" action="/rankcyu/insertProc" method="post"
 		enctype="multipart/form-data" autocomplete="off">
 		<div class="inputArea" style="margin: 10px 0;">
 			<div class="form-group">
@@ -26,17 +26,8 @@
 			</div>
 			<div class="form-group">
 				<label for="busyo_cyu_code" style="width: 500px; padding: 15px;">中分類コード
-				</label> <select class="form-control form-control-sm" name="busyo_cyu_code"
-					id="busyo_cyu_code" style="width: 350px; height: 35px;">
-					<option value="00">00:無し</option>
-					<option value="01">01:第1グループ</option>
-					<option value="02">02:第2グループ</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<label for="busyo_syou_code" style="width: 500px; padding: 15px;">小分類コード
-				</label> <input type="text" class="form-control" id="busyo_syou_code"
-					name="busyo_syou_code" placeholder="小分類コードを入力してください"
+				</label> <input type="text" class="form-control" id="busyo_cyu_code"
+					name="busyo_cyu_code" placeholder="中分類コードを入力してください"
 					style="width: 250px;">
 			</div>
 			<div class="form-group">
@@ -69,8 +60,6 @@
 		</div>
 	</form>
 
-	<style>
-</style>
 	<%@ include file="bootstrap.jsp"%>
 </body>
 </html>
