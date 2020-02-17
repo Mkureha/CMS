@@ -18,7 +18,7 @@ public interface RankMapper {
 				@Param("searchtype") String searchtype, @Param("keyword") String keyword);
 
 		// 사원상세
-		public rank RankDetail(String rank_code) throws Exception;
+		public rank RankDetail(@Param("rank_code") String rank_code, @Param("rank_start") String rank_start) throws Exception;
 
 		// 사원작성
 		public int RankInsert(rank rank_code) throws Exception;

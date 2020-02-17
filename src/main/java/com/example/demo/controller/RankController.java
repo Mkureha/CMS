@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,8 @@ public class RankController {
 
 	@Resource(name = "com.example.demo.service.RankService")
 	RankService RankService;
+
+	private ServletRequest request;
 
 	@RequestMapping("/rank")
 	@PostMapping
@@ -69,11 +72,14 @@ public class RankController {
 		return "rank";
 	}
 
-	@RequestMapping(value = "/rank/detail/{rank_code}", method = RequestMethod.GET)
-	private String RankDetail(@PathVariable String rank_code, @ModelAttribute rank page, Model model)
+	@RequestMapping(value = "/rank/detail/{rank_code}/{rank_start}", method = RequestMethod.GET)
+	private String RankDetail(@PathVariable String rank_code, @PathVariable String rank_start, @ModelAttribute rank page, Model model)
 			throws Exception {
 
-		model.addAttribute("detail", RankService.RankDetailService(rank_code));
+		System.out.println("rank code : " + rank_code);
+		System.out.println("rank start : " + rank_start);
+		
+		model.addAttribute("detail", RankService.RankDetailService(rank_code, rank_start));
 		return "rank_detail";
 	}
 
@@ -91,9 +97,9 @@ public class RankController {
 	}
 
 	@RequestMapping("rank/update/{rank_code}") // 게시글수정폼호출
-	private String RankUpdateForm(@PathVariable String rank_code, Model model) throws Exception {
+	private String RankUpdateForm(@PathVariable String rank_code, @PathVariable String rank_start, Model model) throws Exception {
 
-		model.addAttribute("detail", RankService.RankDetailService(rank_code));
+		model.addAttribute("detail", RankService.RankDetailService(rank_code, rank_start));
 
 		return "rank_update";
 	}

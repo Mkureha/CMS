@@ -64,12 +64,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		#{contentnum}
 	</select>
 
-	<select id="RankDetail" parameterType="String"
+	<select id="RankDetail"
 		resultType="com.example.demo.domain.rank">
 		SELECT *
 		FROM `rank`
-		WHERE rank_code =
-		#{rank_code}
+   	WHERE rank_code = #{rank_code}
+   	 AND rank_start = #{rank_start}
 	</select>
 
 	<insert id="RankInsert"

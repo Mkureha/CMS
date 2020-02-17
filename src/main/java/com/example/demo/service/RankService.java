@@ -15,8 +15,8 @@ public class RankService {
 	@Resource(name = "com.example.demo.mapper.RankMapper")
 	RankMapper RankMapper;
 
-	public rank RankDetailService(String rank_code) throws Exception {
-		return RankMapper.RankDetail(rank_code);
+	public rank RankDetailService(String rank_code, String rank_start) throws Exception {
+		return RankMapper.RankDetail(rank_code, rank_start);
 	}
 
 	public int RankInsertService(rank rank) throws Exception {

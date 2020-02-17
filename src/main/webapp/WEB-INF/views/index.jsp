@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="text-center" style="float: none; margin: 0 auto;">
-		<h1>
+		<h1>	 
 			ここはメインページでございます。<br> <br> 上のメニューを選択してください
 		</h1>
 	</div>

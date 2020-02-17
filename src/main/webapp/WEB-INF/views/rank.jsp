@@ -33,7 +33,7 @@
 			<tbody>
 				<c:forEach var="cpn" items="${list}">
 					<tr>
-						<td scope="row"><a href="/rank/detail/${cpn.rank_code}">${cpn.rank_code}</a></td>
+						<td scope="row"><a href="/rank/detail/${cpn.rank_code}/${cpn.rank_start}">${cpn.rank_code}</a></td>
 						<td>${cpn.rank_name}</td>
 						<td>${cpn.rank_name_small}</td>
 						<td>${cpn.rank_start}</td>
