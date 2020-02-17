@@ -32,12 +32,14 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		</if>
 	</select>
 
-	<select id="listpage" resultType="com.example.demo.domain.position">
+	<select id="listpage"
+		resultType="com.example.demo.domain.position">
 		SELECT position_code
 		,position_name
 		,position_start
 		,position_end
-		FROM position
+		FROM
+		position
 		<if
 			test="keyword != null and keyword != '' and searchtype.equals('position_code')">
 			WHERE position_code like CONCAT('%', #{keyword}, '%')
@@ -65,12 +67,14 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		#{contentnum}
 	</select>
 
-	<select id="PositionDetail" parameterType="String"
+	<select id="PositionDetail"
 		resultType="com.example.demo.domain.position">
 		SELECT *
 		FROM position
 		WHERE position_code =
 		#{position_code}
+		AND position_start =
+		#{position_start}
 	</select>
 
 	<insert id="PositionInsert"
@@ -97,7 +101,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			position_code = #{position_code}
 		</if>
 		<if
-			test="position_code != null and position_code != null and position_code != null and type_code != null"> , </if>
+			test="position_code != null and position_name != null and position_name_small != null and position_start != null and position_end != null"> , </if>
 		<if test="position_code != null">
 			position_code = #{position_code}
 		</if>
@@ -114,12 +118,16 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			,position_end = #{position_end}
 		</if>
 		WHERE position_code = #{position_code}
+		AND position_start =
+		#{position_start}
 	</update>
 
-	<delete id="PositionDelete" parameterType="String">
+	<delete id="PositionDelete">
 		DELETE FROM position
 		WHERE
 		position_code = #{position_code}
+		AND position_start =
+		#{position_start}
 	</delete>
 
 </mapper>

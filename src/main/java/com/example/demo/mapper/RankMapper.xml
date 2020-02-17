@@ -7,55 +7,56 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 	<select id="Rankcount" resultType="int">
 		SELECT COUNT(*)
-		FROM `rank`
+		FROM rank_syou
 		<if test="keyword != null and keyword != '' ">
 			<if test="searchtype.equals('rank_code')">
 				WHERE rank_code like CONCAT('%', #{keyword}, '%')
 			</if>
-			<if test="searchtype.equals('rank_name')">
-				WHERE rank_name like CONCAT('%', #{keyword},
+			<if test="searchtype.equals('busyo_name')">
+				WHERE busyo_name like CONCAT('%', #{keyword},
 				'%')
 			</if>
-			<if test="searchtype.equals('rank_name_small')">
-				WHERE rank_name_small like CONCAT('%', #{keyword},
+			<if test="searchtype.equals('busyo_name_small')">
+				WHERE busyo_name_small like CONCAT('%', #{keyword},
 				'%')
 			</if>
-			<if test="searchtype.equals('rank_start')">
-				WHERE rank_start like CONCAT('%', #{keyword},
+			<if test="searchtype.equals('busyo_start')">
+				WHERE busyo_start like CONCAT('%', #{keyword},
 				'%')
 			</if>
-			<if test="searchtype.equals('rank_end')">
-				WHERE rank_end like CONCAT('%', #{keyword},
+			<if test="searchtype.equals('busyo_end')">
+				WHERE busyo_end like CONCAT('%', #{keyword},
 				'%')
 			</if>
 		</if>
 	</select>
 
-	<select id="listpage" resultType="com.example.demo.domain.rank">
+	<select id="listpage"
+		resultType="com.example.demo.domain.rank_syou">
 		SELECT rank_code
-		,rank_name
-		,rank_start
-		,rank_end
-		FROM `rank`
+		,busyo_name
+		,busyo_start
+		,busyo_end
+		FROM rank_syou
 		<if
 			test="keyword != null and keyword != '' and searchtype.equals('rank_code')">
 			WHERE rank_code like CONCAT('%', #{keyword}, '%')
 		</if>
 		<if
-			test="searchtype.equals('rank_name') and keyword != null and keyword != '' ">
-			WHERE rank_name like CONCAT('%', #{keyword}, '%')
+			test="searchtype.equals('busyo_name') and keyword != null and keyword != '' ">
+			WHERE busyo_name like CONCAT('%', #{keyword}, '%')
 		</if>
 		<if
-			test="searchtype.equals('rank_name_small') and keyword != null and keyword != '' ">
-			WHERE rank_name_small like CONCAT('%', #{keyword}, '%')
+			test="searchtype.equals('busyo_name_small') and keyword != null and keyword != '' ">
+			WHERE busyo_name_small like CONCAT('%', #{keyword}, '%')
 		</if>
 		<if
-			test="searchtype.equals('rank_start') and keyword != null and keyword != '' ">
-			WHERE rank_start like CONCAT('%', #{keyword}, '%')
+			test="searchtype.equals('busyo_start') and keyword != null and keyword != '' ">
+			WHERE busyo_start like CONCAT('%', #{keyword}, '%')
 		</if>
 		<if
-			test="searchtype.equals('rank_end') and keyword != null and keyword != '' ">
-			WHERE rank_end like CONCAT('%', #{keyword}, '%')
+			test="searchtype.equals('busyo_end') and keyword != null and keyword != '' ">
+			WHERE busyo_end like CONCAT('%', #{keyword}, '%')
 		</if>
 		ORDER BY rank_code
 		ASC
@@ -65,60 +66,69 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="RankDetail"
-		resultType="com.example.demo.domain.rank">
+		resultType="com.example.demo.domain.rank_syou">
 		SELECT *
-		FROM `rank`
-   	WHERE rank_code = #{rank_code}
-   	 AND rank_start = #{rank_start}
+		FROM rank_syou
+		WHERE rank_code = #{rank_code}
+		AND
+		busyo_start = #{busyo_start}
 	</select>
 
 	<insert id="RankInsert"
-		parameterType="com.example.demo.domain.rank">
-		INSERT INTO `rank`
+		parameterType="com.example.demo.domain.rank_syou">
+		INSERT INTO rank_syou
 		(rank_code
-		,rank_name
-		,rank_name_small
-		,rank_start
-		,rank_end)
+		,busyo_dai_code
+		,busyo_cyu_code
+		,busyo_syou_code
+		,busyo_name
+		,busyo_name_small
+		,busyo_start
+		,busyo_end)
 		VALUES
 		(#{rank_code}
-		,#{rank_name}
-		,#{rank_name_small}
-		,#{rank_start}
-		,#{rank_end})
+		,#{busyo_dai_code}
+		,#{busyo_cyu_code}
+		,#{busyo_syou_code}
+		,#{busyo_name}
+		,#{busyo_name_small}
+		,#{busyo_start}
+		,#{busyo_end})
 	</insert>
 
 	<update id="RankUpdate"
-		parameterType="com.example.demo.domain.rank">
-		UPDATE `rank`
+		parameterType="com.example.demo.domain.rank_syou">
+		UPDATE rank_syou
 		SET
 		<if test="rank_code != null">
 			rank_code = #{rank_code}
 		</if>
 		<if
-			test="rank_code != null and rank_code != null and rank_code != null and type_code != null"> , </if>
+			test="rank_code != null and busyo_name != null and busyo_name_small != null and busyo_start != null and busyo_end != null"> , </if>
 		<if test="rank_code != null">
 			rank_code = #{rank_code}
 		</if>
-		<if test="rank_name != null">
-			,rank_name = #{rank_name}
+		<if test="busyo_name != null">
+			,busyo_name = #{busyo_name}
 		</if>
-		<if test="rank_name_small != null">
-			,rank_name_small = #{rank_name_small}
+		<if test="busyo_name_small != null">
+			,busyo_name_small = #{busyo_name_small}
 		</if>
-		<if test="rank_start != null">
-			,rank_start = #{rank_start}
+		<if test="busyo_start != null">
+			,busyo_start = #{busyo_start}
 		</if>
-		<if test="rank_end != null">
-			,rank_end = #{rank_end}
+		<if test="busyo_end != null">
+			,busyo_end = #{busyo_end}
 		</if>
 		WHERE rank_code = #{rank_code}
+		AND busyo_start = #{busyo_start}
 	</update>
 
-	<delete id="RankDelete" parameterType="String">
-		DELETE FROM `rank`
+	<delete id="RankDelete">
+		DELETE FROM rank_syou
 		WHERE
 		rank_code = #{rank_code}
+		AND busyo_start = #{busyo_start}
 	</delete>
 
 </mapper>

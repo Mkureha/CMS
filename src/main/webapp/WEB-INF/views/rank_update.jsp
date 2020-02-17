@@ -15,34 +15,48 @@
 	<div class="container">
 		<form action="/rank/updateProc" method="post">
 			<div class="form-group">
-				<label for="rank_code" style="width: 500px; padding: 10px;">部署コード
-				</label> <select class="form-control form-control-sm" name="rank_code"
-					id="rank_code" style="width: 250px;">
-					<option value="99" selected="selected">未配置</option>
-					<option value="00">本社</option>
-					<option value="01">第1グループ</option>
-					<option value="02">第2グループ</option>
-				</select>
+				<label for="rank_code" style="width: 500px; padding: 15px;">部署コード(大分類+中分類+小分類)
+				</label> <input type="text" class="form-control" id="rank_code"
+					name="rank_code" value="${detail.rank_code }">
 			</div>
 			<div class="form-group">
-				<label for="rank_name">部署名</label> <input type="text"
-					class="form-control" id="rank_name" name="rank_name"
-					value="${detail.rank_name }">
+				<label for="busyo_dai_code" style="width: 500px; padding: 15px;">大分類コード<br>(01:経営支援部
+					/ 02:SI事業部)
+				</label> <input type="text" class="form-control" id="busyo_dai_code"
+					name="busyo_dai_code" value="${detail.busyo_dai_code }">
 			</div>
 			<div class="form-group">
-				<label for="rank_name_small">部署省略名</label> <input type="text"
-					class="form-control" id="rank_name_small" name="rank_name_small"
-					value="${detail.rank_name_small }">
+				<label for="busyo_cyu_code" style="width: 500px; padding: 15px;">中分類コード<br>(01:第1グループ
+					/ 02:第2グループ / 00:なし)
+				</label> <input type="text" class="form-control" id="busyo_cyu_code"
+					name="busyo_cyu_code" value="${detail.busyo_cyu_code }">
 			</div>
 			<div class="form-group">
-				<label for="rank_start">部署開始日</label> <input type="text"
-					class="form-control" id="rank_start" name="rank_start"
-					value="${detail.rank_start }">
+				<label for="busyo_syou_code" style="width: 500px; padding: 15px;">小分類コード<br>(中分類
+					= 00 → 01:経営支援チーム / 02:技術支援チーム )<br>(中分類 = 01 → 01:第1開発ユニット /
+					02:第2開発ユニット / 03:第3開発ユニット / 04:第4開発ユニット)
+				</label> <input type="text" class="form-control" id="busyo_syou_code"
+					name="busyo_syou_code" value="${detail.busyo_syou_code }">
 			</div>
 			<div class="form-group">
-				<label for="rank_end">部署終了日</label> <input type="text"
-					class="form-control" id="rank_end" name="rank_end"
-					value="${detail.rank_end }">
+				<label for="busyo_name">部署名</label> <input type="text"
+					class="form-control" id="busyo_name" name="busyo_name"
+					value="${detail.busyo_name }">
+			</div>
+			<div class="form-group">
+				<label for="busyo_name_small">部署省略名</label> <input type="text"
+					class="form-control" id="busyo_name_small" name="busyo_name_small"
+					value="${detail.busyo_name_small }">
+			</div>
+			<div class="form-group">
+				<label for="busyo_start">部署開始日</label> <input type="text"
+					class="form-control" id="busyo_start" name="busyo_start"
+					value="${detail.busyo_start }">
+			</div>
+			<div class="form-group">
+				<label for="busyo_end">部署終了日</label> <input type="text"
+					class="form-control" id="busyo_end" name="busyo_end"
+					value="${detail.busyo_end }">
 			</div>
 			<button type="submit" class="btn btn-primary">修正</button>
 			<input type="button" value="戻る" class="btn btn-primary"

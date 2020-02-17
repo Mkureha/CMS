@@ -69,11 +69,11 @@ public class TypeController {
 		return "type";
 	}
 
-	@RequestMapping(value = "/type/detail/{type_code}", method = RequestMethod.GET)
-	private String TypeDetail(@PathVariable String type_code, @ModelAttribute type page, Model model)
+	@RequestMapping(value = "/type/detail/{type_code}/{type_start}", method = RequestMethod.GET)
+	private String TypeDetail(@PathVariable String type_code, @PathVariable String type_start, @ModelAttribute type page, Model model)
 			throws Exception {
 
-		model.addAttribute("detail", TypeService.typeDetailService(type_code));
+		model.addAttribute("detail", TypeService.typeDetailService(type_code, type_start));
 		return "type_detail";
 	}
 
@@ -87,13 +87,13 @@ public class TypeController {
 
 		TypeService.typeInsertService(type);
 
-		return "redirect:/type";
+		return "redirect:/type?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
 	}
 
-	@RequestMapping("type/update/{type_code}") // 게시글수정폼호출
-	private String TypeUpdateForm(@PathVariable String type_code, Model model) throws Exception {
+	@RequestMapping("type/update/{type_code}/{type_start}") // 게시글수정폼호출
+	private String TypeUpdateForm(@PathVariable String type_code, @PathVariable String type_start, Model model) throws Exception {
 
-		model.addAttribute("detail", TypeService.typeDetailService(type_code));
+		model.addAttribute("detail", TypeService.typeDetailService(type_code, type_start));
 
 		return "type_update";
 	}
@@ -116,9 +116,9 @@ public class TypeController {
 
 	@RequestMapping("type/delete/{type_code}")
 	@GetMapping
-	private String TypeDelete(@PathVariable String Type_no) throws Exception {
-		TypeService.typeDeleteService(Type_no);
+	private String TypeDelete(@PathVariable String type_code, @PathVariable String type_start) throws Exception {
+		TypeService.typeDeleteService(type_code, type_start);
 
-		return "redirect:/type";
+		return "redirect:/type?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
 	}
 }

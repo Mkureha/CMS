@@ -18,7 +18,7 @@ public interface TypeMapper {
 				@Param("searchtype") String searchtype, @Param("keyword") String keyword);
 
 		// 사원상세
-		public type TypeDetail(String type_code) throws Exception;
+		public type TypeDetail(@Param("type_code") String type_code, @Param("type_start") String type_start) throws Exception;
 
 		// 사원작성
 		public int TypeInsert(type type_code) throws Exception;
@@ -27,5 +27,5 @@ public interface TypeMapper {
 		public int TypeUpdate(type type_code) throws Exception;
 
 		// 사원삭제
-		public int TypeDelete(String type_code) throws Exception;
+		public int TypeDelete(@Param("type_code") String type_code, @Param("type_start") String type_start) throws Exception;
 }

@@ -69,11 +69,11 @@ public class PositionController {
 		return "position";
 	}
 
-	@RequestMapping(value = "/position/detail/{position_code}", method = RequestMethod.GET)
-	private String PositionDetail(@PathVariable String position_code, @ModelAttribute position page, Model model)
-			throws Exception {
+	@RequestMapping(value = "/position/detail/{position_code}/{position_start}", method = RequestMethod.GET)
+	private String PositionDetail(@PathVariable String position_code, @PathVariable String position_start,
+			@ModelAttribute position page, Model model) throws Exception {
 
-		model.addAttribute("detail", PositionService.positionDetailService(position_code));
+		model.addAttribute("detail", PositionService.positionDetailService(position_code, position_start));
 		return "position_detail";
 	}
 
@@ -87,15 +87,16 @@ public class PositionController {
 
 		PositionService.positionInsertService(position);
 
-		return "redirect:/position";
+		return "redirect:/position?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
 	}
 
-	@RequestMapping("position/update/{position_code}") // 게시글수정폼호출
-	private String PositionUpdateForm(@PathVariable String position_code, Model model) throws Exception {
+	@RequestMapping("position/update/{position_code}/{position_start}") // 게시글수정폼호출
+	private String PositionUpdateForm(@PathVariable String position_code, @PathVariable String position_start,
+			Model model) throws Exception {
 
-		model.addAttribute("detail", PositionService.positionDetailService(position_code));
+		model.addAttribute("detail", PositionService.positionDetailService(position_code, position_start));
 
-		return "Position_update";
+		return "position_update";
 	}
 
 	@PostMapping("/position/updateProc")
@@ -111,14 +112,15 @@ public class PositionController {
 		position.setposition_end(request.getParameter("position_end"));
 
 		PositionService.positionUpdateService(position);
-		return "redirect:position/detail/" + request.getParameter("position_code");
+		return "redirect:/position/detail/" + request.getParameter("position_code") + "/" + request.getParameter("position_start") ;
 	}
 
-	@RequestMapping("position/delete/{position_code}")
+	@RequestMapping("/position/delete/{position_code}/{position_start}")
 	@GetMapping
-	private String PositionDelete(@PathVariable String Position_no) throws Exception {
-		PositionService.positionDeleteService(Position_no);
+	private String PositionDelete(@PathVariable String position_code, @PathVariable String position_start)
+			throws Exception {
+		PositionService.positionDeleteService(position_code, position_start);
 
-		return "redirect:/position";
+		return "redirect:/position?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
 	}
 }

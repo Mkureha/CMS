@@ -13,14 +13,16 @@
 	</div>
 	<div class="box-footer">
 		<div class="inputArea">
+			<input type="button" value="リスト" class="btn btn-primary"
+				OnClick="/GS/position?pagenum=1&contentnum=10&searchtyp=tosyo_num&keyword=">
 			<button class="btn btn-warning"
-				onclick="location.href='/position/update/${detail.position_code}'">修正</button>
+				onclick="location.href='/position/update/${detail.position_code}/${detail.position_start}'">修正</button>
 			<button class="btn btn-danger"
-				onclick="location.href='/position/delete/${detail.position_code}'">削除</button>
+				onclick="location.href='/position/delete/${detail.position_code}/${detail.position_start}'">削除</button>
 		</div>
 	</div>
 	<div class="container">
-		<form action="position/detail/${detail.position_code }" method="get">
+		<form action="position/detail/${detail.position_code }/${detail.position_start }" method="get">
 			<div class="inputArea">
 				<label for="position_code">職責コード</label>
 				<p>${detail.position_code }</p>

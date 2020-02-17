@@ -65,12 +65,15 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		#{contentnum}
 	</select>
 
-	<select id="TypeDetail" parameterType="String"
+	<select id="TypeDetail"
 		resultType="com.example.demo.domain.type">
 		SELECT *
 		FROM type
 		WHERE type_code =
 		#{type_code}
+		AND
+		type_start =
+		#{type_start}
 	</select>
 
 	<insert id="TypeInsert"
@@ -97,7 +100,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			type_code = #{type_code}
 		</if>
 		<if
-			test="type_code != null and type_code != null and type_code != null and type_code != null"> , </if>
+			test="type_code != null and type_name != null and type_name_small != null and type_start != null and type_end != null"> , </if>
 		<if test="type_code != null">
 			type_code = #{type_code}
 		</if>
@@ -116,10 +119,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		WHERE type_code = #{type_code}
 	</update>
 
-	<delete id="TypeDelete" parameterType="String">
+	<delete id="TypeDelete">
 		DELETE FROM type
 		WHERE
 		type_code = #{type_code}
+		AND
+		type_start = #{type_start}
 	</delete>
 
 </mapper>

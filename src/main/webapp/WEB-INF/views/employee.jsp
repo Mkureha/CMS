@@ -20,7 +20,7 @@
 	<br>
 
 	<div class="container">
-		<table class="table table-striped">
+		<table class="table table-striped" style="width: 750px;">
 			<thead>
 				<tr>
 					<th scope="col">社員コード</th>

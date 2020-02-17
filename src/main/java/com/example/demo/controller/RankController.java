@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.domain.rank;
+import com.example.demo.domain.rank_syou;
 import com.example.demo.mapper.RankMapper;
 import com.example.demo.service.RankService;
 
@@ -31,13 +30,11 @@ public class RankController {
 	@Resource(name = "com.example.demo.service.RankService")
 	RankService RankService;
 
-	private ServletRequest request;
-
 	@RequestMapping("/rank")
 	@PostMapping
 	public String list(HttpServletRequest request, @RequestParam(required = false) String searchtype,
 			@RequestParam(required = false) String keyword) {
-		rank Rank = new rank();
+		rank_syou Rank = new rank_syou();
 		String pagenum = request.getParameter("pagenum");
 		String contentnum = request.getParameter("contentnum");
 		System.out.println("pagenum : " + pagenum);
@@ -59,7 +56,7 @@ public class RankController {
 		Rank.setstartpage(Rank.getcurrentblock()); // 시작페이지 블록 번호
 		Rank.setendpage(Rank.getlastblock(), Rank.getcurrentblock()); // 마지막 페이지 블럭 현재 페이지 블록
 
-		List<rank> listpage = new ArrayList<rank>();
+		List<rank_syou> listpage = new ArrayList<rank_syou>();
 		listpage = mapper.listpage(Rank.getpagenum() * 10, Rank.getcontentnum(), Rank.getsearchtype(),
 				Rank.getkeyword());
 
@@ -72,14 +69,14 @@ public class RankController {
 		return "rank";
 	}
 
-	@RequestMapping(value = "/rank/detail/{rank_code}/{rank_start}", method = RequestMethod.GET)
-	private String RankDetail(@PathVariable String rank_code, @PathVariable String rank_start, @ModelAttribute rank page, Model model)
-			throws Exception {
+	@RequestMapping(value = "/rank/detail/{rank_code}/{busyo_start}", method = RequestMethod.GET)
+	private String RankDetail(@PathVariable String rank_code, @PathVariable String busyo_start,
+			@ModelAttribute rank_syou page, Model model) throws Exception {
 
 		System.out.println("rank code : " + rank_code);
-		System.out.println("rank start : " + rank_start);
-		
-		model.addAttribute("detail", RankService.RankDetailService(rank_code, rank_start));
+		System.out.println("rank start : " + busyo_start);
+
+		model.addAttribute("detail", RankService.RankDetailService(rank_code, busyo_start));
 		return "rank_detail";
 	}
 
@@ -89,17 +86,18 @@ public class RankController {
 	}
 
 	@RequestMapping("/rank/insertProc")
-	private String RankInsertProc(rank rank, MultipartFile file) throws Exception {
+	private String RankInsertProc(rank_syou rank, MultipartFile file) throws Exception {
 
 		RankService.RankInsertService(rank);
 
-		return "redirect:/rank";
+		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
 	}
 
-	@RequestMapping("rank/update/{rank_code}") // 게시글수정폼호출
-	private String RankUpdateForm(@PathVariable String rank_code, @PathVariable String rank_start, Model model) throws Exception {
+	@RequestMapping("rank/update/{rank_code}/{busyo_start}") // 게시글수정폼호출
+	private String RankUpdateForm(@PathVariable String rank_code, @PathVariable String busyo_start, Model model)
+			throws Exception {
 
-		model.addAttribute("detail", RankService.RankDetailService(rank_code, rank_start));
+		model.addAttribute("detail", RankService.RankDetailService(rank_code, busyo_start));
 
 		return "rank_update";
 	}
@@ -108,23 +106,26 @@ public class RankController {
 	@GetMapping
 	private String RankUpdateProc(HttpServletRequest request) throws Exception {
 
-		rank rank = new rank();
+		rank_syou rank = new rank_syou();
 
+		rank.setbusyo_dai_code(request.getParameter("busyo_dai_code"));
+		rank.setbusyo_cyu_code(request.getParameter("busyo_cyu_code"));
+		rank.setbusyo_syou_code(request.getParameter("busyo_syou_code"));
+		rank.setbusyo_name(request.getParameter("busyo_name"));
+		rank.setbusyo_name_small(request.getParameter("busyo_name_small"));
+		rank.setbusyo_start(request.getParameter("busyo_start"));
+		rank.setbusyo_end(request.getParameter("busyo_end"));
 		rank.setrank_code(request.getParameter("rank_code"));
-		rank.setrank_name(request.getParameter("rank_name"));
-		rank.setrank_name_small(request.getParameter("rank_name_small"));
-		rank.setrank_start(request.getParameter("rank_start"));
-		rank.setrank_end(request.getParameter("rank_end"));
 
 		RankService.RankUpdateService(rank);
-		return "redirect:rank/detail/" + request.getParameter("rank_code");
+		return "redirect:/rank/detail/" + request.getParameter("rank_code") + "/" + request.getParameter("busyo_start");
 	}
 
-	@RequestMapping("Rank/delete/{rank_code}")
+	@RequestMapping("/rank/delete/{rank_code}/{busyo_start}")
 	@GetMapping
-	private String RankDelete(@PathVariable String Rank_no) throws Exception {
-		RankService.RankDeleteService(Rank_no);
+	private String RankDelete(@PathVariable String rank_code, @PathVariable String busyo_start) throws Exception {
+		RankService.RankDeleteService(rank_code, busyo_start);
 
-		return "redirect:/rank";
+		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
 	}
 }

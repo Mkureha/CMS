@@ -22,17 +22,24 @@
 					style="width: 250px;">
 			</div>
 			<div class="form-group">
-				<label for="rank_code" style="width: 500px; padding: 10px;">部署コード
+				<label for="rank_code" style="width: 500px; padding: 10px;">部署
 				</label> <select class="form-control form-control-sm" name="rank_code"
 					id="rank_code" style="width: 250px;">
-					<option value="99" selected="selected">未配置</option>
-					<option value="00">本社</option>
-					<option value="01">第1グループ</option>
-					<option value="02">第2グループ</option>
+					<option value="999999" selected="selected">未配置</option>
+					<option value="010001">経営支援チーム</option>
+					<option value="010002">技術支援チーム</option>
+					<option value="020101">第1グループ 第1開発ユニット</option>
+					<option value="020102">第1グループ 第2開発ユニット</option>
+					<option value="020103">第1グループ 第3開発ユニット</option>
+					<option value="020104">第1グループ 第4開発ユニット</option>
+					<option value="020201">第2グループ 第1開発ユニット</option>
+					<option value="020202">第2グループ 第2開発ユニット</option>
+					<option value="020203">第2グループ 第3開発ユニット</option>
+					<option value="020204">第2グループ 第4開発ユニット</option>
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="position_code" style="width: 500px; padding: 10px;">職責コード
+				<label for="position_code" style="width: 500px; padding: 10px;">職責
 				</label> <select class="form-control form-control-sm" name="position_code"
 					id="position_code" style="width: 250px;">
 					<option value="99" selected="selected">未配置</option>
@@ -49,7 +56,7 @@
 					style="width: 250px;">
 			</div>
 			<div class="form-group">
-				<label for="type_code" style="width: 500px; padding: 10px;">区分コード
+				<label for="type_code" style="width: 500px; padding: 10px;">社員区分
 				</label> <select class="form-control form-control-sm" name="type_code"
 					id="type_code" style="width: 250px;">
 					<option value="0" selected="selected">未配置</option>

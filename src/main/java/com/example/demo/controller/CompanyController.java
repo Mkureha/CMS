@@ -93,7 +93,7 @@ public class CompanyController {
 
 		employeeService.employeeInsertService(employee);
 
-		return "redirect:/employee";
+		return "redirect:/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
 	}
 
 	@RequestMapping("employee/update/{employee_no}") // 게시글수정폼호출
@@ -131,6 +131,6 @@ public class CompanyController {
 	private String employeeDelete(@PathVariable String employee_no) throws Exception {
 		employeeService.employeeDeleteService(employee_no);
 
-		return "redirect:/employee";
+		return "redirect:/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
 	}
 }

@@ -15,8 +15,8 @@ public class TypeService {
 	@Resource(name = "com.example.demo.mapper.TypeMapper")
 	TypeMapper typeMapper;
 
-	public type typeDetailService(String type_no) throws Exception {
-		return typeMapper.TypeDetail(type_no);
+	public type typeDetailService(String type_code, String type_start) throws Exception {
+		return typeMapper.TypeDetail(type_code, type_start);
 	}
 
 	public int typeInsertService(type type) throws Exception {
@@ -27,8 +27,8 @@ public class TypeService {
 		return typeMapper.TypeUpdate(type);
 	}
 
-	public int typeDeleteService(String type_no) throws Exception {
-		return typeMapper.TypeDelete(type_no);
+	public int typeDeleteService(String type_code, String type_start) throws Exception {
+		return typeMapper.TypeDelete(type_code, type_start);
 	}
 
 	public List<type> listpage(int pagenum, int contentnum, String searchtype, String keyword) {

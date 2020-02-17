@@ -33,11 +33,11 @@
 			<tbody>
 				<c:forEach var="cpn" items="${list}">
 					<tr>
-						<td scope="row"><a href="/rank/detail/${cpn.rank_code}/${cpn.rank_start}">${cpn.rank_code}</a></td>
-						<td>${cpn.rank_name}</td>
-						<td>${cpn.rank_name_small}</td>
-						<td>${cpn.rank_start}</td>
-						<td>${cpn.rank_end}</td>
+						<td scope="row"><a href="/rank/detail/${cpn.rank_code}/${cpn.busyo_start}">${cpn.rank_code}</a></td>
+						<td>${cpn.busyo_name}</td>
+						<td>${cpn.busyo_name_small}</td>
+						<td>${cpn.busyo_start}</td>
+						<td>${cpn.busyo_end}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -70,10 +70,10 @@
 				id="searchtype"
 				style="width: 350px; height: 35px; margin-left: auto; margin-right: auto;">
 				<option value="rank_code">部署コード</option>
-				<option value="rank_name">部署名</option>
-				<option value="rank_name_small">部署省略名</option>
-				<option value="rank_start">部署開始日</option>
-				<option value="rank_end">部署終了日</option>
+				<option value="busyo_name">部署名</option>
+				<option value="busyo_name_small">部署省略名</option>
+				<option value="busyo_start">部署開始日</option>
+				<option value="busyo_end">部署終了日</option>
 			</select>
 		</div>
 		<div>

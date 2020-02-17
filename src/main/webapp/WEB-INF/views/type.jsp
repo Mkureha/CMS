@@ -33,7 +33,7 @@
 			<tbody>
 				<c:forEach var="cpn" items="${list}">
 					<tr>
-						<td scope="row"><a href="/type/detail/${cpn.type_code}">${cpn.type_code}</a></td>
+						<td scope="row"><a href="/type/detail/${cpn.type_code}/${cpn.type_start}">${cpn.type_code}</a></td>
 						<td>${cpn.type_name}</td>
 						<td>${cpn.type_name_small}</td>
 						<td>${cpn.type_start}</td>

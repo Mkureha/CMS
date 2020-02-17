@@ -14,13 +14,13 @@
 
 	<div>
 		<a role="button" class="btn btn-primary"
-			href="/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=">社員リストへ</a>
+			href="/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=">社員リスト</a>
 		<a role="button" class="btn btn-info"
-			href="/rank?pagenum=1&contentnum=10&searchtype=rank_code&keyword=">部署リストへ</a>
+			href="/rank?pagenum=1&contentnum=10&searchtype=rank_code&keyword=">部署リスト</a>
 		<a role="button" class="btn btn-light"
-			href="/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=">職責リストへ</a>
+			href="/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=">職責リスト</a>
 		<a role="button" class="btn btn-danger"
-			href="/type?pagenum=1&contentnum=10&searchtype=type_code&keyword=">役職リストへ</a>
+			href="/type?pagenum=1&contentnum=10&searchtype=type_code&keyword=">役職リスト</a>
 	</div>
 
 	<div class="text-center" style="float: none; margin: 0 auto;">

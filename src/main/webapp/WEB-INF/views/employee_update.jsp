@@ -20,18 +20,24 @@
 					value="${detail.employee_no }">
 			</div>
 			<div class="form-group">
-				<label for="rank_code">部署コード</label> <select
+				<label for="rank_code">部署</label> <select
 					class="form-control form-control-sm" name="rank_code"
 					id="rank_code" style="width: 250px;">
 					<option value="${detail.rank_code }" selected="selected">${detail.rank_code }</option>
-					<option value="99">未配置</option>
-					<option value="00">本社</option>
-					<option value="01">第1グループ</option>
-					<option value="02">第2グループ</option>
+					<option value="010001">経営支援チーム</option>
+					<option value="010002">技術支援チーム</option>
+					<option value="020101">第1グループ 第1開発ユニット</option>
+					<option value="020102">第1グループ 第2開発ユニット</option>
+					<option value="020103">第1グループ 第3開発ユニット</option>
+					<option value="020104">第1グループ 第4開発ユニット</option>
+					<option value="020201">第2グループ 第1開発ユニット</option>
+					<option value="020202">第2グループ 第2開発ユニット</option>
+					<option value="020203">第2グループ 第3開発ユニット</option>
+					<option value="020204">第2グループ 第4開発ユニット</option>
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="position_code">職責コード</label> <select
+				<label for="position_code">職責</label> <select
 					class="form-control form-control-sm" name="position_code"
 					id="position_code" style="width: 250px;">
 					<option value="${detail.position_code }" selected="selected">${detail.position_code }</option>
@@ -48,7 +54,7 @@
 					value="${detail.employee_name }">
 			</div>
 			<div class="form-group">
-				<label for="type_code">区分コード</label> <select
+				<label for="type_code">社員区分</label> <select
 					class="form-control form-control-sm" name="type_code"
 					id="type_code" style="width: 250px;">
 					<option value="${detail.type_code }" selected="selected">${detail.type_code }</option>

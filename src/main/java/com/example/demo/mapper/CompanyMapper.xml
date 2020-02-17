@@ -65,7 +65,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,address_1
 		,address_2
 		,employee_memo
-		FROM employee
+		FROM
+		employee
 		<if
 			test="keyword != null and keyword != '' and searchtype.equals('employee_no')">
 			WHERE employee_no like CONCAT('%', #{keyword}, '%')
@@ -157,7 +158,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			employee_no = #{employee_no}
 		</if>
 		<if
-			test="employee_no != null and rank_code != null and position_code != null and type_code != null"> , </if>
+			test="employee_no != null and rank_code != null and position_code != null and type_code != null and employee_name != null and postal_code != null and address_1 != null and address_2 != null and employee_memo != null"> , </if>
 		<if test="employee_no != null">
 			employee_no = #{employee_no}
 		</if>

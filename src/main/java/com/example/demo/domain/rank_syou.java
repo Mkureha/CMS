@@ -1,42 +1,79 @@
 package com.example.demo.domain;
 
-public class rank {
+public class rank_syou {
 	
+	private String busyo_dai_code;
+	private String busyo_cyu_code;
+	private String busyo_syou_code;
+	private String busyo_name;
+	private String busyo_name_small;
+	private String busyo_start;
+	private String busyo_end;
 	private String rank_code;
-	private String rank_name;
-	private String rank_name_small;
-	private String rank_start;
-	private String rank_end;
 	
+
+	public String getbusyo_dai_code() {
+		return busyo_dai_code;
+	}
+
+	public void setbusyo_dai_code(String busyo_dai_code) {
+		this.busyo_dai_code = busyo_dai_code;
+	}
+
+	public String getbusyo_cyu_code() {
+		return busyo_cyu_code;
+	}
+
+	public void setbusyo_cyu_code(String busyo_cyu_code) {
+		this.busyo_cyu_code = busyo_cyu_code;
+	}
+
+	public String getbusyo_syou_code() {
+		return busyo_syou_code;
+	}
+
+	public void setbusyo_syou_code(String busyo_syou_code) {
+		this.busyo_syou_code = busyo_syou_code;
+	}
+
+	public String getbusyo_name() {
+		return busyo_name;
+	}
+
+	public void setbusyo_name(String busyo_name) {
+		this.busyo_name = busyo_name;
+	}
+
+	public String getbusyo_name_small() {
+		return busyo_name_small;
+	}
+
+	public void setbusyo_name_small(String busyo_name_small) {
+		this.busyo_name_small = busyo_name_small;
+	}
+
+	public String getbusyo_start() {
+		return busyo_start;
+	}
+
+	public void setbusyo_start(String busyo_start) {
+		this.busyo_start = busyo_start;
+	}
+
+	public String getbusyo_end() {
+		return busyo_end;
+	}
+
+	public void setbusyo_end(String busyo_end) {
+		this.busyo_end = busyo_end;
+	}
+
 	public String getrank_code() {
 		return rank_code;
 	}
+
 	public void setrank_code(String rank_code) {
 		this.rank_code = rank_code;
-	}
-	public String getrank_name() {
-		return rank_name;
-	}
-	public void setrank_name(String rank_name) {
-		this.rank_name = rank_name;
-	}
-	public String getrank_name_small() {
-		return rank_name_small;
-	}
-	public void setrank_name_small(String rank_name_small) {
-		this.rank_name_small = rank_name_small;
-	}
-	public String getrank_start() {
-		return rank_start;
-	}
-	public void setrank_start(String rank_start) {
-		this.rank_start = rank_start;
-	}
-	public String getrank_end() {
-		return rank_end;
-	}
-	public void setrank_end(String rank_end) {
-		this.rank_end = rank_end;
 	}
 	
 	// Paging ADD

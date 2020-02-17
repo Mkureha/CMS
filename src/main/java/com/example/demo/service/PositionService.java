@@ -15,8 +15,8 @@ public class PositionService {
 	@Resource(name = "com.example.demo.mapper.PositionMapper")
 	PositionMapper positionMapper;
 
-	public position positionDetailService(String position_no) throws Exception {
-		return positionMapper.PositionDetail(position_no);
+	public position positionDetailService(String position_code, String position_start) throws Exception {
+		return positionMapper.PositionDetail(position_code, position_start);
 	}
 
 	public int positionInsertService(position position) throws Exception {
@@ -27,8 +27,8 @@ public class PositionService {
 		return positionMapper.PositionUpdate(position);
 	}
 
-	public int positionDeleteService(String position_no) throws Exception {
-		return positionMapper.PositionDelete(position_no);
+	public int positionDeleteService(String position_code, String position_start) throws Exception {
+		return positionMapper.PositionDelete(position_code, position_start);
 	}
 
 	public List<position> listpage(int pagenum, int contentnum, String searchtype, String keyword) {
