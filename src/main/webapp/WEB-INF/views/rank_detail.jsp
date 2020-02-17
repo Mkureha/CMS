@@ -13,8 +13,8 @@
 	</div>
 	<div class="box-footer">
 		<div class="inputArea">
-			<input type="button" value="リスト" class="btn btn-primary"
-				OnClick="/GS/rank?pagenum=1&contentnum=10&searchtyp=tosyo_num&keyword=">
+			<button class="btn btn-primary"
+				OnClick="location.href='/rank?pagenum=1&contentnum=10&searchtype=rank_code&keyword='">リスト</button>
 			<button class="btn btn-warning"
 				onclick="location.href='/rank/update/${detail.rank_code}/${detail.busyo_start }'">修正</button>
 			<button class="btn btn-danger"

@@ -16,7 +16,7 @@
 		enctype="multipart/form-data" autocomplete="off">
 		<div class="inputArea" style="margin: 10px 0;">
 			<div class="form-group">
-				<label for="rank_code" style="width: 500px; padding: 10px;">部署コード(大分類+中分類+小分類)
+				<label for="rank_code" style="width: 500px; padding: 10px;">部署コード(大分類+中分類+小分類)<br>6桁の連番
 				</label> <input type="text" class="form-control" id="rank_code"
 					name="rank_code" placeholder="部署コードを入力してください"
 					style="width: 250px;">
@@ -30,7 +30,7 @@
 			</div>
 			<div class="form-group">
 				<label for="busyo_cyu_code" style="width: 500px; padding: 15px;">中分類コード<br>(01:第1グループ /
-					02:第2グループ / 00:なし)
+					02:第2グループ / 大分類 = 01 → 00:なし)
 				</label> <input type="text" class="form-control" id="busyo_cyu_code"
 					name="busyo_cyu_code" placeholder="中分類コードを入力してください"
 					style="width: 250px;">

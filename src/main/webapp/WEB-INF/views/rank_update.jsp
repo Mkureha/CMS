@@ -27,7 +27,7 @@
 			</div>
 			<div class="form-group">
 				<label for="busyo_cyu_code" style="width: 500px; padding: 15px;">中分類コード<br>(01:第1グループ
-					/ 02:第2グループ / 00:なし)
+					/ 02:第2グループ / 大分類 = 01 → 00:なし)
 				</label> <input type="text" class="form-control" id="busyo_cyu_code"
 					name="busyo_cyu_code" value="${detail.busyo_cyu_code }">
 			</div>
