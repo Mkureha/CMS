@@ -16,7 +16,11 @@
 		<a role="button" class="btn btn-primary"
 			href="/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=">社員リスト</a>
 		<a role="button" class="btn btn-info"
-			href="/rank?pagenum=1&contentnum=10&searchtype=rank_code&keyword=">部署リスト</a>
+			href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大分類部署リスト</a>
+		<a role="button" class="btn btn-info"
+			href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_cyu_code&keyword=">中分類部署リスト</a>
+		<a role="button" class="btn btn-info"
+			href="/rank?pagenum=1&contentnum=10&searchtype=busyo_syou_code&keyword=">小分類部署リスト</a>
 		<a role="button" class="btn btn-light"
 			href="/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=">職責リスト</a>
 		<a role="button" class="btn btn-danger"

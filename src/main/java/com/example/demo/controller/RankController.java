@@ -33,6 +33,7 @@ public class RankController {
 	@Resource(name = "com.example.demo.service.RankService")
 	RankService RankService;
 
+	// 小分類リスト出力
 	@RequestMapping("/rank")
 	@PostMapping
 	public String list(HttpServletRequest request, @RequestParam(required = false) String searchtype,
@@ -85,7 +86,7 @@ public class RankController {
 	}
 
 	// 小分類入力
-	@RequestMapping("/rank/insertsyou") // 도서등록폼호출
+	@RequestMapping("/rank/insertsyou")
 	private String RankInsertForm() {
 		return "rank_insert";
 	}
@@ -95,40 +96,10 @@ public class RankController {
 
 		RankService.RankInsertService(rank);
 
-		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
+		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=busyo_syou_code&keyword=";
 	}
 
-	// 中分類入力
-	@RequestMapping("/rank/insertcyu") // 도서등록폼호출
-	private String RankInsertcyuForm(HttpServletRequest request) throws Exception{
-		
-		return "rank_cyu_insert";
-	}
-
-	@RequestMapping("/rankcyu/insertProc")
-	private String RankInsertProc(rank_cyu rank, MultipartFile file) throws Exception {
-		
-		RankService.RankInsertcyuService(rank);
-
-		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
-	}
-	// END
-
-	// 大分類入力
-	@RequestMapping("/rank/insertdai") // 도서등록폼호출
-	private String RankInsertdaiForm() {
-		return "rank_dai_insert";
-	}
-
-	@RequestMapping("/rankdai/insertProc")
-	private String RankInsertProc(rank_dai rank, MultipartFile file) throws Exception {
-
-		RankService.RankInsertdaiService(rank);
-
-		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
-	}
-
-	@RequestMapping("rank/update/{busyo_dai_code}{busyo_cyu_code}{busyo_syou_code}/{busyo_start}") // 게시글수정폼호출
+	@RequestMapping("rank/update/{busyo_dai_code}{busyo_cyu_code}{busyo_syou_code}/{busyo_start}")
 	private String RankUpdateForm(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
 			@PathVariable String busyo_syou_code, @PathVariable String busyo_start, Model model) throws Exception {
 
@@ -137,7 +108,6 @@ public class RankController {
 
 		return "rank_update";
 	}
-	// END
 
 	@PostMapping("/rank/updateProc")
 	@GetMapping
@@ -152,10 +122,10 @@ public class RankController {
 		rank.setbusyo_name_small(request.getParameter("busyo_name_small"));
 		rank.setbusyo_start(request.getParameter("busyo_start"));
 		rank.setbusyo_end(request.getParameter("busyo_end"));
-		rank.setrank_code(request.getParameter("rank_code"));
 
 		RankService.RankUpdateService(rank);
-		return "redirect:/rank/detail/" + request.getParameter("rank_code") + "/" + request.getParameter("busyo_start");
+		return "redirect:/rank/detail/" + request.getParameter("busyo_syou_code") + "/"
+				+ request.getParameter("busyo_start");
 	}
 
 	@RequestMapping("/rank/delete/{busyo_dai_code}{busyo_cyu_code}{busyo_syou_code}/{busyo_start}")
@@ -164,6 +134,127 @@ public class RankController {
 			@PathVariable String busyo_syou_code, @PathVariable String busyo_start) throws Exception {
 		RankService.RankDeleteService(busyo_dai_code, busyo_cyu_code, busyo_syou_code, busyo_start);
 
+		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=busyo_syou_code&keyword=";
+	}
+
+	// 小分類END
+
+	// 中分類
+	// 中分類入力
+	@RequestMapping("/rank/insertcyu") // 도서등록폼호출
+	private String RankInsertcyuForm(HttpServletRequest request) throws Exception {
+
+		return "rank_cyu_insert";
+	}
+
+	@RequestMapping("/rankcyu/insertProc")
+	private String RankInsertProc(rank_cyu rank, MultipartFile file) throws Exception {
+
+		RankService.RankInsertcyuService(rank);
+
 		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
 	}
+	// 中分類END
+
+	// 大分類
+	// 大分類リスト出力
+	@RequestMapping("/rankdai")
+	@PostMapping
+	public String listdai(HttpServletRequest request, @RequestParam(required = false) String searchtype,
+			@RequestParam(required = false) String keyword) {
+		rank_dai Rankdai = new rank_dai();
+		String pagenum = request.getParameter("pagenum");
+		String contentnum = request.getParameter("contentnum");
+		System.out.println("pagenum : " + pagenum);
+		System.out.println("contentnum : " + contentnum);
+		System.out.println("searchtype : " + searchtype);
+		int cpagenum = Integer.parseInt(pagenum);
+		int ccontentnum = Integer.parseInt(contentnum);
+
+		Rankdai.setsearchtype(searchtype);
+		Rankdai.setkeyword(keyword);
+
+		Rankdai.settotalcount(mapper.Rankdaicount(Rankdai.getsearchtype(), Rankdai.getkeyword())); // 전체계수
+		Rankdai.setpagenum(cpagenum - 1); // 현재 페이지 객체 지정
+		Rankdai.setcontentnum(ccontentnum); // 한 페이지 게시글 수
+		Rankdai.setcurrentblock(cpagenum); // 현재 페이지블록 번호
+		Rankdai.setlastblock(Rankdai.gettotalcount()); // 마지막 블록 전체 게시글 수
+
+		Rankdai.prevnext(cpagenum); // 현재 페이지 화살표
+		Rankdai.setstartpage(Rankdai.getcurrentblock()); // 시작페이지 블록 번호
+		Rankdai.setendpage(Rankdai.getlastblock(), Rankdai.getcurrentblock()); // 마지막 페이지 블럭 현재 페이지 블록
+
+		List<rank_dai> listdaipage = new ArrayList<rank_dai>();
+		listdaipage = mapper.listdaipage(Rankdai.getpagenum() * 10, Rankdai.getcontentnum(), Rankdai.getsearchtype(),
+				Rankdai.getkeyword());
+
+		System.out.println("Parameter keyword : " + request.getParameter("keyword"));
+		System.out.println("Board keyword : " + Rankdai.getkeyword());
+		System.out.println("Parameter busyo_dai_code : " + request.getParameter("busyo_dai_code"));
+		System.out.println("Parameter busyo_name : " + request.getParameter("busyo_name"));
+
+		request.setAttribute("list", listdaipage);
+		request.setAttribute("page", Rankdai);
+
+		return "rank_dai";
+	}
+
+	@RequestMapping(value = "/rankdai/detail/{busyo_dai_code}/{busyo_start}", method = RequestMethod.GET)
+	private String RankdaiDetail(@PathVariable String busyo_dai_code, @PathVariable String busyo_start,
+			@ModelAttribute rank_dai page, Model model) throws Exception {
+
+		model.addAttribute("detail", RankService.RankdaiDetailService(busyo_dai_code, busyo_start));
+		return "rank_dai_detail";
+	}
+
+	// 小分類入力
+	@RequestMapping("/rankdai/insert")
+	private String RankdaiInsertForm() {
+		return "rank_dai_insert";
+	}
+
+	@RequestMapping("/rankdai/insertProc")
+	private String RankdaiInsertProc(rank_dai rank, MultipartFile file) throws Exception {
+
+		RankService.RankdaiInsertService(rank);
+
+		return "redirect:/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
+	}
+
+	@RequestMapping("rankdai/update/{busyo_dai_code}/{busyo_start}")
+	private String RankdaiUpdateForm(@PathVariable String busyo_dai_code, @PathVariable String busyo_start, Model model)
+			throws Exception {
+
+		model.addAttribute("detail", RankService.RankdaiDetailService(busyo_dai_code, busyo_start));
+
+		return "rank_dai_update";
+	}
+
+	@PostMapping("/rankdai/updateProc")
+	@GetMapping
+	private String RankdaiUpdateProc(HttpServletRequest request) throws Exception {
+
+		rank_dai rank = new rank_dai();
+
+		rank.setbusyo_dai_code(request.getParameter("busyo_dai_code"));
+		rank.setbusyo_name(request.getParameter("busyo_name"));
+		rank.setbusyo_name_small(request.getParameter("busyo_name_small"));
+		rank.setbusyo_start(request.getParameter("busyo_start"));
+		rank.setbusyo_end(request.getParameter("busyo_end"));
+
+		RankService.RankdaiUpdateService(rank);
+		return "redirect:/rankdai/detail/" + request.getParameter("busyo_dai_code") + "/"
+				+ request.getParameter("busyo_start");
+	}
+
+	@RequestMapping("/rankdai/delete/{busyo_dai_code}/{busyo_start}")
+	@GetMapping
+	private String RankdaiDelete(@PathVariable String busyo_dai_code, @PathVariable String busyo_start)
+			throws Exception {
+		RankService.RankdaiDeleteService(busyo_dai_code, busyo_start);
+
+		return "redirect:/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
+	}
+
+	// 大分類END
 }

@@ -5,6 +5,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="com.example.demo.mapper.RankMapper">
 
+	<!-- 小分類部分 -->
+
 	<select id="Rankcount" resultType="int">
 		SELECT COUNT(*)
 		FROM rank_syou
@@ -94,67 +96,6 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		busyo_start = #{busyo_start}
 	</select>
 
-	<insert id="RankInsert"
-		parameterType="com.example.demo.domain.rank_syou">
-		INSERT INTO rank_syou
-		(busyo_dai_code
-		,busyo_cyu_code
-		,busyo_syou_code
-		,busyo_name
-		,busyo_name_small
-		,busyo_start
-		,busyo_end)
-		VALUES
-		(#{busyo_dai_code}
-		,#{busyo_cyu_code}
-		,#{busyo_syou_code}
-		,#{busyo_name}
-		,#{busyo_name_small}
-		,#{busyo_start}
-		,#{busyo_end})
-	</insert>
-
-	<insert id="RankInsertcyu"
-		parameterType="com.example.demo.domain.rank_cyu">
-		INSERT INTO rank_cyu
-		(busyo_dai_code
-		,busyo_cyu_code
-		,busyo_name
-		,busyo_name_small
-		,busyo_start
-		,busyo_end)
-		VALUES
-		(#{busyo_dai_code}
-		,#{busyo_cyu_code}
-		,#{busyo_name}
-		,#{busyo_name_small}
-		,#{busyo_start}
-		,#{busyo_end})
-	</insert>
-	
-	<insert id="RankInsertdai"
-		parameterType="com.example.demo.domain.rank_dai">
-		INSERT INTO rank_dai
-		(busyo_dai_code
-		,busyo_name
-		,busyo_name_small
-		,busyo_start
-		,busyo_end)
-		VALUES
-		(#{busyo_dai_code}
-		,#{busyo_name}
-		,#{busyo_name_small}
-		,#{busyo_start}
-		,#{busyo_end})
-	</insert>
-
-	<insert id="listdai"
-		parameterType="com.example.demo.domain.rank_dai">
-		SELECT busyo_dai_code
-		,busyo_name
-		FROM rank_dai
-	</insert>
-
 	<update id="RankUpdate"
 		parameterType="com.example.demo.domain.rank_syou">
 		UPDATE rank_syou
@@ -197,5 +138,169 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		busyo_syou_code = #{busyo_syou_code}
 		AND busyo_start = #{busyo_start}
 	</delete>
+
+	<!-- 小分類END -->
+
+	<insert id="RankInsert"
+		parameterType="com.example.demo.domain.rank_syou">
+		INSERT INTO rank_syou
+		(busyo_dai_code
+		,busyo_cyu_code
+		,busyo_syou_code
+		,busyo_name
+		,busyo_name_small
+		,busyo_start
+		,busyo_end)
+		VALUES
+		(#{busyo_dai_code}
+		,#{busyo_cyu_code}
+		,#{busyo_syou_code}
+		,#{busyo_name}
+		,#{busyo_name_small}
+		,#{busyo_start}
+		,#{busyo_end})
+	</insert>
+
+	<insert id="RankInsertcyu"
+		parameterType="com.example.demo.domain.rank_cyu">
+		INSERT INTO rank_cyu
+		(busyo_dai_code
+		,busyo_cyu_code
+		,busyo_name
+		,busyo_name_small
+		,busyo_start
+		,busyo_end)
+		VALUES
+		(#{busyo_dai_code}
+		,#{busyo_cyu_code}
+		,#{busyo_name}
+		,#{busyo_name_small}
+		,#{busyo_start}
+		,#{busyo_end})
+	</insert>
+
+	<!-- 大分類部分 -->
+
+	<select id="Rankdaicount" resultType="int">
+		SELECT COUNT(*)
+		FROM rank_dai
+		<if test="keyword != null and keyword != '' ">
+			<if test="searchtype.equals('busyo_dai_code')">
+				WHERE busyo_dai_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('busyo_name')">
+				WHERE busyo_name like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('busyo_name_small')">
+				WHERE busyo_name_small like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('busyo_start')">
+				WHERE busyo_start like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('busyo_end')">
+				WHERE busyo_end like CONCAT('%', #{keyword},
+				'%')
+			</if>
+		</if>
+	</select>
+
+	<select id="listdaipage"
+		resultType="com.example.demo.domain.rank_dai">
+		SELECT busyo_dai_code
+		,busyo_name
+		,busyo_start
+		,busyo_end
+		FROM rank_dai
+		<if
+			test="keyword != null and keyword != '' and searchtype.equals('busyo_dai_code')">
+			WHERE busyo_dai_code like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('busyo_name') and keyword != null and keyword != '' ">
+			WHERE busyo_name like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('busyo_name_small') and keyword != null and keyword != '' ">
+			WHERE busyo_name_small like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('busyo_start') and keyword != null and keyword != '' ">
+			WHERE busyo_start like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="searchtype.equals('busyo_end') and keyword != null and keyword != '' ">
+			WHERE busyo_end like CONCAT('%', #{keyword}, '%')
+		</if>
+		ORDER BY busyo_dai_code
+		ASC
+		LIMIT
+		#{pagenum},
+		#{contentnum}
+	</select>
+
+	<insert id="RankdaiInsert"
+		parameterType="com.example.demo.domain.rank_dai">
+		INSERT INTO rank_dai
+		(busyo_dai_code
+		,busyo_name
+		,busyo_name_small
+		,busyo_start
+		,busyo_end)
+		VALUES
+		(#{busyo_dai_code}
+		,#{busyo_name}
+		,#{busyo_name_small}
+		,#{busyo_start}
+		,#{busyo_end})
+	</insert>
+
+	<select id="RankdaiDetail"
+		resultType="com.example.demo.domain.rank_dai">
+		SELECT *
+		FROM rank_dai
+		WHERE busyo_dai_code =
+		#{busyo_dai_code}
+		AND
+		busyo_start = #{busyo_start}
+	</select>
+
+	<update id="RankdaiUpdate"
+		parameterType="com.example.demo.domain.rank_dai">
+		UPDATE rank_dai
+		SET
+		<if test="busyo_dai_code != null">
+			busyo_dai_code = #{busyo_dai_code}
+		</if>
+		<if
+			test="busyo_dai_code != null and busyo_name != null and busyo_name_small != null and busyo_start != null and busyo_end != null"> , </if>
+		<if test="busyo_name != null">
+			,busyo_name = #{busyo_name}
+		</if>
+		<if test="busyo_name_small != null">
+			,busyo_name_small = #{busyo_name_small}
+		</if>
+		<if test="busyo_start != null">
+			,busyo_start = #{busyo_start}
+		</if>
+		<if test="busyo_end != null">
+			,busyo_end = #{busyo_end}
+		</if>
+		WHERE busyo_dai_code = #{busyo_dai_code}
+		AND
+		busyo_start =
+		#{busyo_start}
+	</update>
+
+	<delete id="RankdaiDelete">
+		DELETE FROM rank_dai
+		WHERE busyo_dai_code =
+		#{busyo_dai_code}
+		AND busyo_start = #{busyo_start}
+	</delete>
+
+	<!-- 大分類END -->
 
 </mapper>

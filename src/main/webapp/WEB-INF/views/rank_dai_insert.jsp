@@ -5,6 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>部署情報入力(大分類) - 簡単</title>
 </head>
 <body>
@@ -33,15 +37,24 @@
 					style="width: 250px;">
 			</div>
 			<div class="form-group">
-				<label for="busyo_start" style="width: 500px; padding: 10px;">部署開始日<br>('-'なしで入力してください / 8桁の連番)
-				</label> <input type="text" class="form-control" id="busyo_start"
-					name="busyo_start" placeholder="部署開始日を入力してください"
-					style="width: 250px;">
+				<label for="busyo_start" style="width: 500px; padding: 10px;">部署開始日<br>('-'なしで入力してください
+					/ 8桁の連番)
+				</label>
+				<div style="position: relative">
+					<input type="text" class="form-control" id="start_date"
+						name="busyo_start" size="8" title="YYYYMMDD"
+						style="width: 250px; cursor: pointer">
+				</div>
 			</div>
 			<div class="form-group">
-				<label for="busyo_end" style="width: 500px; padding: 10px;">部署終了日<br>('-'なしで入力してください / 8桁の連番)
-				</label> <input type="text" class="form-control" id="busyo_end"
-					name="busyo_end" placeholder="部署終了日を入力してください" style="width: 250px;">
+				<label for="busyo_end" style="width: 500px; padding: 10px;">部署終了日<br>('-'なしで入力してください
+					/ 8桁の連番)
+				</label>
+				<div style="position: relative">
+					<input type="text" class="form-control" id="end_date"
+						name="busyo_end" size="8" title="YYYYMMDD"
+						style="width: 250px; cursor: pointer">
+				</div>
 			</div>
 
 			<button type="submit" class="btn btn-primary">登録</button>
@@ -50,7 +63,69 @@
 	</form>
 
 	<style>
+.ui-datepicker-trigger {
+	position: absolute;
+	top: 10px;
+	left: 230px;
+}
 </style>
+
+	<script type="text/javascript">
+		//文字数制限
+		//Small_name제한
+		$(document).ready(function() {
+			$('#busyo_name_small').on('keyup', function() {
+				if ($(this).val().length > 3) {
+					alert("文字数制限を超えました!(制限:3桁)");
+					$(this).val($(this).val().substring(0, 3));
+				}
+			});
+		});
+
+		//code 제한
+		$(document).ready(function() {
+			$('#busyo_dai_code').on('keyup', function() {
+				if ($(this).val().length > 2) {
+					alert("数字数制限を超えました!(制限:2桁)");
+					$(this).val($(this).val().substring(0, 2));
+				}
+			});
+		});
+
+		//name 제한
+		$(document).ready(function() {
+			$('#busyo_name').on('keyup', function() {
+				if ($(this).val().length > 100) {
+					alert("文字数制限を超えました!(制限:文字-50桁、英語-100桁)");
+					$(this).val($(this).val().substring(0, 100));
+				}
+			});
+		});
+
+		//日付設定(start)
+		$("#start_date")
+				.datepicker(
+						{
+							dateFormat : 'yymmdd',
+							changeYear : true,
+							changeMonth : true,
+							showOn : "both",
+							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+							buttonImageOnly : true
+						});
+
+		//日付設定(end)
+		$("#end_date")
+				.datepicker(
+						{
+							dateFormat : 'yymmdd',
+							changeYear : true,
+							changeMonth : true,
+							showOn : "both",
+							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+							buttonImageOnly : true
+						});
+	</script>
 	<%@ include file="bootstrap.jsp"%>
 </body>
 </html>
