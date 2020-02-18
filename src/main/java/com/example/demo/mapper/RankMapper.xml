@@ -184,58 +184,17 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="Rankdaicount" resultType="int">
 		SELECT COUNT(*)
 		FROM rank_dai
-		<if test="keyword != null and keyword != '' ">
-			<if test="searchtype.equals('busyo_dai_code')">
-				WHERE busyo_dai_code like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchtype.equals('busyo_name')">
-				WHERE busyo_name like CONCAT('%', #{keyword},
-				'%')
-			</if>
-			<if test="searchtype.equals('busyo_name_small')">
-				WHERE busyo_name_small like CONCAT('%', #{keyword},
-				'%')
-			</if>
-			<if test="searchtype.equals('busyo_start')">
-				WHERE busyo_start like CONCAT('%', #{keyword},
-				'%')
-			</if>
-			<if test="searchtype.equals('busyo_end')">
-				WHERE busyo_end like CONCAT('%', #{keyword},
-				'%')
-			</if>
-		</if>
 	</select>
 
 	<select id="listdaipage"
 		resultType="com.example.demo.domain.rank_dai">
 		SELECT busyo_dai_code
 		,busyo_name
-		,busyo_start
-		,busyo_end
+		,DATE_FORMAT(busyo_start, '%Y年%m月%d日') AS busyo_start
+		,DATE_FORMAT(busyo_end, '%Y年%m月%d日') AS busyo_end
 		FROM rank_dai
-		<if
-			test="keyword != null and keyword != '' and searchtype.equals('busyo_dai_code')">
-			WHERE busyo_dai_code like CONCAT('%', #{keyword}, '%')
-		</if>
-		<if
-			test="searchtype.equals('busyo_name') and keyword != null and keyword != '' ">
-			WHERE busyo_name like CONCAT('%', #{keyword}, '%')
-		</if>
-		<if
-			test="searchtype.equals('busyo_name_small') and keyword != null and keyword != '' ">
-			WHERE busyo_name_small like CONCAT('%', #{keyword}, '%')
-		</if>
-		<if
-			test="searchtype.equals('busyo_start') and keyword != null and keyword != '' ">
-			WHERE busyo_start like CONCAT('%', #{keyword}, '%')
-		</if>
-		<if
-			test="searchtype.equals('busyo_end') and keyword != null and keyword != '' ">
-			WHERE busyo_end like CONCAT('%', #{keyword}, '%')
-		</if>
-		ORDER BY busyo_dai_code
-		ASC
+		WHERE SYSDATE() BETWEEN busyo_start AND busyo_end 
+		ORDER BY busyo_dai_code ASC
 		LIMIT
 		#{pagenum},
 		#{contentnum}

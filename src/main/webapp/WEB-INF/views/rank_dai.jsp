@@ -7,33 +7,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-<title>大分類リスト</title>
+<title>大分類一覧</title>
 </head>
 <body>
 	<div class="container centered text-center">
-		<h2>大分類リスト</h2>
+		<h2>大分類一覧</h2>
 	</div>
-	<button class="btn btn-danger" onclick="location.href='/index'">メニュー</button>
 	<button class="btn btn-warning"
-		onclick="location.href='/rankdai/insert'">部署(大分類)登録</button>
+		onclick="location.href='/rankdai/insert'">登録</button>
 	<br>
 
 	<div class="container">
 		<table class="table table-striped" style="width: 900px;">
 			<thead>
 				<tr>
-					<th scope="col">大分類コード</th>
-					<th scope="col">部署名</th>
-					<th scope="col">部署省略名</th>
-					<th scope="col">部署開始日</th>
-					<th scope="col">部署終了日</th>
+					<th scope="col">コード</th>
+					<th scope="col">名称</th>
+					<th scope="col">略称</th>
+					<th scope="col">開始日</th>
+					<th scope="col">終了日</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="cpn" items="${list}">
 					<tr>
 						<td scope="row"><a
-							href="/rankdai/detail/${cpn.busyo_dai_code}/${cpn.busyo_start}">${cpn.busyo_dai_code}</a></td>
+							href="/rankdai/update/${cpn.busyo_dai_code}/${cpn.busyo_start}">${cpn.busyo_dai_code}</a></td>
 						<td>${cpn.busyo_name}</td>
 						<td>${cpn.busyo_name_small}</td>
 						<td>${cpn.busyo_start}</td>
@@ -41,11 +40,12 @@
 					</tr>
 				</c:forEach>
 			</tbody>
-			<tfoot>
-				<tr>
-					<nav aria-label="Page navigation example">
-					<ul class="pagination">
-						<li class="page-item ">
+		</table>
+		<tfoot>
+			<tr>
+				<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<li class="page-item ">
 						<td colspan="2"><c:if test="${page.prev}">
 								<a style="text-decoration: none;"
 									href="javascript:page(${page.getstartpage()-1});">&laquo;</a>
@@ -57,76 +57,40 @@
 								<a style="text-decoration: none;"
 									href="javascript:page(${page.getendpage()+1});">&raquo;</a>
 							</c:if></td>
-						</li>
-					</ul>
-					</nav>
-				</tr>
-			</tfoot>
-		</table>
+					</li>
+				</ul>
+				</nav>
+			</tr>
+		</tfoot>
 	</div>
-	<form class="form-inline" action="search" method="get">
-		<div>
-			<select class="form-control form-control-sm" name="searchtype"
-				id="searchtype"
-				style="width: 350px; height: 35px; margin-left: auto; margin-right: auto;">
-				<option value="busyo_dai_code">大分類コード</option>
-				<option value="busyo_name">部署名</option>
-				<option value="busyo_name_small">部署省略名</option>
-				<option value="busyo_start">部署開始日</option>
-				<option value="busyo_end">部署終了日</option>
-			</select>
-		</div>
-		<div>
-			<input type="text" class="form-control form-control-sm"
-				name="keyword" id="keyword" placeholder="Keywordを入力してください"
-				value="${page.keyword}" onkeyup="characterCheck()"
-				onkeydown="characterCheck()"
-				style="width: 400px; height: 35px; margin-left: auto; margin-right: auto;" />
-		</div>
-		<button type="button" class="btn btn-primary" name="btnSearch"
-			id="btnSearch">検索</button>
-	</form>
+
+	<style>
+body {
+	background-image: url('../image/background.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+table, tr, td, th {
+	border: 1px solid black;
+}
+</style>
 
 	<script type="text/javascript">
-	
 	<!-- Paging -->
-	function page(idx) {
-		var pagenum = idx;
-		var contentnum = 10;
-		var searchtype = $('#searchtype').val()
-		var keyword = $('#keyword').val()
-		var url = "${pageContext.request.contextPath}/rank?pagenum=" + pagenum + "&contentnum=" + contentnum;
-		url = url + "&searchtype=" + searchtype;
-		url = url + "&keyword=" + keyword;
-		location.href = url;
-		
-	};
-	
-<!-- Search -->
-	$(document).on('click', '#btnSearch', function(e){
-		e.preventDefault();
-		var url = "${pageContext.request.contextPath}/rank?pagenum=1&contentnum=10";
-		url = url + "&searchtype=" + $('#searchtype').val();
-		url = url + "&keyword=" + $('#keyword').val();
-		location.href = url;
-		console.log(url);
-	});	
-	
-<!-- Input Limit -->
-function characterCheck() {
-    var RegExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
-    var obj = document.getElementsByName("keyword")[0]
-    if (RegExp.test(obj.value)) {
-        alert("特集文字は使うことができません。");
-        obj.value = obj.value.substring(0, obj.value.length - 1);
-    }
-}
-	
-<!-- Hold Select Option(Searchtype) -->
-var searchtype="${param.searchtype}";
+		function page(idx) {
+			var pagenum = idx;
+			var contentnum = 10;
+			var searchtype = $('#searchtype').val()
+			var keyword = $('#keyword').val()
+			var url = "${pageContext.request.contextPath}/rank?pagenum="
+					+ pagenum + "&contentnum=" + contentnum;
+			url = url + "&searchtype=" + searchtype;
+			url = url + "&keyword=" + keyword;
+			location.href = url;
 
-$("#searchtype").val(searchtype);
-</script>
+		};
+	</script>
 	<%@ include file="bootstrap.jsp"%>
 </body>
 </html>

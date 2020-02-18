@@ -96,7 +96,7 @@ public class RankController {
 
 		RankService.RankInsertService(rank);
 
-		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=busyo_syou_code&keyword=";
+		return "redirect:/rank?pagenum=1&contentnum=10";
 	}
 
 	@RequestMapping("rank/update/{busyo_dai_code}{busyo_cyu_code}{busyo_syou_code}/{busyo_start}")
@@ -134,7 +134,7 @@ public class RankController {
 			@PathVariable String busyo_syou_code, @PathVariable String busyo_start) throws Exception {
 		RankService.RankDeleteService(busyo_dai_code, busyo_cyu_code, busyo_syou_code, busyo_start);
 
-		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=busyo_syou_code&keyword=";
+		return "redirect:/rank?pagenum=1&contentnum=10";
 	}
 
 	// 小分類END
@@ -152,7 +152,7 @@ public class RankController {
 
 		RankService.RankInsertcyuService(rank);
 
-		return "redirect:/rank?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
+		return "redirect:/rank?pagenum=1&contentnum=10";
 	}
 	// 中分類END
 
@@ -160,42 +160,34 @@ public class RankController {
 	// 大分類リスト出力
 	@RequestMapping("/rankdai")
 	@PostMapping
-	public String listdai(HttpServletRequest request, @RequestParam(required = false) String searchtype,
-			@RequestParam(required = false) String keyword) {
-		rank_dai Rankdai = new rank_dai();
+	public String listdaipage(HttpServletRequest request) {
+		rank_dai Rank = new rank_dai();
 		String pagenum = request.getParameter("pagenum");
 		String contentnum = request.getParameter("contentnum");
 		System.out.println("pagenum : " + pagenum);
 		System.out.println("contentnum : " + contentnum);
-		System.out.println("searchtype : " + searchtype);
 		int cpagenum = Integer.parseInt(pagenum);
 		int ccontentnum = Integer.parseInt(contentnum);
 
-		Rankdai.setsearchtype(searchtype);
-		Rankdai.setkeyword(keyword);
+		Rank.settotalcount(mapper.Rankdaicount()); // 전체계수
+		Rank.setpagenum(cpagenum - 1); // 현재 페이지 객체 지정
+		Rank.setcontentnum(ccontentnum); // 한 페이지 게시글 수
+		Rank.setcurrentblock(cpagenum); // 현재 페이지블록 번호
+		Rank.setlastblock(Rank.gettotalcount()); // 마지막 블록 전체 게시글 수
 
-		Rankdai.settotalcount(mapper.Rankdaicount(Rankdai.getsearchtype(), Rankdai.getkeyword())); // 전체계수
-		Rankdai.setpagenum(cpagenum - 1); // 현재 페이지 객체 지정
-		Rankdai.setcontentnum(ccontentnum); // 한 페이지 게시글 수
-		Rankdai.setcurrentblock(cpagenum); // 현재 페이지블록 번호
-		Rankdai.setlastblock(Rankdai.gettotalcount()); // 마지막 블록 전체 게시글 수
-
-		Rankdai.prevnext(cpagenum); // 현재 페이지 화살표
-		Rankdai.setstartpage(Rankdai.getcurrentblock()); // 시작페이지 블록 번호
-		Rankdai.setendpage(Rankdai.getlastblock(), Rankdai.getcurrentblock()); // 마지막 페이지 블럭 현재 페이지 블록
+		Rank.prevnext(cpagenum); // 현재 페이지 화살표
+		Rank.setstartpage(Rank.getcurrentblock()); // 시작페이지 블록 번호
+		Rank.setendpage(Rank.getlastblock(), Rank.getcurrentblock()); // 마지막 페이지 블럭 현재 페이지 블록
 
 		List<rank_dai> listdaipage = new ArrayList<rank_dai>();
-		listdaipage = mapper.listdaipage(Rankdai.getpagenum() * 10, Rankdai.getcontentnum(), Rankdai.getsearchtype(),
-				Rankdai.getkeyword());
+		listdaipage = mapper.listdaipage(Rank.getpagenum() * 10, Rank.getcontentnum());
 
-		System.out.println("Parameter keyword : " + request.getParameter("keyword"));
-		System.out.println("Board keyword : " + Rankdai.getkeyword());
 		System.out.println("Parameter busyo_dai_code : " + request.getParameter("busyo_dai_code"));
 		System.out.println("Parameter busyo_name : " + request.getParameter("busyo_name"));
 
 		request.setAttribute("list", listdaipage);
-		request.setAttribute("page", Rankdai);
-
+		request.setAttribute("page", Rank);
+		
 		return "rank_dai";
 	}
 
@@ -218,7 +210,7 @@ public class RankController {
 
 		RankService.RankdaiInsertService(rank);
 
-		return "redirect:/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
+		return "redirect:/rankdai?pagenum=1&contentnum=10";
 	}
 
 	@RequestMapping("rankdai/update/{busyo_dai_code}/{busyo_start}")
@@ -253,7 +245,7 @@ public class RankController {
 			throws Exception {
 		RankService.RankdaiDeleteService(busyo_dai_code, busyo_start);
 
-		return "redirect:/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
+		return "redirect:/rankdai?pagenum=1&contentnum=10";
 	}
 
 	// 大分類END

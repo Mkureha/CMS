@@ -45,11 +45,10 @@ public interface RankMapper {
 
 	// 大分類
 	// 入力大分類
-	public int Rankdaicount(@Param("searchtype") String searchtype, @Param("keyword") String keyword);
+	public int Rankdaicount();
 
 	// リストページング
-	public List<rank_dai> listdaipage(@Param("pagenum") int pagenum, @Param("contentnum") int contentnum,
-			@Param("searchtype") String searchtype, @Param("keyword") String keyword);
+	public List<rank_dai> listdaipage(@Param("pagenum") int pagenum, @Param("contentnum") int contentnum);
 
 	// リストDetail
 	public rank_dai RankdaiDetail(@Param("busyo_dai_code") String busyo_dai_code,

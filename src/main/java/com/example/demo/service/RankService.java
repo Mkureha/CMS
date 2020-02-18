@@ -70,12 +70,12 @@ public class RankService {
 		return RankMapper.RankdaiDelete(busyo_dai_code, busyo_start);
 	}
 
-	public List<rank_dai> listdaipage(int pagenum, int contentnum, String searchtype, String keyword) {
-		return RankMapper.listdaipage(pagenum, contentnum, searchtype, keyword);
+	public List<rank_dai> listdaipage(int pagenum, int contentnum) {
+		return RankMapper.listdaipage(pagenum, contentnum);
 	}
 
-	public int Rankdaicount(String searchtype, String keyword) {
-		return RankMapper.Rankdaicount(searchtype, keyword);
+	public int Rankdaicount() {
+		return RankMapper.Rankdaicount();
 	}
 
 	// 大分類END

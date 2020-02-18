@@ -1,5 +1,7 @@
 package com.example.demo.domain;
 
+import javax.xml.crypto.Data;
+
 public class rank_dai {
 	
 	public String busyo_dai_code;
@@ -7,6 +9,8 @@ public class rank_dai {
 	public String busyo_name_small;
 	public String busyo_start;
 	public String busyo_end;
+	
+	public Data sysdate;
 	
 
 	public String getbusyo_dai_code() {
@@ -189,23 +193,23 @@ public class rank_dai {
 			this.contentnum = contentnum;
 		}
 
-		// Search ADD
-		private String searchtype;
-		private String keyword;
-
-		public String getsearchtype() {
-			return searchtype;
-		}
-
-		public void setsearchtype(String searchtype) {
-			this.searchtype = searchtype;
-		}
-
-		public String getkeyword() {
-			return keyword;
-		}
-
-		public void setkeyword(String keyword) {
-			this.keyword = keyword;
-		}
+//		// Search ADD
+//		private String searchtype;
+//		private String keyword;
+//
+//		public String getsearchtype() {
+//			return searchtype;
+//		}
+//
+//		public void setsearchtype(String searchtype) {
+//			this.searchtype = searchtype;
+//		}
+//
+//		public String getkeyword() {
+//			return keyword;
+//		}
+//
+//		public void setkeyword(String keyword) {
+//			this.keyword = keyword;
+//		}
 }
