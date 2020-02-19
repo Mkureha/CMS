@@ -7,13 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-<title>大分類一覧</title>
+<title>中分類一覧</title>
 </head>
 <body style="padding-top: 60px;">
 	<nav class="navbar navbar-fixed-top navbar-inverse">
 	<div class="navbar-header">
 		<a class="navbar-brand" href="/index"
-			style="font-size: 14px; font-weight: bold; color: white; height: 40px;">COMPANY MANAGEMENT SYSTEM</a>
+			style="font-size: 14px; font-weight: bold; color: white; height: 40px;">COMPANY
+			MANAGEMENT SYSTEM</a>
 		<button type="button" class="navbar-toggle" data-toggle="offcanvas"
 			data-target=".navbar-offcanvas" data-canvas="body">
 			<span class="icon-bar"></span> <span class="icon-bar"></span> <span
@@ -22,9 +23,9 @@
 	</div>
 	<div id="ie8_navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
-			<li class="active"><a style="color: white;"
+			<li><a style="color: white;"
 				href="/rankdai?pagenum=1&contentnum=10">部署（大分類）</a></li>
-			<li><a style='color: white;'
+			<li class="active"><a style='color: white;'
 				href="/rankcyu?pagenum=1&contentnum=10">部署（中分類）</a></li>
 			<li><a style="color: white;"
 				href="/ranksyou?pagenum=1&contentnum=10">部署（小分類）</a></li>
@@ -36,9 +37,9 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<ul class="nav nav-pills nav-stacked" style="margin-bottom: 20px;">
-					<li role="presentation" class="active"><a
-						href="/rankdai?pagenum=1&contentnum=10">大部類一覧</a></li>
 					<li role="presentation"><a
+						href="/rankdai?pagenum=1&contentnum=10">大部類一覧</a></li>
+					<li role="presentation" class="active"><a
 						href="/rankcyu?pagenum=1&contentnum=10">中分類一覧</a></li>
 					<li role="presentation"><a
 						href="/ranksyou?pagenum=1&contentnum=10">小分類一覧</a></li>
@@ -46,12 +47,14 @@
 			</div>
 			<div class="col-sm-10">
 				<div 　class="pull-left">
-					<h3 style="padding: 0; margin: 0; margin-bottom: 10px;">大分類一覧</h3>
+					<h3 style="padding: 0; margin: 0; margin-bottom: 10px;">中分類一覧</h3>
 					<table class="table table-bordered table-condensed"
 						style="margin-top: 20px;">
 						<tbody>
 							<tr class="text-center warning">
 								<th class="text-center">コード</th>
+								<th class="text-center">大分類</th>
+								<th class="text-center">中分類</th>
 								<th class="text-center">名称</th>
 								<th class="text-center">略称</th>
 								<th class="text-center">開始日</th>
@@ -60,7 +63,9 @@
 							<c:forEach var="cpn" items="${list}">
 								<tr>
 									<td scope="row"><a
-										href="/rankdai/update/${cpn.busyo_dai_code}/${cpn.busyo_start}">${cpn.busyo_dai_code}</a></td>
+										href="/rankcyu/update/${cpn.busyo_dai_code}${cpn.busyo_cyu_code}/${cpn.busyo_start}">${cpn.busyo_dai_code}${cpn.busyo_dai_code}</a></td>
+									<td>${cpn.busyo_dai_code}</td>
+									<td>${cpn.busyo_cyu_code}</td>
 									<td>${cpn.busyo_name}</td>
 									<td>${cpn.busyo_name_small}</td>
 									<td>${cpn.busyo_start}</td>
@@ -72,7 +77,7 @@
 				</div>
 				<div class="pull-right">
 					<button class="btn btn-danger"
-						onclick="location.href='/rankdai/insert'">登録</button>
+						onclick="location.href='/rankcyu/insert'">登録</button>
 				</div>
 				<br />
 				<div style="margin-top: -18px; margin-bottom: -10px;">
@@ -99,7 +104,7 @@
 	</div>
 
 	<style>
-body,div {
+body, div {
 	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
 		'ＭＳ Ｐゴシック', sans-serif;
 }
@@ -110,7 +115,7 @@ body,div {
 		function page(idx) {
 			var pagenum = idx;
 			var contentnum = 10;
-			var url = "${pageContext.request.contextPath}/rankdai?pagenum="
+			var url = "${pageContext.request.contextPath}/rankcyu?pagenum="
 					+ pagenum + "&contentnum=" + contentnum;
 			location.href = url;
 

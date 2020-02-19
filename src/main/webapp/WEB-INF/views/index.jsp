@@ -52,14 +52,13 @@
 		<!-- /.container-fluid -->
 	</nav>
 
-	<div class="text-center" style="float: none; margin: 0 auto;">
-		<h2>COMPANY MANAGEMENT SYSTEM</h2>
-	</div>
-
-	<div class="text-center" style="float: none; margin: 0 auto;">
-		<h1>
+	<div class="jumbotron">
+	<h1>Welcom!!</h1><br>
+		<h2>Company Management System</h2>
+		<br>
+		<p>
 			ここはメインページでございます。<br> <br> 上のメニューを選択してください
-		</h1>
+		</p>
 	</div>
 
 	<style>

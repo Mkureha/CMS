@@ -16,7 +16,7 @@
 	<nav class="navbar navbar-fixed-top navbar-inverse">
 	<div class="navbar-header">
 		<a class="navbar-brand" href="/index"
-			style="font-size: 14px; font-weight: bold; color: white; height: 40px;">部署管理</a>
+			style="font-size: 14px; font-weight: bold; color: white; height: 40px;">COMPANY MANAGEMENT SYSTEM</a>
 		<button type="button" class="navbar-toggle" data-toggle="offcanvas"
 			data-target=".navbar-offcanvas" data-canvas="body">
 			<span class="icon-bar"></span> <span class="icon-bar"></span> <span
@@ -31,10 +31,6 @@
 				href="/rankcyu?pagenum=1&contentnum=10">部署（中分類）</a></li>
 			<li><a style="color: white;"
 				href="/ranksyou?pagenum=1&contentnum=10">部署（小分類）</a></li>
-			<li><a style="color: white;"
-				href="/position?pagenum=1&contentnum=10">役職</a></li>
-			<li><a style="color: white;"
-				href="/type?pagenum=1&contentnum=10">職級</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -60,46 +56,46 @@
 						<form action="/rankdai/updateProc" method="post"
 							autocomplete="off">
 							<table class="table table-bordered table-condensed"
-								style="margin-top: 20px;">
+								style="margin-top: 35px;">
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_dai_code"
-										style="width: 150px; text-align: right;">コード</td>
-									<td><input type="text" class="form-control"
+										style="width: 250px; text-align: right;">コード</td>
+									<td style="width: 1000px;"><input type="text" class="form-control"
 										id="busyo_dai_code" name="busyo_dai_code"
 										value="${detail.busyo_dai_code }"
-										style="width: 100px; height: auto; left: 10px;"></td>
+										style="width: 150px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name"
-										style="width: 150px; text-align: right;">名称</td>
-									<td><input type="text" class="form-control"
+										style="width: 250px; text-align: right;">名称</td>
+									<td style="width: 1000px;"><input type="text" class="form-control"
 										id="busyo_name" name="busyo_name"
 										value="${detail.busyo_name }"
-										style="width: 400px; height: auto; left: 10px;"></td>
+										style="width: 550px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name_small"
-										style="width: 150px; text-align: right;">略称</td>
-									<td><input type="text" class="form-control"
+										style="width: 250px; text-align: right;">略称</td>
+									<td style="width: 1000px;"><input type="text" class="form-control"
 										id="busyo_name_small" name="busyo_name_small"
 										value="${detail.busyo_name_small }"
-										style="width: 300px; height: auto; left: 10px;"></td>
+										style="width: 400px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_start"
-										style="width: 150px; text-align: right;">開始日</td>
-									<td style="position: relative"><input type="text"
+										style="width: 250px; text-align: right;">開始日</td>
+									<td style="width: 1000px; position: relative"><input type="text"
 										class="form-control" id="start_date" name="busyo_start"
 										size="8" value="${detail.busyo_start }"
-										style="width: 150px; height: auto; cursor: pointer; left: 10px;"></td>
+										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_end"
-										style="width: 150px; text-align: right;">終了日</td>
-									<td style="position: relative"><input type="text"
+										style="width: 250px; text-align: right;">終了日</td>
+									<td style="width: 1000px; position: relative"><input type="text"
 										class="form-control" id="end_date" name="busyo_end" size="8"
 										value="${detail.busyo_end }"
-										style="width: 150px; height: auto; cursor: pointer; left: 10px;">
+										style="width: 200px; height: auto; cursor: pointer; left: 10px;">
 									</td>
 								</tr>
 							</table>
@@ -137,7 +133,7 @@ table {
 .ui-datepicker-trigger {
 	position: absolute;
 	top: 13px;
-	left: 135px;
+	left: 180px;
 }
 </style>
 
