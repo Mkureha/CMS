@@ -11,77 +11,123 @@
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>大分類入力 - 簡単</title>
 </head>
-<body>
-	<div class="container centered text-center text-info"
-		style="height: 200px; padding-top: 50px;">
-		<h2>大分類 登録</h2>
+<body style="padding-top: 60px;">
+	<nav class="navbar navbar-fixed-top navbar-inverse">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="/index"
+			style="font-size: 14px; font-weight: bold; color: white; height: 40px;">部署管理</a>
+		<button type="button" class="navbar-toggle" data-toggle="offcanvas"
+			data-target=".navbar-offcanvas" data-canvas="body">
+			<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+				class="icon-bar"></span>
+		</button>
+	</div>
+	<div id="ie8_navbar" class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+			<li class="active"><a style="color: white;"
+				href="/rankdai?pagenum=1&contentnum=10">部署（大分類）</a></li>
+			<li><a style='color: white;'
+				href="/rankcyu?pagenum=1&contentnum=10">部署（中分類）</a></li>
+			<li><a style="color: white;"
+				href="/ranksyou?pagenum=1&contentnum=10">部署（小分類）</a></li>
+			<li><a style="color: white;"
+				href="/position?pagenum=1&contentnum=10">役職</a></li>
+			<li><a style="color: white;"
+				href="/type?pagenum=1&contentnum=10">職級</a></li>
+		</ul>
+	</div>
+	</nav>
+
+	<div class="container" style="margin-top: 20px;">
+		<div class="row">
+			<div class="col-sm-2">
+				<ul class="nav nav-pills nav-stacked" style="margin-bottom: 20px;">
+					<li role="presentation" class="active"><a
+						href="/rankdai?pagenum=1&contentnum=10">大部類一覧</a></li>
+					<li role="presentation"><a
+						href="/rankcyu?pagenum=1&contentnum=10">中分類一覧</a></li>
+					<li role="presentation"><a
+						href="/ranksyou?pagenum=1&contentnum=10">小分類一覧</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-10">
+				<div class="pull-left">
+					<h3 style="padding: 0; margin: 0; margin-bottom: 10px;">部署登録</h3>
+					<div>
+						<h5 class="pull-right"
+							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">*
+							は必ず入力してください</h5>
+						<form role="form" action="/rankdai/insertProc" method="post"
+							enctype="multipart/form-data" autocomplete="off">
+							<table class="table table-bordered table-condensed"
+								style="margin-top: 20px;">
+								<tr class="form-group">
+									<td class="text-center warning" for="busyo_dai_code"
+										style="width: auto; height: auto; text-align: right; font-weight: bold; color: red;">*
+										コード</td>
+									<td><input type="text" class="form-control"
+										id="busyo_dai_code" name="busyo_dai_code" placeholder="2桁の連番"
+										style="width: 100px; height: auto; left: 10px;" /></td>
+								</tr>
+								<tr class="form-group">
+									<td class="text-center warning" for="busyo_name"
+										style="width: auto; height: auto; text-align: right; font-weight: bold; color: red;">*
+										名称</td>
+									<td><input type="text" class="form-control"
+										id="busyo_name" name="busyo_name" placeholder="名称(制限 50文字まで)"
+										style="width: 400px; height: auto; left: 10px;" /></td>
+								</tr>
+								<tr class="form-group">
+									<td class="text-center warning" for="busyo_name_small"
+										style="width: auto; height: auto; text-align: right;">略称(3桁の文字)</td>
+									<td><input type="text" class="form-control"
+										id="busyo_name_small" name="busyo_name_small"
+										placeholder="略称(制限10文字まで)"
+										style="width: 300px; height: auto; left: 10px;" /></td>
+								</tr>
+								<tr class="form-group">
+									<td class="text-center warning" for="busyo_start"
+										style="width: auto; height: auto; text-align: right; font-weight: bold; color: red;">*
+										開始日</td>
+									<td style="position: relative"><input type="text"
+										class="form-control" id="start_date" name="busyo_start"
+										size="8" title="開始日"
+										style="width: 150px; height: auto; cursor: pointer; left: 10px;"></td>
+								</tr>
+								<tr class="form-group">
+									<td class="text-center warning" for="busyo_end"
+										style="width: auto; height: auto; text-align: right;">終了日</td>
+									<td style="position: relative"><input type="text"
+										class="form-control" id="end_date" name="busyo_end" size="8"
+										title="終了日"
+										style="width: 150px; height: auto; cursor: pointer; left: 10px;">
+									</td>
+								</tr>
+							</table>
+							<div class="text-right" style="position: relative;">
+								<button type="submit" class="btn btn-warning"
+									style="width: 70px; height: 30px;">登録</button>
+								<a type="button" class="btn btn-primary"
+									href="javascript:history.back(-1)"
+									style="width: 70px; height: 30px;">戻る</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<form role="form" action="/rankdai/insertProc" method="post"
-		enctype="multipart/form-data" autocomplete="off">
-		<table class="inputArea"
-			style="margin: 10px 0; margin-left: auto; margin-right: auto;">
-			<tr class="form-group">
-				<td for="busyo_dai_code"
-					style="width: 250px; padding: 10px; font-weight: bold; color: red;">*
-					コード</td>
-				<td><input type="text" class="form-control" id="busyo_dai_code"
-					name="busyo_dai_code" placeholder="2桁の連番で入力してください"
-					style="width: 250px; left: 5px;" /></td>
-			</tr>
-			<tr class="form-group">
-				<td for="busyo_name"
-					style="width: 250px; padding: 10px; font-weight: bold; color: red;">*
-					名称</td>
-				<td><input type="text" class="form-control" id="busyo_name"
-					name="busyo_name" placeholder="名称(制限 50文字まで)"
-					style="width: 250px; left: 5px;" /></td>
-			</tr>
-			<tr class="form-group">
-				<td for="busyo_name_small" style="width: 250px; padding: 10px;">略称(3桁の文字)
-				</td>
-				<td><input type="text" class="form-control"
-					id="busyo_name_small" name="busyo_name_small"
-					placeholder="略称(制限10文字まで)" style="width: 250px; left: 5px;" /></td>
-			</tr>
-			<tr class="form-group">
-				<td for="busyo_start"
-					style="width: 250px; padding: 10px; font-weight: bold; color: red;">*
-					開始日</td>
-				<td style="position: relative"><input type="text"
-					class="form-control" id="start_date" name="busyo_start" size="8"
-					title="開始日" style="width: 250px; cursor: pointer; left: 5px;">
-				</td>
-			</tr>
-			<tr class="form-group">
-				<td for="busyo_end" style="width: 250px; padding: 10px;">終了日
-				</td>
-				<td style="position: relative"><input type="text"
-					class="form-control" id="end_date" name="busyo_end" size="8"
-					title="終了日" style="width: 250px; cursor: pointer; left: 5px;">
-				</td>
-			</tr>
-		</table>
-		<div style="position: relative; left: 50%;">
-			<button type="submit"
-				class="btn btn-primary btn-sm col-xs-2 col-xs-offset-1"
-				style="width: 70px; height: 40px;">登録</button>
-			<button type="reset" class="btn btn-primary btn-sm col-xs-2"
-				style="width: 70px; height: 40px; margin-left: 5px;">Reset</button>
-		</div>
-	</form>
-
-	<style type="text/css">
+	<style>
 .ui-datepicker-trigger {
 	position: absolute;
-	top: 22px;
-	left: 230px;
+	top: 13px;
+	left: 135px;
 }
 
 table {
-	border: 4px solid black;
-	width: 550px;
-	height: 300px;
+	width: auto;
+	height: auto;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: auto;
@@ -90,10 +136,9 @@ table {
 	text-align: left;
 }
 
-body {
-	background-image: url('../image/background.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
+body,div {
+	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
+		'ＭＳ Ｐゴシック', sans-serif;
 }
 </style>
 
@@ -137,7 +182,7 @@ body {
 		$("#start_date")
 				.datepicker(
 						{
-							dateFormat : 'yymmdd',
+							dateFormat : 'yy-mm-dd',
 							changeYear : true,
 							changeMonth : true,
 							showOn : "both",
@@ -149,7 +194,7 @@ body {
 		$("#end_date")
 				.datepicker(
 						{
-							dateFormat : 'yymmdd',
+							dateFormat : 'yy-mm-dd',
 							changeYear : true,
 							changeMonth : true,
 							showOn : "both",

@@ -161,7 +161,7 @@ public class RankController {
 	@RequestMapping("/rankdai")
 	@PostMapping
 	public String listdaipage(HttpServletRequest request) {
-		rank_dai Rank = new rank_dai();
+		rank_dai rank_dai = new rank_dai();
 		String pagenum = request.getParameter("pagenum");
 		String contentnum = request.getParameter("contentnum");
 		System.out.println("pagenum : " + pagenum);
@@ -169,24 +169,24 @@ public class RankController {
 		int cpagenum = Integer.parseInt(pagenum);
 		int ccontentnum = Integer.parseInt(contentnum);
 
-		Rank.settotalcount(mapper.Rankdaicount()); // 전체계수
-		Rank.setpagenum(cpagenum - 1); // 현재 페이지 객체 지정
-		Rank.setcontentnum(ccontentnum); // 한 페이지 게시글 수
-		Rank.setcurrentblock(cpagenum); // 현재 페이지블록 번호
-		Rank.setlastblock(Rank.gettotalcount()); // 마지막 블록 전체 게시글 수
+		rank_dai.settotalcount(mapper.Rankdaicount()); // 전체계수
+		rank_dai.setpagenum(cpagenum - 1); // 현재 페이지 객체 지정
+		rank_dai.setcontentnum(ccontentnum); // 한 페이지 게시글 수
+		rank_dai.setcurrentblock(cpagenum); // 현재 페이지블록 번호
+		rank_dai.setlastblock(rank_dai.gettotalcount()); // 마지막 블록 전체 게시글 수
 
-		Rank.prevnext(cpagenum); // 현재 페이지 화살표
-		Rank.setstartpage(Rank.getcurrentblock()); // 시작페이지 블록 번호
-		Rank.setendpage(Rank.getlastblock(), Rank.getcurrentblock()); // 마지막 페이지 블럭 현재 페이지 블록
+		rank_dai.prevnext(cpagenum); // 현재 페이지 화살표
+		rank_dai.setstartpage(rank_dai.getcurrentblock()); // 시작페이지 블록 번호
+		rank_dai.setendpage(rank_dai.getlastblock(), rank_dai.getcurrentblock()); // 마지막 페이지 블럭 현재 페이지 블록
 
 		List<rank_dai> listdaipage = new ArrayList<rank_dai>();
-		listdaipage = mapper.listdaipage(Rank.getpagenum() * 10, Rank.getcontentnum());
+		listdaipage = mapper.listdaipage(rank_dai.getpagenum() * 10, rank_dai.getcontentnum());
 
 		System.out.println("Parameter busyo_dai_code : " + request.getParameter("busyo_dai_code"));
 		System.out.println("Parameter busyo_name : " + request.getParameter("busyo_name"));
 
 		request.setAttribute("list", listdaipage);
-		request.setAttribute("page", Rank);
+		request.setAttribute("page", rank_dai);
 		
 		return "rank_dai";
 	}
@@ -206,9 +206,9 @@ public class RankController {
 	}
 
 	@RequestMapping("/rankdai/insertProc")
-	private String RankdaiInsertProc(rank_dai rank, MultipartFile file) throws Exception {
+	private String RankdaiInsertProc(rank_dai rank_dai, MultipartFile file) throws Exception {
 
-		RankService.RankdaiInsertService(rank);
+		RankService.RankdaiInsertService(rank_dai);
 
 		return "redirect:/rankdai?pagenum=1&contentnum=10";
 	}
@@ -216,8 +216,20 @@ public class RankController {
 	@RequestMapping("rankdai/update/{busyo_dai_code}/{busyo_start}")
 	private String RankdaiUpdateForm(@PathVariable String busyo_dai_code, @PathVariable String busyo_start, Model model)
 			throws Exception {
+		
+		System.out.println("code :" + busyo_dai_code);
+		System.out.println("start :" + busyo_start);
+		
+		rank_dai rank = RankService.RankdaiDetailService(busyo_dai_code, busyo_start);
+		
+		System.out.println("code :" + rank.busyo_dai_code);
+		System.out.println("name :" + rank.busyo_name);
+		System.out.println("Sname :" + rank.busyo_name_small);
+		System.out.println("start :" + rank.busyo_start);
+		System.out.println("end :" + rank.busyo_end);
+		System.out.println("date :" + rank.sysdate);
 
-		model.addAttribute("detail", RankService.RankdaiDetailService(busyo_dai_code, busyo_start));
+		model.addAttribute("detail", rank);
 
 		return "rank_dai_update";
 	}
@@ -226,17 +238,16 @@ public class RankController {
 	@GetMapping
 	private String RankdaiUpdateProc(HttpServletRequest request) throws Exception {
 
-		rank_dai rank = new rank_dai();
+		rank_dai rank_dai = new rank_dai();
 
-		rank.setbusyo_dai_code(request.getParameter("busyo_dai_code"));
-		rank.setbusyo_name(request.getParameter("busyo_name"));
-		rank.setbusyo_name_small(request.getParameter("busyo_name_small"));
-		rank.setbusyo_start(request.getParameter("busyo_start"));
-		rank.setbusyo_end(request.getParameter("busyo_end"));
+		rank_dai.setbusyo_dai_code(request.getParameter("busyo_dai_code"));
+		rank_dai.setbusyo_name(request.getParameter("busyo_name"));
+		rank_dai.setbusyo_name_small(request.getParameter("busyo_name_small"));
+		rank_dai.setbusyo_start(request.getParameter("busyo_start"));
+		rank_dai.setbusyo_end(request.getParameter("busyo_end"));
 
-		RankService.RankdaiUpdateService(rank);
-		return "redirect:/rankdai/detail/" + request.getParameter("busyo_dai_code") + "/"
-				+ request.getParameter("busyo_start");
+		RankService.RankdaiUpdateService(rank_dai);
+		return "redirect:/rankdai?pagenum=1&contentnum=10";
 	}
 
 	@RequestMapping("/rankdai/delete/{busyo_dai_code}/{busyo_start}")

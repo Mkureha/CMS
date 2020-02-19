@@ -58,12 +58,12 @@ public class RankService {
 		return RankMapper.RankdaiDetail(busyo_dai_code, busyo_start);
 	}
 
-	public int RankdaiInsertService(rank_dai rank) throws Exception {
-		return RankMapper.RankdaiInsert(rank);
+	public int RankdaiInsertService(rank_dai rank_dai) throws Exception {
+		return RankMapper.RankdaiInsert(rank_dai);
 	}
 
-	public int RankdaiUpdateService(rank_dai rank) throws Exception {
-		return RankMapper.RankdaiUpdate(rank);
+	public int RankdaiUpdateService(rank_dai rank_dai) throws Exception {
+		return RankMapper.RankdaiUpdate(rank_dai);
 	}
 
 	public int RankdaiDeleteService(String busyo_dai_code, String busyo_start) throws Exception {

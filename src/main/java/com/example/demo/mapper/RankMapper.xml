@@ -183,17 +183,21 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 	<select id="Rankdaicount" resultType="int">
 		SELECT COUNT(*)
-		FROM rank_dai
+		FROM
+		rank_dai
 	</select>
 
 	<select id="listdaipage"
 		resultType="com.example.demo.domain.rank_dai">
 		SELECT busyo_dai_code
 		,busyo_name
-		,DATE_FORMAT(busyo_start, '%Y年%m月%d日') AS busyo_start
-		,DATE_FORMAT(busyo_end, '%Y年%m月%d日') AS busyo_end
+		,DATE_FORMAT(busyo_start,
+		'%Y-%m-%d') AS busyo_start
+		,DATE_FORMAT(busyo_end, '%Y-%m-%d') AS
+		busyo_end
 		FROM rank_dai
-		WHERE SYSDATE() BETWEEN busyo_start AND busyo_end 
+		WHERE SYSDATE() BETWEEN busyo_start AND
+		busyo_end
 		ORDER BY busyo_dai_code ASC
 		LIMIT
 		#{pagenum},
@@ -218,12 +222,18 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 	<select id="RankdaiDetail"
 		resultType="com.example.demo.domain.rank_dai">
-		SELECT *
+		SELECT busyo_dai_code
+		,busyo_name
+		,busyo_name_small
+		,DATE_FORMAT(busyo_start, '%Y-%m-%d') AS busyo_start
+		,DATE_FORMAT(busyo_end, '%Y-%m-%d') AS busyo_end
 		FROM rank_dai
-		WHERE busyo_dai_code =
+		WHERE
+		busyo_dai_code =
 		#{busyo_dai_code}
 		AND
-		busyo_start = #{busyo_start}
+		DATE_FORMAT(busyo_start,
+		'%Y-%m-%d') = #{busyo_start}
 	</select>
 
 	<update id="RankdaiUpdate"
@@ -257,7 +267,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		DELETE FROM rank_dai
 		WHERE busyo_dai_code =
 		#{busyo_dai_code}
-		AND busyo_start = #{busyo_start}
+		AND DATE_FORMAT(busyo_start,
+		'%Y-%m-%d') =
+		#{busyo_start}
 	</delete>
 
 	<!-- 大分類END -->
