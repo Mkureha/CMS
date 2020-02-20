@@ -17,6 +17,9 @@ public interface RankMapper {
 
 	// リストページング
 	public List<rank_syou> listsyoupage(@Param("pagenum") int pagenum, @Param("contentnum") int contentnum);
+	
+	// 小リストページング
+	public List<rank_cyu> listcyucode(@Param("busyo_dai_code") String busyo_dai_code);
 
 	// リストDetail
 	public rank_syou RanksyouDetail(@Param("busyo_dai_code") String busyo_dai_code,

@@ -30,6 +30,21 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		#{contentnum}
 	</select>
 
+	<select id="listcyucode"
+		resultType="com.example.demo.domain.rank_cyu">
+		SELECT DISTINCT busyo_dai_code
+		,busyo_cyu_code
+		,busyo_name
+		FROM rank_cyu
+		WHERE
+		busyo_dai_code = #{busyo_dai_code}
+		AND
+		SYSDATE()
+		BETWEEN busyo_start
+		AND
+		busyo_end
+	</select>
+
 	<select id="RanksyouDetail"
 		resultType="com.example.demo.domain.rank_syou">
 		SELECT *
@@ -47,15 +62,17 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		parameterType="com.example.demo.domain.rank_syou">
 		UPDATE rank_syou
 		SET
-		<if
-			test="busyo_dai_bunrui != null AND busyo_cyu_bunrui != null AND busyo_syou_bunrui != null">
-			busyo_dai_bunrui = #{busyo_dai_bunrui}
-			,busyo_cyu_bunrui =
-			#{busyo_cyu_bunrui}
-			,busyo_syou_bunrui = #{busyo_syou_bunrui}
+		<if test="busyo_dai_code != null">
+			busyo_dai_code = #{busyo_dai_code}
+		</if>
+		<if test="busyo_cyu_code != null">
+			,busyo_cyu_code = #{busyo_cyu_code}
+		</if>
+		<if test="busyo_syou_code != null">
+			,busyo_syou_code = #{busyo_syou_code}
 		</if>
 		<if
-			test="busyo_dai_bunrui != null AND busyo_cyu_bunrui != null AND busyo_syou_bunrui != null and busyo_name != null and busyo_name_small != null and busyo_start != null and busyo_end != null"></if>
+			test="busyo_dai_code != null and busyo_cyu_code != null and busyo_syou_code != null and busyo_name != null and busyo_name_small != null and busyo_start != null and busyo_end != null"></if>
 		<if test="busyo_name != null">
 			,busyo_name = #{busyo_name}
 		</if>

@@ -57,7 +57,7 @@
 						<h5 class="pull-right"
 							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">*
 							は必ず入力してください</h5>
-						<form role="form" action="/rankdai/insertProc" method="post"
+						<form role="form" action="/position/insertProc" method="post"
 							enctype="multipart/form-data" autocomplete="off">
 							<table class="table table-bordered table-condensed"
 								style="margin-top: 35px;">

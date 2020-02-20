@@ -70,7 +70,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			position_code = #{position_code}
 		</if>
 		<if
-			test="position_code != null and position_name != null and position_name_small != null and position_start != null and position_end != null"> , </if>
+			test="position_code != null and position_name != null and position_name_small != null and position_start != null and position_end != null"></if>
 		<if test="position_name != null">
 			,position_name = #{position_name}
 		</if>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -59,81 +61,58 @@
 					<h3 style="padding: 0; margin: 0; margin-bottom: 10px;">部署登録</h3>
 					<div>
 						<h5 class="pull-right"
-							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">*
-							は必ず入力してください</h5>
+							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">* 先に大分類を選択してください *<br>選択したらページが移動します</h5>
 						<form role="form" action="/ranksyou/insertProc" method="post"
 							enctype="multipart/form-data" autocomplete="off">
 							<table class="table table-bordered table-condensed"
 								style="margin-top: 35px;">
 								<tr class="form-group">
-									<td class="text-center warning" for="busyo_dai_code"
+									<td class="text-center warning" for="busyo_cyu_code"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										大分類コード</td>
 									<td style="width: 1000px;"><select
 										class="form-control form-control-sm" name="busyo_dai_code"
 										id="busyo_dai_code"
 										style="width: 150px; height: auto; left: 10px;">
-											<option value="00">00:代表取締役</option>
-											<option value="01">01:経営支援部</option>
-											<option value="02">02:SI事業部</option>
+											<option value="#">大分類コード</option>
+											<c:forEach var="lc" items="${listcode}">
+												<option value="${lc.busyo_dai_code }">${lc.busyo_dai_code }:${lc.busyo_name }</option>
+											</c:forEach>
 									</select></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_cyu_code"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
-										大分類コード</td>
-									<td style="width: 1000px;"><select
-										class="form-control form-control-sm" name="busyo_cyu_code"
-										id="busyo_cyu_code"
-										style="width: 150px; height: auto; left: 10px;">
-											<option value="00">00:無し</option>
-											<option value="01">01:第1グループ</option>
-											<option value="02">02:第2グループ</option>
-									</select></td>
+										中分類コード</td>
+									<td style="width: 1000px; height: auto;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_syou_code"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
-										小分類コード</td>
-									<td style="width: 1000px;"><input type="text"
-										class="form-control" id="busyo_syou_code" name="busyo_syou_code"
-										placeholder="2桁の連番"
-										style="width: 150px; height: auto; left: 10px;" /></td>
+										中分類コード</td>
+									<td style="width: 1000px; height: auto;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										名称</td>
-									<td style="width: 1000px;"><input type="text"
-										class="form-control" id="busyo_name" name="busyo_name"
-										placeholder="名称(制限 50文字まで)"
-										style="width: 550px; height: auto; left: 10px;" /></td>
+									<td style="width: 1000px; height: auto;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name_small"
 										style="width: 250px; height: auto; text-align: right;">略称</td>
-									<td style="width: 1000px;"><input type="text"
-										class="form-control" id="busyo_name_small"
-										name="busyo_name_small" placeholder="略称(制限10文字まで)"
-										style="width: 400px; height: auto; left: 10px;" /></td>
+									<td style="width: 1000px; height: auto;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_start"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										開始日</td>
-									<td style="width: 1000px; position: relative"><input
-										type="text" class="form-control" id="start_date"
-										name="busyo_start" size="8" title="開始日"
-										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
+									<td style="width: 1000px;  height: auto; position: relative"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_end"
 										style="width: 250px; height: auto; text-align: right;">終了日</td>
-									<td style="width: 1000px; position: relative"><input
-										type="text" class="form-control" id="end_date"
-										name="busyo_end" size="8" title="終了日"
-										style="width: 200px; height: auto; cursor: pointer; left: 10px;">
-									</td>
+									<td style="width: 1000px;  height: auto; position: relative"></td>
 								</tr>
 							</table>
 							<div class="text-right" style="position: relative;">
@@ -151,12 +130,6 @@
 	</div>
 
 	<style>
-.ui-datepicker-trigger {
-	position: absolute;
-	top: 13px;
-	left: 180px;
-}
-
 table {
 	width: auto;
 	height: auto;
@@ -175,64 +148,18 @@ body,div {
 </style>
 
 	<script type="text/javascript">
-		//文字数制限
-		//Small_name제한
+	//大分類イベント
 		$(document).ready(function() {
-			$('#busyo_name_small').on('keyup', function() {
-				if ($(this).val().length > 3) {
-					alert("文字数制限を超えました!(制限:3桁の英語)");
-					$(this).val($(this).val().substring(0, 3));
+			$('#busyo_dai_code').on('change', function() {
+				var daicodeVal = $('#busyo_dai_code').val();
+				if (daicodeVal > 0) {
+					location.href = "http://localhost:8080/ranksyou/insert/" + daicodeVal;
+				} else {
+					alert("大分類を選択してください！")
+					$("#busyo_dai_code").focus();
 				}
 			});
 		});
-
-		//code 제한
-		$(document).ready(function() {
-			$('#busyo_dai_code').on('keyup', function() {
-				var busyo_dai_code = $("input[name='busyo_dai_code']");
-				if ($(this).val().length > 2) {
-					alert("数字数制限を超えました!(制限:2桁の連番)");
-					$(this).val($(this).val().substring(0, 2));
-				} else if (!/^[0-9]{0,2}$/.test(busyo_dai_code.val())) {
-					alert("コードは2桁の連番で入力しでください");
-					$('#busyo_dai_code').val('');
-				}
-			});
-		});
-
-		//name 제한
-		$(document).ready(function() {
-			$('#busyo_name').on('keyup', function() {
-				if ($(this).val().length > 100) {
-					alert("文字数制限を超えました!(制限:文字-50桁、英語-100桁)");
-					$(this).val($(this).val().substring(0, 100));
-				}
-			});
-		});
-
-		//日付設定(start)
-		$("#start_date")
-				.datepicker(
-						{
-							dateFormat : 'yy-mm-dd',
-							changeYear : true,
-							changeMonth : true,
-							showOn : "both",
-							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
-						});
-
-		//日付設定(end)
-		$("#end_date")
-				.datepicker(
-						{
-							dateFormat : 'yy-mm-dd',
-							changeYear : true,
-							changeMonth : true,
-							showOn : "both",
-							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
-						});
 	</script>
 	<%@ include file="bootstrap.jsp"%>
 </body>

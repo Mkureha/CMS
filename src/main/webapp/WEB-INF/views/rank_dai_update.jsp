@@ -150,9 +150,9 @@ table {
 		//Small_name제한
 		$(document).ready(function() {
 			$('#busyo_name_small').on('keyup', function() {
-				if ($(this).val().length > 3) {
-					alert("文字数制限を超えました!(制限:3桁の英語)");
-					$(this).val($(this).val().substring(0, 3));
+				if ($(this).val().length > 10) {
+					alert("文字数制限を超えました!(制限:10桁の英語)");
+					$(this).val($(this).val().substring(0, 10));
 				}
 			});
 		});

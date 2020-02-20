@@ -27,6 +27,10 @@ public class RankService {
 		return RankMapper.RanksyouInsert(rank);
 	}
 
+	public List<rank_cyu> listcyucode(String busyo_dai_code) {
+		return RankMapper.listcyucode(busyo_dai_code);
+	}
+
 	public int RanksyouUpdateService(rank_syou rank) throws Exception {
 		return RankMapper.RanksyouUpdate(rank);
 	}

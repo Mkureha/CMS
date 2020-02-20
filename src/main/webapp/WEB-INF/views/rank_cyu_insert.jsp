@@ -104,7 +104,7 @@
 										style="width: 250px; height: auto; text-align: right;">略称</td>
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_name_small"
-										name="busyo_name_small" placeholder="略称(制限10文字まで)"
+										name="busyo_name_small" placeholder="略称(制限5文字まで)"
 										style="width: 400px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
@@ -169,9 +169,9 @@ body,div {
 		//Small_name제한
 		$(document).ready(function() {
 			$('#busyo_name_small').on('keyup', function() {
-				if ($(this).val().length > 3) {
-					alert("文字数制限を超えました!(制限:3桁の英語)");
-					$(this).val($(this).val().substring(0, 3));
+				if ($(this).val().length > 10) {
+					alert("文字数制限を超えました!(制限:10桁の英語)");
+					$(this).val($(this).val().substring(0, 10));
 				}
 			});
 		});
