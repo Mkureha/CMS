@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -65,12 +67,20 @@
 							enctype="multipart/form-data" autocomplete="off">
 							<table class="table table-bordered table-condensed"
 								style="margin-top: 35px;">
-									<tr class="form-group">
-										<td class="text-center warning" for="busyo_dai_code"
-											style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
-											大分類コード</td>
-										<td style="width: 1000px;"><%@ include file="listcode.jsp" %></td>
-									</tr>
+								<tr class="form-group">
+									<td class="text-center warning" for="busyo_cyu_code"
+										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										大分類コード</td>
+									<td style="width: 1000px;"><select
+										class="form-control form-control-sm" name="busyo_dai_code"
+										id="busyo_dai_code"
+										style="width: 150px; height: auto; left: 10px;">
+											<option value="#">大分類コード</option>
+											<c:forEach var="lc" items="${listcode}">
+												<option value="${lc.busyo_dai_code }">${lc.busyo_dai_code }:${lc.busyo_name }</option>
+											</c:forEach>
+									</select></td>
+								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_cyu_code"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
@@ -148,7 +158,7 @@ table {
 	text-align: left;
 }
 
-body, div {
+body,div {
 	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
 		'ＭＳ Ｐゴシック', sans-serif;
 }

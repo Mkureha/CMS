@@ -44,14 +44,14 @@ public interface RankMapper {
 	public List<rank_cyu> listcyupage(@Param("pagenum") int pagenum, @Param("contentnum") int contentnum);
 
 	//Dcode
-	public List<rank_dai> listcode(@Param("busyo_dai_code") String busyo_dai_code);
+	public List<rank_dai> listcode();
 	
 	// リストDetail
 	public rank_cyu RankcyuDetail(@Param("busyo_dai_code") String busyo_dai_code, @Param("busyo_cyu_code") String busyo_cyu_code,
 			@Param("busyo_start") String busyo_start) throws Exception;
 
 	// 入力小分類
-	public int RankcyuInsert(rank_dai busyo_dai_code, rank_cyu busyo_cyu_code) throws Exception;
+	public int RankcyuInsert(rank_cyu busyo_cyu_code) throws Exception;
 
 	// 修正小分類
 	public int RankcyuUpdate(rank_cyu busyo_cyu_code) throws Exception;

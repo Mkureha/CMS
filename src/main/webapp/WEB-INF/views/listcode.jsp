@@ -11,15 +11,19 @@
 </head>
 <body style="padding-top: 60px;">
 
-	<c:forEach var="list" items="${rank_dai}">
-		<select class="form-control form-control-sm" name="busyo_dai_code"
-			id="busyo_dai_code" style="width: 150px; height: auto; left: 10px;">
-			<option value="${list.busyo_dai_code}">${list.busyo_dai_code}:代表取締役</option>
-		</select>
-	</c:forEach>
+	<div class="container">
+		<form action="/listcode" method="get">
+			<c:forEach var="listcodeA" items="${listcode}">
+				<div class="inputArea">
+					<label for="busyo_name">名称</label>
+					<p>${listcodeA.busyo_name }</p>
+				</div>
+			</c:forEach>
+		</form>
+	</div>
 
 	<style>
-body, div {
+body,div {
 	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
 		'ＭＳ Ｐゴシック', sans-serif;
 }

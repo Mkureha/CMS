@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			,busyo_syou_bunrui = #{busyo_syou_bunrui}
 		</if>
 		<if
-			test="busyo_dai_bunrui != null AND busyo_cyu_bunrui != null AND busyo_syou_bunrui != null and busyo_name != null and busyo_name_small != null and busyo_start != null and busyo_end != null"> , </if>
+			test="busyo_dai_bunrui != null AND busyo_cyu_bunrui != null AND busyo_syou_bunrui != null and busyo_name != null and busyo_name_small != null and busyo_start != null and busyo_end != null"></if>
 		<if test="busyo_name != null">
 			,busyo_name = #{busyo_name}
 		</if>
@@ -155,6 +155,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="listcode"
 		resultType="com.example.demo.domain.rank_dai">
 		SELECT DISTINCT busyo_dai_code
+		,busyo_name
 		FROM rank_dai
 		WHERE
 		SYSDATE()
@@ -187,13 +188,14 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		parameterType="com.example.demo.domain.rank_cyu">
 		UPDATE rank_cyu
 		SET
-		<if test="busyo_dai_code != null AND busyo_cyu_code != null">
+		<if test="busyo_dai_code != null">
 			busyo_dai_code = #{busyo_dai_code}
-			,busyo_cyu_code =
-			#{busyo_cyu_code}
+		</if>
+		<if test="busyo_dai_code != null">
+			,busyo_cyu_code = #{busyo_cyu_code}
 		</if>
 		<if
-			test="busyo_dai_code != null and busyo_cyu_code != null and busyo_name != null and busyo_name_small != null and busyo_start != null and busyo_end != null"> , </if>
+			test="busyo_dai_code != null and busyo_cyu_code != null and busyo_name != null and busyo_name_small != null and busyo_start != null and busyo_end != null"></if>
 		<if test="busyo_name != null">
 			,busyo_name = #{busyo_name}
 		</if>
@@ -295,7 +297,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			busyo_dai_code = #{busyo_dai_code}
 		</if>
 		<if
-			test="busyo_dai_code != null and busyo_name != null and busyo_name_small != null and busyo_start != null and busyo_end != null"> , </if>
+			test="busyo_dai_code != null and busyo_name != null and busyo_name_small != null and busyo_start != null and busyo_end != null"></if>
 		<if test="busyo_name != null">
 			,busyo_name = #{busyo_name}
 		</if>

@@ -182,35 +182,33 @@ public class RankController {
 
 	// 中分類入力
 	@RequestMapping("/rankcyu/insert")
-	private String RankcyuInsertForm() {
+	private String RankcyuInsertForm(HttpServletRequest request, Model model) {
+
+		List<rank_dai> listcode = RankService.listcode();
+		model.addAttribute("listcode", listcode);
+
 		return "rank_cyu_insert";
 	}
 	
-	//大分類リスト
-	@RequestMapping("/listcode")
-	@PostMapping
-	public String listcode(HttpServletRequest request) {
-		rank_dai rank_dai = new rank_dai();
+	//대분류나열
+	@RequestMapping(value = "/listcode", method = { RequestMethod.GET })
+	public String listcode(HttpServletRequest request, Model model) {
 		
-		String busyo_dai_code = request.getParameter("busyo_dai_code");
-		System.out.println("Dcode : " + request.getParameter("busyo_dai_code"));
-		
-		rank_dai.setbusyo_dai_code(busyo_dai_code);
-		
-		List<rank_dai> listcode = new ArrayList<rank_dai>();
-		listcode = mapper.listcode(rank_dai.getbusyo_dai_code());
-		
-		request.setAttribute("rank_dai", listcode);
+		List<rank_dai> listcode = RankService.listcode();
+		model.addAttribute("listcode", listcode);
 
 		return "listcode";
 	}
 		
 		
 	@RequestMapping("/rankcyu/insertProc")
-	private String RankcyuInsertProc(rank_dai rank_dai, rank_cyu rank_cyu, MultipartFile file) throws Exception {
+	private String RankcyuInsertProc(rank_cyu rank_cyu, MultipartFile file, Model model) throws Exception {
 
-		RankService.RankcyuInsertService(rank_dai, rank_cyu);
+		RankService.RankcyuInsertService(rank_cyu);
 
+		List<rank_dai> listcode = RankService.listcode();
+		model.addAttribute("listcode", listcode);
+		
 		return "redirect:/rankcyu?pagenum=1&contentnum=10";
 	}
 
@@ -224,12 +222,8 @@ public class RankController {
 
 		rank_cyu rank = RankService.RankcyuDetailService(busyo_dai_code, busyo_cyu_code, busyo_start);
 
-		System.out.println("code :" + rank.busyo_cyu_code);
-		System.out.println("name :" + rank.busyo_name);
-		System.out.println("Sname :" + rank.busyo_name_small);
-		System.out.println("start :" + rank.busyo_start);
-		System.out.println("end :" + rank.busyo_end);
-		System.out.println("date :" + rank.sysdate);
+		List<rank_dai> listcode = RankService.listcode();
+		model.addAttribute("listcode", listcode);
 
 		model.addAttribute("detail", rank);
 
@@ -238,7 +232,7 @@ public class RankController {
 
 	@PostMapping("/rankcyu/updateProc")
 	@GetMapping
-	private String RankcyuUpdateProc(HttpServletRequest request) throws Exception {
+	private String RankcyuUpdateProc(HttpServletRequest request, Model model) throws Exception {
 
 		rank_cyu rank_cyu = new rank_cyu();
 
@@ -249,7 +243,11 @@ public class RankController {
 		rank_cyu.setbusyo_start(request.getParameter("busyo_start"));
 		rank_cyu.setbusyo_end(request.getParameter("busyo_end"));
 
+		List<rank_dai> listcode = RankService.listcode();
+		model.addAttribute("listcode", listcode);
+		
 		RankService.RankcyuUpdateService(rank_cyu);
+		
 		return "redirect:/rankcyu?pagenum=1&contentnum=10";
 	}
 

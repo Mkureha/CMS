@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -72,10 +73,16 @@
 										class="form-control form-control-sm" name="busyo_dai_code"
 										id="busyo_dai_code"
 										style="width: 150px; height: auto; left: 10px;">
-											<option value="${detail.busyo_dai_code }">${detail.busyo_dai_code }:${detail.busyo_name }</option>
-											<option value="00">00:代表取締役</option>
-											<option value="01">01:経営支援部</option>
-											<option value="02">02:SI事業部</option>
+											<c:forEach var="lc" items="${listcode}">
+												<c:if test="${detail.busyo_dai_code eq lc.busyo_dai_code}">
+													<option value="${lc.busyo_dai_code}" selected="selected">
+														${lc.busyo_dai_code }:${lc.busyo_name }</option>
+												</c:if>
+												<c:if test="${detail.busyo_dai_code ne lc.busyo_dai_code}">
+													<option value="${lc.busyo_dai_code}">
+														${lc.busyo_dai_code }:${lc.busyo_name }</option>
+												</c:if>
+											</c:forEach>
 									</select></td>
 								</tr>
 								<tr class="form-group">
@@ -159,6 +166,40 @@ table {
 </style>
 
 	<script>
+		//文字数制限
+		//Small_name제한
+		$(document).ready(function() {
+			$('#busyo_name_small').on('keyup', function() {
+				if ($(this).val().length > 3) {
+					alert("文字数制限を超えました!(制限:3桁の英語)");
+					$(this).val($(this).val().substring(0, 3));
+				}
+			});
+		});
+
+		//code 제한
+		$(document).ready(function() {
+			$('#busyo_cyu_code').on('keyup', function() {
+				var busyo_cyu_code = $("input[name='busyo_cyu_code']");
+				if ($(this).val().length > 2) {
+					alert("数字数制限を超えました!(制限:2桁の連番)");
+					$(this).val($(this).val().substring(0, 2));
+				} else if (!/^[0-9]{0,2}$/.test(busyo_cyu_code.val())) {
+					alert("コードは2桁の連番で入力しでください");
+					$('#busyo_cyu_code').val('');
+				}
+			});
+		});
+
+		//name 제한
+		$(document).ready(function() {
+			$('#busyo_name').on('keyup', function() {
+				if ($(this).val().length > 100) {
+					alert("文字数制限を超えました!(制限:文字-50桁、英語-100桁)");
+					$(this).val($(this).val().substring(0, 100));
+				}
+			});
+		});
 		//日付設定(start)
 		$("#start_date")
 				.datepicker(

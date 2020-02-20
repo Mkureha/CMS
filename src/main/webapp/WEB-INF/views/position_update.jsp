@@ -82,7 +82,8 @@
 										style="width: 250px; text-align: right;">略称</td>
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="position_name_small"
-										name="position_name_small" value="${detail.position_name_small }"
+										name="position_name_small"
+										value="${detail.position_name_small }"
 										style="width: 400px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
@@ -90,7 +91,8 @@
 										style="width: 250px; text-align: right;">開始日</td>
 									<td style="width: 1000px; position: relative"><input
 										type="text" class="form-control" id="start_date"
-										name="position_start" size="8" value="${detail.position_start }"
+										name="position_start" size="8"
+										value="${detail.position_start }"
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
@@ -118,7 +120,7 @@
 	</div>
 
 	<style>
-body, div {
+body,div {
 	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
 		'ＭＳ Ｐゴシック', sans-serif;
 }
@@ -142,6 +144,40 @@ table {
 </style>
 
 	<script>
+		//文字数制限
+		//Small_name제한
+		$(document).ready(function() {
+			$('#busyo_name_small').on('keyup', function() {
+				if ($(this).val().length > 3) {
+					alert("文字数制限を超えました!(制限:3桁の英語)");
+					$(this).val($(this).val().substring(0, 3));
+				}
+			});
+		});
+
+		//code 제한
+		$(document).ready(function() {
+			$('#busyo_dai_code').on('keyup', function() {
+				var busyo_dai_code = $("input[name='busyo_dai_code']");
+				if ($(this).val().length > 2) {
+					alert("数字数制限を超えました!(制限:2桁の連番)");
+					$(this).val($(this).val().substring(0, 2));
+				} else if (!/^[0-9]{0,2}$/.test(busyo_dai_code.val())) {
+					alert("コードは2桁の連番で入力しでください");
+					$('#busyo_dai_code').val('');
+				}
+			});
+		});
+
+		//name 제한
+		$(document).ready(function() {
+			$('#busyo_name').on('keyup', function() {
+				if ($(this).val().length > 100) {
+					alert("文字数制限を超えました!(制限:文字-50桁、英語-100桁)");
+					$(this).val($(this).val().substring(0, 100));
+				}
+			});
+		});
 		//日付設定(start)
 		$("#start_date")
 				.datepicker(

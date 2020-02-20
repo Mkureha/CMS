@@ -16,7 +16,8 @@
 	<nav class="navbar navbar-fixed-top navbar-inverse">
 	<div class="navbar-header">
 		<a class="navbar-brand" href="/index"
-			style="font-size: 14px; font-weight: bold; color: white; height: 40px;">COMPANY MANAGEMENT SYSTEM</a>
+			style="font-size: 14px; font-weight: bold; color: white; height: 40px;">COMPANY
+			MANAGEMENT SYSTEM</a>
 		<button type="button" class="navbar-toggle" data-toggle="offcanvas"
 			data-target=".navbar-offcanvas" data-canvas="body">
 			<span class="icon-bar"></span> <span class="icon-bar"></span> <span
@@ -67,41 +68,41 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_dai_code"
 										style="width: 250px; text-align: right;">コード</td>
-									<td style="width: 1000px;"><input type="text" class="form-control"
-										id="busyo_dai_code" name="busyo_dai_code"
+									<td style="width: 1000px;"><input type="text"
+										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
 										value="${detail.busyo_dai_code }"
 										style="width: 150px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name"
 										style="width: 250px; text-align: right;">名称</td>
-									<td style="width: 1000px;"><input type="text" class="form-control"
-										id="busyo_name" name="busyo_name"
+									<td style="width: 1000px;"><input type="text"
+										class="form-control" id="busyo_name" name="busyo_name"
 										value="${detail.busyo_name }"
 										style="width: 550px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name_small"
 										style="width: 250px; text-align: right;">略称</td>
-									<td style="width: 1000px;"><input type="text" class="form-control"
-										id="busyo_name_small" name="busyo_name_small"
-										value="${detail.busyo_name_small }"
+									<td style="width: 1000px;"><input type="text"
+										class="form-control" id="busyo_name_small"
+										name="busyo_name_small" value="${detail.busyo_name_small }"
 										style="width: 400px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_start"
 										style="width: 250px; text-align: right;">開始日</td>
-									<td style="width: 1000px; position: relative"><input type="text"
-										class="form-control" id="start_date" name="busyo_start"
-										size="8" value="${detail.busyo_start }"
+									<td style="width: 1000px; position: relative"><input
+										type="text" class="form-control" id="start_date"
+										name="busyo_start" size="8" value="${detail.busyo_start }"
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_end"
 										style="width: 250px; text-align: right;">終了日</td>
-									<td style="width: 1000px; position: relative"><input type="text"
-										class="form-control" id="end_date" name="busyo_end" size="8"
-										value="${detail.busyo_end }"
+									<td style="width: 1000px; position: relative"><input
+										type="text" class="form-control" id="end_date"
+										name="busyo_end" size="8" value="${detail.busyo_end }"
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;">
 									</td>
 								</tr>
@@ -145,6 +146,41 @@ table {
 </style>
 
 	<script>
+		//文字数制限
+		//Small_name제한
+		$(document).ready(function() {
+			$('#busyo_name_small').on('keyup', function() {
+				if ($(this).val().length > 3) {
+					alert("文字数制限を超えました!(制限:3桁の英語)");
+					$(this).val($(this).val().substring(0, 3));
+				}
+			});
+		});
+
+		//code 제한
+		$(document).ready(function() {
+			$('#busyo_dai_code').on('keyup', function() {
+				var busyo_dai_code = $("input[name='busyo_dai_code']");
+				if ($(this).val().length > 2) {
+					alert("数字数制限を超えました!(制限:2桁の連番)");
+					$(this).val($(this).val().substring(0, 2));
+				} else if (!/^[0-9]{0,2}$/.test(busyo_dai_code.val())) {
+					alert("コードは2桁の連番で入力しでください");
+					$('#busyo_dai_code').val('');
+				}
+			});
+		});
+
+		//name 제한
+		$(document).ready(function() {
+			$('#busyo_name').on('keyup', function() {
+				if ($(this).val().length > 100) {
+					alert("文字数制限を超えました!(制限:文字-50桁、英語-100桁)");
+					$(this).val($(this).val().substring(0, 100));
+				}
+			});
+		});
+
 		//日付設定(start)
 		$("#start_date")
 				.datepicker(
