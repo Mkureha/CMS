@@ -55,6 +55,10 @@
 			<div class="col-sm-10">
 				<div 　class="pull-left">
 					<h3 style="padding: 0; margin: 0; margin-bottom: 10px;">中分類一覧</h3>
+					<ol class="breadcrumb">
+						<li><a href="/index">ホーム</a></li>
+						<li class="active">中分類一覧</li>
+					</ol>
 					<table class="table table-bordered table-condensed"
 						style="margin-top: 20px;">
 						<tbody>

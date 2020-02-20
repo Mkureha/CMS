@@ -58,6 +58,11 @@
 			<div class="col-sm-10">
 				<div class="pull-left">
 					<h3 style="padding: 0; margin: 0; margin-bottom: 10px;">情報修正</h3>
+					<ol class="breadcrumb">
+						<li><a href="/index">ホーム</a></li>
+						<li><a href="/ranksyou?pagenum=1&contentnum=10">小分類一覧</a></li>
+						<li class="active">情報修正</li>
+					</ol>
 					<div>
 						<h5 class="pull-left"
 							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold;">基本情報</h5>
@@ -106,11 +111,12 @@
 									</select></td>
 								</tr>
 								<tr class="form-group">
-									<td class="text-center warning" for="busyo_cyu_code"
-										style="width: 250px; text-align: right;">小分類コード</td>
+									<td class="text-center warning" for="busyo_syou_code"
+										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										小分類コード</td>
 									<td style="width: 1000px;"><input type="text"
-										class="form-control" id="busyo_cyu_code" name="busyo_cyu_code"
-										value="${detail.busyo_cyu_code }"
+										class="form-control" id="busyo_syou_code"
+										name="busyo_syou_code" value="${detail.busyo_syou_code }"
 										style="width: 150px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
@@ -131,7 +137,8 @@
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_start"
-										style="width: 250px; text-align: right;">開始日</td>
+										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										開始日</td>
 									<td style="width: 1000px; position: relative"><input
 										type="text" class="form-control" id="start_date"
 										name="busyo_start" size="8" value="${detail.busyo_start }"

@@ -9,7 +9,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<title>職責入力 - 簡単</title>
+<title>情報登録</title>
 </head>
 <body style="padding-top: 60px;">
 	<nav class="navbar navbar-fixed-top navbar-inverse">
@@ -30,7 +30,7 @@
 				aria-expanded="false">部署 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li class="active"><a
-						href="/rankdai?pagenum=1&contentnum=10&searchtype=position_code&keyword=">職責一覧</a></li>
+						href="/rankdai?pagenum=1&contentnum=10&searchtype=position_code&keyword=">大分類一覧</a></li>
 					<li><a
 						href="/rankcyu?pagenum=1&contentnum=10&searchtype=position_cyu_code&keyword=">中分類一覧</a></li>
 					<li><a
@@ -53,6 +53,11 @@
 			<div class="col-sm-10">
 				<div class="pull-left">
 					<h3 style="padding: 0; margin: 0; margin-bottom: 10px;">職責登録</h3>
+					<ol class="breadcrumb">
+						<li><a href="/index">ホーム</a></li>
+						<li><a href="/position?pagenum=1&contentnum=10">職責一覧</a></li>
+						<li class="active">職責登録</li>
+					</ol>
 					<div>
 						<h5 class="pull-right"
 							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">*

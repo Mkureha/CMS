@@ -9,7 +9,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<title>大分類入力 - 簡単</title>
+<title>部署登録</title>
 </head>
 <body style="padding-top: 60px;">
 	<nav class="navbar navbar-fixed-top navbar-inverse">
@@ -57,6 +57,11 @@
 			<div class="col-sm-10">
 				<div class="pull-left">
 					<h3 style="padding: 0; margin: 0; margin-bottom: 10px;">部署登録</h3>
+					<ol class="breadcrumb">
+						<li><a href="/index">ホーム</a></li>
+						<li><a href="/rankdai?pagenum=1&contentnum=10">大分類一覧</a></li>
+						<li class="active">部署登録</li>
+					</ol>
 					<div>
 						<h5 class="pull-right"
 							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">*

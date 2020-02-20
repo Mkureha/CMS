@@ -54,6 +54,11 @@
 			<div class="col-sm-10">
 				<div class="pull-left">
 					<h3 style="padding: 0; margin: 0; margin-bottom: 10px;">情報修正</h3>
+					<ol class="breadcrumb">
+						<li><a href="/index">ホーム</a></li>
+						<li><a href="/position?pagenum=1&contentnum=10">職責一覧</a></li>
+						<li class="active">情報修正</li>
+					</ol>
 					<div>
 						<h5 class="pull-left"
 							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold;">基本情報</h5>

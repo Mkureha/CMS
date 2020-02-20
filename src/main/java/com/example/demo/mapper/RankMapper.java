@@ -27,10 +27,10 @@ public interface RankMapper {
 			@Param("busyo_start") String busyo_start) throws Exception;
 
 	// 入力小分類
-	public int RanksyouInsert(rank_syou rank_code) throws Exception;
+	public int RanksyouInsert(rank_syou busyo_syou_code) throws Exception;
 
 	// 修正小分類
-	public int RanksyouUpdate(rank_syou rank_code) throws Exception;
+	public int RanksyouUpdate(rank_syou busyo_syou_code) throws Exception;
 
 	// 削除小分類
 	public int RanksyouDelete(@Param("busyo_dai_code") String busyo_dai_code,
