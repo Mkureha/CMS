@@ -26,12 +26,19 @@
 	</div>
 	<div id="ie8_navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown" role="button" aria-haspopup="true"
+				aria-expanded="false">部署 <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a
+						href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大分類一覧</a></li>
+					<li class="active"><a
+						href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_cyu_code&keyword=">中分類一覧</a></li>
+					<li><a
+						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_syou_code&keyword=">小分類一覧</a></li>
+				</ul></li>
 			<li><a style="color: white;"
-				href="/rankdai?pagenum=1&contentnum=10">部署（大分類）</a></li>
-			<li class="active"><a style='color: white;'
-				href="/rankcyu?pagenum=1&contentnum=10">部署（中分類）</a></li>
-			<li><a style="color: white;"
-				href="/ranksyou?pagenum=1&contentnum=10">部署（小分類）</a></li>
+				href="/position?pagenum=1&contentnum=10">職責</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -115,7 +122,7 @@
 							</table>
 							<div class="text-right" style="position: relative;">
 								<input type="button" value="削除" class="btn btn-danger"
-									OnClick="location.href='/rankdai/delete/${detail.busyo_dai_code}${detail.busyo_cyu_code}/${detail.busyo_start}'">
+									OnClick="location.href='/rankcyu/delete/${detail.busyo_dai_code}/${detail.busyo_cyu_code}/${detail.busyo_start}'">
 								<button type="submit" class="btn btn-warning">修正</button>
 								<input type="button" value="戻る" class="btn btn-primary"
 									OnClick="javascript:history.back(-1)">

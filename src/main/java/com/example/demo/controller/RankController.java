@@ -185,11 +185,31 @@ public class RankController {
 	private String RankcyuInsertForm() {
 		return "rank_cyu_insert";
 	}
+	
+	//大分類リスト
+	@RequestMapping("/listcode")
+	@PostMapping
+	public String listcode(HttpServletRequest request) {
+		rank_dai rank_dai = new rank_dai();
+		
+		String busyo_dai_code = request.getParameter("busyo_dai_code");
+		System.out.println("Dcode : " + request.getParameter("busyo_dai_code"));
+		
+		rank_dai.setbusyo_dai_code(busyo_dai_code);
+		
+		List<rank_dai> listcode = new ArrayList<rank_dai>();
+		listcode = mapper.listcode(rank_dai.getbusyo_dai_code());
+		
+		request.setAttribute("rank_dai", listcode);
 
+		return "listcode";
+	}
+		
+		
 	@RequestMapping("/rankcyu/insertProc")
-	private String RankcyuInsertProc(rank_cyu rank_cyu, MultipartFile file) throws Exception {
+	private String RankcyuInsertProc(rank_dai rank_dai, rank_cyu rank_cyu, MultipartFile file) throws Exception {
 
-		RankService.RankcyuInsertService(rank_cyu);
+		RankService.RankcyuInsertService(rank_dai, rank_cyu);
 
 		return "redirect:/rankcyu?pagenum=1&contentnum=10";
 	}

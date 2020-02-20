@@ -5,50 +5,168 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>職責情報修正</title>
+<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<title>情報修正</title>
 </head>
-<body>
-	<div class="container centered text-center">
-		<h2>職責情報修正</h2>
+<body style="padding-top: 60px;">
+	<nav class="navbar navbar-fixed-top navbar-inverse">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="/index"
+			style="font-size: 14px; font-weight: bold; color: white; height: 40px;">COMPANY
+			MANAGEMENT SYSTEM</a>
+		<button type="button" class="navbar-toggle" data-toggle="offcanvas"
+			data-target=".navbar-offcanvas" data-canvas="body">
+			<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+				class="icon-bar"></span>
+		</button>
+	</div>
+	<div id="ie8_navbar" class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown" role="button" aria-haspopup="true"
+				aria-expanded="false">部署 <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a
+						href="/rankdai?pagenum=1&contentnum=10&searchtype=position_dai_code&keyword=">大分類一覧</a></li>
+					<li><a
+						href="/rankcyu?pagenum=1&contentnum=10&searchtype=position_code&keyword=">中分類一覧</a></li>
+					<li><a
+						href="/ranksyou?pagenum=1&contentnum=10&searchtype=position_syou_code&keyword=">小分類一覧</a></li>
+				</ul></li>
+			<li class="active"><a style="color: white;"
+				href="/position?pagenum=1&contentnum=10">職責</a></li>
+		</ul>
+	</div>
+	</nav>
+
+	<div class="container" style="margin-top: 20px;">
+		<div class="row">
+			<div class="col-sm-2">
+				<ul class="nav nav-pills nav-stacked" style="margin-bottom: 20px;">
+					<li class="active" role="presentation"><a
+						href="/position?pagenum=1&contentnum=10">職責一覧</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-10">
+				<div class="pull-left">
+					<h3 style="padding: 0; margin: 0; margin-bottom: 10px;">情報修正</h3>
+					<div>
+						<h5 class="pull-left"
+							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold;">基本情報</h5>
+						<form action="/position/updateProc" method="post"
+							autocomplete="off">
+							<table class="table table-bordered table-condensed"
+								style="margin-top: 35px;">
+								<tr class="form-group">
+									<td class="text-center warning" for="position_code"
+										style="width: 250px; text-align: right;">小分類コード</td>
+									<td style="width: 1000px;"><input type="text"
+										class="form-control" id="position_code" name="position_code"
+										value="${detail.position_code }"
+										style="width: 150px; height: auto; left: 10px;"></td>
+								</tr>
+								<tr class="form-group">
+									<td class="text-center warning" for="position_name"
+										style="width: 250px; text-align: right;">名称</td>
+									<td style="width: 1000px;"><input type="text"
+										class="form-control" id="position_name" name="position_name"
+										value="${detail.position_name }"
+										style="width: 550px; height: auto; left: 10px;"></td>
+								</tr>
+								<tr class="form-group">
+									<td class="text-center warning" for="position_name_small"
+										style="width: 250px; text-align: right;">略称</td>
+									<td style="width: 1000px;"><input type="text"
+										class="form-control" id="position_name_small"
+										name="position_name_small" value="${detail.position_name_small }"
+										style="width: 400px; height: auto; left: 10px;"></td>
+								</tr>
+								<tr class="form-group">
+									<td class="text-center warning" for="position_start"
+										style="width: 250px; text-align: right;">開始日</td>
+									<td style="width: 1000px; position: relative"><input
+										type="text" class="form-control" id="start_date"
+										name="position_start" size="8" value="${detail.position_start }"
+										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
+								</tr>
+								<tr class="form-group">
+									<td class="text-center warning" for="position_end"
+										style="width: 250px; text-align: right;">終了日</td>
+									<td style="width: 1000px; position: relative"><input
+										type="text" class="form-control" id="end_date"
+										name="position_end" size="8" value="${detail.position_end }"
+										style="width: 200px; height: auto; cursor: pointer; left: 10px;">
+									</td>
+								</tr>
+							</table>
+							<div class="text-right" style="position: relative;">
+								<input type="button" value="削除" class="btn btn-danger"
+									OnClick="location.href='/position/delete/${detail.position_code}/${detail.position_start}'">
+								<button type="submit" class="btn btn-warning">修正</button>
+								<input type="button" value="戻る" class="btn btn-primary"
+									OnClick="javascript:history.back(-1)">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<div class="container">
-		<form action="/position/updateProc" method="post">
-			<div class="form-group">
-				<label for="position_code">職責コード</label> <select
-					class="form-control form-control-sm" name="position_code"
-					id="position_code" style="width: 250px;">
-					<option value="${detail.position_code }" selected="selected">${detail.position_code }</option>
-					<option value="99">未配置</option>
-					<option value="01">部長</option>
-					<option value="02">課長</option>
-					<option value="03">主任</option>
-					<option value="04">社員</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<label for="position_name">職責名</label> <input type="text"
-					class="form-control" id="position_name" name="position_name"
-					value="${detail.position_name }">
-			</div>
-			<div class="form-group">
-				<label for="position_name_small">職責省略名</label> <input type="text"
-					class="form-control" id="position_name_small" name="position_name_small"
-					value="${detail.position_name_small }">
-			</div>
-			<div class="form-group">
-				<label for="position_start">職責開始日</label> <input type="text"
-					class="form-control" id="position_start" name="position_start"
-					value="${detail.position_start }">
-			</div>
-			<div class="form-group">
-				<label for="position_end">職責終了日</label> <input type="text"
-					class="form-control" id="position_end" name="position_end"
-					value="${detail.position_end }">
-			</div>
-			<button type="submit" class="btn btn-primary">修正</button>
-			<input type="button" value="戻る" class="btn btn-primary"
-				OnClick="javascript:history.back(-1)">
-			<%@ include file="bootstrap.jsp"%>
+	<style>
+body, div {
+	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
+		'ＭＳ Ｐゴシック', sans-serif;
+}
+
+table {
+	width: auto;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	text-align: left;
+	background-color: white;
+	text-align: left;
+}
+
+.ui-datepicker-trigger {
+	position: absolute;
+	top: 13px;
+	left: 180px;
+}
+</style>
+
+	<script>
+		//日付設定(start)
+		$("#start_date")
+				.datepicker(
+						{
+							dateFormat : 'yy-mm-dd',
+							changeYear : true,
+							changeMonth : true,
+							showOn : "both",
+							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+							buttonImageOnly : true
+						});
+
+		//日付設定(end)
+		$("#end_date")
+				.datepicker(
+						{
+							dateFormat : 'yy-mm-dd',
+							changeYear : true,
+							changeMonth : true,
+							showOn : "both",
+							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+							buttonImageOnly : true
+						});
+	</script>
+
+	<%@ include file="bootstrap.jsp"%>
 </body>
 </html>

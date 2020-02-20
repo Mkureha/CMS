@@ -9,7 +9,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<title>大分類入力 - 簡単</title>
+<title>中分類入力 - 簡単</title>
 </head>
 <body style="padding-top: 60px;">
 	<nav class="navbar navbar-fixed-top navbar-inverse">
@@ -25,12 +25,19 @@
 	</div>
 	<div id="ie8_navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown" role="button" aria-haspopup="true"
+				aria-expanded="false">部署 <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a
+						href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大分類一覧</a></li>
+					<li class="active"><a
+						href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_cyu_code&keyword=">中分類一覧</a></li>
+					<li><a
+						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_syou_code&keyword=">小分類一覧</a></li>
+				</ul></li>
 			<li><a style="color: white;"
-				href="/rankdai?pagenum=1&contentnum=10">部署（大分類）</a></li>
-			<li class="active"><a style='color: white;'
-				href="/rankcyu?pagenum=1&contentnum=10">部署（中分類）</a></li>
-			<li><a style="color: white;"
-				href="/ranksyou?pagenum=1&contentnum=10">部署（小分類）</a></li>
+				href="/position?pagenum=1&contentnum=10">職責</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -58,19 +65,12 @@
 							enctype="multipart/form-data" autocomplete="off">
 							<table class="table table-bordered table-condensed"
 								style="margin-top: 35px;">
-								<tr class="form-group">
-									<td class="text-center warning" for="busyo_dai_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
-										大分類コード</td>
-									<td style="width: 1000px;"><select
-										class="form-control form-control-sm" name="busyo_dai_code"
-										id="busyo_dai_code"
-										style="width: 150px; height: auto; left: 10px;">
-											<option value="00">00:代表取締役</option>
-											<option value="01">01:経営支援部</option>
-											<option value="02">02:SI事業部</option>
-									</select></td>
-								</tr>
+									<tr class="form-group">
+										<td class="text-center warning" for="busyo_dai_code"
+											style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+											大分類コード</td>
+										<td style="width: 1000px;"><%@ include file="listcode.jsp" %></td>
+									</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_cyu_code"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*

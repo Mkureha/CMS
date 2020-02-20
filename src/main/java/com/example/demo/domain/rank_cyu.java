@@ -3,8 +3,9 @@ package com.example.demo.domain;
 import javax.xml.crypto.Data;
 
 public class rank_cyu extends rank_dai {
-
+	
 	public String busyo_dai_code;
+	
 	public String busyo_cyu_code;
 	public String busyo_name;
 	public String busyo_name_small;

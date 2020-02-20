@@ -52,8 +52,12 @@ public class RankService {
 		return RankMapper.RankcyuDetail(busyo_dai_code, busyo_cyu_code, busyo_start);
 	}
 
-	public int RankcyuInsertService(rank_cyu rank_cyu) throws Exception {
-		return RankMapper.RankcyuInsert(rank_cyu);
+	public int RankcyuInsertService(rank_dai rank_dai, rank_cyu rank_cyu) throws Exception {
+		return RankMapper.RankcyuInsert(rank_dai, rank_cyu);
+	}
+	
+	public List<rank_dai> listcode(String busyo_dai_code) {
+		return RankMapper.listcode(busyo_dai_code);
 	}
 
 	public int RankcyuUpdateService(rank_cyu rank_cyu) throws Exception {

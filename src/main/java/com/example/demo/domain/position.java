@@ -1,12 +1,16 @@
 package com.example.demo.domain;
 
+import javax.xml.crypto.Data;
+
 public class position {
 	
-	private String position_code;
-	private String position_name;
-	private String position_name_small;
-	private String position_start;
-	private String position_end;
+	public String position_code;
+	public String position_name;
+	public String position_name_small;
+	public  String position_start;
+	public String position_end;
+
+	public Data sysdate;	
 
 	public String getposition_code() {
 		return position_code;
@@ -177,26 +181,6 @@ public class position {
 
 		public void setcontentnum(int contentnum) {
 			this.contentnum = contentnum;
-		}
-
-		// Search ADD
-		private String searchtype;
-		private String keyword;
-
-		public String getsearchtype() {
-			return searchtype;
-		}
-
-		public void setsearchtype(String searchtype) {
-			this.searchtype = searchtype;
-		}
-
-		public String getkeyword() {
-			return keyword;
-		}
-
-		public void setkeyword(String keyword) {
-			this.keyword = keyword;
 		}
 
 }

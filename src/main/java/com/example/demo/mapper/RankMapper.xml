@@ -9,7 +9,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 	<select id="Ranksyoucount" resultType="int">
 		SELECT COUNT(*)
-		FROM rank_syou
+		FROM
+		rank_syou
 	</select>
 
 	<select id="listsyoupage"
@@ -21,7 +22,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,busyo_start
 		,busyo_end
 		FROM rank_syou
-		ORDER BY busyo_dai_code, busyo_cyu_code, busyo_syou_code
+		ORDER BY
+		busyo_dai_code, busyo_cyu_code, busyo_syou_code
 		ASC
 		LIMIT
 		#{pagenum},
@@ -149,6 +151,17 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,#{busyo_start}
 		,#{busyo_end})
 	</insert>
+
+	<select id="listcode"
+		resultType="com.example.demo.domain.rank_dai">
+		SELECT DISTINCT busyo_dai_code
+		FROM rank_dai
+		WHERE
+		SYSDATE()
+		BETWEEN busyo_start
+		AND
+		busyo_end
+	</select>
 
 	<select id="RankcyuDetail"
 		resultType="com.example.demo.domain.rank_cyu">

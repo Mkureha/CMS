@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.domain.position;
@@ -30,41 +29,37 @@ public class PositionController {
 	@Resource(name = "com.example.demo.service.PositionService")
 	PositionService PositionService;
 
+	// 職責
+	// 職責リスト出力
 	@RequestMapping("/position")
 	@PostMapping
-	public String list(HttpServletRequest request, @RequestParam(required = false) String searchtype,
-			@RequestParam(required = false) String keyword) {
-		position Position = new position();
+	public String positionpage(HttpServletRequest request) {
+		position position_dai = new position();
 		String pagenum = request.getParameter("pagenum");
 		String contentnum = request.getParameter("contentnum");
 		System.out.println("pagenum : " + pagenum);
 		System.out.println("contentnum : " + contentnum);
-		System.out.println("searchtype : " + searchtype);
 		int cpagenum = Integer.parseInt(pagenum);
 		int ccontentnum = Integer.parseInt(contentnum);
 
-		Position.setsearchtype(searchtype);
-		Position.setkeyword(keyword);
+		position_dai.settotalcount(mapper.Positioncount()); // 전체계수
+		position_dai.setpagenum(cpagenum - 1); // 현재 페이지 객체 지정
+		position_dai.setcontentnum(ccontentnum); // 한 페이지 게시글 수
+		position_dai.setcurrentblock(cpagenum); // 현재 페이지블록 번호
+		position_dai.setlastblock(position_dai.gettotalcount()); // 마지막 블록 전체 게시글 수
 
-		Position.settotalcount(mapper.Positioncount(Position.getsearchtype(), Position.getkeyword())); // 전체계수
-		Position.setpagenum(cpagenum - 1); // 현재 페이지 객체 지정
-		Position.setcontentnum(ccontentnum); // 한 페이지 게시글 수
-		Position.setcurrentblock(cpagenum); // 현재 페이지블록 번호
-		Position.setlastblock(Position.gettotalcount()); // 마지막 블록 전체 게시글 수
+		position_dai.prevnext(cpagenum); // 현재 페이지 화살표
+		position_dai.setstartpage(position_dai.getcurrentblock()); // 시작페이지 블록 번호
+		position_dai.setendpage(position_dai.getlastblock(), position_dai.getcurrentblock()); // 마지막 페이지 블럭 현재 페이지 블록
 
-		Position.prevnext(cpagenum); // 현재 페이지 화살표
-		Position.setstartpage(Position.getcurrentblock()); // 시작페이지 블록 번호
-		Position.setendpage(Position.getlastblock(), Position.getcurrentblock()); // 마지막 페이지 블럭 현재 페이지 블록
+		List<position> positionpage = new ArrayList<position>();
+		positionpage = mapper.positionpage(position_dai.getpagenum() * 10, position_dai.getcontentnum());
 
-		List<position> listpage = new ArrayList<position>();
-		listpage = mapper.listpage(Position.getpagenum() * 10, Position.getcontentnum(), Position.getsearchtype(),
-				Position.getkeyword());
+		System.out.println("Parameter position_code : " + request.getParameter("position_code"));
+		System.out.println("Parameter position_name : " + request.getParameter("position_name"));
 
-		System.out.println("Parameter keyword : " + request.getParameter("keyword"));
-		System.out.println("Board keyword : " + Position.getkeyword());
-
-		request.setAttribute("list", listpage);
-		request.setAttribute("page", Position);
+		request.setAttribute("list", positionpage);
+		request.setAttribute("page", position_dai);
 
 		return "position";
 	}
@@ -73,28 +68,41 @@ public class PositionController {
 	private String PositionDetail(@PathVariable String position_code, @PathVariable String position_start,
 			@ModelAttribute position page, Model model) throws Exception {
 
-		model.addAttribute("detail", PositionService.positionDetailService(position_code, position_start));
-		return "position_detail";
+		model.addAttribute("detail", PositionService.PositionDetailService(position_code, position_start));
+		return "position_dai_detail";
 	}
 
-	@RequestMapping("/position/insert") // 도서등록폼호출
+	// 職責入力
+	@RequestMapping("/position/insert")
 	private String PositionInsertForm() {
 		return "position_insert";
 	}
 
 	@RequestMapping("/position/insertProc")
-	private String PositionInsertProc(position position, MultipartFile file) throws Exception {
+	private String PositionInsertProc(position position_dai, MultipartFile file) throws Exception {
 
-		PositionService.positionInsertService(position);
+		PositionService.PositionInsertService(position_dai);
 
-		return "redirect:/position?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
+		return "redirect:/position?pagenum=1&contentnum=10";
 	}
 
-	@RequestMapping("position/update/{position_code}/{position_start}") // 게시글수정폼호출
+	@RequestMapping("position/update/{position_code}/{position_start}")
 	private String PositionUpdateForm(@PathVariable String position_code, @PathVariable String position_start,
 			Model model) throws Exception {
 
-		model.addAttribute("detail", PositionService.positionDetailService(position_code, position_start));
+		System.out.println("code :" + position_code);
+		System.out.println("start :" + position_start);
+
+		position position = PositionService.PositionDetailService(position_code, position_start);
+
+		System.out.println("code :" + position.position_code);
+		System.out.println("name :" + position.position_name);
+		System.out.println("Sname :" + position.position_name_small);
+		System.out.println("start :" + position.position_start);
+		System.out.println("end :" + position.position_end);
+		System.out.println("date :" + position.sysdate);
+
+		model.addAttribute("detail", position);
 
 		return "position_update";
 	}
@@ -103,24 +111,26 @@ public class PositionController {
 	@GetMapping
 	private String PositionUpdateProc(HttpServletRequest request) throws Exception {
 
-		position position = new position();
+		position position_dai = new position();
 
-		position.setposition_code(request.getParameter("position_code"));
-		position.setposition_name(request.getParameter("position_name"));
-		position.setposition_name_small(request.getParameter("position_name_small"));
-		position.setposition_start(request.getParameter("position_start"));
-		position.setposition_end(request.getParameter("position_end"));
+		position_dai.setposition_code(request.getParameter("position_code"));
+		position_dai.setposition_name(request.getParameter("position_name"));
+		position_dai.setposition_name_small(request.getParameter("position_name_small"));
+		position_dai.setposition_start(request.getParameter("position_start"));
+		position_dai.setposition_end(request.getParameter("position_end"));
 
-		PositionService.positionUpdateService(position);
-		return "redirect:/position/detail/" + request.getParameter("position_code") + "/" + request.getParameter("position_start") ;
+		PositionService.PositionUpdateService(position_dai);
+		return "redirect:/position?pagenum=1&contentnum=10";
 	}
 
 	@RequestMapping("/position/delete/{position_code}/{position_start}")
 	@GetMapping
 	private String PositionDelete(@PathVariable String position_code, @PathVariable String position_start)
 			throws Exception {
-		PositionService.positionDeleteService(position_code, position_start);
+		PositionService.PositionDeleteService(position_code, position_start);
 
-		return "redirect:/position?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
+		return "redirect:/position?pagenum=1&contentnum=10";
 	}
+
+	// 職責END
 }

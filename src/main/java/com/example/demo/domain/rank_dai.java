@@ -5,6 +5,7 @@ import javax.xml.crypto.Data;
 public class rank_dai {
 	
 	public String busyo_dai_code;
+	
 	public String busyo_name;
 	public String busyo_name_small;
 	public String busyo_start;
