@@ -17,7 +17,7 @@ public interface RankMapper {
 
 	// リストページング
 	public List<rank_syou> listsyoupage(@Param("pagenum") int pagenum, @Param("contentnum") int contentnum);
-	
+
 	// 小リストページング
 	public List<rank_cyu> listcyucode(@Param("busyo_dai_code") String busyo_dai_code);
 
@@ -46,12 +46,15 @@ public interface RankMapper {
 	// リストページング
 	public List<rank_cyu> listcyupage(@Param("pagenum") int pagenum, @Param("contentnum") int contentnum);
 
-	//Dcode
+	// Dcode
 	public List<rank_dai> listcode();
-	
+
+	// 探し
+	public List<rank_dai> listJH(@Param("busyo_dai_code") String busyo_dai_code);
+
 	// リストDetail
-	public rank_cyu RankcyuDetail(@Param("busyo_dai_code") String busyo_dai_code, @Param("busyo_cyu_code") String busyo_cyu_code,
-			@Param("busyo_start") String busyo_start) throws Exception;
+	public rank_cyu RankcyuDetail(@Param("busyo_dai_code") String busyo_dai_code,
+			@Param("busyo_cyu_code") String busyo_cyu_code, @Param("busyo_start") String busyo_start) throws Exception;
 
 	// 入力小分類
 	public int RankcyuInsert(rank_cyu busyo_cyu_code) throws Exception;
@@ -60,17 +63,18 @@ public interface RankMapper {
 	public int RankcyuUpdate(rank_cyu busyo_cyu_code) throws Exception;
 
 	// 削除小分類
-	public int RankcyuDelete(@Param("busyo_dai_code") String busyo_dai_code,  @Param("busyo_cyu_code") String busyo_cyu_code, @Param("busyo_start") String busyo_start)
-			throws Exception;
+	public int RankcyuDelete(@Param("busyo_dai_code") String busyo_dai_code,
+			@Param("busyo_cyu_code") String busyo_cyu_code, @Param("busyo_start") String busyo_start) throws Exception;
 
 	// 中分類END
 
 	// 大分類
 	// 入力大分類
-	public int Rankdaicount();
+	public int Rankdaicount(@Param("searchtype") String searchtype,@Param("keyword") String keyword);
 
 	// リストページング
-	public List<rank_dai> listdaipage(@Param("pagenum") int pagenum, @Param("contentnum") int contentnum);
+	public List<rank_dai> listdaipage(@Param("pagenum") int pagenum, @Param("contentnum") int contentnum,
+			@Param("searchtype") String searchtype, @Param("keyword") String keyword);
 
 	// リストDetail
 	public rank_dai RankdaiDetail(@Param("busyo_dai_code") String busyo_dai_code,

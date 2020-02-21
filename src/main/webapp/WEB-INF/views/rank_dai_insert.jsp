@@ -47,7 +47,7 @@
 			<div class="col-sm-2">
 				<ul class="nav nav-pills nav-stacked" style="margin-bottom: 20px;">
 					<li role="presentation" class="active"><a
-						href="/rankdai?pagenum=1&contentnum=10">大部類一覧</a></li>
+						href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大部類一覧</a></li>
 					<li role="presentation"><a
 						href="/rankcyu?pagenum=1&contentnum=10">中分類一覧</a></li>
 					<li role="presentation"><a
@@ -59,7 +59,8 @@
 					<h3 style="padding: 0; margin: 0; margin-bottom: 10px;">部署登録</h3>
 					<ol class="breadcrumb">
 						<li><a href="/index">ホーム</a></li>
-						<li><a href="/rankdai?pagenum=1&contentnum=10">大分類一覧</a></li>
+						<li><a
+							href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大分類一覧</a></li>
 						<li class="active">部署登録</li>
 					</ol>
 					<div>
@@ -67,7 +68,7 @@
 							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">*
 							は必ず入力してください</h5>
 						<form role="form" action="/rankdai/insertProc" method="post"
-							enctype="multipart/form-data" autocomplete="off">
+							id="insertfrm" enctype="multipart/form-data" autocomplete="off">
 							<table class="table table-bordered table-condensed"
 								style="margin-top: 35px;">
 								<tr class="form-group">
@@ -76,8 +77,10 @@
 										コード</td>
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
-										placeholder="2桁の連番"
-										style="width: 150px; height: auto; left: 10px;" /></td>
+										placeholder="2桁の連番" class="form-control"
+										style="width: 150px; height: auto; left: 10px;" />
+										<button onclick="checkid();return false;"
+											style="width: 150px; height: auto; margin-top: 5px;">重複検索</button></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name"
@@ -85,7 +88,7 @@
 										名称</td>
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_name" name="busyo_name"
-										placeholder="名称(制限 50文字まで)"
+										placeholder="名称(制限 50文字まで)" class="form-control"
 										style="width: 550px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
@@ -102,7 +105,7 @@
 										開始日</td>
 									<td style="width: 1000px; position: relative"><input
 										type="text" class="form-control" id="start_date"
-										name="busyo_start" size="8" title="開始日"
+										name="busyo_start" size="8" title="開始日" class="form-control"
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
@@ -116,8 +119,8 @@
 								</tr>
 							</table>
 							<div class="text-right" style="position: relative;">
-								<button type="submit" class="btn btn-warning"
-									style="width: 70px; height: 30px;">登録</button>
+								<button type="button" class="btn btn-warning form-controll"
+									id="insertbtn" style="width: 70px; height: 30px;">登録</button>
 								<a type="button" class="btn btn-primary"
 									href="javascript:history.back(-1)"
 									style="width: 70px; height: 30px;">戻る</a>
@@ -147,13 +150,39 @@ table {
 	text-align: left;
 }
 
-body,div {
+body, div {
 	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
 		'ＭＳ Ｐゴシック', sans-serif;
 }
 </style>
 
 	<script type="text/javascript">
+		function checkid() {
+			alert("入力したコードは");
+			location.href = "http://localhost:8080/rankdai/insert?code="
+					+ $("#busyo_dai_code").val();
+		}
+		
+		//入力チェック /コード重複チェック
+		$(document).ready(function() {
+			$("#insertbtn").click(function() {
+				if ($("#busyo_dai_code").val().length < 2) {
+					alert("コードを入力してください");
+					return false;
+				} else if ($("#busyo_name").val() == "") {
+					alert("名称を入力してください");
+					return false;
+				} else if ($("#start_date").val() == "") {
+					alert("開始日を入力してください");
+					return false;
+				} else {
+					alert("正常的に登録しました");
+					$("#insertfrm").attr("action", "/rankdai/insertProc");
+					$("#insertfrm").submit();
+				}
+			});
+		});
+
 		//文字数制限
 		//Small_name제한
 		$(document).ready(function() {

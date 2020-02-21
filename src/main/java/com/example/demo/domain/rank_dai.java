@@ -194,23 +194,23 @@ public class rank_dai {
 			this.contentnum = contentnum;
 		}
 
-//		// Search ADD
-//		private String searchtype;
-//		private String keyword;
-//
-//		public String getsearchtype() {
-//			return searchtype;
-//		}
-//
-//		public void setsearchtype(String searchtype) {
-//			this.searchtype = searchtype;
-//		}
-//
-//		public String getkeyword() {
-//			return keyword;
-//		}
-//
-//		public void setkeyword(String keyword) {
-//			this.keyword = keyword;
-//		}
+		// Search ADD
+		private String searchtype;
+		private String keyword;
+
+		public String getsearchtype() {
+			return searchtype;
+		}
+
+		public void setsearchtype(String searchtype) {
+			this.searchtype = searchtype;
+		}
+
+		public String getkeyword() {
+			return keyword;
+		}
+
+		public void setkeyword(String keyword) {
+			this.keyword = keyword;
+		}
 }

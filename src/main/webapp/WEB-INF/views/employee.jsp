@@ -13,8 +13,7 @@
 	<div class="container centered text-center">
 		<h2>社員リスト</h2>
 	</div>
-	<button class="btn btn-danger"
-		onclick="location.href='/index'">メニュー</button>
+	<button class="btn btn-danger" onclick="location.href='/index'">メニュー</button>
 	<button class="btn btn-warning"
 		onclick="location.href='/employee/insert'">社員登録</button>
 	<br>
@@ -74,33 +73,42 @@
 			</tfoot>
 		</table>
 	</div>
-	<form class="form-inline" action="search" method="get">
-		<div>
-			<select class="form-control form-control-sm" name="searchtype"
-				id="searchtype"
-				style="width: 350px; height: 35px; margin-left: auto; margin-right: auto;">
-				<option value="employee_no">社員コード</option>
-				<option value="rank_code">部署コード</option>
-				<option value="position_code">職責コード</option>
-				<option value="employee_name">社員名</option>
-				<option value="type_code">区分コード</option>
-				<option value="gender">性別</option>
-				<option value="birthday">生年月日</option>
-				<option value="postal_code">郵便番号</option>
-				<option value="address_1">住所1</option>
-				<option value="address_2">住所2</option>
-			</select>
-		</div>
-		<div>
-			<input type="text" class="form-control form-control-sm"
-				name="keyword" id="keyword" placeholder="Keywordを入力してください"
-				value="${page.keyword}" onkeyup="characterCheck()"
-				onkeydown="characterCheck()"
-				style="width: 400px; height: 35px; margin-left: auto; margin-right: auto;" />
-		</div>
-		<button type="button" class="btn btn-primary" name="btnSearch"
-			id="btnSearch">検索</button>
-	</form>
+	<div class="form-inline">
+		<form action="search" method="get">
+			<div class="panel panel-success">
+				<div class="panel-heading">部署検索</div>
+				<div class="panel-body">
+					<div>
+						<select class="form-control form-control-sm" name="searchtype"
+							id="searchtype"
+							style="width: 350px; height: 35px; margin-left: auto; margin-right: auto;">
+							<option value="employee_no">社員コード</option>
+							<option value="rank_code">部署コード</option>
+							<option value="position_code">職責コード</option>
+							<option value="employee_name">社員名</option>
+							<option value="type_code">区分コード</option>
+							<option value="gender">性別</option>
+							<option value="birthday">生年月日</option>
+							<option value="postal_code">郵便番号</option>
+							<option value="address_1">住所1</option>
+							<option value="address_2">住所2</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control form-control-sm"
+							name="keyword" id="keyword" placeholder="Keywordを入力してください"
+							value="${page.keyword}" onkeyup="characterCheck()"
+							onkeydown="characterCheck()"
+							style="width: 400px; height: 35px; margin-left: auto; margin-right: auto;" />
+					</div>
+					<div class="form-group">
+						<button type="button" class="btn btn-primary" name="btnSearch"
+							id="btnSearch">検索</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 
 	<script type="text/javascript">
 	

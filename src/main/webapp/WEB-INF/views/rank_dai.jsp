@@ -13,7 +13,8 @@
 	<nav class="navbar navbar-fixed-top navbar-inverse">
 	<div class="navbar-header">
 		<a class="navbar-brand" href="/index"
-			style="font-size: 14px; font-weight: bold; color: white; height: 40px;">COMPANY MANAGEMENT SYSTEM</a>
+			style="font-size: 14px; font-weight: bold; color: white; height: 40px;">COMPANY
+			MANAGEMENT SYSTEM</a>
 		<button type="button" class="navbar-toggle" data-toggle="offcanvas"
 			data-target=".navbar-offcanvas" data-canvas="body">
 			<span class="icon-bar"></span> <span class="icon-bar"></span> <span
@@ -29,9 +30,9 @@
 					<li class="active"><a
 						href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大分類一覧</a></li>
 					<li><a
-						href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_cyu_code&keyword=">中分類一覧</a></li>
+						href="/rankcyu?pagenum=1&contentnum=10">中分類一覧</a></li>
 					<li><a
-						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_syou_code&keyword=">小分類一覧</a></li>
+						href="/ranksyou?pagenum=1&contentnum=10">小分類一覧</a></li>
 				</ul></li>
 			<li><a style="color: white;"
 				href="/position?pagenum=1&contentnum=10">職責</a></li>
@@ -44,7 +45,7 @@
 			<div class="col-sm-2">
 				<ul class="nav nav-pills nav-stacked" style="margin-bottom: 20px;">
 					<li role="presentation" class="active"><a
-						href="/rankdai?pagenum=1&contentnum=10">大部類一覧</a></li>
+						href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大部類一覧</a></li>
 					<li role="presentation"><a
 						href="/rankcyu?pagenum=1&contentnum=10">中分類一覧</a></li>
 					<li role="presentation"><a
@@ -105,6 +106,36 @@
 					</ul>
 					</nav>
 				</div>
+				<div class="form-inline">
+					<form action="search" method="get">
+						<div class="panel panel-success">
+							<div class="panel-heading">部署検索</div>
+							<div class="panel-body">
+								<div>
+									<div class="form-group">
+										<select name="searchtype" id="searchtype"
+											style="width: 100px; height: 35px; margin-left: auto; margin-right: auto;">
+											<option class="active" value="busyo_dai_code">コード</option>
+											<option value="busyo_name">名称</option>
+											<option value="busyo_name_smail">略称</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control form-control-sm"
+											name="keyword" id="keyword" placeholder="検索 KeyWordを入力してください"
+											value="${page.keyword}" onkeyup="characterCheck()"
+											onkeydown="characterCheck()" autocomplete="off"
+											style="width: 400px; height: 35px; margin-left: auto; margin-right: auto;" />
+									</div>
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary" name="btnSearch"
+											id="btnSearch">検索</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -121,11 +152,40 @@ body,div {
 		function page(idx) {
 			var pagenum = idx;
 			var contentnum = 10;
+			var searchtype = $('#searchtype').val()
+			var keyword = $('#keyword').val()
 			var url = "${pageContext.request.contextPath}/rankdai?pagenum="
 					+ pagenum + "&contentnum=" + contentnum;
+			url = url + "&searchtype=" + searchtype;
+			url = url + "&keyword=" + keyword;
 			location.href = url;
 
 		};
+		
+		<!-- Search -->
+		$(document).on('click', '#btnSearch', function(e){
+			e.preventDefault();
+			var url = "${pageContext.request.contextPath}/rankdai?pagenum=1&contentnum=10";
+			url = url + "&searchtype=" + $('#searchtype').val();
+			url = url + "&keyword=" + $('#keyword').val();
+			location.href = url;
+			console.log(url);
+		});	
+		
+	<!-- Input Limit -->
+	function characterCheck() {
+	    var RegExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+	    var obj = document.getElementsByName("keyword")[0]
+	    if (RegExp.test(obj.value)) {
+	        alert("特集文字は使うことができません。");
+	        obj.value = obj.value.substring(0, obj.value.length - 1);
+	    }
+	}
+		
+	<!-- Hold Select Option(Searchtype) -->
+	var searchtype="${param.searchtype}";
+
+	$("#searchtype").val(searchtype);
 	</script>
 	<%@ include file="bootstrap.jsp"%>
 </body>

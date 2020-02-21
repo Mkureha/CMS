@@ -64,6 +64,10 @@ public class RankService {
 		return RankMapper.listcode();
 	}
 
+	public List<rank_dai> listJH(String busyo_dai_code) {
+		return RankMapper.listJH(busyo_dai_code);
+	}
+	
 	public int RankcyuUpdateService(rank_cyu rank_cyu) throws Exception {
 		return RankMapper.RankcyuUpdate(rank_cyu);
 	}
@@ -99,12 +103,12 @@ public class RankService {
 		return RankMapper.RankdaiDelete(busyo_dai_code, busyo_start);
 	}
 
-	public List<rank_dai> listdaipage(int pagenum, int contentnum) {
-		return RankMapper.listdaipage(pagenum, contentnum);
+	public List<rank_dai> listdaipage(int pagenum, int contentnum, String searchtype, String keyword) {
+		return RankMapper.listdaipage(pagenum, contentnum, searchtype, keyword);
 	}
 
-	public int Rankdaicount() {
-		return RankMapper.Rankdaicount();
+	public int Rankdaicount(String searchtype, String keyword) {
+		return RankMapper.Rankdaicount(searchtype, keyword);
 	}
 
 	// 大分類END

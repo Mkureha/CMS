@@ -36,13 +36,15 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,busyo_cyu_code
 		,busyo_name
 		FROM rank_cyu
+		<if test="busyo_dai_code == null">
 		WHERE
-		busyo_dai_code = #{busyo_dai_code}
-		AND
-		SYSDATE()
-		BETWEEN busyo_start
-		AND
-		busyo_end
+		busyo_end is null
+		</if>
+		<if test="busyo_dai_code == ''">
+		WHERE
+		busyo_end = ''
+		</if>
+		ORDER BY busyo_dai_code, busyo_cyu_code
 	</select>
 
 	<select id="RanksyouDetail"
@@ -141,10 +143,6 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,busyo_start
 		,busyo_end
 		FROM rank_cyu
-		WHERE
-		SYSDATE() BETWEEN busyo_start
-		AND
-		busyo_end
 		ORDER BY busyo_dai_code, busyo_cyu_code
 		LIMIT
 		#{pagenum},
@@ -174,11 +172,32 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT DISTINCT busyo_dai_code
 		,busyo_name
 		FROM rank_dai
+		<if test="busyo_end == null">
 		WHERE
-		SYSDATE()
-		BETWEEN busyo_start
+		busyo_end is null
+		</if>
+		<if test="busyo_end == ''">
+		WHERE
+		busyo_end = ''
+		</if>
+		ORDER BY busyo_dai_code
+	</select>
+	
+	<select id="listJH"
+		resultType="com.example.demo.domain.rank_dai">
+		SELECT DISTINCT busyo_dai_code
+		,busyo_start
+		FROM rank_dai
+		WHERE busyo_dai_code = #{busyo_dai_code}
+		<if test="busyo_end == ''">
 		AND
-		busyo_end
+		busyo_end = ''
+		</if>
+		<if test="busyo_end != ''">
+		AND
+		DATE_FORMAT(SYSDATE(),'%Y-%m-%d') BETWEEN busyo_start AND busyo_end
+		</if> 
+		ORDER BY busyo_dai_code
 	</select>
 
 	<select id="RankcyuDetail"
@@ -255,6 +274,27 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT COUNT(*)
 		FROM
 		rank_dai
+		<if test="keyword != null and keyword != '' ">
+			<if test="searchtype.equals('busyo_dai_code')">
+				WHERE busyo_dai_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('busyo_name')">
+				WHERE busyo_name like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('busyo_small_name')">
+				WHERE busyo_small_name like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('busyo_start')">
+				WHERE busyo_start like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('busyo_end')">
+				WHERE busyo_end like CONCAT('%', #{keyword},
+				'%')
+			</if>
+		</if>
 	</select>
 
 	<select id="listdaipage"
@@ -265,8 +305,18 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,busyo_end
 		FROM
 		rank_dai
-		WHERE SYSDATE() BETWEEN busyo_start AND
-		busyo_end
+		<if test="keyword != null and keyword != ''">
+			<if test="searchtype.equals('busyo_dai_code')">
+				WHERE busyo_dai_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('busyo_name')">
+				WHERE busyo_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('busyo_small_name')">
+				WHERE busyo_small_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			AND SYSDATE() BETWEEN busyo_start AND busyo_end
+		</if>
 		ORDER BY
 		busyo_dai_code ASC
 		LIMIT

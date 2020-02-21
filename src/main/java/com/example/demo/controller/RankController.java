@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.domain.rank_cyu;
@@ -272,7 +273,8 @@ public class RankController {
 	// 大分類リスト出力
 	@RequestMapping("/rankdai")
 	@PostMapping
-	public String listdaipage(HttpServletRequest request) {
+	public String listdaipage(HttpServletRequest request, @RequestParam(required = false) String searchtype,
+			@RequestParam(required = false) String keyword) {
 		rank_dai rank_dai = new rank_dai();
 		String pagenum = request.getParameter("pagenum");
 		String contentnum = request.getParameter("contentnum");
@@ -281,7 +283,10 @@ public class RankController {
 		int cpagenum = Integer.parseInt(pagenum);
 		int ccontentnum = Integer.parseInt(contentnum);
 
-		rank_dai.settotalcount(mapper.Rankdaicount()); // 전체계수
+		rank_dai.setsearchtype(searchtype);
+		rank_dai.setkeyword(keyword);
+		
+		rank_dai.settotalcount(mapper.Rankdaicount(rank_dai.getsearchtype(), rank_dai.getkeyword())); // 전체계수
 		rank_dai.setpagenum(cpagenum - 1); // 현재 페이지 객체 지정
 		rank_dai.setcontentnum(ccontentnum); // 한 페이지 게시글 수
 		rank_dai.setcurrentblock(cpagenum); // 현재 페이지블록 번호
@@ -292,7 +297,8 @@ public class RankController {
 		rank_dai.setendpage(rank_dai.getlastblock(), rank_dai.getcurrentblock()); // 마지막 페이지 블럭 현재 페이지 블록
 
 		List<rank_dai> listdaipage = new ArrayList<rank_dai>();
-		listdaipage = mapper.listdaipage(rank_dai.getpagenum() * 10, rank_dai.getcontentnum());
+		listdaipage = mapper.listdaipage(rank_dai.getpagenum() * 10, rank_dai.getcontentnum(), rank_dai.getsearchtype(),
+				rank_dai.getkeyword());
 
 		System.out.println("Parameter busyo_dai_code : " + request.getParameter("busyo_dai_code"));
 		System.out.println("Parameter busyo_name : " + request.getParameter("busyo_name"));
@@ -310,10 +316,23 @@ public class RankController {
 		model.addAttribute("detail", RankService.RankdaiDetailService(busyo_dai_code, busyo_start));
 		return "rank_dai_detail";
 	}
-
+	
+	// コードチェック（大）
+		@RequestMapping("/rankdai/insert?code={busyo_dai_code}")
+		private String RankdaiJH(HttpServletRequest request, Model model) {
+			
+			String dbcode = request.getParameter("busyo_dai_code");
+			
+			List<rank_dai> listJH = RankService.listJH(dbcode);
+			model.addAttribute("listcode", listJH);
+			
+			return "rank_dai_insert";
+		}
+		
 	// 大分類入力
 	@RequestMapping("/rankdai/insert")
-	private String RankdaiInsertForm() {
+	private String RankdaiInsertForm(HttpServletRequest request, Model model) {
+
 		return "rank_dai_insert";
 	}
 
@@ -322,7 +341,7 @@ public class RankController {
 
 		RankService.RankdaiInsertService(rank_dai);
 
-		return "redirect:/rankdai?pagenum=1&contentnum=10";
+		return "redirect:/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
 	}
 
 	@RequestMapping("rankdai/update/{busyo_dai_code}/{busyo_start}")
@@ -359,7 +378,7 @@ public class RankController {
 		rank_dai.setbusyo_end(request.getParameter("busyo_end"));
 
 		RankService.RankdaiUpdateService(rank_dai);
-		return "redirect:/rankdai?pagenum=1&contentnum=10";
+		return "redirect:/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
 	}
 
 	@RequestMapping("/rankdai/delete/{busyo_dai_code}/{busyo_start}")
@@ -368,7 +387,7 @@ public class RankController {
 			throws Exception {
 		RankService.RankdaiDeleteService(busyo_dai_code, busyo_start);
 
-		return "redirect:/rankdai?pagenum=1&contentnum=10";
+		return "redirect:/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
 	}
 
 	// 大分類END
