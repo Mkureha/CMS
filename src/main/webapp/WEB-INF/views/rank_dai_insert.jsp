@@ -78,9 +78,7 @@
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
 										placeholder="2桁の連番" class="form-control"
-										style="width: 150px; height: auto; left: 10px;" />
-										<button onclick="checkid();return false;"
-											style="width: 150px; height: auto; margin-top: 5px;">重複検索</button></td>
+										style="width: 150px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name"
@@ -157,12 +155,6 @@ body, div {
 </style>
 
 	<script type="text/javascript">
-		function checkid() {
-			alert("入力したコードは");
-			location.href = "http://localhost:8080/rankdai/insert?code="
-					+ $("#busyo_dai_code").val();
-		}
-		
 		//入力チェック /コード重複チェック
 		$(document).ready(function() {
 			$("#insertbtn").click(function() {

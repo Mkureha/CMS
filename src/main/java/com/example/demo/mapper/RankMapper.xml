@@ -189,14 +189,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,busyo_start
 		FROM rank_dai
 		WHERE busyo_dai_code = #{busyo_dai_code}
-		<if test="busyo_end == ''">
-		AND
-		busyo_end = ''
-		</if>
-		<if test="busyo_end != ''">
-		AND
-		DATE_FORMAT(SYSDATE(),'%Y-%m-%d') BETWEEN busyo_start AND busyo_end
-		</if> 
+		  AND busyo_start &lt;= #{busyo_start}
+		  AND (busyo_end &gt;= #{busyo_end} AND busyo_end = '')
+		  OR busyo_end = '';
 		ORDER BY busyo_dai_code
 	</select>
 
