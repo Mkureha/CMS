@@ -112,6 +112,38 @@
 					</ul>
 					</nav>
 				</div>
+				<div class="form-inline">
+					<form action="search" method="get">
+						<div class="panel panel-success">
+							<div class="panel-heading">部署検索</div>
+							<div class="panel-body">
+								<div>
+									<div class="form-group">
+										<select name="searchtype" id="searchtype"
+											style="width: 100px; height: 35px; margin-left: auto; margin-right: auto;">
+											<option class="active" value="busyo_dai_code">大分類</option>
+											<option value="busyo_cyu_code">中分類</option>
+											<option value="busyo_syou_code">小分類</option>
+											<option value="busyo_name">名称</option>
+											<option value="busyo_name_smail">略称</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control form-control-sm"
+											name="keyword" id="keyword" placeholder="検索 KeyWordを入力してください"
+											value="${page.keyword}" onkeyup="characterCheck()"
+											onkeydown="characterCheck()" autocomplete="off"
+											style="width: 400px; height: 35px; margin-left: auto; margin-right: auto;" />
+									</div>
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary" name="btnSearch"
+											id="btnSearch">検索</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -133,6 +165,31 @@ body,div {
 			location.href = url;
 
 		};
+
+		<!-- Search -->
+		$(document).on('click', '#btnSearch', function(e){
+			e.preventDefault();
+			var url = "${pageContext.request.contextPath}/rankdai?pagenum=1&contentnum=10";
+			url = url + "&searchtype=" + $('#searchtype').val();
+			url = url + "&keyword=" + $('#keyword').val();
+			location.href = url;
+			console.log(url);
+		});	
+		
+	<!-- Input Limit -->
+	function characterCheck() {
+	    var RegExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+	    var obj = document.getElementsByName("keyword")[0]
+	    if (RegExp.test(obj.value)) {
+	        alert("特集文字は使うことができません。");
+	        obj.value = obj.value.substring(0, obj.value.length - 1);
+	    }
+	}
+		
+	<!-- Hold Select Option(Searchtype) -->
+	var searchtype="${param.searchtype}";
+
+	$("#searchtype").val(searchtype);
 	</script>
 	<%@ include file="bootstrap.jsp"%>
 </body>

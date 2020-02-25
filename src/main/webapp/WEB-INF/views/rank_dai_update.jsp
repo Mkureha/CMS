@@ -48,7 +48,7 @@
 			<div class="col-sm-2">
 				<ul class="nav nav-pills nav-stacked" style="margin-bottom: 20px;">
 					<li role="presentation" class="active"><a
-						href="/rankdai?pagenum=1&contentnum=10">大部類一覧</a></li>
+						href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大部類一覧</a></li>
 					<li role="presentation"><a
 						href="/rankcyu?pagenum=1&contentnum=10">中分類一覧</a></li>
 					<li role="presentation"><a

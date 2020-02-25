@@ -36,14 +36,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,busyo_cyu_code
 		,busyo_name
 		FROM rank_cyu
-		<if test="busyo_dai_code == null">
-		WHERE
-		busyo_end is null
-		</if>
-		<if test="busyo_dai_code == ''">
-		WHERE
+		WHERE busyo_dai_code = #{busyo_dai_code}
+		AND
 		busyo_end = ''
-		</if>
+		OR busyo_end IS NULL
 		ORDER BY busyo_dai_code, busyo_cyu_code
 	</select>
 
@@ -172,14 +168,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT DISTINCT busyo_dai_code
 		,busyo_name
 		FROM rank_dai
-		<if test="busyo_end == null">
 		WHERE
-		busyo_end is null
-		</if>
-		<if test="busyo_end == ''">
-		WHERE
-		busyo_end = ''
-		</if>
+		busyo_end IS NULL
+		OR busyo_end = ''
 		ORDER BY busyo_dai_code
 	</select>
 	

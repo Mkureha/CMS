@@ -49,11 +49,11 @@
 			<div class="col-sm-2">
 				<ul class="nav nav-pills nav-stacked" style="margin-bottom: 20px;">
 					<li role="presentation"><a
-						href="/rankdai?pagenum=1&contentnum=10">大部類一覧</a></li>
+						href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大部類一覧</a></li>
 					<li role="presentation"><a
-						href="/rankcyu?pagenum=1&contentnum=10">小分類一覧</a></li>
+						href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
 					<li role="presentation" class="active"><a
-						href="/ranksyou?pagenum=1&contentnum=10">小分類一覧</a></li>
+						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-10">
@@ -61,7 +61,7 @@
 					<h3 style="padding: 0; margin: 0; margin-bottom: 10px;">部署（小分類）登録</h3>
 					<ol class="breadcrumb">
 						<li><a href="/index">ホーム</a></li>
-						<li><a href="/ranksyou?pagenum=1&contentnum=10">小分類一覧</a></li>
+						<li><a href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
 						<li class="active">部署登録</li>
 					</ol>
 					<div>
@@ -81,11 +81,11 @@
 										id="busyo_dai_code"
 										style="width: 150px; height: auto; left: 10px;">
 											<c:forEach var="lc" items="${listcode}">
-												<c:if test="${lc.busyo_dai_code == busyo_dai_code}">
+												<c:if test="${lc.busyo_dai_code eq busyo_dai_code}">
 													<option value="${lc.busyo_dai_code}" selected="selected">
 														${lc.busyo_dai_code }:${lc.busyo_name }</option>
 												</c:if>
-												<c:if test="${lc.busyo_dai_code != busyo_dai_code}">
+												<c:if test="${lc.busyo_dai_code ne busyo_dai_code}">
 													<option value="${lc.busyo_dai_code}">
 														${lc.busyo_dai_code }:${lc.busyo_name }</option>
 												</c:if>
@@ -100,7 +100,7 @@
 										class="form-control form-control-sm" name="busyo_cyu_code"
 										id="busyo_cyu_code"
 										style="width: 150px; height: auto; left: 10px;">
-											<option value="#">中分類コード</option>
+											<option value="99">中分類コード</option>
 											<c:forEach var="lcc" items="${listcyucode}">
 												<option value="${lcc.busyo_cyu_code }">${lcc.busyo_cyu_code }:${lcc.busyo_name }</option>
 											</c:forEach>
@@ -155,7 +155,7 @@
 								<button type="submit" class="btn btn-warning"
 									style="width: 70px; height: 30px;">登録</button>
 								<a type="button" class="btn btn-primary"
-									href="javascript:history.back(-1)"
+									href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword="
 									style="width: 70px; height: 30px;">戻る</a>
 							</div>
 						</form>

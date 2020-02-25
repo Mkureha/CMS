@@ -33,6 +33,8 @@ public class RankController {
 	@Resource(name = "com.example.demo.service.RankService")
 	RankService RankService;
 
+
+	
 	// 小分類リスト出力
 	@RequestMapping("/ranksyou")
 	@PostMapping
@@ -105,7 +107,7 @@ public class RankController {
 
 		RankService.RanksyouInsertService(rank);
 
-		return "redirect:/ranksyou?pagenum=1&contentnum=10";
+		return "redirect:/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
 	}
 
 	@RequestMapping("ranksyou/update/{busyo_dai_code}/{busyo_cyu_code}/{busyo_syou_code}/{busyo_start}")
@@ -147,7 +149,7 @@ public class RankController {
 
 		RankService.RanksyouUpdateService(rank);
 
-		return "redirect:/ranksyou?pagenum=1&contentnum=10";
+		return "redirect:/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
 	}
 
 	@RequestMapping("/ranksyou/delete/{busyo_dai_code}/{busyo_cyu_code}/{busyo_syou_code}/{busyo_start}")
@@ -156,7 +158,7 @@ public class RankController {
 			@PathVariable String busyo_syou_code, @PathVariable String busyo_start) throws Exception {
 		RankService.RanksyouDeleteService(busyo_dai_code, busyo_cyu_code, busyo_syou_code, busyo_start);
 
-		return "redirect:/ranksyou?pagenum=1&contentnum=10";
+		return "redirect:/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
 	}
 
 	// 小分類END
@@ -165,7 +167,7 @@ public class RankController {
 	// 中分類リスト出力
 	@RequestMapping("/rankcyu")
 	@PostMapping
-	public String listcyupage(HttpServletRequest request) {
+	public String listcyupage(HttpServletRequest request, Model model) {
 		rank_cyu rank_cyu = new rank_cyu();
 		String pagenum = request.getParameter("pagenum");
 		String contentnum = request.getParameter("contentnum");
@@ -186,6 +188,9 @@ public class RankController {
 
 		List<rank_cyu> listcyupage = new ArrayList<rank_cyu>();
 		listcyupage = mapper.listcyupage(rank_cyu.getpagenum() * 10, rank_cyu.getcontentnum());
+
+		List<rank_dai> listcode = RankService.listcode();
+		model.addAttribute("listcode", listcode);
 
 		System.out.println("Parameter busyo_cyu_code : " + request.getParameter("busyo_cyu_code"));
 		System.out.println("Parameter busyo_name : " + request.getParameter("busyo_name"));
@@ -219,7 +224,7 @@ public class RankController {
 
 		RankService.RankcyuInsertService(rank_cyu);
 
-		return "redirect:/rankcyu?pagenum=1&contentnum=10";
+		return "redirect:/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
 	}
 
 	@RequestMapping("rankcyu/update/{busyo_dai_code}/{busyo_cyu_code}/{busyo_start}")
@@ -255,7 +260,7 @@ public class RankController {
 
 		RankService.RankcyuUpdateService(rank_cyu);
 
-		return "redirect:/rankcyu?pagenum=1&contentnum=10";
+		return "redirect:/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
 	}
 
 	@RequestMapping("/rankcyu/delete/{busyo_dai_code}/{busyo_cyu_code}/{busyo_start}")
@@ -264,7 +269,7 @@ public class RankController {
 			@PathVariable String busyo_start) throws Exception {
 		RankService.RankcyuDeleteService(busyo_dai_code, busyo_cyu_code, busyo_start);
 
-		return "redirect:/rankcyu?pagenum=1&contentnum=10";
+		return "redirect:/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
 	}
 
 	// 中分類END
@@ -285,7 +290,7 @@ public class RankController {
 
 		rank_dai.setsearchtype(searchtype);
 		rank_dai.setkeyword(keyword);
-		
+
 		rank_dai.settotalcount(mapper.Rankdaicount(rank_dai.getsearchtype(), rank_dai.getkeyword())); // 전체계수
 		rank_dai.setpagenum(cpagenum - 1); // 현재 페이지 객체 지정
 		rank_dai.setcontentnum(ccontentnum); // 한 페이지 게시글 수
@@ -316,19 +321,19 @@ public class RankController {
 		model.addAttribute("detail", RankService.RankdaiDetailService(busyo_dai_code, busyo_start));
 		return "rank_dai_detail";
 	}
-	
+
 	// コードチェック（大）
-		@RequestMapping("/rankdai/insert?code={busyo_dai_code}")
-		private String RankdaiJH(HttpServletRequest request, Model model) {
-			
-			String dbcode = request.getParameter("busyo_dai_code");
-			
-			List<rank_dai> listJH = RankService.listJH(dbcode);
-			model.addAttribute("listcode", listJH);
-			
-			return "rank_dai_insert";
-		}
-		
+	@RequestMapping("/rankdai/insert?code={busyo_dai_code}")
+	private String RankdaiJH(HttpServletRequest request, Model model) {
+
+		String dbcode = request.getParameter("busyo_dai_code");
+
+		List<rank_dai> listJH = RankService.listJH(dbcode);
+		model.addAttribute("listJH", listJH);
+
+		return "rank_dai_insert";
+	}
+
 	// 大分類入力
 	@RequestMapping("/rankdai/insert")
 	private String RankdaiInsertForm(HttpServletRequest request, Model model) {

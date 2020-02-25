@@ -30,9 +30,9 @@
 					<li class="active"><a
 						href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大分類一覧</a></li>
 					<li><a
-						href="/rankcyu?pagenum=1&contentnum=10">中分類一覧</a></li>
+						href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">中分類一覧</a></li>
 					<li><a
-						href="/ranksyou?pagenum=1&contentnum=10">小分類一覧</a></li>
+						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
 				</ul></li>
 			<li><a style="color: white;"
 				href="/position?pagenum=1&contentnum=10">職責</a></li>
@@ -47,9 +47,9 @@
 					<li role="presentation" class="active"><a
 						href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大部類一覧</a></li>
 					<li role="presentation"><a
-						href="/rankcyu?pagenum=1&contentnum=10">中分類一覧</a></li>
+						href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">中分類一覧</a></li>
 					<li role="presentation"><a
-						href="/ranksyou?pagenum=1&contentnum=10">小分類一覧</a></li>
+						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-10">

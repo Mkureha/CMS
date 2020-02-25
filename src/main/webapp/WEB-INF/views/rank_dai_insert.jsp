@@ -120,7 +120,7 @@
 								<button type="button" class="btn btn-warning form-controll"
 									id="insertbtn" style="width: 70px; height: 30px;">登録</button>
 								<a type="button" class="btn btn-primary"
-									href="javascript:history.back(-1)"
+									href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword="
 									style="width: 70px; height: 30px;">戻る</a>
 							</div>
 						</form>
