@@ -11,6 +11,27 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT COUNT(*)
 		FROM
 		position
+		<if test="keyword != null and keyword != '' ">
+			<if test="searchtype.equals('position_code')">
+				WHERE position_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('position_name')">
+				WHERE position_name like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('position_small_name')">
+				WHERE position_small_name like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('position_start')">
+				WHERE position_start like CONCAT('%', #{keyword},
+				'%')
+			</if>
+			<if test="searchtype.equals('position_end')">
+				WHERE position_end like CONCAT('%', #{keyword},
+				'%')
+			</if>
+		</if>
 	</select>
 
 	<select id="positionpage"
@@ -21,8 +42,17 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,position_end
 		FROM
 		position
-		WHERE SYSDATE() BETWEEN position_start AND
-		position_end
+		<if test="keyword != null and keyword != ''">
+			<if test="searchtype.equals('position_code')">
+				WHERE position_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('position_name')">
+				WHERE position_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('position_small_name')">
+				WHERE position_small_name like CONCAT('%', #{keyword}, '%')
+			</if>
+		</if>
 		ORDER BY
 		position_code ASC
 		LIMIT

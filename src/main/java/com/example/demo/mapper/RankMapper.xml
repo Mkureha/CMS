@@ -22,6 +22,23 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,busyo_start
 		,busyo_end
 		FROM rank_syou
+		<if test="keyword != null and keyword != ''">
+			<if test="searchtype.equals('busyo_dai_code')">
+				WHERE busyo_dai_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('busyo_cyu_code')">
+				WHERE busyo_cyu_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('busyo_syou_code')">
+				WHERE busyo_syou_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('busyo_name')">
+				WHERE busyo_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('busyo_small_name')">
+				WHERE busyo_small_name like CONCAT('%', #{keyword}, '%')
+			</if>
+		</if>
 		ORDER BY
 		busyo_dai_code, busyo_cyu_code, busyo_syou_code
 		ASC
@@ -139,6 +156,20 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,busyo_start
 		,busyo_end
 		FROM rank_cyu
+		<if test="keyword != null and keyword != ''">
+			<if test="searchtype.equals('busyo_dai_code')">
+				WHERE busyo_dai_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('busyo_cyu_code')">
+				WHERE busyo_cyu_code like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('busyo_name')">
+				WHERE busyo_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchtype.equals('busyo_small_name')">
+				WHERE busyo_small_name like CONCAT('%', #{keyword}, '%')
+			</if>
+		</if>
 		ORDER BY busyo_dai_code, busyo_cyu_code
 		LIMIT
 		#{pagenum},
@@ -301,7 +332,6 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			<if test="searchtype.equals('busyo_small_name')">
 				WHERE busyo_small_name like CONCAT('%', #{keyword}, '%')
 			</if>
-			AND SYSDATE() BETWEEN busyo_start AND busyo_end
 		</if>
 		ORDER BY
 		busyo_dai_code ASC

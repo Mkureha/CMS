@@ -40,12 +40,12 @@ public class RankService {
 		return RankMapper.RanksyouDelete(busyo_dai_code, busyo_cyu_code, busyo_syou_code, busyo_start);
 	}
 
-	public List<rank_syou> listsyoupage(int pagenum, int contentnum) {
-		return RankMapper.listsyoupage(pagenum, contentnum);
+	public List<rank_syou> listsyoupage(int pagenum, int contentnum, String searchtype, String keyword) {
+		return RankMapper.listsyoupage(pagenum, contentnum, searchtype, keyword);
 	}
 
-	public int Ranksyoucount() {
-		return RankMapper.Ranksyoucount();
+	public int Ranksyoucount(String searchtype, String keyword) {
+		return RankMapper.Ranksyoucount(searchtype, keyword);
 	}
 
 	// 小分類END
@@ -76,12 +76,12 @@ public class RankService {
 		return RankMapper.RankcyuDelete(busyo_dai_code, busyo_cyu_code, busyo_start);
 	}
 
-	public List<rank_cyu> listcyupage(int pagenum, int contentnum) {
-		return RankMapper.listcyupage(pagenum, contentnum);
+	public List<rank_cyu> listcyupage(int pagenum, int contentnum, String searchtype, String keyword) {
+		return RankMapper.listcyupage(pagenum, contentnum, searchtype, keyword);
 	}
 
-	public int Rankcyucount() {
-		return RankMapper.Rankcyucount();
+	public int Rankcyucount(String searchtype, String keyword) {
+		return RankMapper.Rankcyucount(searchtype, keyword);
 	}
 
 	// 中分類END

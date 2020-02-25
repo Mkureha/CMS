@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.domain.position;
@@ -33,7 +34,8 @@ public class PositionController {
 	// 職責リスト出力
 	@RequestMapping("/position")
 	@PostMapping
-	public String positionpage(HttpServletRequest request) {
+	public String positionpage(HttpServletRequest request, @RequestParam(required = false) String searchtype,
+			@RequestParam(required = false) String keyword) {
 		position position_dai = new position();
 		String pagenum = request.getParameter("pagenum");
 		String contentnum = request.getParameter("contentnum");
@@ -42,7 +44,10 @@ public class PositionController {
 		int cpagenum = Integer.parseInt(pagenum);
 		int ccontentnum = Integer.parseInt(contentnum);
 
-		position_dai.settotalcount(mapper.Positioncount()); // 전체계수
+		position_dai.setsearchtype(searchtype);
+		position_dai.setkeyword(keyword);
+
+		position_dai.settotalcount(mapper.Positioncount(position_dai.getsearchtype(), position_dai.getkeyword())); // 전체계수
 		position_dai.setpagenum(cpagenum - 1); // 현재 페이지 객체 지정
 		position_dai.setcontentnum(ccontentnum); // 한 페이지 게시글 수
 		position_dai.setcurrentblock(cpagenum); // 현재 페이지블록 번호
@@ -53,7 +58,8 @@ public class PositionController {
 		position_dai.setendpage(position_dai.getlastblock(), position_dai.getcurrentblock()); // 마지막 페이지 블럭 현재 페이지 블록
 
 		List<position> positionpage = new ArrayList<position>();
-		positionpage = mapper.positionpage(position_dai.getpagenum() * 10, position_dai.getcontentnum());
+		positionpage = mapper.positionpage(position_dai.getpagenum() * 10, position_dai.getcontentnum(), position_dai.getsearchtype(),
+				position_dai.getkeyword());
 
 		System.out.println("Parameter position_code : " + request.getParameter("position_code"));
 		System.out.println("Parameter position_name : " + request.getParameter("position_name"));
@@ -83,7 +89,7 @@ public class PositionController {
 
 		PositionService.PositionInsertService(position_dai);
 
-		return "redirect:/position?pagenum=1&contentnum=10";
+		return "redirect:/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=";
 	}
 
 	@RequestMapping("position/update/{position_code}/{position_start}")
@@ -120,7 +126,8 @@ public class PositionController {
 		position_dai.setposition_end(request.getParameter("position_end"));
 
 		PositionService.PositionUpdateService(position_dai);
-		return "redirect:/position?pagenum=1&contentnum=10";
+		
+		return "redirect:/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=";
 	}
 
 	@RequestMapping("/position/delete/{position_code}/{position_start}")
@@ -129,7 +136,7 @@ public class PositionController {
 			throws Exception {
 		PositionService.PositionDeleteService(position_code, position_start);
 
-		return "redirect:/position?pagenum=1&contentnum=10";
+		return "redirect:/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=";
 	}
 
 	// 職責END

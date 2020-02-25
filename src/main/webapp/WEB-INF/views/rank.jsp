@@ -23,6 +23,8 @@
 	</div>
 	<div id="ie8_navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
+			<li><a style="color: white;"
+				href="/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=">社員一覧</a></li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown" role="button" aria-haspopup="true"
 				aria-expanded="false">部署 <span class="caret"></span></a>
@@ -30,12 +32,14 @@
 					<li><a
 						href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大分類一覧</a></li>
 					<li><a
-						href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_cyu_code&keyword=">中分類一覧</a></li>
+						href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">中分類一覧</a></li>
 					<li class="active"><a
-						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_syou_code&keyword=">小分類一覧</a></li>
+						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
 				</ul></li>
 			<li><a style="color: white;"
-				href="/position?pagenum=1&contentnum=10">職責</a></li>
+				href="/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=">職責一覧</a></li>
+			<li><a style="color: white;"
+				href="/type?pagenum=1&contentnum=10&searchtype=type_code&keyword=">役職一覧</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -160,8 +164,12 @@ body,div {
 		function page(idx) {
 			var pagenum = idx;
 			var contentnum = 10;
+			var searchtype = $('#searchtype').val()
+			var keyword = $('#keyword').val()
 			var url = "${pageContext.request.contextPath}/ranksyou?pagenum="
 					+ pagenum + "&contentnum=" + contentnum;
+			url = url + "&searchtype=" + searchtype;
+			url = url + "&keyword=" + keyword;
 			location.href = url;
 
 		};
@@ -169,7 +177,7 @@ body,div {
 		<!-- Search -->
 		$(document).on('click', '#btnSearch', function(e){
 			e.preventDefault();
-			var url = "${pageContext.request.contextPath}/rankdai?pagenum=1&contentnum=10";
+			var url = "${pageContext.request.contextPath}/ranksyou?pagenum=1&contentnum=10";
 			url = url + "&searchtype=" + $('#searchtype').val();
 			url = url + "&keyword=" + $('#keyword').val();
 			location.href = url;

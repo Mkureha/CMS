@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,13 +33,12 @@ public class RankController {
 
 	@Resource(name = "com.example.demo.service.RankService")
 	RankService RankService;
-
-
-	
+		
 	// 小分類リスト出力
 	@RequestMapping("/ranksyou")
 	@PostMapping
-	public String listsyoupage(HttpServletRequest request) {
+	public String listsyoupage(HttpServletRequest request, @RequestParam(required = false) String searchtype,
+			@RequestParam(required = false) String keyword) {
 		rank_syou Rank = new rank_syou();
 		String pagenum = request.getParameter("pagenum");
 		String contentnum = request.getParameter("contentnum");
@@ -47,7 +47,10 @@ public class RankController {
 		int cpagenum = Integer.parseInt(pagenum);
 		int ccontentnum = Integer.parseInt(contentnum);
 
-		Rank.settotalcount(mapper.Ranksyoucount()); // 전체계수
+		Rank.setsearchtype(searchtype);
+		Rank.setkeyword(keyword);
+		
+		Rank.settotalcount(mapper.Ranksyoucount(Rank.getsearchtype(), Rank.getkeyword())); // 전체계수
 		Rank.setpagenum(cpagenum - 1); // 현재 페이지 객체 지정
 		Rank.setcontentnum(ccontentnum); // 한 페이지 게시글 수
 		Rank.setcurrentblock(cpagenum); // 현재 페이지블록 번호
@@ -58,7 +61,8 @@ public class RankController {
 		Rank.setendpage(Rank.getlastblock(), Rank.getcurrentblock()); // 마지막 페이지 블럭 현재 페이지 블록
 
 		List<rank_syou> listsyoupage = new ArrayList<rank_syou>();
-		listsyoupage = mapper.listsyoupage(Rank.getpagenum() * 10, Rank.getcontentnum());
+		listsyoupage = mapper.listsyoupage(Rank.getpagenum() * 10, Rank.getcontentnum(), Rank.getsearchtype(),
+				Rank.getkeyword());
 
 		System.out.println("Parameter busyo_dai_code : " + request.getParameter("busyo_dai_code"));
 		System.out.println("Parameter busyo_name : " + request.getParameter("busyo_name"));
@@ -78,10 +82,11 @@ public class RankController {
 				RankService.RanksyouDetailService(busyo_dai_code, busyo_cyu_code, busyo_syou_code, busyo_start));
 		return "rank_detail";
 	}
-
+	
 	// 小分類入力
 	@RequestMapping("/ranksyou/insert")
-	private String RanksyouInsertForm(Model model) {
+	private String RanksyouInsertForm(HttpServletResponse response, Model model) {
+		
 		return RanksyouInsertForm("", model);
 	}
 
@@ -99,7 +104,6 @@ public class RankController {
 			model.addAttribute("listcyucode", new ArrayList<rank_cyu>());
 			return "rank_insert";
 		}
-
 	}
 
 	@RequestMapping("/ranksyou/insertProc")
@@ -167,7 +171,8 @@ public class RankController {
 	// 中分類リスト出力
 	@RequestMapping("/rankcyu")
 	@PostMapping
-	public String listcyupage(HttpServletRequest request, Model model) {
+	public String listcyupage(HttpServletRequest request, @RequestParam(required = false) String searchtype,
+			@RequestParam(required = false) String keyword, Model model) {
 		rank_cyu rank_cyu = new rank_cyu();
 		String pagenum = request.getParameter("pagenum");
 		String contentnum = request.getParameter("contentnum");
@@ -175,8 +180,11 @@ public class RankController {
 		System.out.println("contentnum : " + contentnum);
 		int cpagenum = Integer.parseInt(pagenum);
 		int ccontentnum = Integer.parseInt(contentnum);
-
-		rank_cyu.settotalcount(mapper.Rankcyucount()); // 전체계수
+		
+		rank_cyu.setsearchtype(searchtype);
+		rank_cyu.setkeyword(keyword);
+		
+		rank_cyu.settotalcount(mapper.Rankcyucount(rank_cyu.getsearchtype(), rank_cyu.getkeyword())); // 전체계수
 		rank_cyu.setpagenum(cpagenum - 1); // 현재 페이지 객체 지정
 		rank_cyu.setcontentnum(ccontentnum); // 한 페이지 게시글 수
 		rank_cyu.setcurrentblock(cpagenum); // 현재 페이지블록 번호
@@ -187,7 +195,8 @@ public class RankController {
 		rank_cyu.setendpage(rank_cyu.getlastblock(), rank_cyu.getcurrentblock()); // 마지막 페이지 블럭 현재 페이지 블록
 
 		List<rank_cyu> listcyupage = new ArrayList<rank_cyu>();
-		listcyupage = mapper.listcyupage(rank_cyu.getpagenum() * 10, rank_cyu.getcontentnum());
+		listcyupage = mapper.listcyupage(rank_cyu.getpagenum() * 10, rank_cyu.getcontentnum(), rank_cyu.getsearchtype(),
+				rank_cyu.getkeyword());
 
 		List<rank_dai> listcode = RankService.listcode();
 		model.addAttribute("listcode", listcode);

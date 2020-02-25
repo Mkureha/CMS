@@ -25,19 +25,23 @@
 	</div>
 	<div id="ie8_navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
+			<li><a style="color: white;"
+				href="/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=">社員一覧</a></li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown" role="button" aria-haspopup="true"
 				aria-expanded="false">部署 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li class="active"><a
-						href="/rankdai?pagenum=1&contentnum=10&searchtype=position_code&keyword=">大分類一覧</a></li>
 					<li><a
-						href="/rankcyu?pagenum=1&contentnum=10&searchtype=position_cyu_code&keyword=">中分類一覧</a></li>
+						href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大分類一覧</a></li>
 					<li><a
-						href="/ranksyou?pagenum=1&contentnum=10&searchtype=position_syou_code&keyword=">小分類一覧</a></li>
+						href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">中分類一覧</a></li>
+					<li><a
+						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
 				</ul></li>
+			<li class="active"><a style="color: white;"
+				href="/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=">職責一覧</a></li>
 			<li><a style="color: white;"
-				href="/position?pagenum=1&contentnum=10">職責</a></li>
+				href="/type?pagenum=1&contentnum=10&searchtype=type_code&keyword=">役職一覧</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -46,8 +50,8 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<ul class="nav nav-pills nav-stacked" style="margin-bottom: 20px;">
-			<li  class="active" role="presentation"><a style="color: white;"
-				href="/position?pagenum=1&contentnum=10">職責一覧</a></li>
+					<li class="active" role="presentation"><a
+						style="color: white;" href="/position?pagenum=1&contentnum=10">職責一覧</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-10">
@@ -143,7 +147,7 @@ table {
 	text-align: left;
 }
 
-body,div {
+body, div {
 	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
 		'ＭＳ Ｐゴシック', sans-serif;
 }

@@ -31,11 +31,11 @@ public class PositionService {
 		return positionMapper.PositionDelete(position_code, position_start);
 	}
 
-	public List<position> positionpage(int pagenum, int contentnum) {
-		return positionMapper.positionpage(pagenum, contentnum);
+	public List<position> positionpage(int pagenum, int contentnum, String searchtype, String keyword) {
+		return positionMapper.positionpage(pagenum, contentnum, searchtype, keyword);
 	}
 
-	public int Positioncount() {
-		return positionMapper.Positioncount();
+	public int Positioncount(String searchtype, String keyword) {
+		return positionMapper.Positioncount(searchtype, keyword);
 	}
 }

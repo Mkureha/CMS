@@ -10,10 +10,11 @@ import com.example.demo.domain.position;
 @Repository("com.example.demo.mapper.PositionMapper")
 public interface PositionMapper {
 	// 사원수
-	public int Positioncount();
+	public int Positioncount(@Param("searchtype") String searchtype, @Param("keyword") String keyword);
 
 	// 사원목록페이징
-	public List<position> positionpage(@Param("pagenum") int pagenum, @Param("contentnum") int contentnum);
+	public List<position> positionpage(@Param("pagenum") int pagenum, @Param("contentnum") int contentnum,
+			@Param("searchtype") String searchtype, @Param("keyword") String keyword);
 
 	// 사원상세
 	public position PositionDetail(@Param("position_code") String position_code,

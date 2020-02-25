@@ -5,6 +5,70 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="com.example.demo.mapper.CompanyMapper">
 
+	<select id="listsyoucode"
+		resultType="com.example.demo.domain.rank_syou">
+		SELECT DISTINCT busyo_dai_code
+		,busyo_cyu_code
+		,busyo_syou_code
+		,busyo_name
+		FROM rank_syou
+		WHERE busyo_dai_code =
+		#{busyo_dai_code}
+		AND busyo_cyu_code = #{busyo_cyu_code}
+		AND
+		busyo_end =
+		''
+		OR busyo_end IS NULL
+		ORDER BY busyo_dai_code, busyo_cyu_code,
+		busyo_syou_code
+	</select>
+
+	<select id="listcyucode"
+		resultType="com.example.demo.domain.rank_cyu">
+		SELECT DISTINCT busyo_dai_code
+		,busyo_cyu_code
+		,busyo_name
+		FROM rank_cyu
+		WHERE busyo_dai_code = #{busyo_dai_code}
+		AND
+		busyo_end = ''
+		OR busyo_end IS NULL
+		ORDER BY busyo_dai_code, busyo_cyu_code
+	</select>
+
+	<select id="listcode"
+		resultType="com.example.demo.domain.rank_dai">
+		SELECT DISTINCT busyo_dai_code
+		,busyo_name
+		FROM rank_dai
+		WHERE
+		busyo_end IS NULL
+		OR busyo_end = ''
+		ORDER BY busyo_dai_code
+	</select>
+
+	<select id="listposition"
+		resultType="com.example.demo.domain.position">
+		SELECT DISTINCT position_code
+		,position_name
+		FROM position
+		WHERE
+		position_end IS NULL
+		OR position_end = ''
+		ORDER BY position_code
+	</select>
+
+	<select id="listtype" resultType="com.example.demo.domain.type">
+		SELECT DISTINCT type_code
+		,type_name
+		FROM type
+		WHERE
+		type_end IS NULL
+		OR type_end = ''
+		ORDER BY
+		type_code
+	</select>
+
 	<select id="employeecount" resultType="int">
 		SELECT COUNT(*)
 		FROM
@@ -12,10 +76,6 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		<if test="keyword != null and keyword != '' ">
 			<if test="searchtype.equals('employee_no')">
 				WHERE employee_no like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchtype.equals('rank_code')">
-				WHERE rank_code like CONCAT('%', #{keyword},
-				'%')
 			</if>
 			<if test="searchtype.equals('position_code')">
 				WHERE position_code like CONCAT('%', #{keyword},
@@ -55,7 +115,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="listpage"
 		resultType="com.example.demo.domain.employee">
 		SELECT employee_no
-		,rank_code
+		,CONCAT(busyo_dai_code, busyo_cyu_code, busyo_syou_code) AS rank_code
 		,position_code
 		,employee_name
 		,type_code
@@ -126,7 +186,6 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		parameterType="com.example.demo.domain.employee">
 		INSERT INTO employee
 		(employee_no
-		,rank_code
 		,position_code
 		,employee_name
 		,type_code
@@ -135,10 +194,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,postal_code
 		,address_1
 		,address_2
-		,employee_memo)
+		,employee_memo
+		,busyo_dai_code
+		,busyo_cyu_code
+		,busyo_syou_code)
 		VALUES
 		(#{employee_no}
-		,#{rank_code}
 		,#{position_code}
 		,#{employee_name}
 		,#{type_code}
@@ -147,7 +208,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,#{postal_code}
 		,#{address_1}
 		,#{address_2}
-		,#{employee_memo})
+		,#{employee_memo}
+		,#{busyo_dai_code}
+		,#{busyo_cyu_code}
+		,#{busyo_syou_code})
 	</insert>
 
 	<update id="employeeUpdate"
@@ -162,8 +226,14 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		<if test="employee_no != null">
 			employee_no = #{employee_no}
 		</if>
-		<if test="rank_code != null">
-			,rank_code = #{rank_code}
+		<if test="busyo_dai_code != null">
+			,busyo_dai_code = #{busyo_dai_code}
+		</if>
+		<if test="busyo_cyu_code != null">
+			,busyo_cyu_code = #{busyo_cyu_code}
+		</if>
+		<if test="busyo_syou_code != null">
+			,busyo_syou_code = #{busyo_syou_code}
 		</if>
 		<if test="position_code != null">
 			,position_code = #{position_code}

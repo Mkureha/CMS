@@ -9,83 +9,143 @@
 <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
 <title>役職リスト</title>
 </head>
-<body>
-	<div class="container centered text-center">
-		<h2>役職リスト</h2>
+<body style="padding-top: 60px;">
+	<nav class="navbar navbar-fixed-top navbar-inverse">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="/index"
+			style="font-size: 14px; font-weight: bold; color: white; height: 40px;">COMPANY
+			MANAGEMENT SYSTEM</a>
+		<button type="button" class="navbar-toggle" data-toggle="offcanvas"
+			data-target=".navbar-offcanvas" data-canvas="body">
+			<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+				class="icon-bar"></span>
+		</button>
 	</div>
-	<button class="btn btn-danger"
-		onclick="location.href='/index'">メニュー</button>
-	<button class="btn btn-warning"
-		onclick="location.href='/type/insert'">役職登録</button>
-	<br>
+	<div id="ie8_navbar" class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+			<li><a style="color: white;"
+				href="/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=">社員一覧</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown" role="button" aria-haspopup="true"
+				aria-expanded="false">部署 <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a
+						href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大分類一覧</a></li>
+					<li><a
+						href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">中分類一覧</a></li>
+					<li><a
+						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
+				</ul></li>
+			<li><a style="color: white;"
+				href="/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=">職責一覧</a></li>
+			<li class="active"><a style="color: white;"
+				href="/type?pagenum=1&contentnum=10&searchtype=type_code&keyword=">役職一覧</a></li>
+		</ul>
+	</div>
 
-	<div class="container">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th scope="col">役職コード</th>
-					<th scope="col">役職名</th>
-					<th scope="col">役職省略名</th>
-					<th scope="col">役職開始日</th>
-					<th scope="col">役職終了日</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="cpn" items="${list}">
-					<tr>
-						<td scope="row"><a href="/type/detail/${cpn.type_code}/${cpn.type_start}">${cpn.type_code}</a></td>
-						<td>${cpn.type_name}</td>
-						<td>${cpn.type_name_small}</td>
-						<td>${cpn.type_start}</td>
-						<td>${cpn.type_end}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-			<tfoot>
-				<tr>
+	</nav>
+	<div class="container" style="margin-top: 20px;">
+		<div class="row">
+			<div class="col-sm-2">
+				<ul class="nav nav-pills nav-stacked" style="margin-bottom: 20px;">
+					<li role="presentation" class="active"><a
+						href="/type?pagenum=1&contentnum=10&searchtype=type_code&keyword=">役職一覧</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-10">
+				<div 　class="pull-left">
+					<h3 style="padding: 0; margin: 0; margin-bottom: 10px;">役職一覧</h3>
+					<ol class="breadcrumb">
+						<li><a href="/index">ホーム</a>
+						<li class="active">役職一覧</li>
+					</ol>
+					<table class="table table-bordered table-condensed"
+						style="margin-top: 20px;">
+						<tbody>
+							<tr class="text-center warning">
+								<th class="text-center">コード</th>
+								<th class="text-center">名称</th>
+								<th class="text-center">略称</th>
+								<th class="text-center">開始日</th>
+								<th class="text-center">終了日</th>
+							</tr>
+							<c:forEach var="cpn" items="${list}">
+								<tr>
+									<td scope="row"><a
+										href="/type/update/${cpn.type_code}/${cpn.type_start}">${cpn.type_code}</a></td>
+									<td>${cpn.type_name}</td>
+									<td>${cpn.type_name_small}</td>
+									<td>${cpn.type_start}</td>
+									<td>${cpn.type_end}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<div class="pull-right">
+					<button class="btn btn-danger"
+						onclick="location.href='/type/insert'">登録</button>
+				</div>
+				<br />
+				<div style="margin-top: -18px; margin-bottom: -10px;">
 					<nav aria-label="Page navigation example">
-					<ul class="pagination">
-						<li class="page-item ">
-						<td colspan="2"><c:if test="${page.prev}">
-								<a style="text-decoration: none;"
-									href="javascript:page(${page.getstartpage()-1});">&laquo;</a>
-							</c:if> <c:forEach begin="${page.getstartpage()}"
-								end="${page.getendpage()}" var="idx">
-								<a style="text-decoration: none;"
-									href="javascript:page(${idx});">${idx}</a>
-							</c:forEach> <c:if test="${page.next}">
-								<a style="text-decoration: none;"
-									href="javascript:page(${page.getendpage()+1});">&raquo;</a>
-							</c:if></td>
+					<ul class="pagination pagination-sm">
+						<li class="page-item">
+							<td colspan="2"><c:if test="${page.prev}">
+									<a style="text-decoration: none;"
+										href="javascript:page(${page.getstartpage()-1});">&laquo;</a>
+								</c:if> <c:forEach begin="${page.getstartpage()}"
+									end="${page.getendpage()}" var="idx">
+									<a style="text-decoration: none;"
+										href="javascript:page(${idx});">${idx}</a>
+								</c:forEach> <c:if test="${page.next}">
+									<a style="text-decoration: none;"
+										href="javascript:page(${page.getendpage()+1});">&raquo;</a>
+								</c:if></td>
 						</li>
 					</ul>
 					</nav>
-				</tr>
-			</tfoot>
-		</table>
+				</div>
+				<div class="form-inline">
+					<form action="search" method="get">
+						<div class="panel panel-success">
+							<div class="panel-heading">職責検索</div>
+							<div class="panel-body">
+								<div>
+									<div class="form-group">
+										<select name="searchtype" id="searchtype"
+											style="width: 100px; height: 35px; margin-left: auto; margin-right: auto;">
+											<option class="active" value="type_code">コード</option>
+											<option value="type_name">名称</option>
+											<option value="type_name_smail">略称</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control form-control-sm"
+											name="keyword" id="keyword" placeholder="検索 KeyWordを入力してください"
+											value="${page.keyword}" onkeyup="characterCheck()"
+											onkeydown="characterCheck()" autocomplete="off"
+											style="width: 400px; height: 35px; margin-left: auto; margin-right: auto;" />
+									</div>
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary" name="btnSearch"
+											id="btnSearch">検索</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
-	<form class="form-inline" action="search" method="get">
-		<div>
-			<select class="form-control form-control-sm" name="searchtype"
-				id="searchtype"
-				style="width: 350px; height: 35px; margin-left: auto; margin-right: auto;">
-				<option value="type_code">役職コード</option>
-				<option value="type_name">役職名</option>
-				<option value="type_name_small">役職省略名</option>
-				<option value="type_start">役職開始日</option>
-				<option value="type_end">役職終了日</option>
-			</select>
-		</div>
-		<div>
-			<input type="text" class="form-control form-control-sm"
-				name="keyword" id="keyword" placeholder="Keywordを入力してください"
-				value="${page.keyword}" onkeyup="characterCheck()"
-				onkeydown="characterCheck()"
-				style="width: 400px; height: 35px; margin-left: auto; margin-right: auto;" />
-		</div>
-		<button type="button" class="btn btn-primary" name="btnSearch"
-			id="btnSearch">検索</button>
-	</form>
+
+	<style>
+body, div {
+	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
+		'ＭＳ Ｐゴシック', sans-serif;
+}
+</style>
 
 	<script type="text/javascript">
 	

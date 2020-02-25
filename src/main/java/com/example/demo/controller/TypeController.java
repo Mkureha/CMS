@@ -87,7 +87,7 @@ public class TypeController {
 
 		TypeService.typeInsertService(type);
 
-		return "redirect:/type?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
+		return "redirect:/type?pagenum=1&contentnum=10&searchtype=type_code&keyword=";
 	}
 
 	@RequestMapping("type/update/{type_code}/{type_start}") // 게시글수정폼호출
@@ -111,7 +111,8 @@ public class TypeController {
 		type.settype_end(request.getParameter("type_end"));
 
 		TypeService.typeUpdateService(type);
-		return "redirect:type/detail/" + request.getParameter("type_code");
+		
+		return "redirect:/type?pagenum=1&contentnum=10&searchtype=type_code&keyword=";
 	}
 
 	@RequestMapping("type/delete/{type_code}")
@@ -119,6 +120,6 @@ public class TypeController {
 	private String TypeDelete(@PathVariable String type_code, @PathVariable String type_start) throws Exception {
 		TypeService.typeDeleteService(type_code, type_start);
 
-		return "redirect:/type?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
+		return "redirect:/type?pagenum=1&contentnum=10&searchtype=type_code&keyword=";
 	}
 }

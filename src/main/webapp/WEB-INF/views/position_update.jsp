@@ -26,19 +26,23 @@
 	</div>
 	<div id="ie8_navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
+			<li><a style="color: white;"
+				href="/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=">社員一覧</a></li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown" role="button" aria-haspopup="true"
 				aria-expanded="false">部署 <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a
-						href="/rankdai?pagenum=1&contentnum=10&searchtype=position_dai_code&keyword=">大分類一覧</a></li>
+						href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大分類一覧</a></li>
 					<li><a
-						href="/rankcyu?pagenum=1&contentnum=10&searchtype=position_code&keyword=">中分類一覧</a></li>
+						href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">中分類一覧</a></li>
 					<li><a
-						href="/ranksyou?pagenum=1&contentnum=10&searchtype=position_syou_code&keyword=">小分類一覧</a></li>
+						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
 				</ul></li>
 			<li class="active"><a style="color: white;"
-				href="/position?pagenum=1&contentnum=10">職責</a></li>
+				href="/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=">職責一覧</a></li>
+			<li><a style="color: white;"
+				href="/type?pagenum=1&contentnum=10&searchtype=type_code&keyword=">役職一覧</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -68,7 +72,7 @@
 								style="margin-top: 35px;">
 								<tr class="form-group">
 									<td class="text-center warning" for="position_code"
-										style="width: 250px; text-align: right;">小分類コード</td>
+										style="width: 250px; text-align: right;">コード</td>
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="position_code" name="position_code"
 										value="${detail.position_code }"
@@ -152,7 +156,7 @@ table {
 		//文字数制限
 		//Small_name제한
 		$(document).ready(function() {
-			$('#busyo_name_small').on('keyup', function() {
+			$('#position_name_small').on('keyup', function() {
 				if ($(this).val().length > 3) {
 					alert("文字数制限を超えました!(制限:3桁の英語)");
 					$(this).val($(this).val().substring(0, 3));
@@ -162,21 +166,21 @@ table {
 
 		//code 제한
 		$(document).ready(function() {
-			$('#busyo_dai_code').on('keyup', function() {
-				var busyo_dai_code = $("input[name='busyo_dai_code']");
+			$('#position_code').on('keyup', function() {
+				var position_code = $("input[name='position_code']");
 				if ($(this).val().length > 2) {
 					alert("数字数制限を超えました!(制限:2桁の連番)");
 					$(this).val($(this).val().substring(0, 2));
-				} else if (!/^[0-9]{0,2}$/.test(busyo_dai_code.val())) {
+				} else if (!/^[0-9]{0,2}$/.test(position_code.val())) {
 					alert("コードは2桁の連番で入力しでください");
-					$('#busyo_dai_code').val('');
+					$('#position_code').val('');
 				}
 			});
 		});
 
 		//name 제한
 		$(document).ready(function() {
-			$('#busyo_name').on('keyup', function() {
+			$('#position_name').on('keyup', function() {
 				if ($(this).val().length > 100) {
 					alert("文字数制限を超えました!(制限:文字-50桁、英語-100桁)");
 					$(this).val($(this).val().substring(0, 100));

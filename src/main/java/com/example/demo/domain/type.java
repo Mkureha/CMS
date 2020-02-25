@@ -2,11 +2,11 @@ package com.example.demo.domain;
 
 public class type {
 	
-	private String type_code;
-	private String type_name;
-	private String type_name_small;
-	private String type_start;
-	private String type_end;
+	public String type_code;
+	public String type_name;
+	public String type_name_small;
+	public String type_start;
+	public String type_end;
 
 	public String gettype_code() {
 		return type_code;

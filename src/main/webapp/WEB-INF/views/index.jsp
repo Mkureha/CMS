@@ -42,7 +42,9 @@
 								href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_syou_code&keyword=">小分類一覧</a></li>
 						</ul></li>
 					<li><a
-						href="/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=">職責</a></li>
+						href="/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=">職責一覧</a></li>
+					<li><a
+						href="/type?pagenum=1&contentnum=10&searchtype=type_code&keyword=">役職一覧</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->

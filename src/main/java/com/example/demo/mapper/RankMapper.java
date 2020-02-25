@@ -13,10 +13,11 @@ import com.example.demo.domain.rank_syou;
 public interface RankMapper {
 	// 小分類
 	// コード数
-	public int Ranksyoucount();
+	public int Ranksyoucount(@Param("searchtype") String searchtype,@Param("keyword") String keyword);
 
 	// リストページング
-	public List<rank_syou> listsyoupage(@Param("pagenum") int pagenum, @Param("contentnum") int contentnum);
+	public List<rank_syou> listsyoupage(@Param("pagenum") int pagenum, @Param("contentnum") int contentnum,
+			@Param("searchtype") String searchtype, @Param("keyword") String keyword);
 
 	// 小リストページング
 	public List<rank_cyu> listcyucode(@Param("busyo_dai_code") String busyo_dai_code);
@@ -41,10 +42,11 @@ public interface RankMapper {
 
 	// 中分類
 	// 入力中分類
-	public int Rankcyucount();
+	public int Rankcyucount(@Param("searchtype") String searchtype,@Param("keyword") String keyword);
 
 	// リストページング
-	public List<rank_cyu> listcyupage(@Param("pagenum") int pagenum, @Param("contentnum") int contentnum);
+	public List<rank_cyu> listcyupage(@Param("pagenum") int pagenum, @Param("contentnum") int contentnum,
+			@Param("searchtype") String searchtype, @Param("keyword") String keyword);
 
 	// Dcode
 	public List<rank_dai> listcode();

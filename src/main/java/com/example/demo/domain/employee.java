@@ -2,107 +2,25 @@ package com.example.demo.domain;
 
 public class employee {
 
-	private String employee_no;
-	private String employee_name;
-	private String gender;
-	private String birthday;
-	private String postal_code;
-	private String address_1;
-	private String address_2;
-	private String employee_memo;
+	public String employee_no;
+	public String employee_name;
+	public String gender;
+	public String birthday;
+	public String postal_code;
+	public String address_1;
+	public String address_2;
+	public String employee_memo;
 
-//	// ADD VAR rank+position+type
-	private String rank_code;
-//	private String rank_name;
-//	private String rank_name_small;
-//	private String rank_start;
-//	private String rank_end;
-	private String position_code;
-//	private String position_name;
-//	private String position_name_small;
-//	private String position_start;
-//	private String position_end;
-	private String type_code;
-//	private String type_name;
-//	private String type_name_small;
-//	private String type_start;
-//	private String type_end;
-//	
-//	public String getrank_name() {
-//		return rank_name;
-//	}
-//	public void setrank_name(String rank_name) {
-//		this.rank_name = rank_name;
-//	}
-//	public String getrank_name_small() {
-//		return rank_name_small;
-//	}
-//	public void setrank_name_small(String rank_name_small) {
-//		this.rank_name_small = rank_name_small;
-//	}
-//	public String getrank_start() {
-//		return rank_start;
-//	}
-//	public void setrank_start(String rank_start) {
-//		this.rank_start = rank_start;
-//	}
-//	public String getrank_end() {
-//		return rank_end;
-//	}
-//	public void setrank_end(String rank_end) {
-//		this.rank_end = rank_end;
-//	}
-//	//ADD1 rank
-//	public String getposition_name() {
-//		return position_name;
-//	}
-//	public void setposition_name(String position_name) {
-//		this.position_name = position_name;
-//	}
-//	public String getposition_name_small() {
-//		return position_name_small;
-//	}
-//	public void setposition_name_small(String position_name_small) {
-//		this.position_name_small = position_name_small;
-//	}
-//	public String getposition_start() {
-//		return position_start;
-//	}
-//	public void setposition_start(String position_start) {
-//		this.position_start = position_start;
-//	}
-//	public String getposition_end() {
-//		return position_end;
-//	}
-//	public void setposition_end(String position_end) {
-//		this.position_end = position_end;
-//	}
-//	//ADD2 position
-//	public String gettype_name() {
-//		return type_name;
-//	}
-//	public void settype_name(String type_name) {
-//		this.type_name = type_name;
-//	}
-//	public String gettype_name_small() {
-//		return type_name_small;
-//	}
-//	public void settype_name_small(String type_name_small) {
-//		this.type_name_small = type_name_small;
-//	}
-//	public String gettype_start() {
-//		return type_start;
-//	}
-//	public void settype_start(String type_start) {
-//		this.type_start = type_start;
-//	}
-//	public String gettype_end() {
-//		return type_end;
-//	}
-//	public void settype_end(String type_end) {
-//		this.type_end = type_end;
-//	}
-//	//ADD3 type END
+	public String rank_code;
+	
+	public String position_code;
+	
+	public String type_code;
+	
+	public String busyo_dai_code;
+	public String busyo_cyu_code;
+	public String busyo_syou_code;
+	
 	public String getemployee_no() {
 		return employee_no;
 	}
@@ -188,6 +106,30 @@ public class employee {
 
 	public void setemployee_memo(String employee_memo) {
 		this.employee_memo = employee_memo;
+	}
+
+	public String getbusyo_dai_code() {
+		return busyo_dai_code;
+	}
+
+	public void setbusyo_dai_code(String busyo_dai_code) {
+		this.busyo_dai_code = busyo_dai_code;
+	}
+
+	public String getbusyo_cyu_code() {
+		return busyo_cyu_code;
+	}
+
+	public void setbusyo_cyu_code(String busyo_cyu_code) {
+		this.busyo_cyu_code = busyo_cyu_code;
+	}
+
+	public String getbusyo_syou_code() {
+		return busyo_syou_code;
+	}
+
+	public void setbusyo_syou_code(String busyo_syou_code) {
+		this.busyo_syou_code = busyo_syou_code;
 	}
 
 	// Paging ADD

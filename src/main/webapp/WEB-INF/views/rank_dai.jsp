@@ -23,6 +23,8 @@
 	</div>
 	<div id="ie8_navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
+			<li><a style="color: white;"
+				href="/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=">社員一覧</a></li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown" role="button" aria-haspopup="true"
 				aria-expanded="false">部署 <span class="caret"></span></a>
@@ -35,7 +37,9 @@
 						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
 				</ul></li>
 			<li><a style="color: white;"
-				href="/position?pagenum=1&contentnum=10">職責</a></li>
+				href="/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=">職責一覧</a></li>
+			<li><a style="color: white;"
+				href="/type?pagenum=1&contentnum=10&searchtype=type_code&keyword=">役職一覧</a></li>
 		</ul>
 	</div>
 	</nav>

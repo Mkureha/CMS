@@ -27,6 +27,8 @@
 	</div>
 	<div id="ie8_navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
+			<li><a style="color: white;"
+				href="/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=">社員一覧</a></li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown" role="button" aria-haspopup="true"
 				aria-expanded="false">部署 <span class="caret"></span></a>
@@ -34,12 +36,14 @@
 					<li><a
 						href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">大分類一覧</a></li>
 					<li><a
-						href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_cyu_code&keyword=">小分類一覧</a></li>
+						href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">中分類一覧</a></li>
 					<li class="active"><a
-						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_syou_code&keyword=">小分類一覧</a></li>
+						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
 				</ul></li>
 			<li><a style="color: white;"
-				href="/position?pagenum=1&contentnum=10">職責</a></li>
+				href="/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=">職責一覧</a></li>
+			<li><a style="color: white;"
+				href="/type?pagenum=1&contentnum=10&searchtype=type_code&keyword=">役職一覧</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -67,8 +71,8 @@
 					<div>
 						<h5 class="pull-right"
 							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">*
-							は必ず入力してください</h5>
-						<form role="form" action="/ranksyou/insertProc" method="post"
+							は必ず入力してください<br>(大分類コードを変わると内容が初期化されます)</h5>
+						<form role="form" action="/ranksyou/insertProc" id="insertForm" method="post"
 							enctype="multipart/form-data" autocomplete="off">
 							<table class="table table-bordered table-condensed"
 								style="margin-top: 35px;">
@@ -269,6 +273,7 @@ body,div {
 							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
 							buttonImageOnly : true
 						});
+				
 	</script>
 	<%@ include file="bootstrap.jsp"%>
 </body>
