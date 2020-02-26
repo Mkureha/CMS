@@ -34,7 +34,7 @@
 					<li><a
 						href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">中分類一覧</a></li>
 					<li><a
-						href="/employee?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
+						href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
 				</ul></li>
 			<li><a style="color: white;"
 				href="/position?pagenum=1&contentnum=10&searchtype=position_code&keyword=">職責一覧</a></li>
@@ -73,11 +73,14 @@
 								<th class="text-center">郵便番号</th>
 								<th class="text-center">詳細住所1</th>
 								<th class="text-center">詳細住所2</th>
+								<th class="text-center">部署大分類</th>
+								<th class="text-center">部署中分類</th>
+								<th class="text-center">部署小分類</th>
 							</tr>
 							<c:forEach var="cpn" items="${list}">
 								<tr>
 									<td scope="row"><a
-										href="/employee/update/${cpn.employee_no}">${cpn.employee_no}</a></td>
+										href="/employee/update/${cpn.busyo_dai_code}/${cpn.busyo_cyu_code}/${cpn.employee_no}">${cpn.employee_no}</a></td>
 									<td>${cpn.rank_code}</td>
 									<td>${cpn.position_code}</td>
 									<td>${cpn.type_code}</td>
@@ -87,6 +90,9 @@
 									<td>${cpn.postal_code}</td>
 									<td>${cpn.address_1}</td>
 									<td>${cpn.address_2}</td>
+									<td>${cpn.busyo_dai_code}</td>
+									<td>${cpn.busyo_cyu_code}</td>
+									<td>${cpn.busyo_syou_code}</td>
 								</tr>
 							</c:forEach>
 						</tbody>

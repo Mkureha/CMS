@@ -30,7 +30,7 @@ public interface CompanyMapper {
 
 	// TPcode
 	public List<type> listtype();
-	
+
 	// 사원수
 	public int employeecount(@Param("searchtype") String searchtype, @Param("keyword") String keyword);
 
@@ -39,7 +39,8 @@ public interface CompanyMapper {
 			@Param("searchtype") String searchtype, @Param("keyword") String keyword);
 
 	// 사원상세
-	public employee employeeDetail(String employee_no) throws Exception;
+	public employee employeeDetail(@Param("employee_no") String employee_no, @Param("busyo_dai_code") String busyo_dai_code,
+			@Param("busyo_cyu_code") String busyo_cyu_code) throws Exception;
 
 	// 사원작성
 	public int employeeInsert(employee employee_no) throws Exception;
@@ -48,5 +49,6 @@ public interface CompanyMapper {
 	public int employeeUpdate(employee employee_no) throws Exception;
 
 	// 사원삭제
-	public int employeeDelete(String employee_no) throws Exception;
+	public int employeeDelete(@Param("busyo_dai_code") String busyo_dai_code,
+			@Param("busyo_cyu_code") String busyo_cyu_code, @Param("employee_no") String employee_no) throws Exception;
 }

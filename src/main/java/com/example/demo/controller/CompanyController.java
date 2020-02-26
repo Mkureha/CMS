@@ -80,11 +80,12 @@ public class CompanyController {
 		return "employee";
 	}
 
-	@RequestMapping(value = "/employee/detail/{employee_no}", method = RequestMethod.GET)
-	private String employeeDetail(@PathVariable String employee_no, @ModelAttribute employee page, Model model)
-			throws Exception {
+	@RequestMapping(value = "/employee/detail/{busyo_dai_code}/{busyo_cyu_code}/{employee_no}", method = RequestMethod.GET)
+	private String employeeDetail(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
+			@PathVariable String employee_no, @ModelAttribute employee page, Model model) throws Exception {
 
-		model.addAttribute("detail", employeeService.employeeDetailService(employee_no));
+		model.addAttribute("detail",
+				employeeService.employeeDetailService(employee_no, busyo_dai_code, busyo_cyu_code));
 		return "employee_detail";
 	}
 
@@ -92,10 +93,7 @@ public class CompanyController {
 	@RequestMapping("/employee/insert")
 	private String employeeInsertForm(Model model) {
 
-		List<rank_dai> listcode = employeeService.listcode();
-		model.addAttribute("listcode", listcode);
-
-		return "employee_rankdai_insert";
+		return employeeInsertForm("", model);
 	}
 
 	// 大分類
@@ -110,7 +108,7 @@ public class CompanyController {
 			model.addAttribute("listcyucode", listcyucode);
 			return "employee_rankcyu_insert";
 		} else {
-			model.addAttribute("listcode", new ArrayList<rank_dai>());
+			model.addAttribute("listcyucode", new ArrayList<rank_cyu>());
 			return "employee_rankdai_insert";
 		}
 	}
@@ -131,7 +129,7 @@ public class CompanyController {
 			model.addAttribute("listsyoucode", listsyoucode);
 			return "employee_ranksyou_insert";
 		} else {
-			model.addAttribute("listcyucode", new ArrayList<rank_cyu>());
+			model.addAttribute("listsyoucode", new ArrayList<rank_syou>());
 			return "employee_rankcyu_insert";
 		}
 	}
@@ -140,6 +138,9 @@ public class CompanyController {
 	@RequestMapping("/employee/insert/{busyo_dai_code}/{busyo_cyu_code}/{busyo_syou_code}")
 	private String employeeInsertForm(@PathVariable String busyo_syou_code, @PathVariable String busyo_dai_code,
 			@PathVariable String busyo_cyu_code, Model model) {
+
+		System.out.println("Dcode : " + busyo_dai_code);
+		System.out.println("Ccode : " + busyo_cyu_code);
 
 		List<position> listposition = employeeService.listposition();
 		model.addAttribute("listposition", listposition);
@@ -152,11 +153,10 @@ public class CompanyController {
 
 		List<rank_cyu> listcyucode = employeeService.listcyucode(busyo_dai_code);
 		model.addAttribute("listcyucode", listcyucode);
-
-		List<rank_syou> listsyoucode = employeeService.listsyoucode(busyo_dai_code, busyo_cyu_code);
-		model.addAttribute("listsyoucode", listsyoucode);
-
+		
 		if (busyo_dai_code.length() > 0 && busyo_cyu_code.length() > 0 && busyo_syou_code.length() > 0) {
+			List<rank_syou> listsyoucode = employeeService.listsyoucode(busyo_dai_code, busyo_cyu_code);
+			model.addAttribute("listsyoucode", listsyoucode);
 			return "employee_insert";
 		} else {
 			model.addAttribute("listcyucode", new ArrayList<rank_cyu>());
@@ -172,21 +172,59 @@ public class CompanyController {
 		return "redirect:/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
 	}
 
-	@RequestMapping("employee/update/{employee_no}") // 게시글수정폼호출
-	private String employeeUpdateForm(@PathVariable String employee_no, Model model) throws Exception {
+	@RequestMapping("employee/update/{busyo_dai_code}/{busyo_cyu_code}/{employee_no}") // 게시글수정폼호출
+	private String employeeUpdateForm(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
+			@PathVariable String employee_no, Model model) throws Exception {
 
-		model.addAttribute("detail", employeeService.employeeDetailService(employee_no));
+		System.out.println("Dcode :" + busyo_dai_code);
+		System.out.println("Ccode :" + busyo_cyu_code);
+		System.out.println("Eno :" + employee_no);
+
+		employee employee = employeeService.employeeDetailService(employee_no, busyo_dai_code, busyo_cyu_code);
+
+		System.out.println("Ename :" + employee.getemployee_name());
+		System.out.println("Eno :" + employee.getemployee_no());
+		System.out.println("gender :" + employee.getgender());
+		System.out.println("birth :" + employee.getbirthday());
+		System.out.println("postal :" + employee.getpostal_code());
+		System.out.println("add1 :" + employee.getaddress_1());
+		System.out.println("add2 :" + employee.getaddress_2());
+		System.out.println("memo :" + employee.getemployee_memo());
+		
+		//職責リスト
+		List<position> listposition = employeeService.listposition();
+		model.addAttribute("listposition", listposition);
+
+		//役職リスト
+		List<type> listtype = employeeService.listtype();
+		model.addAttribute("listtype", listtype);
+
+		//大分類リスト
+		List<rank_dai> listcode = employeeService.listcode();
+		model.addAttribute("listcode", listcode);
+
+		//中分類リスト
+		List<rank_cyu> listcyucode = employeeService.listcyucode(busyo_dai_code);
+		model.addAttribute("listcyucode", listcyucode);
+
+		//小分類リスト
+		List<rank_syou> listsyoucode = employeeService.listsyoucode(busyo_dai_code, busyo_cyu_code);
+		model.addAttribute("listsyoucode", listsyoucode);
+
+		model.addAttribute("detail", employee);
 
 		return "employee_update";
 	}
 
 	@PostMapping("/employee/updateProc")
 	@GetMapping
-	private String employeeUpdateProc(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
-			HttpServletRequest request, Model model) throws Exception {
+	private String employeeUpdateProc(HttpServletRequest request, Model model) throws Exception {
 
 		employee employee = new employee();
 
+		employee.setbusyo_dai_code(request.getParameter("busyo_dai_code"));
+		employee.setbusyo_cyu_code(request.getParameter("busyo_cyu_code"));
+		employee.setbusyo_syou_code(request.getParameter("busyo_syou_code"));
 		employee.setemployee_no(request.getParameter("employee_no"));
 		employee.setposition_code(request.getParameter("position_code"));
 		employee.setemployee_name(request.getParameter("employee_name"));
@@ -200,28 +238,14 @@ public class CompanyController {
 
 		employeeService.employeeUpdateService(employee);
 
-		List<position> listposition = employeeService.listposition();
-		model.addAttribute("listposition", listposition);
-
-		List<type> listtype = employeeService.listtype();
-		model.addAttribute("listtype", listtype);
-
-		List<rank_dai> listcode = employeeService.listcode();
-		model.addAttribute("listcode", listcode);
-
-		List<rank_cyu> listcyucode = employeeService.listcyucode(busyo_dai_code);
-		model.addAttribute("listcyucode", listcyucode);
-
-		List<rank_syou> listsyoucode = employeeService.listsyoucode(busyo_dai_code, busyo_cyu_code);
-		model.addAttribute("listsyoucode", listsyoucode);
-
 		return "redirect:/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
 	}
 
-	@RequestMapping("employee/delete/{employee_no}")
+	@RequestMapping("employee/delete/{busyo_dai_code}/{busyo_cyu_code}/{employee_no}")
 	@GetMapping
-	private String employeeDelete(@PathVariable String employee_no) throws Exception {
-		employeeService.employeeDeleteService(employee_no);
+	private String employeeDelete(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
+			@PathVariable String employee_no) throws Exception {
+		employeeService.employeeDeleteService(busyo_dai_code, busyo_cyu_code, employee_no);
 
 		return "redirect:/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
 	}

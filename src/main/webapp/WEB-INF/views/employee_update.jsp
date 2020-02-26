@@ -84,7 +84,7 @@
 										style="width: 250px; text-align: right;">社員名</td>
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="employee_name" name="employee_name"
-										value="${detail.employee_no }"
+										value="${detail.employee_name }"
 										style="width: 200px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
@@ -130,7 +130,7 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_syou_code"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
-										中分類コード</td>
+										小分類コード</td>
 									<td style="width: 1000px;"><select
 										class="form-control form-control-sm" name="busyo_syou_code"
 										id="busyo_syou_code"
@@ -152,7 +152,7 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="position_code"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
-										中分類コード</td>
+										職責コード</td>
 									<td style="width: 1000px;"><select
 										class="form-control form-control-sm" name="position_code"
 										id="position_code"
@@ -172,7 +172,7 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="type_code"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
-										中分類コード</td>
+										役職コード</td>
 									<td style="width: 1000px;"><select
 										class="form-control form-control-sm" name="type_code"
 										id="type_code" style="width: 150px; height: auto; left: 10px;">
@@ -190,16 +190,17 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="gender"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
-										中分類コード</td>
+										性別</td>
 									<td style="width: 1000px;"><select
 										class="form-control form-control-sm" name="gender" id="gender"
 										style="width: 150px; height: auto; left: 10px;">
-											<c:if test="${detail.gender eq gender}">
-												<option value="${detail.gender}" selected="selected">
-													${detail.gender }</option>
+											<c:if test="${detail.gender eq 男}">
+												<option value="男" selected="selected">男</option>
+												<option value="女">女</option>
 											</c:if>
-											<c:if test="${detail.gender ne gender}">
-												<option value="${detail.gender}">${detail.gender }</option>
+											<c:if test="${detail.gender ne 女}">
+												<option value="男">男</option>
+												<option value="女" selected="selected">女</option>
 											</c:if>
 									</select></td>
 								</tr>
@@ -247,7 +248,7 @@
 							</table>
 							<div class="text-right" style="position: relative;">
 								<input type="button" value="削除" class="btn btn-danger"
-									OnClick="location.href='/employee/delete/${detail.employee_no}'">
+									OnClick="location.href='/employee/delete/${detail.busyo_dai_code}/${detail.busyo_cyu_code}/${detail.employee_no}'">
 								<button type="submit" class="btn btn-warning">修正</button>
 								<input type="button" value="戻る" class="btn btn-primary"
 									OnClick="javascript:history.back(-1)">
@@ -277,7 +278,7 @@ table {
 	text-align: left;
 }
 
-body, div {
+body,div {
 	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
 		'ＭＳ Ｐゴシック', sans-serif;
 }

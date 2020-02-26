@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -85,7 +84,7 @@ public class RankController {
 	
 	// 小分類入力
 	@RequestMapping("/ranksyou/insert")
-	private String RanksyouInsertForm(HttpServletResponse response, Model model) {
+	private String RanksyouInsertForm(Model model) {
 		
 		return RanksyouInsertForm("", model);
 	}

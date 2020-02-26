@@ -193,7 +193,7 @@ body,div {
 }
 </style>
 
-	<script type="text/javascript">
+	<script type="text/javascript">	
 		//大分類イベント
 		$(document)
 				.ready(
