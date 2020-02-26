@@ -181,7 +181,6 @@ body,div {
 			url = url + "&searchtype=" + searchtype;
 			url = url + "&keyword=" + keyword;
 			location.href = url;
-
 		};
 
 		<!-- Search -->

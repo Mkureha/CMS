@@ -41,6 +41,52 @@ public class CompanyController {
 		return "index";
 	}
 
+	// INSERT POPUP
+	@RequestMapping("/employee/child")
+	private String Insertpopup(Model model) {
+
+		List<rank_dai> listcode = employeeService.listcode();
+		model.addAttribute("listcode", listcode);
+
+		return "Echild";
+	}
+
+	@RequestMapping("/employee/child/{busyo_dai_code}")
+	private String Insertpopup_dai(@PathVariable String busyo_dai_code, Model model) {
+
+		List<rank_dai> listcode = employeeService.listcode();
+		model.addAttribute("listcode", listcode);
+
+		if (busyo_dai_code.length() > 0) {
+			List<rank_cyu> listcyucode = employeeService.listcyucode(busyo_dai_code);
+			model.addAttribute("listcyucode", listcyucode);
+			return "Echild_dai";
+		} else {
+			model.addAttribute("listcyucode", new ArrayList<rank_cyu>());
+			return "Echild";
+		}
+	}
+
+	@RequestMapping("/employee/child/{busyo_dai_code}/{busyo_cyu_code}")
+	private String Insertpopup_cyu(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code, Model model) {
+
+		List<rank_dai> listcode = employeeService.listcode();
+		model.addAttribute("listcode", listcode);
+
+		List<rank_cyu> listcyucode = employeeService.listcyucode(busyo_dai_code);
+		model.addAttribute("listcyucode", listcyucode);
+		
+		if (busyo_dai_code.length() > 0) {
+			List<rank_syou> listsyoucode = employeeService.listsyoucode(busyo_dai_code, busyo_cyu_code);
+			model.addAttribute("listsyoucode", listsyoucode);
+			return "Echild_cyu";
+		} else {
+			model.addAttribute("listsyoucode", new ArrayList<rank_syou>());
+			return "Echild_dai";
+		}
+	}
+	// INSERT POPUP END
+
 	@RequestMapping("/employee")
 	@PostMapping
 	public String list(HttpServletRequest request, @RequestParam(required = false) String searchtype,
@@ -93,75 +139,15 @@ public class CompanyController {
 	@RequestMapping("/employee/insert")
 	private String employeeInsertForm(Model model) {
 
-		return employeeInsertForm("", model);
-	}
-
-	// 大分類
-	@RequestMapping("/employee/insert/{busyo_dai_code}")
-	private String employeeInsertForm(@PathVariable String busyo_dai_code, Model model) {
-
-		List<rank_dai> listcode = employeeService.listcode();
-		model.addAttribute("listcode", listcode);
-
-		if (busyo_dai_code.length() > 0) {
-			List<rank_cyu> listcyucode = employeeService.listcyucode(busyo_dai_code);
-			model.addAttribute("listcyucode", listcyucode);
-			return "employee_rankcyu_insert";
-		} else {
-			model.addAttribute("listcyucode", new ArrayList<rank_cyu>());
-			return "employee_rankdai_insert";
-		}
-	}
-
-	// 中分類
-	@RequestMapping("/employee/insert/{busyo_dai_code}/{busyo_cyu_code}")
-	private String employeeInsertForm(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
-			Model model) {
-
-		List<rank_dai> listcode = employeeService.listcode();
-		model.addAttribute("listcode", listcode);
-
-		List<rank_cyu> listcyucode = employeeService.listcyucode(busyo_dai_code);
-		model.addAttribute("listcyucode", listcyucode);
-
-		if (busyo_dai_code.length() > 0 && busyo_cyu_code.length() > 0) {
-			List<rank_syou> listsyoucode = employeeService.listsyoucode(busyo_dai_code, busyo_cyu_code);
-			model.addAttribute("listsyoucode", listsyoucode);
-			return "employee_ranksyou_insert";
-		} else {
-			model.addAttribute("listsyoucode", new ArrayList<rank_syou>());
-			return "employee_rankcyu_insert";
-		}
-	}
-
-	// 小分類
-	@RequestMapping("/employee/insert/{busyo_dai_code}/{busyo_cyu_code}/{busyo_syou_code}")
-	private String employeeInsertForm(@PathVariable String busyo_syou_code, @PathVariable String busyo_dai_code,
-			@PathVariable String busyo_cyu_code, Model model) {
-
-		System.out.println("Dcode : " + busyo_dai_code);
-		System.out.println("Ccode : " + busyo_cyu_code);
-
+		// 職責リスト
 		List<position> listposition = employeeService.listposition();
 		model.addAttribute("listposition", listposition);
 
+		// 役職リスト
 		List<type> listtype = employeeService.listtype();
 		model.addAttribute("listtype", listtype);
 
-		List<rank_dai> listcode = employeeService.listcode();
-		model.addAttribute("listcode", listcode);
-
-		List<rank_cyu> listcyucode = employeeService.listcyucode(busyo_dai_code);
-		model.addAttribute("listcyucode", listcyucode);
-		
-		if (busyo_dai_code.length() > 0 && busyo_cyu_code.length() > 0 && busyo_syou_code.length() > 0) {
-			List<rank_syou> listsyoucode = employeeService.listsyoucode(busyo_dai_code, busyo_cyu_code);
-			model.addAttribute("listsyoucode", listsyoucode);
-			return "employee_insert";
-		} else {
-			model.addAttribute("listcyucode", new ArrayList<rank_cyu>());
-			return "employee_ranksyou_insert";
-		}
+		return "employee_insert";
 	}
 
 	@RequestMapping("/employee/insertProc")
@@ -190,24 +176,24 @@ public class CompanyController {
 		System.out.println("add1 :" + employee.getaddress_1());
 		System.out.println("add2 :" + employee.getaddress_2());
 		System.out.println("memo :" + employee.getemployee_memo());
-		
-		//職責リスト
+
+		// 職責リスト
 		List<position> listposition = employeeService.listposition();
 		model.addAttribute("listposition", listposition);
 
-		//役職リスト
+		// 役職リスト
 		List<type> listtype = employeeService.listtype();
 		model.addAttribute("listtype", listtype);
 
-		//大分類リスト
+		// 大分類リスト
 		List<rank_dai> listcode = employeeService.listcode();
 		model.addAttribute("listcode", listcode);
 
-		//中分類リスト
+		// 中分類リスト
 		List<rank_cyu> listcyucode = employeeService.listcyucode(busyo_dai_code);
 		model.addAttribute("listcyucode", listcyucode);
 
-		//小分類リスト
+		// 小分類リスト
 		List<rank_syou> listsyoucode = employeeService.listsyoucode(busyo_dai_code, busyo_cyu_code);
 		model.addAttribute("listsyoucode", listsyoucode);
 

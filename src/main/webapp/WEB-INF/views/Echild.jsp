@@ -13,25 +13,26 @@
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>分類選択</title>
 <script type="text/javascript">
-	//大分類イベント
-	$(document)
-			.ready(
-					function() {
-						$('#Dcodeinput')
-								.on(
-										'change',
-										function() {
-											var daicodeVal = $('#Dcodeinput')
-													.val();
-											if (daicodeVal => 0) {
-												location.href = "http://localhost:8080/ranksyou/child/"
-														+ daicodeVal;
-											} else {
-												alert("大分類を選択してください！")
-												$("#Dcodeinput").focus();
-											}
-										});
-					});
+//大分類イベント
+$(document)
+		.ready(
+				function() {
+					$('#Dcodeinput')
+							.on(
+									'change',
+									function() {
+										var daicodeVal = $('#Dcodeinput')
+												.val();
+										if (daicodeVal => 0) {
+											location.href = "http://localhost:8080/employee/child/"
+													+ daicodeVal;
+										} else {
+											alert("大分類を選択してください！")
+											$("#Dcodeinput").focus();
+										}
+									});
+				});
+
 </script>
 </head>
 <body style="padding-top: 30px;">

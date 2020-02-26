@@ -32,7 +32,34 @@ public class RankController {
 
 	@Resource(name = "com.example.demo.service.RankService")
 	RankService RankService;
-		
+
+	// INSERT POPUP
+	@RequestMapping("/ranksyou/child")
+	private String Insertpopup(Model model) {
+
+		List<rank_dai> listcode = RankService.listcode();
+		model.addAttribute("listcode", listcode);
+
+		return "child";
+	}
+
+	@RequestMapping("/ranksyou/child/{busyo_dai_code}")
+	private String Insertpopup_dai(@PathVariable String busyo_dai_code, Model model) {
+
+		List<rank_dai> listcode = RankService.listcode();
+		model.addAttribute("listcode", listcode);
+
+		if (busyo_dai_code.length() > 0) {
+			List<rank_cyu> listcyucode = RankService.listcyucode(busyo_dai_code);
+			model.addAttribute("listcyucode", listcyucode);
+			return "child_dai";
+		} else {
+			model.addAttribute("listcyucode", new ArrayList<rank_cyu>());
+			return "child";
+		}
+	}
+	// INSERT POPUP END
+
 	// 小分類リスト出力
 	@RequestMapping("/ranksyou")
 	@PostMapping
@@ -48,7 +75,7 @@ public class RankController {
 
 		Rank.setsearchtype(searchtype);
 		Rank.setkeyword(keyword);
-		
+
 		Rank.settotalcount(mapper.Ranksyoucount(Rank.getsearchtype(), Rank.getkeyword())); // 전체계수
 		Rank.setpagenum(cpagenum - 1); // 현재 페이지 객체 지정
 		Rank.setcontentnum(ccontentnum); // 한 페이지 게시글 수
@@ -81,28 +108,12 @@ public class RankController {
 				RankService.RanksyouDetailService(busyo_dai_code, busyo_cyu_code, busyo_syou_code, busyo_start));
 		return "rank_detail";
 	}
-	
+
 	// 小分類入力
 	@RequestMapping("/ranksyou/insert")
 	private String RanksyouInsertForm(Model model) {
-		
-		return RanksyouInsertForm("", model);
-	}
 
-	@RequestMapping("/ranksyou/insert/{busyo_dai_code}")
-	private String RanksyouInsertForm(@PathVariable String busyo_dai_code, Model model) {
-
-		List<rank_dai> listcode = RankService.listcode();
-		model.addAttribute("listcode", listcode);
-
-		if (busyo_dai_code.length() > 0) {
-			List<rank_cyu> listcyucode = RankService.listcyucode(busyo_dai_code);
-			model.addAttribute("listcyucode", listcyucode);
-			return "rank_syou_insert";
-		} else {
-			model.addAttribute("listcyucode", new ArrayList<rank_cyu>());
-			return "rank_insert";
-		}
+		return "rank_syou_insert";
 	}
 
 	@RequestMapping("/ranksyou/insertProc")
@@ -112,6 +123,34 @@ public class RankController {
 
 		return "redirect:/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
 	}
+
+	// UPDATE POPUP
+	@RequestMapping("/ranksyou/update/{busyo_dai_code}/{busyo_cyu_code}/{busyo_syou_code}/child")
+	private String Updatepopup(Model model) {
+
+		List<rank_dai> listcode = RankService.listcode();
+		model.addAttribute("listcode", listcode);
+
+		return "child";
+	}
+
+	@RequestMapping("/ranksyou/update/{busyo_dai_code}/{busyo_cyu_code}/{busyo_syou_code}/child/{busyo_dai_code}")
+	private String Updatepopup_dai(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
+			@PathVariable String busyo_syou_code, Model model) {
+
+		List<rank_dai> listcode = RankService.listcode();
+		model.addAttribute("listcode", listcode);
+
+		if (busyo_dai_code.length() > 0) {
+			List<rank_cyu> listcyucode = RankService.listcyucode(busyo_dai_code);
+			model.addAttribute("listcyucode", listcyucode);
+			return "child_dai";
+		} else {
+			model.addAttribute("listcyucode", new ArrayList<rank_cyu>());
+			return "child";
+		}
+	}
+	// UPDATE POPUP END
 
 	@RequestMapping("ranksyou/update/{busyo_dai_code}/{busyo_cyu_code}/{busyo_syou_code}/{busyo_start}")
 	private String RanksyouUpdateForm(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
@@ -179,10 +218,10 @@ public class RankController {
 		System.out.println("contentnum : " + contentnum);
 		int cpagenum = Integer.parseInt(pagenum);
 		int ccontentnum = Integer.parseInt(contentnum);
-		
+
 		rank_cyu.setsearchtype(searchtype);
 		rank_cyu.setkeyword(keyword);
-		
+
 		rank_cyu.settotalcount(mapper.Rankcyucount(rank_cyu.getsearchtype(), rank_cyu.getkeyword())); // 전체계수
 		rank_cyu.setpagenum(cpagenum - 1); // 현재 페이지 객체 지정
 		rank_cyu.setcontentnum(ccontentnum); // 한 페이지 게시글 수
@@ -244,9 +283,6 @@ public class RankController {
 		System.out.println("start :" + busyo_start);
 
 		rank_cyu rank = RankService.RankcyuDetailService(busyo_dai_code, busyo_cyu_code, busyo_start);
-
-		List<rank_dai> listcode = RankService.listcode();
-		model.addAttribute("listcode", listcode);
 
 		model.addAttribute("detail", rank);
 

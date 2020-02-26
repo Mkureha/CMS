@@ -64,7 +64,8 @@
 					<h3 style="padding: 0; margin: 0; margin-bottom: 10px;">情報修正</h3>
 					<ol class="breadcrumb">
 						<li><a href="/index">ホーム</a></li>
-						<li><a href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
+						<li><a
+							href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=">小分類一覧</a></li>
 						<li class="active">情報修正</li>
 					</ol>
 					<div>
@@ -78,55 +79,34 @@
 									<td class="text-center warning" for="busyo_dai_code"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										大分類コード</td>
-									<td style="width: 1000px;"><select
-										class="form-control form-control-sm" name="busyo_dai_code"
-										id="busyo_dai_code"
-										style="width: 150px; height: auto; left: 10px;">
-											<c:forEach var="lc" items="${listcode}">
-												<c:if test="${detail.busyo_dai_code eq lc.busyo_dai_code}">
-													<option value="${lc.busyo_dai_code}" selected="selected">
-														${lc.busyo_dai_code }:${lc.busyo_name }</option>
-												</c:if>
-												<c:if test="${detail.busyo_dai_code ne lc.busyo_dai_code}">
-													<option value="${lc.busyo_dai_code}">
-														${lc.busyo_dai_code }:${lc.busyo_name }</option>
-												</c:if>
-											</c:forEach>
-									</select></td>
-								</tr>
-								<tr class="form-group">
+									<td style="width: 250px;"><input type="text"
+										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
+										value="${detail.busyo_dai_code }" readonly="true"
+										style="width: 150px; height: auto; left: 10px;"></td>
 									<td class="text-center warning" for="busyo_cyu_code"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										中分類コード</td>
-									<td style="width: 1000px;"><select
-										class="form-control form-control-sm" name="busyo_cyu_code"
-										id="busyo_cyu_code"
-										style="width: 150px; height: auto; left: 10px;">
-											<c:forEach var="lcc" items="${listcyucode}">
-												<c:if test="${detail.busyo_cyu_code eq lcc.busyo_cyu_code}">
-													<option value="${lcc.busyo_cyu_code}" selected="selected">
-														${lcc.busyo_cyu_code }:${lcc.busyo_name }</option>
-												</c:if>
-												<c:if test="${detail.busyo_cyu_code ne lcc.busyo_cyu_code}">
-													<option value="${lc.busyo_cyu_code}">
-														${lcc.busyo_cyu_code }:${lcc.busyo_name }</option>
-												</c:if>
-											</c:forEach>
-									</select></td>
+									<td style="width: 250px;"><input type="text"
+										class="form-control" id="busyo_cyu_code" name="busyo_cyu_code"
+										value="${detail.busyo_cyu_code }" readonly="true"
+										style="width: 150px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_syou_code"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										小分類コード</td>
-									<td style="width: 1000px;"><input type="text"
-										class="form-control" id="busyo_syou_code"
+									<td colspan="3" style="width: 1000px;"><input
+										type="button" class="btn btn-primary" value="分類選択"
+										onclick="openchild()"
+										style="width: 100px; height: 30px; left: 10px"><input
+										type="text" class="form-control" id="busyo_syou_code"
 										name="busyo_syou_code" value="${detail.busyo_syou_code }"
-										style="width: 150px; height: auto; left: 10px;"></td>
+										style="width: 150px; height: auto; left: 10px; margin-top: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name"
 										style="width: 250px; text-align: right;">名称</td>
-									<td style="width: 1000px;"><input type="text"
+									<td colspan="3" style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_name" name="busyo_name"
 										value="${detail.busyo_name }"
 										style="width: 550px; height: auto; left: 10px;"></td>
@@ -134,7 +114,7 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name_small"
 										style="width: 250px; text-align: right;">略称</td>
-									<td style="width: 1000px;"><input type="text"
+									<td colspan="3" style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_name_small"
 										name="busyo_name_small" value="${detail.busyo_name_small }"
 										style="width: 400px; height: auto; left: 10px;"></td>
@@ -143,7 +123,7 @@
 									<td class="text-center warning" for="busyo_start"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										開始日</td>
-									<td style="width: 1000px; position: relative"><input
+									<td colspan="3" style="width: 1000px; position: relative"><input
 										type="text" class="form-control" id="start_date"
 										name="busyo_start" size="8" value="${detail.busyo_start }"
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
@@ -151,7 +131,7 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_end"
 										style="width: 250px; text-align: right;">終了日</td>
-									<td style="width: 1000px; position: relative"><input
+									<td colspan="3" style="width: 1000px; position: relative"><input
 										type="text" class="form-control" id="end_date"
 										name="busyo_end" size="8" value="${detail.busyo_end }"
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;">
@@ -197,6 +177,11 @@ table {
 </style>
 
 	<script>
+		//popupイベント
+		function openchild() {
+			window.open('child', '分類',
+					'width=800, height=700, resizeable=no, left=10 top=10');
+		}
 		//文字数制限
 		//Small_name제한
 		$(document).ready(function() {

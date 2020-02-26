@@ -39,25 +39,46 @@
 		<div class="pull-left">
 			<h3
 				style="padding: 0; margin: 0; margin-bottom: 10px; margin-top: 20px">分類選択</h3>
-			<div class="pull-right"
-				style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">
+			<div>
+				<h5 class="pull-right"
+					style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">
+					(登録した後、部署名は表示されません)</h5>
 				<table class="table table-bordered table-condensed"
 					style="margin-top: 15px;">
 					<tr class="form-group">
 						<td class="text-center warning" for="busyo_dai_code"
-							style="width: 150px; height: auto; text-align: right; font-weight: bold; color: red;">*
-							大分類コード</td>
+							style="width: 150px; height: auto; text-align: right;">大分類コード</td>
 						<td style="width: 600px;"><select
 							class="form-control form-control-sm" name="busyo_dai_code"
 							id="Dcodeinput" style="width: 300px; height: auto; left: 10px;">
-								<option value="99">大分類コード</option>
 								<c:forEach var="lc" items="${listcode}">
-									<option value="${lc.busyo_dai_code }">${lc.busyo_dai_code }:${lc.busyo_name }</option>
+									<c:if test="${lc.busyo_dai_code eq busyo_dai_code}">
+										<option value="${lc.busyo_dai_code}" selected="selected">
+											${lc.busyo_dai_code }:${lc.busyo_name }</option>
+									</c:if>
+									<c:if test="${lc.busyo_dai_code ne busyo_dai_code}">
+										<option value="${lc.busyo_dai_code}">
+											${lc.busyo_dai_code }:${lc.busyo_name }</option>
+									</c:if>
+								</c:forEach>
+						</select></td>
+					</tr>
+					<tr class="form-group">
+						<td class="text-center warning" for="busyo_cyu_code"
+							style="width: 150px; height: auto; text-align: right;">中分類コード</td>
+						<td style="width: 600px;"><select
+							class="form-control form-control-sm" name="busyo_cyu_code"
+							id="Ccodeinput" style="width: 300px; height: auto; left: 10px;">
+								<option value="99">中分類コード</option>
+								<c:forEach var="lcc" items="${listcyucode}">
+									<option value="${lcc.busyo_dai_code }">${lcc.busyo_dai_code }:${lcc.busyo_name }</option>
 								</c:forEach>
 						</select></td>
 					</tr>
 				</table>
 				<div class="text-right" style="position: relative;">
+					<input class="btn btn-primary" type="button" value="送信"
+						onclick="setParentText()" style="width: 70px; height: 30px;">
 					<input class="btn btn-danger" type="button" value="閉じる"
 						onclick="window.close()" style="width: 70px; height: 30px;">
 				</div>

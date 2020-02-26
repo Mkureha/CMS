@@ -76,86 +76,58 @@
 								style="margin-top: 35px;">
 								<tr class="form-group">
 									<td class="text-center warning" for="employee_no"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										社員番号</td>
-									<td style="width: 1000px;"><input type="text"
+									<td colspan="2" style="width: 750px;"><input type="text"
 										class="form-control" id="employee_no" name="employee_no"
 										placeholder="1桁のアルファベット+3桁の連番"
 										style="width: 150px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="employee_name"
-										style="width: 250px; height: auto; text-align: right;">社員名</td>
-									<td style="width: 1000px;"><input type="text"
+										style="width: 300px; height: auto; text-align: right;">社員名</td>
+									<td colspan="2" style="width: 750px;"><input type="text"
 										class="form-control" id="employee_name" name="employee_name"
 										placeholder="社員名"
 										style="width: 200px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_dai_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										部署コード(大)</td>
-									<td style="width: 1000px;"><select
-										class="form-control form-control-sm" name="busyo_dai_code"
-										id="busyo_dai_code"
-										style="width: 150px; height: auto; left: 10px;">
-											<c:forEach var="lc" items="${listcode}">
-												<c:if test="${lc.busyo_dai_code eq busyo_dai_code}">
-													<option value="${lc.busyo_dai_code}" selected="selected">
-														${lc.busyo_dai_code }:${lc.busyo_name }</option>
-												</c:if>
-												<c:if test="${lc.busyo_dai_code ne busyo_dai_code}">
-													<option value="${lc.busyo_dai_code}">
-														${lc.busyo_dai_code }:${lc.busyo_name }</option>
-												</c:if>
-											</c:forEach>
-									</select></td>
+									<td style="width: 750px;"><input type="text"
+										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
+										placeholder="大分類" readonly="true"
+										style="width: 150px; height: auto; left: 10px;" /></td>
+									<td rowspan="3"
+										style="width: 100px; vertical-align: middle; text-align-last: center;"><input
+										type="button" class="btn btn-primary" value="分類選択"
+										onclick="openchild()"
+										style="width: 80px; height: 50px; left: 10px"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_cyu_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										部署コード(中)</td>
-									<td style="width: 1000px;"><select
-										class="form-control form-control-sm" name="busyo_cyu_code"
-										id="busyo_cyu_code"
-										style="width: 150px; height: auto; left: 10px;">
-											<c:forEach var="lcc" items="${listcyucode}">
-												<c:if test="${lcc.busyo_cyu_code eq busyo_cyu_code}">
-													<option value="${lcc.busyo_cyu_code}" selected="selected">
-														${lcc.busyo_cyu_code }:${lcc.busyo_name }</option>
-												</c:if>
-												<c:if test="${lcc.busyo_cyu_code ne busyo_cyu_code}">
-													<option value="${lcc.busyo_cyu_code}">
-														${lcc.busyo_cyu_code }:${lcc.busyo_name }</option>
-												</c:if>
-											</c:forEach>
-									</select></td>
+									<td style="width: 750px;"><input type="text"
+										class="form-control" id="busyo_cyu_code" name="busyo_cyu_code"
+										placeholder="中分類" readonly="true"
+										style="width: 150px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_syou_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
-										部署コード(中)</td>
-									<td style="width: 1000px;"><select
-										class="form-control form-control-sm" name="busyo_syou_code"
-										id="busyo_syou_code"
-										style="width: 150px; height: auto; left: 10px;">
-											<c:forEach var="lccc" items="${listsyoucode}">
-												<c:if test="${lccc.busyo_syou_code eq busyo_syou_code}">
-													<option value="${lccc.busyo_syou_code}" selected="selected">
-														${lccc.busyo_syou_code }:${lccc.busyo_name }</option>
-												</c:if>
-												<c:if test="${lccc.busyo_syou_code ne busyo_syou_code}">
-													<option value="${lccc.busyo_syou_code}">
-														${lccc.busyo_syou_code }:${lccc.busyo_name }</option>
-												</c:if>
-											</c:forEach>
-									</select></td>
+										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										部署コード(小)</td>
+									<td style="width: 750px;"><input type="text"
+										class="form-control" id="busyo_syou_code"
+										name="busyo_syou_code" placeholder="小分類" readonly="true"
+										style="width: 150px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="position_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										職責コード</td>
-									<td style="width: 1000px;"><select
+									<td colspan="2" style="width: 750px;"><select
 										class="form-control form-control-sm" name="position_code"
 										id="position_code"
 										style="width: 150px; height: auto; left: 10px;">
@@ -167,9 +139,9 @@
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="type_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										役職コード</td>
-									<td style="width: 1000px;"><select
+									<td colspan="2" style="width: 750px;"><select
 										class="form-control form-control-sm" name="type_code"
 										id="type_code" style="width: 150px; height: auto; left: 10px;">
 											<option value="99">役職コード</option>
@@ -180,51 +152,51 @@
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="gender"
-										style="width: 250px; height: auto; text-align: right;">性別</td>
-									<td style="width: 1000px;"><select
+										style="width: 300px; height: auto; text-align: right;">性別</td>
+									<td colspan="2" style="width: 750px;"><select
 										class="form-control form-control-sm" name="gender" id="gender"
 										style="width: 100px; height: auto; left: 10px;">
-											<option value="無">性別</option>
+											<option value="無" class="selected">性別</option>
 											<option value="男">男性</option>
 											<option value="女">女性</option>
 									</select></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="birthday"
-										style="width: 250px; height: auto; text-align: right;">生年月日</td>
-									<td style="width: 1000px; position: relative"><input
+										style="width: 300px; height: auto; text-align: right;">生年月日</td>
+									<td colspan="2" style="width: 750px; position: relative"><input
 										type="text" class="form-control" id="birthday_date"
 										name="birthday" size="8" title="生年月日"
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="postal_code"
-										style="width: 250px; height: auto; text-align: right;">郵便番号</td>
-									<td style="width: 1000px;"><input type="text"
+										style="width: 300px; height: auto; text-align: right;">郵便番号</td>
+									<td colspan="2" style="width: 750px;"><input type="text"
 										class="form-control" id="postal_code" name="postal_code"
 										placeholder="郵便番号(-無しで)"
 										style="width: 150px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="address_1"
-										style="width: 250px; height: auto; text-align: right;">詳細住所1</td>
-									<td style="width: 1000px;"><input type="text"
+										style="width: 300px; height: auto; text-align: right;">詳細住所1</td>
+									<td colspan="2" style="width: 750px;"><input type="text"
 										class="form-control" id="address_1" name="address_1"
 										placeholder="詳細住所1"
 										style="width: 500px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="address_2"
-										style="width: 250px; height: auto; text-align: right;">詳細住所2</td>
-									<td style="width: 1000px;"><input type="text"
+										style="width: 300px; height: auto; text-align: right;">詳細住所2</td>
+									<td colspan="2" style="width: 750px;"><input type="text"
 										class="form-control" id="address_2" name="address_2"
 										placeholder="詳細住所2"
 										style="width: 500px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="employee_memo"
-										style="width: 250px; height: auto; text-align: right;">備考</td>
-									<td style="width: 1000px;"><input type="text"
+										style="width: 300px; height: auto; text-align: right;">備考</td>
+									<td colspan="2" style="width: 750px;"><input type="text"
 										class="form-control" id="employee_memo" name="employee_memo"
 										placeholder="備考"
 										style="width: 400px; height: 300px; left: 10px;" /></td>
@@ -262,13 +234,18 @@ table {
 	text-align: left;
 }
 
-body, div {
+body,div {
 	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
 		'ＭＳ Ｐゴシック', sans-serif;
 }
 </style>
 
 	<script type="text/javascript">
+	//popupイベント
+	function openchild() {
+		window.open('child', '分類',
+				'width=800, height=700, resizeable=no, left=10 top=10');
+	}
 		//大分類イベント
 		$(document)
 				.ready(
@@ -291,29 +268,6 @@ body, div {
 											});
 						});
 
-		//中分類イベント
-		$(document)
-				.ready(
-						function() {
-							$('#busyo_cyu_code')
-									.on(
-											'change',
-											function() {
-												var cyucodeVal = $(
-														'#busyo_cyu_code')
-														.val();
-												if (daicodeVal > 0) {
-													location.href = "http://localhost:8080/employee/insert/"
-															+ daicodeVal
-															+ "/"
-															+ cyucodeVal;
-												} else {
-													alert("中分類を選択してください！")
-													$("#busyo_cyu_code")
-															.focus();
-												}
-											});
-						});
 		//小分類イベント
 		$(document)
 				.ready(
@@ -370,7 +324,6 @@ body, div {
 				}
 			});
 		});
-		
 	</script>
 	<%@ include file="bootstrap.jsp"%>
 </body>
