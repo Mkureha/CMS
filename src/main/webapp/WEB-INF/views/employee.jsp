@@ -73,9 +73,9 @@
 								<th class="text-center">郵便番号</th>
 								<th class="text-center">詳細住所1</th>
 								<th class="text-center">詳細住所2</th>
-								<th class="text-center">部署大分類</th>
-								<th class="text-center">部署中分類</th>
-								<th class="text-center">部署小分類</th>
+								<th class="text-center" style="display:none">部署大分類</th>
+								<th class="text-center" style="display:none">部署中分類</th>
+								<th class="text-center" style="display:none">部署小分類</th>
 							</tr>
 							<c:forEach var="cpn" items="${list}">
 								<tr>
@@ -90,9 +90,9 @@
 									<td>${cpn.postal_code}</td>
 									<td>${cpn.address_1}</td>
 									<td>${cpn.address_2}</td>
-									<td>${cpn.busyo_dai_code}</td>
-									<td>${cpn.busyo_cyu_code}</td>
-									<td>${cpn.busyo_syou_code}</td>
+									<td style="display:none">${cpn.busyo_dai_code}</td>
+									<td style="display:none">${cpn.busyo_cyu_code}</td>
+									<td style="display:none">${cpn.busyo_syou_code}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
