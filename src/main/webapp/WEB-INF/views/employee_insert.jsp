@@ -107,7 +107,7 @@
 										style="width: 430px; height: auto; left: 10px;" /></td>
 									<td rowspan="3"
 										style="width: 100px; vertical-align: middle; text-align-last: center;"><input
-										type="button" class="btn btn-primary" value="分類選択"
+										type="button" class="btn btn-danger" value="分類選択"
 										onclick="openchild()"
 										style="width: 80px; height: 50px; left: 10px"></td>
 								</tr>
