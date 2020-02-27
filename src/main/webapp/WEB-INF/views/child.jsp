@@ -46,10 +46,10 @@
 					<tr class="form-group">
 						<td class="text-center warning" for="busyo_dai_code"
 							style="width: 150px; height: auto; text-align: right; font-weight: bold; color: red;">*
-							大分類コード</td>
+							大分類</td>
 						<td style="width: 600px;"><select
 							class="form-control form-control-sm" name="busyo_dai_code"
-							id="Dcodeinput" style="width: 300px; height: auto; left: 10px;">
+							id="Dcodeinput" style="width: 200px; height: auto; left: 10px;">
 								<option value="99">大分類コード</option>
 								<c:forEach var="lc" items="${listcode}">
 									<option value="${lc.busyo_dai_code }">${lc.busyo_dai_code }:${lc.busyo_name }</option>

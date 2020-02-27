@@ -96,11 +96,8 @@
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										小分類コード</td>
 									<td colspan="3" style="width: 1000px;"><input
-										type="button" class="btn btn-primary" value="分類選択"
-										onclick="openchild()"
-										style="width: 100px; height: 30px; left: 10px"><input
 										type="text" class="form-control" id="busyo_syou_code"
-										name="busyo_syou_code" value="${detail.busyo_syou_code }"
+										name="busyo_syou_code" value="${detail.busyo_syou_code }" readonly="ture" 
 										style="width: 150px; height: auto; left: 10px; margin-top: 10px;"></td>
 								</tr>
 								<tr class="form-group">

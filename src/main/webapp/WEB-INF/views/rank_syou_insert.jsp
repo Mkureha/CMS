@@ -84,14 +84,14 @@
 										大分類コード</td>
 									<td style="width: 250px;"><input type="text"
 										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
-										placeholder="大分類" readonly="true"
+										placeholder="大分類"
 										style="width: 150px; height: auto; left: 10px;" /></td>
 									<td class="text-center warning" for="busyo_cyu_code"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										中分類コード</td>
 									<td style="width: 250px;"><input type="text"
 										class="form-control" id="busyo_cyu_code" name="busyo_cyu_code"
-										placeholder="中分類" readonly="true"
+										placeholder="中分類"
 										style="width: 150px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">

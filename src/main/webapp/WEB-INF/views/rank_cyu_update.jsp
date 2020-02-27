@@ -78,28 +78,17 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_dai_code"
 										style="width: 250px; text-align: right;">大分類コード</td>
-									<td style="width: 1000px;"><select
-										class="form-control form-control-sm" name="busyo_dai_code"
-										id="busyo_dai_code"
-										style="width: 150px; height: auto; left: 10px;">
-											<c:forEach var="lc" items="${listcode}">
-												<c:if test="${detail.busyo_dai_code eq lc.busyo_dai_code}">
-													<option value="${lc.busyo_dai_code}" selected="selected">
-														${lc.busyo_dai_code }:${lc.busyo_name }</option>
-												</c:if>
-												<c:if test="${detail.busyo_dai_code ne lc.busyo_dai_code}">
-													<option value="${lc.busyo_dai_code}">
-														${lc.busyo_dai_code }:${lc.busyo_name }</option>
-												</c:if>
-											</c:forEach>
-									</select></td>
+									<td style="width: 1000px;"><input type="text"
+										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
+										value="${detail.busyo_dai_code }" readonly="ture" 
+										style="width: 150px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_cyu_code"
 										style="width: 250px; text-align: right;">中分類コード</td>
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_cyu_code" name="busyo_cyu_code"
-										value="${detail.busyo_cyu_code }"
+										value="${detail.busyo_cyu_code }" readonly="ture" 
 										style="width: 150px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">

@@ -13,6 +13,17 @@
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>分類選択</title>
 <script type="text/javascript">
+//INSERTイベント
+function setParentText() {
+	opener.document.getElementById("busyo_dai_code").value = document
+			.getElementById("Dcodeinput").value
+	opener.document.getElementById("busyo_cyu_code").value = document
+			.getElementById("Ccodeinput").value
+	opener.document.getElementById("busyo_name").value = document
+	.getElementById("Dname").value + document
+	.getElementById("Cname").value
+	window.close();
+}
 	//大分類イベント
 	$(document)
 			.ready(
@@ -47,10 +58,10 @@
 					style="margin-top: 15px;">
 					<tr class="form-group">
 						<td class="text-center warning" for="busyo_dai_code"
-							style="width: 150px; height: auto; text-align: right;">大分類コード</td>
-						<td style="width: 600px;"><select
+							style="width: 150px; height: auto; text-align: right; font-weight: bold; color: red;">大分類</td>
+						<td style="width: 200px;"><select
 							class="form-control form-control-sm" name="busyo_dai_code"
-							id="Dcodeinput" style="width: 300px; height: auto; left: 10px;">
+							id="Dcodeinput" style="width: 200px; height: auto; left: 10px;">
 								<c:forEach var="lc" items="${listcode}">
 									<c:if test="${lc.busyo_dai_code eq busyo_dai_code}">
 										<option value="${lc.busyo_dai_code}" selected="selected">
@@ -62,18 +73,30 @@
 									</c:if>
 								</c:forEach>
 						</select></td>
+						<td style="width: 400px"><c:forEach var="lc"
+								items="${listcode}">
+								<c:if test="${lc.busyo_dai_code eq busyo_dai_code}">
+									<input id="Dname" value="${lc.busyo_name }">
+								</c:if>
+							</c:forEach></td>
 					</tr>
 					<tr class="form-group">
 						<td class="text-center warning" for="busyo_cyu_code"
-							style="width: 150px; height: auto; text-align: right;">中分類コード</td>
-						<td style="width: 600px;"><select
+							style="width: 150px; height: auto; text-align: right; font-weight: bold; color: red;">中分類</td>
+						<td colspan="2" style="width: 200px;"><select
 							class="form-control form-control-sm" name="busyo_cyu_code"
-							id="Ccodeinput" style="width: 300px; height: auto; left: 10px;">
+							id="Ccodeinput" style="width: 200px; height: auto; left: 10px;">
 								<option value="99">中分類コード</option>
 								<c:forEach var="lcc" items="${listcyucode}">
-									<option value="${lcc.busyo_dai_code }">${lcc.busyo_dai_code }:${lcc.busyo_name }</option>
+									<option value="${lcc.busyo_cyu_code }">${lcc.busyo_cyu_code }:${lcc.busyo_name }</option>
 								</c:forEach>
 						</select></td>
+						<td class="hidden" style="width: 400px"><c:forEach var="lc"
+								items="${listcode}">
+								<c:if test="${lcc.busyo_cyu_code eq busyo_cyu_code}">
+									<input id="Cname" value="${lcc.busyo_name }">
+								</c:if>
+							</c:forEach></td>
 					</tr>
 				</table>
 				<div class="text-right" style="position: relative;">

@@ -92,9 +92,9 @@
 										style="width: 200px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
-									<td class="text-center warning" for="busyo_dai_code"
+									<td rowspan="3" class="text-center warning" for="busyo_dai_code"
 										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
-										部署コード(大)</td>
+										部署コード</td>
 									<td style="width: 750px;"><input type="text"
 										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
 										placeholder="大分類" readonly="true"
@@ -106,18 +106,12 @@
 										style="width: 80px; height: 50px; left: 10px"></td>
 								</tr>
 								<tr class="form-group">
-									<td class="text-center warning" for="busyo_cyu_code"
-										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
-										部署コード(中)</td>
 									<td style="width: 750px;"><input type="text"
 										class="form-control" id="busyo_cyu_code" name="busyo_cyu_code"
 										placeholder="中分類" readonly="true"
 										style="width: 150px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
-									<td class="text-center warning" for="busyo_syou_code"
-										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
-										部署コード(小)</td>
 									<td style="width: 750px;"><input type="text"
 										class="form-control" id="busyo_syou_code"
 										name="busyo_syou_code" placeholder="小分類" readonly="true"
@@ -246,52 +240,6 @@ body,div {
 		window.open('child', '分類',
 				'width=800, height=700, resizeable=no, left=10 top=10');
 	}
-		//大分類イベント
-		$(document)
-				.ready(
-						function() {
-							$('#busyo_dai_code')
-									.on(
-											'change',
-											function() {
-												var daicodeVal = $(
-														'#busyo_dai_code')
-														.val();
-												if (daicodeVal > 0) {
-													location.href = "http://localhost:8080/employee/insert/"
-															+ daicodeVal;
-												} else {
-													alert("大分類を選択してください！")
-													$("#busyo_dai_code")
-															.focus();
-												}
-											});
-						});
-
-		//小分類イベント
-		$(document)
-				.ready(
-						function() {
-							$('#busyo_syou_code')
-									.on(
-											'change',
-											function() {
-												var syoucodeVal = $(
-														'#busyo_syou_code')
-														.val();
-												if (daicodeVal > 0) {
-													location.href = "http://localhost:8080/ranksyou/insert/"
-															+ daicodeVal + "/"
-													cyucodeVal + "/"
-													syoucodeVal;
-												} else {
-													alert("小分類を選択してください！")
-													$("#busyo_syou_code")
-															.focus();
-												}
-											});
-						});
-
 		//日付設定(start)
 		$("#birthday_date")
 				.datepicker(

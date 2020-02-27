@@ -75,7 +75,7 @@
 										style="width: 250px; text-align: right;">コード</td>
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="type_code" name="type_code"
-										value="${detail.type_code }"
+										value="${detail.type_code }" readonly="ture" 
 										style="width: 150px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">

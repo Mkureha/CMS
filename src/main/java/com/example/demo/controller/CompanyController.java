@@ -68,14 +68,15 @@ public class CompanyController {
 	}
 
 	@RequestMapping("/employee/child/{busyo_dai_code}/{busyo_cyu_code}")
-	private String Insertpopup_cyu(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code, Model model) {
+	private String Insertpopup_cyu(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
+			Model model) {
 
 		List<rank_dai> listcode = employeeService.listcode();
 		model.addAttribute("listcode", listcode);
 
 		List<rank_cyu> listcyucode = employeeService.listcyucode(busyo_dai_code);
 		model.addAttribute("listcyucode", listcyucode);
-		
+
 		if (busyo_dai_code.length() > 0) {
 			List<rank_syou> listsyoucode = employeeService.listsyoucode(busyo_dai_code, busyo_cyu_code);
 			model.addAttribute("listsyoucode", listsyoucode);
@@ -157,6 +158,54 @@ public class CompanyController {
 
 		return "redirect:/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=";
 	}
+
+	// UPDATE POPUP
+	@RequestMapping("/employee/update/{busyo_dai_code}/{busyo_cyu_code}/child")
+	private String Updatepopup(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code, Model model) {
+
+		List<rank_dai> listcode = employeeService.listcode();
+		model.addAttribute("listcode", listcode);
+
+		return "Echild";
+	}
+
+	@RequestMapping("/employee/update/{busyo_dai_code}/{busyo_cyu_code}/child/{busyo_dai_code}")
+	private String Updatepopup_dai(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
+			Model model) {
+
+		List<rank_dai> listcode = employeeService.listcode();
+		model.addAttribute("listcode", listcode);
+
+		if (busyo_dai_code.length() > 0) {
+			List<rank_cyu> listcyucode = employeeService.listcyucode(busyo_dai_code);
+			model.addAttribute("listcyucode", listcyucode);
+			return "Echild_dai";
+		} else {
+			model.addAttribute("listcyucode", new ArrayList<rank_cyu>());
+			return "Echild";
+		}
+	}
+
+	@RequestMapping("/employee/update/{busyo_dai_code}/{busyo_cyu_code}/child/{busyo_dai_code}/{busyo_cyu_code}")
+	private String Updatepopup_cyu(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
+			Model model) {
+
+		List<rank_dai> listcode = employeeService.listcode();
+		model.addAttribute("listcode", listcode);
+
+		List<rank_cyu> listcyucode = employeeService.listcyucode(busyo_dai_code);
+		model.addAttribute("listcyucode", listcyucode);
+
+		if (busyo_dai_code.length() > 0) {
+			List<rank_syou> listsyoucode = employeeService.listsyoucode(busyo_dai_code, busyo_cyu_code);
+			model.addAttribute("listsyoucode", listsyoucode);
+			return "Echild_cyu";
+		} else {
+			model.addAttribute("listsyoucode", new ArrayList<rank_syou>());
+			return "Echild_dai";
+		}
+	}
+	// INSERT POPUP END
 
 	@RequestMapping("employee/update/{busyo_dai_code}/{busyo_cyu_code}/{employee_no}") // 게시글수정폼호출
 	private String employeeUpdateForm(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
