@@ -67,7 +67,7 @@
 							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">*
 							は必ず入力してください</h5>
 						<form role="form" action="/type/insertProc" method="post"
-							enctype="multipart/form-data" autocomplete="off">
+							id="Tinsertfrm" enctype="multipart/form-data" autocomplete="off">
 							<table class="table table-bordered table-condensed"
 								style="margin-top: 35px;">
 								<tr class="form-group">
@@ -85,7 +85,7 @@
 										名称</td>
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="type_name" name="type_name"
-										placeholder="名称(制限 50文字まで)"
+										placeholder="名称(制限 10文字まで)"
 										style="width: 550px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
@@ -109,17 +109,17 @@
 									<td class="text-center warning" for="type_end"
 										style="width: 250px; height: auto; text-align: right;">終了日</td>
 									<td style="width: 1000px; position: relative"><input
-										type="text" class="form-control" id="end_date"
-										name="type_end" size="8" title="終了日"
+										type="text" class="form-control" id="end_date" name="type_end"
+										size="8" title="終了日"
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;">
 									</td>
 								</tr>
 							</table>
 							<div class="text-right" style="type: relative;">
-								<button type="submit" class="btn btn-warning"
-									style="width: 70px; height: 30px;">登録</button>
-								<a type="button" class="btn btn-primary"
-									href="javascript:history.back(-1)"
+								<input type="button" id="subend"
+									class="btn btn-warning form-controll" value="登録"
+									　style="width: 70px; height: 30px;" /> <a type="button"
+									class="btn btn-primary" href="javascript:history.back(-1)"
 									style="width: 70px; height: 30px;">戻る</a>
 							</div>
 						</form>
@@ -154,6 +154,29 @@ body,div {
 </style>
 
 	<script type="text/javascript">
+		//Form検査
+		$(document)
+				.ready(
+						function() {
+							$("#subend")
+									.click(
+											function() {
+												if ($("#type_code").val() == "") {
+													alert("役職コードを入力してください");
+												} else if ($("#type_name")
+														.val() == "") {
+													alert("役職名を選択してください");
+												} else if ($("#type_start")
+														.val() == "") {
+													alert("開始日を選択してください");
+												} else {
+													$("#Tinsertfrm")
+															.attr("action",
+																	"<c:url value='/type/insertProc'/>");
+													$("#Tinsertfrm").submit();
+												}
+											});
+						});
 		//文字数制限
 		//Small_name제한
 		$(document).ready(function() {

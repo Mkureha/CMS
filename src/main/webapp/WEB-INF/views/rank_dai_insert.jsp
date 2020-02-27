@@ -72,7 +72,7 @@
 							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">*
 							は必ず入力してください</h5>
 						<form role="form" action="/rankdai/insertProc" method="post"
-							id="insertfrm" enctype="multipart/form-data" autocomplete="off">
+							id="Dinsertfrm" enctype="multipart/form-data" autocomplete="off">
 							<table class="table table-bordered table-condensed"
 								style="margin-top: 35px;">
 								<tr class="form-group">
@@ -121,9 +121,10 @@
 								</tr>
 							</table>
 							<div class="text-right" style="position: relative;">
-								<button type="button" class="btn btn-warning form-controll"
-									id="insertbtn" style="width: 70px; height: 30px;">登録</button>
-								<a type="button" class="btn btn-primary"
+								<input type="button" id="subend"
+									class="btn btn-warning form-controll" value="登録"
+									　style="width: 70px; height: 30px;" /> <a type="button"
+									class="btn btn-primary"
 									href="/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword="
 									style="width: 70px; height: 30px;">戻る</a>
 							</div>
@@ -152,13 +153,33 @@ table {
 	text-align: left;
 }
 
-body, div {
+body,div {
 	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
 		'ＭＳ Ｐゴシック', sans-serif;
 }
 </style>
 
 	<script type="text/javascript">
+		//Form検査
+		$(document)
+				.ready(
+						function() {
+							$("#subend")
+									.click(
+											function() {
+												if ($("#busyo_dai_code").val().length != 2) {
+													alert("大分類コードを入力してください");
+												} else if ($("#busyo_start")
+														.val() == "") {
+													alert("開始日を選択してください");
+												} else {
+													$("#Dinsertfrm")
+															.attr("action",
+																	"<c:url value='/rankdai/insertProc'/>");
+													$("#Dinsertfrm").submit();
+												}
+											});
+						});
 		//入力チェック /コード重複チェック
 		$(document).ready(function() {
 			$("#insertbtn").click(function() {

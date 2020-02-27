@@ -223,7 +223,7 @@
 							<div class="text-right" style="position: relative;">
 								<input type="button" value="削除" class="btn btn-danger"
 									OnClick="location.href='/employee/delete/${detail.busyo_dai_code}/${detail.busyo_cyu_code}/${detail.employee_no}'">
-								<button type="submit" class="btn btn-warning">修正</button>
+								<button type="submit" class="btn btn-warning" id="subend">修正</button>
 								<input type="button" value="戻る" class="btn btn-primary"
 									OnClick="javascript:history.back(-1)">
 							</div>
@@ -259,6 +259,34 @@ body,div {
 </style>
 
 	<script type="text/javascript">
+	//Form検査
+	$(document).ready(
+			function() {
+				$("#subend").click(
+						function() {
+							if ($("#employee_no").val() == "") {
+								alert("社員番号が無いです！");
+							} else if ($("#employee_name").val() == "") {
+								alert("社員名が無いです！");
+							} else if ($("#busyo_name").val() == "") {
+								alert("部署が無いです！");
+							} else if ($("#position_code").val() == "99") {
+								alert("職責が無いです！");
+							} else if ($("#type_code").val() == "99") {
+								alert("役職が無いです！");
+							} else if ($("#gender").val() == "無") {
+								alert("性別が無いです！");
+							} else if ($("#birthday").val() == "") {
+								alert("誕生日が無いです！");
+							} else if ($("#postal_code").val() == "") {
+								alert("郵便番号が無いです！");
+							} else {
+								$("#subend").attr("action",
+										"<c:url value='/employee/updateProc'/>");
+								$("#subend").submit();
+							}
+						});
+			});
 		//popupイベント
 		function openchild() {
 			window.open('child', '分類',

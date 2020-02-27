@@ -70,7 +70,7 @@
 							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">
 							* ここから部署コードを変わると、 *<br>ページがやり直しますのでご注意ください
 						</h5>
-						<form role="form" action="/employee/insertProc" method="post"
+						<form id="employeefrm" role="form" action="/employee/insertProc" method="post"
 							enctype="multipart/form-data" autocomplete="off">
 							<table class="table table-bordered table-condensed"
 								style="margin-top: 35px;">
@@ -131,7 +131,7 @@
 										class="form-control form-control-sm" name="position_code"
 										id="position_code"
 										style="width: 150px; height: auto; left: 10px;">
-											<option value="99">職責コード</option>
+											<option value="999">(未配置)</option>
 											<c:forEach var="lp" items="${listposition}">
 												<option value="${lp.position_code }">${lp.position_code }:${lp.position_name }</option>
 											</c:forEach>
@@ -144,7 +144,7 @@
 									<td colspan="3" style="width: 750px;"><select
 										class="form-control form-control-sm" name="type_code"
 										id="type_code" style="width: 150px; height: auto; left: 10px;">
-											<option value="99">役職コード</option>
+											<option value="99">(未配置)</option>
 											<c:forEach var="ltp" items="${listtype}">
 												<option value="${ltp.type_code }">${ltp.type_code }:${ltp.type_name }</option>
 											</c:forEach>
@@ -206,10 +206,10 @@
 								</tr>
 							</table>
 							<div class="text-right" style="position: relative;">
-								<button type="submit" class="btn btn-warning"
-									style="width: 70px; height: 30px;">登録</button>
-								<a type="button" class="btn btn-primary"
-									href="javascript:history.back(-1)"
+								<input type="button" id="subend"
+									class="btn btn-warning form-controll" value="登録"
+									　style="width: 70px; height: 30px;" /> <a type="button"
+									class="btn btn-primary" href="javascript:history.back(-1)"
 									style="width: 70px; height: 30px;">戻る</a>
 							</div>
 						</form>
@@ -242,8 +242,43 @@ body,div {
 		'ＭＳ Ｐゴシック', sans-serif;
 }
 </style>
-
 	<script type="text/javascript">
+		//Form検査
+		$(document)
+				.ready(
+						function() {
+							$("#subend")
+									.click(
+											function() {
+												if ($("#employee_no").val().length != 4) {
+													alert("社員番号を入力してください（文字が足ります）");
+												} else if ($("#employee_name")
+														.val() == "") {
+													alert("社員名を入力してください");
+												} else if ($("#busyo_name")
+														.val() == "") {
+													alert("部署を選択してください");
+												} else if ($("#position_code")
+														.val() == "999") {
+													alert("職責を選択してください");
+												} else if ($("#type_code")
+														.val() == "99") {
+													alert("役職を選択してください");
+												} else if ($("#gender").val() == "無") {
+													alert("性別を選択してください");
+												} else if ($("#birthday").val() == "") {
+													alert("誕生日を選択してください");
+												} else if ($("#postal_code")
+														.val().length != 7) {
+													alert("郵便番号を入力してください（文字が足ります）");
+												} else {
+													$("#employeefrm")
+															.attr("action",
+																	"<c:url value='/employee/insertProc'/>");
+													$("#employeefrm").submit();
+												}
+											});
+						});
 		//popupイベント
 		function openchild() {
 			window.open('child', '分類',

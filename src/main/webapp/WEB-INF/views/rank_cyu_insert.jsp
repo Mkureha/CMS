@@ -74,7 +74,7 @@
 							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">*
 							は必ず入力してください</h5>
 						<form role="form" action="/rankcyu/insertProc" method="post"
-							enctype="multipart/form-data" autocomplete="off">
+							id="Cinsertfrm" enctype="multipart/form-data" autocomplete="off">
 							<table class="table table-bordered table-condensed"
 								style="margin-top: 35px;">
 								<tr class="form-group">
@@ -85,7 +85,7 @@
 										class="form-control form-control-sm" name="busyo_dai_code"
 										id="busyo_dai_code"
 										style="width: 150px; height: auto; left: 10px;">
-											<option value="99">大分類コード</option>
+											<option value="999">大分類選択</option>
 											<c:forEach var="lc" items="${listcode}">
 												<option value="${lc.busyo_dai_code }">${lc.busyo_dai_code }:${lc.busyo_name }</option>
 											</c:forEach>
@@ -137,9 +137,10 @@
 								</tr>
 							</table>
 							<div class="text-right" style="position: relative;">
-								<button type="submit" class="btn btn-warning"
-									style="width: 70px; height: 30px;">登録</button>
-								<a type="button" class="btn btn-primary"
+								<input type="button" id="subend"
+									class="btn btn-warning form-controll" value="登録"
+									　style="width: 70px; height: 30px;" /> <a type="button"
+									class="btn btn-primary"
 									href="/rankcyu?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword="
 									style="width: 70px; height: 30px;">戻る</a>
 							</div>
@@ -168,13 +169,39 @@ table {
 	text-align: left;
 }
 
-body, div {
+body,div {
 	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
 		'ＭＳ Ｐゴシック', sans-serif;
 }
 </style>
 
 	<script type="text/javascript">
+		//Form検査
+		$(document)
+				.ready(
+						function() {
+							$("#subend")
+									.click(
+											function() {
+												if ($("#busyo_cyu_code").val().length != 2) {
+													alert("中分類コードを入力してください");
+												} else if ($("#busyo_dai_code")
+														.val() == "999") {
+													alert("大分類コードを選択してください");
+												} else if ($("#busyo_name")
+														.val() == "") {
+													alert("部署名を入力してください");
+												} else if ($("#busyo_start")
+														.val() == "") {
+													alert("開始日を選択してください");
+												} else {
+													$("#Cinsertfrm")
+															.attr("action",
+																	"<c:url value='/rankcyu/insertProc'/>");
+													$("#Cinsertfrm").submit();
+												}
+											});
+						});
 		//文字数制限
 		//Small_name제한
 		$(document).ready(function() {

@@ -73,7 +73,7 @@
 						<h5 class="pull-right"
 							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">
 							* は必ず入力してください</h5>
-						<form role="form" action="/ranksyou/insertProc" id="insertForm"
+						<form role="form" action="/ranksyou/insertProc" id="SinsertForm"
 							method="post" enctype="multipart/form-data" autocomplete="off">
 							<table class="table table-bordered table-condensed"
 								style="margin-top: 35px;">
@@ -96,8 +96,7 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_syou_code"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
-										小分類コード
-									</td>
+										小分類コード</td>
 									<td colspan="3" style="width: 1000px; position: relative"><div>
 											<input type="button" class="btn btn-danger" value="既存分類選択"
 												onclick="openchild()"
@@ -144,9 +143,10 @@
 								</tr>
 							</table>
 							<div class="text-right" style="position: relative;">
-								<button type="submit" class="btn btn-warning"
-									style="width: 70px; height: 30px;">登録</button>
-								<a type="button" class="btn btn-primary"
+								<input type="button" id="subend"
+									class="btn btn-warning form-controll" value="登録"
+									　style="width: 70px; height: 30px;" /> <a type="button"
+									class="btn btn-primary"
 									href="/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword="
 									style="width: 70px; height: 30px;">戻る</a>
 							</div>
@@ -182,6 +182,26 @@ body,div {
 </style>
 
 	<script type="text/javascript">
+	//Form検査
+	$(document).ready(
+			function() {
+				$("#subend").click(
+						function() {
+							if ($("#busyo_dai_code").val() == "") {
+								alert("部署分類コード（大、中）を選択してください");
+							} else if ($("#busyo_syou_code").val().length != 2) {
+								alert("小分類コードを入力してください");
+							} else if ($("#busyo_name").val() == "") {
+								alert("部署名を選択してください");
+							} else if ($("#busyo_start").val() == "") {
+								alert("開始日を選択してください");
+							} else {
+								$("#SinsertForm").attr("action",
+										"<c:url value='/ranksyou/insertProc'/>");
+								$("#SinsertForm").submit();
+							}
+						});
+			});
 		//popupイベント
 		function openchild() {
 			window.open('child', '分類',

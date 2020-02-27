@@ -67,7 +67,7 @@
 							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">*
 							は必ず入力してください</h5>
 						<form role="form" action="/position/insertProc" method="post"
-							enctype="multipart/form-data" autocomplete="off">
+							id="Pinsertfrm" enctype="multipart/form-data" autocomplete="off">
 							<table class="table table-bordered table-condensed"
 								style="margin-top: 35px;">
 								<tr class="form-group">
@@ -85,7 +85,7 @@
 										名称</td>
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="position_name" name="position_name"
-										placeholder="名称(制限 50文字まで)"
+										placeholder="名称(制限 10文字まで)"
 										style="width: 550px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
@@ -116,10 +116,10 @@
 								</tr>
 							</table>
 							<div class="text-right" style="position: relative;">
-								<button type="submit" class="btn btn-warning"
-									style="width: 70px; height: 30px;">登録</button>
-								<a type="button" class="btn btn-primary"
-									href="javascript:history.back(-1)"
+								<input type="button" id="subend"
+									class="btn btn-warning form-controll" value="登録"
+									　style="width: 70px; height: 30px;" /> <a type="button"
+									class="btn btn-primary" href="javascript:history.back(-1)"
 									style="width: 70px; height: 30px;">戻る</a>
 							</div>
 						</form>
@@ -147,13 +147,36 @@ table {
 	text-align: left;
 }
 
-body, div {
+body,div {
 	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
 		'ＭＳ Ｐゴシック', sans-serif;
 }
 </style>
 
 	<script type="text/javascript">
+		//Form検査
+		$(document)
+				.ready(
+						function() {
+							$("#subend")
+									.click(
+											function() {
+												if ($("#position_code").val().length != 2) {
+													alert("職責コードを入力してください");
+												} else if ($("#position_name")
+														.val() == "") {
+													alert("職責名を入力してください");
+												} else if ($("#position_start")
+														.val() == "") {
+													alert("開始日を選択してください");
+												} else {
+													$("#Pinsertfrm")
+															.attr("action",
+																	"<c:url value='/position/insertProc'/>");
+													$("#Pinsertfrm").submit();
+												}
+											});
+						});
 		//文字数制限
 		//Small_name제한
 		$(document).ready(function() {
@@ -182,9 +205,9 @@ body, div {
 		//name 제한
 		$(document).ready(function() {
 			$('#position_name').on('keyup', function() {
-				if ($(this).val().length > 100) {
-					alert("文字数制限を超えました!(制限:文字-50桁、英語-100桁)");
-					$(this).val($(this).val().substring(0, 100));
+				if ($(this).val().length > 20) {
+					alert("文字数制限を超えました!(制限:文字-10桁、英語-20桁)");
+					$(this).val($(this).val().substring(0, 20));
 				}
 			});
 		});
