@@ -49,7 +49,7 @@ $(document)
 											location.href = "http://localhost:8080/employee/child/"
 													+ daicodeVal + "/" + cyucodeVal;
 										} else {
-											alert("大分類を選択してください！")
+											alert("中分類を選択してください！")
 											$("#Ccodeinput").focus();
 										}
 									});
@@ -70,10 +70,10 @@ $(document)
 					style="margin-top: 15px;">
 					<tr class="form-group">
 						<td class="text-center warning" for="busyo_dai_code"
-							style="width: 150px; height: auto; text-align: right;">大分類コード</td>
-						<td style="width: 600px;"><select
+							style="width: 100px; height: auto; text-align: right;">大分類</td>
+						<td style="width: 200px;"><select
 							class="form-control form-control-sm" name="busyo_dai_code"
-							id="Dcodeinput" style="width: 300px; height: auto; left: 10px;">
+							id="Dcodeinput" style="width: 200px; height: auto; left: 10px;">
 								<c:forEach var="lc" items="${listcode}">
 									<c:if test="${lc.busyo_dai_code eq busyo_dai_code}">
 										<option value="${lc.busyo_dai_code}" selected="selected">
@@ -85,16 +85,24 @@ $(document)
 									</c:if>
 								</c:forEach>
 						</select></td>
+						<td style="width: 400px"><c:forEach var="lc"
+								items="${listcode}">
+								<c:if test="${lc.busyo_dai_code eq busyo_dai_code}">
+									<input id="Dname" class="form-control"
+										value="${lc.busyo_name }"
+										style="width: 100px; height: auto; left: 10px;">
+								</c:if>
+							</c:forEach></td>
 					</tr>
 					<tr class="form-group">
 						<td class="text-center warning" for="busyo_cyu_code"
-							style="width: 150px; height: auto; text-align: right;">中分類コード</td>
-						<td style="width: 600px;"><select
+							style="width: 100px; height: auto; text-align: right;">中分類</td>
+						<td colspan="2" style="width: 200px;"><select
 							class="form-control form-control-sm" name="busyo_cyu_code"
-							id="Ccodeinput" style="width: 300px; height: auto; left: 10px;">
+							id="Ccodeinput" style="width: 200px; height: auto; left: 10px;">
 								<option value="99">中分類コード</option>
 								<c:forEach var="lcc" items="${listcyucode}">
-									<option value="${lcc.busyo_dai_code }">${lcc.busyo_dai_code }:${lcc.busyo_name }</option>
+									<option value="${lcc.busyo_cyu_code }">${lcc.busyo_cyu_code }:${lcc.busyo_name }</option>
 								</c:forEach>
 						</select></td>
 					</tr>

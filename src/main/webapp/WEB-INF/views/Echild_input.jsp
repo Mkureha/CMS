@@ -22,7 +22,7 @@
 		opener.document.getElementById("busyo_syou_code").value = document
 				.getElementById("Scodeinput").value
 		opener.document.getElementById("busyo_name").value = document
-				.getElementById("Cname").value
+				.getElementById("Sname").value
 		window.close();
 	}
 
@@ -87,7 +87,7 @@
 														+ daicodeVal + "/" + cyucodeVal + "/" + syoucodeVal;
 											} else {
 												alert("小分類を選択してください！")
-												$("#Ccodeinput").focus();
+												$("#Scodeinput").focus();
 											}
 										});
 					});
@@ -102,7 +102,7 @@
 			<div>
 				<h5 class="pull-right"
 					style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">
-					(登録した後、部署名は自動に '名称'に入ります)</h5><br>小分類が無い場合は送信を押してください
+					(登録した後、部署名は自動に '名称'に入ります)</h5>
 				<table class="table table-bordered table-condensed"
 					style="margin-top: 15px;">
 					<tr class="form-group">
@@ -160,14 +160,28 @@
 					<tr class="form-group">
 						<td class="text-center warning" for="busyo_syou_code"
 							style="width: 100px; height: auto; text-align: right;">小分類</td>
-						<td colspan="2" style="width: 200px;"><select
+						<td style="width: 200px;"><select
 							class="form-control form-control-sm" name="busyo_syou_code"
 							id="Scodeinput" style="width: 200px; height: auto; left: 10px;">
-								<option value="99">小分類コード</option>
 								<c:forEach var="lccc" items="${listsyoucode}">
-									<option value="${lccc.busyo_syou_code }">${lccc.busyo_syou_code }:${lccc.busyo_name }</option>
+									<c:if test="${lccc.busyo_syou_code eq busyo_syou_code}">
+										<option value="${lccc.busyo_syou_code}" selected="selected">
+											${lccc.busyo_syou_code }:${lccc.busyo_name }</option>
+									</c:if>
+									<c:if test="${lccc.busyo_syou_code ne busyo_syou_code}">
+										<option value="${lccc.busyo_syou_code}">
+											${lccc.busyo_syou_code }:${lccc.busyo_name }</option>
+									</c:if>
 								</c:forEach>
 						</select></td>
+						<td style="width: 400px"><c:forEach var="lccc"
+								items="${listsyoucode}">
+								<c:if test="${lccc.busyo_syou_code eq busyo_syou_code}">
+									<input id="Sname" class="form-control"
+										value="${lccc.busyo_name }"
+										style="width: 350px; height: auto; left: 10px;">
+								</c:if>
+							</c:forEach></td>
 					</tr>
 				</table>
 				<div class="text-right" style="position: relative;">

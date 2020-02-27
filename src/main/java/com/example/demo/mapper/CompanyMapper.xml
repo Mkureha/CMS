@@ -77,6 +77,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			<if test="searchtype.equals('employee_no')">
 				WHERE employee_no like CONCAT('%', #{keyword}, '%')
 			</if>
+			<if test="searchtype.equals('busyo_name')">
+				WHERE busyo_name like CONCAT('%', #{keyword}, '%')
+			</if>
 			<if test="searchtype.equals('position_code')">
 				WHERE position_code like CONCAT('%', #{keyword},
 				'%')
@@ -115,8 +118,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="listpage"
 		resultType="com.example.demo.domain.employee">
 		SELECT employee_no
-		,CONCAT(busyo_dai_code, busyo_cyu_code,
-		busyo_syou_code) AS rank_code
+		,busyo_name
 		,position_code
 		,employee_name
 		,type_code
@@ -134,6 +136,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		<if
 			test="keyword != null and keyword != '' and searchtype.equals('employee_no')">
 			WHERE employee_no like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if
+			test="keyword != null and keyword != '' and searchtype.equals('busyo_name')">
+			WHERE busyo_name like CONCAT('%', #{keyword}, '%')
 		</if>
 		<if
 			test="searchtype.equals('rank_code') and keyword != null and keyword != '' ">
@@ -205,7 +211,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,employee_memo
 		,busyo_dai_code
 		,busyo_cyu_code
-		,busyo_syou_code)
+		,busyo_syou_code
+		,busyo_name)
 		VALUES
 		(#{employee_no}
 		,#{position_code}
@@ -219,7 +226,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,#{employee_memo}
 		,#{busyo_dai_code}
 		,#{busyo_cyu_code}
-		,#{busyo_syou_code})
+		,#{busyo_syou_code}
+		,#{busyo_name})
 	</insert>
 
 	<update id="employeeUpdate"
@@ -242,6 +250,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		</if>
 		<if test="busyo_syou_code != null">
 			,busyo_syou_code = #{busyo_syou_code}
+		</if>
+		<if test="busyo_name != null">
+			,busyo_name = #{busyo_name}
 		</if>
 		<if test="position_code != null">
 			,position_code = #{position_code}

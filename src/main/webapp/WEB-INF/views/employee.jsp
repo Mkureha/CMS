@@ -48,7 +48,7 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<ul class="nav nav-pills nav-stacked" style="margin-bottom: 20px;">
-				<li role="presentation" class="active"><a
+					<li role="presentation" class="active"><a
 						href="/employee?pagenum=1&contentnum=10&searchtype=employee_no&keyword=">社員一覧</a></li>
 				</ul>
 			</div>
@@ -73,15 +73,15 @@
 								<th class="text-center">郵便番号</th>
 								<th class="text-center">詳細住所1</th>
 								<th class="text-center">詳細住所2</th>
-								<th class="text-center" style="display:none">部署大分類</th>
-								<th class="text-center" style="display:none">部署中分類</th>
-								<th class="text-center" style="display:none">部署小分類</th>
+								<th class="text-center" style="display: none">部署大分類</th>
+								<th class="text-center" style="display: none">部署中分類</th>
+								<th class="text-center" style="display: none">部署小分類</th>
 							</tr>
 							<c:forEach var="cpn" items="${list}">
 								<tr>
 									<td scope="row"><a
 										href="/employee/update/${cpn.busyo_dai_code}/${cpn.busyo_cyu_code}/${cpn.employee_no}">${cpn.employee_no}</a></td>
-									<td>${cpn.rank_code}</td>
+									<td>${cpn.busyo_name}</td>
 									<td>${cpn.position_code}</td>
 									<td>${cpn.type_code}</td>
 									<td>${cpn.employee_name}</td>
@@ -90,9 +90,9 @@
 									<td>${cpn.postal_code}</td>
 									<td>${cpn.address_1}</td>
 									<td>${cpn.address_2}</td>
-									<td style="display:none">${cpn.busyo_dai_code}</td>
-									<td style="display:none">${cpn.busyo_cyu_code}</td>
-									<td style="display:none">${cpn.busyo_syou_code}</td>
+									<td style="display: none">${cpn.busyo_dai_code}</td>
+									<td style="display: none">${cpn.busyo_cyu_code}</td>
+									<td style="display: none">${cpn.busyo_syou_code}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -132,6 +132,7 @@
 										<select name="searchtype" id="searchtype"
 											style="width: 100px; height: 35px; margin-left: auto; margin-right: auto;">
 											<option class="active" value="employee_no">社員番号</option>
+											<option value="busyo_name">部署名</option>
 											<option value="position_code">職責コード</option>
 											<option value="type_code">役職コード</option>
 											<option value="employee_name">社員名</option>
@@ -144,7 +145,7 @@
 									</div>
 									<div class="form-group">
 										<input type="text" class="form-control form-control-sm"
-											name="keyword" id="keyword" placeholder="検索 KeyWordを入力してください"
+											name="keyword" id="keyword" placeholder="KeyWordを入力してください"
 											value="${page.keyword}" onkeyup="characterCheck()"
 											onkeydown="characterCheck()" autocomplete="off"
 											style="width: 400px; height: 35px; margin-left: auto; margin-right: auto;" />

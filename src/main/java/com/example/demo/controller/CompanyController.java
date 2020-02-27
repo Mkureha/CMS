@@ -86,6 +86,21 @@ public class CompanyController {
 			return "Echild_dai";
 		}
 	}
+
+	@RequestMapping("/employee/child/{busyo_dai_code}/{busyo_cyu_code}/{busyo_syou_code}")
+	private String Insertpopup_Input(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
+			@PathVariable String busyo_syou_code, Model model) {
+
+		List<rank_dai> listcode = employeeService.listcode();
+		model.addAttribute("listcode", listcode);
+
+		List<rank_cyu> listcyucode = employeeService.listcyucode(busyo_dai_code);
+		model.addAttribute("listcyucode", listcyucode);
+
+		List<rank_syou> listsyoucode = employeeService.listsyoucode(busyo_dai_code, busyo_cyu_code);
+		model.addAttribute("listsyoucode", listsyoucode);
+		return "Echild_input";
+	}
 	// INSERT POPUP END
 
 	@RequestMapping("/employee")
@@ -205,7 +220,23 @@ public class CompanyController {
 			return "Echild_dai";
 		}
 	}
-	// INSERT POPUP END
+
+	@RequestMapping("/employee/update/{busyo_dai_code}/{busyo_cyu_code}/child/{busyo_dai_code}/{busyo_cyu_code}/{busyo_syou_code}")
+	private String Updatepopup_Input(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
+			@PathVariable String busyo_syou_code, Model model) {
+
+		List<rank_dai> listcode = employeeService.listcode();
+		model.addAttribute("listcode", listcode);
+
+		List<rank_cyu> listcyucode = employeeService.listcyucode(busyo_dai_code);
+		model.addAttribute("listcyucode", listcyucode);
+
+		List<rank_syou> listsyoucode = employeeService.listsyoucode(busyo_dai_code, busyo_cyu_code);
+		model.addAttribute("listsyoucode", listsyoucode);
+		return "Echild_input";
+
+	}
+	// UPDATE POPUP END
 
 	@RequestMapping("employee/update/{busyo_dai_code}/{busyo_cyu_code}/{employee_no}") // 게시글수정폼호출
 	private String employeeUpdateForm(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
@@ -260,6 +291,7 @@ public class CompanyController {
 		employee.setbusyo_dai_code(request.getParameter("busyo_dai_code"));
 		employee.setbusyo_cyu_code(request.getParameter("busyo_cyu_code"));
 		employee.setbusyo_syou_code(request.getParameter("busyo_syou_code"));
+		employee.setbusyo_name(request.getParameter("busyo_name"));
 		employee.setemployee_no(request.getParameter("employee_no"));
 		employee.setposition_code(request.getParameter("position_code"));
 		employee.setemployee_name(request.getParameter("employee_name"));

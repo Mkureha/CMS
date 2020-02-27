@@ -78,7 +78,7 @@
 							<c:forEach var="cpn" items="${list}">
 								<tr>
 									<td scope="row"><a
-										href="/rankcyu/update/${cpn.busyo_dai_code}/${cpn.busyo_cyu_code}/${cpn.busyo_start}">${cpn.busyo_dai_code}${cpn.busyo_dai_code}</a></td>
+										href="/rankcyu/update/${cpn.busyo_dai_code}/${cpn.busyo_cyu_code}/${cpn.busyo_start}">${cpn.busyo_dai_code}${cpn.busyo_cyu_code}</a></td>
 									<td>${cpn.busyo_dai_code}</td>
 									<td>${cpn.busyo_cyu_code}</td>
 									<td>${cpn.busyo_name}</td>

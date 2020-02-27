@@ -51,7 +51,6 @@ function setParentText() {
 											}
 										});
 					});
-
 	//中分類イベント
 	$(document)
 			.ready(
@@ -81,8 +80,10 @@ function setParentText() {
 		<div class="pull-left">
 			<h3
 				style="padding: 0; margin: 0; margin-bottom: 10px; margin-top: 20px">分類選択</h3>
-			<div class="pull-right"
-				style="padding: 0; margin: 0; margin-bottom: 10px;">
+			<div>
+				<h5 class="pull-right"
+					style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">
+					(送信した後、部署名は自動に '名称'に入ります)</h5>
 				<table class="table table-bordered table-condensed"
 					style="margin-top: 15px;">
 					<tr class="form-group">
@@ -114,14 +115,28 @@ function setParentText() {
 					<tr class="form-group">
 						<td class="text-center warning" for="busyo_cyu_code"
 							style="width: 100px; height: auto; text-align: right; font-weight: bold; color: red;">中分類</td>
-						<td colspan="2" style="width: 500px;"><select
+						<td style="width: 200px;"><select
 							class="form-control form-control-sm" name="busyo_cyu_code"
-							id="Ccodeinput" style="width: 150px; height: auto; left: 10px;">
-								<option value="99">未配置</option>
+							id="Ccodeinput" style="width: 250px; height: auto; left: 10px;">
 								<c:forEach var="lcc" items="${listcyucode}">
-									<option value="${lcc.busyo_cyu_code }">${lcc.busyo_cyu_code }:${lcc.busyo_name }</option>
+									<c:if test="${lcc.busyo_cyu_code eq busyo_cyu_code}">
+										<option value="${lcc.busyo_cyu_code}" selected="selected">
+											${lcc.busyo_cyu_code }:${lcc.busyo_name }</option>
+									</c:if>
+									<c:if test="${lcc.busyo_cyu_code ne busyo_cyu_code}">
+										<option value="${lcc.busyo_cyu_code}">
+											${lcc.busyo_cyu_code }:${lcc.busyo_name }</option>
+									</c:if>
 								</c:forEach>
 						</select></td>
+						<td style="width: 300px"><c:forEach var="lcc"
+								items="${listcyucode}">
+								<c:if test="${lcc.busyo_cyu_code eq busyo_cyu_code}">
+									<input id="Cname" class="form-control"
+										value="${lcc.busyo_name }"
+										style="width: 250px; height: auto; left: 10px;">
+								</c:if>
+							</c:forEach></td>
 					</tr>
 				</table>
 				<div class="text-right" style="position: relative;">

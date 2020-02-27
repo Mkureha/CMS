@@ -83,7 +83,7 @@
 										style="width: 250px; text-align: right;">名称</td>
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="position_name" name="position_name"
-										value="${detail.position_name }"
+										value="${detail.position_name }" readonly="ture" 
 										style="width: 550px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
@@ -92,7 +92,7 @@
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="position_name_small"
 										name="position_name_small"
-										value="${detail.position_name_small }"
+										value="${detail.position_name_small }" readonly="ture" 
 										style="width: 400px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
@@ -101,7 +101,7 @@
 									<td style="width: 1000px; position: relative"><input
 										type="text" class="form-control" id="start_date"
 										name="position_start" size="8"
-										value="${detail.position_start }"
+										value="${detail.position_start }" readonly="ture" 
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">

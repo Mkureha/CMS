@@ -90,7 +90,7 @@
 										名称</td>
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_name" name="busyo_name"
-										placeholder="名称(制限 50文字まで)" class="form-control"
+										placeholder="名称(制限 10文字まで)" class="form-control"
 										style="width: 550px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
@@ -207,9 +207,9 @@ body, div {
 		//name 제한
 		$(document).ready(function() {
 			$('#busyo_name').on('keyup', function() {
-				if ($(this).val().length > 100) {
-					alert("文字数制限を超えました!(制限:文字-50桁、英語-100桁)");
-					$(this).val($(this).val().substring(0, 100));
+				if ($(this).val().length > 20) {
+					alert("文字数制限を超えました!(制限:文字-10桁、英語-20桁)");
+					$(this).val($(this).val().substring(0, 20));
 				}
 			});
 		});

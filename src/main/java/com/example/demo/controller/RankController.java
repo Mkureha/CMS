@@ -58,6 +58,19 @@ public class RankController {
 			return "child";
 		}
 	}
+
+	@RequestMapping("/ranksyou/child/{busyo_dai_code}/{busyo_cyu_code}")
+	private String Insertpopup_input(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,Model model) {
+
+		List<rank_dai> listcode = RankService.listcode();
+		model.addAttribute("listcode", listcode);
+
+		List<rank_cyu> listcyucode = RankService.listcyucode(busyo_dai_code);
+		model.addAttribute("listcyucode", listcyucode);
+		
+			return "child_input";
+	}
+	
 	// INSERT POPUP END
 
 	// 小分類リスト出力
@@ -123,34 +136,6 @@ public class RankController {
 
 		return "redirect:/ranksyou?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
 	}
-
-	// UPDATE POPUP
-	@RequestMapping("/ranksyou/update/{busyo_dai_code}/{busyo_cyu_code}/{busyo_syou_code}/child")
-	private String Updatepopup(Model model) {
-
-		List<rank_dai> listcode = RankService.listcode();
-		model.addAttribute("listcode", listcode);
-
-		return "child";
-	}
-
-	@RequestMapping("/ranksyou/update/{busyo_dai_code}/{busyo_cyu_code}/{busyo_syou_code}/child/{busyo_dai_code}")
-	private String Updatepopup_dai(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,
-			@PathVariable String busyo_syou_code, Model model) {
-
-		List<rank_dai> listcode = RankService.listcode();
-		model.addAttribute("listcode", listcode);
-
-		if (busyo_dai_code.length() > 0) {
-			List<rank_cyu> listcyucode = RankService.listcyucode(busyo_dai_code);
-			model.addAttribute("listcyucode", listcyucode);
-			return "child_dai";
-		} else {
-			model.addAttribute("listcyucode", new ArrayList<rank_cyu>());
-			return "child";
-		}
-	}
-	// UPDATE POPUP END
 
 	@RequestMapping("ranksyou/update/{busyo_dai_code}/{busyo_cyu_code}/{busyo_syou_code}/{busyo_start}")
 	private String RanksyouUpdateForm(@PathVariable String busyo_dai_code, @PathVariable String busyo_cyu_code,

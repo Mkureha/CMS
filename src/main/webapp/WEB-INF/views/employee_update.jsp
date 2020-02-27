@@ -66,23 +66,25 @@
 					</ol>
 					<div>
 						<h5 class="pull-left"
-							style="padding: 0; margin: 0; margin-bottom: 10px; color: red; font-weight: bold;">基本情報</h5>
+							style="padding: 0; margin: 0; margin-bottom: 10px;">基本情報</h5>
 						<form action="/employee/updateProc" method="post"
 							autocomplete="off">
 							<table class="table table-bordered table-condensed"
 								style="margin-top: 35px;">
 								<tr class="form-group">
 									<td class="text-center warning" for="employee_no"
-										style="width: 250px; text-align: right;">社員番号</td>
-									<td colspan="2" style="width: 1000px;"><input type="text"
+										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										社員番号</td>
+									<td colspan="3" style="width: 750px;"><input type="text"
 										class="form-control" id="employee_no" name="employee_no"
 										value="${detail.employee_no }"
 										style="width: 150px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="employee_name"
-										style="width: 250px; text-align: right;">社員名</td>
-									<td colspan="2" style="width: 1000px;"><input type="text"
+										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										社員名</td>
+									<td colspan="3" style="width: 750px;"><input type="text"
 										class="form-control" id="employee_name" name="employee_name"
 										value="${detail.employee_name }"
 										style="width: 200px; height: auto; left: 10px;"></td>
@@ -90,12 +92,17 @@
 								<tr class="form-group">
 									<td rowspan="3" class="text-center warning"
 										for="busyo_dai_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										部署コード</td>
-									<td style="width: 750px;"><input type="text"
+									<td style="width: 150px;"><input type="text"
 										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
 										value="${detail.busyo_dai_code }" readonly="true"
 										style="width: 150px; height: auto; left: 10px;" /></td>
+									<td rowspan="3" style="width: 450px; vertical-align: middle;"><input
+										type="text" class="form-control" id="busyo_name"
+										name="busyo_name" value="${detail.busyo_name }"
+										readonly="true"
+										style="width: 430px; height: auto; left: 10px;" /></td>
 									<td rowspan="3"
 										style="width: 100px; vertical-align: middle; text-align-last: center;"><input
 										type="button" class="btn btn-primary" value="分類選択"
@@ -103,13 +110,13 @@
 										style="width: 80px; height: 50px; left: 10px"></td>
 								</tr>
 								<tr class="form-group">
-									<td style="width: 750px;"><input type="text"
+									<td style="width: 150px;"><input type="text"
 										class="form-control" id="busyo_cyu_code" name="busyo_cyu_code"
 										value="${detail.busyo_cyu_code }" readonly="true"
 										style="width: 150px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
-									<td style="width: 750px;"><input type="text"
+									<td style="width: 150px;"><input type="text"
 										class="form-control" id="busyo_syou_code"
 										name="busyo_syou_code" value="${detail.busyo_syou_code }"
 										readonly="true"
@@ -117,9 +124,9 @@
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="position_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										職責コード</td>
-									<td colspan="2" style="width: 1000px;"><select
+									<td colspan="3" style="width: 750px;"><select
 										class="form-control form-control-sm" name="position_code"
 										id="position_code"
 										style="width: 150px; height: auto; left: 10px;">
@@ -137,9 +144,9 @@
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="type_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										役職コード</td>
-									<td colspan="2" style="width: 1000px;"><select
+									<td colspan="3" style="width: 750px;"><select
 										class="form-control form-control-sm" name="type_code"
 										id="type_code" style="width: 150px; height: auto; left: 10px;">
 											<c:forEach var="ltp" items="${listtype}">
@@ -155,9 +162,9 @@
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="gender"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										性別</td>
-									<td colspan="2" style="width: 1000px;"><select
+									<td colspan="3" style="width: 750px;"><select
 										class="form-control form-control-sm" name="gender" id="gender"
 										style="width: 150px; height: auto; left: 10px;">
 											<c:if test="${detail.gender eq 男}">
@@ -172,41 +179,42 @@
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="birthday"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										生年月日</td>
-									<td colspan="2" style="width: 1000px; position: relative"><input
+									<td colspan="3" style="width: 750px; position: relative"><input
 										type="text" class="form-control" id="birthday_date"
 										name="birthday" size="8" value="${detail.birthday }"
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="postal_code"
-										style="width: 250px; text-align: right;">郵便番号</td>
-									<td colspan="2" style="width: 1000px;"><input type="text"
+										style="width: 300px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										郵便番号</td>
+									<td colspan="3" style="width: 750px;"><input type="text"
 										class="form-control" id="postal_code" name="postal_code"
 										value="${detail.postal_code }"
 										style="width: 150px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="address_1"
-										style="width: 250px; height: auto; text-align: right;">詳細住所1</td>
-									<td colspan="2" style="width: 1000px;"><input type="text"
+										style="width: 300px; height: auto; text-align: right;">詳細住所1</td>
+									<td colspan="3" style="width: 750px;"><input type="text"
 										class="form-control" id="address_1" name="address_1" size="8"
 										value="${detail.address_1 }"
 										style="width: 500px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="address_2"
-										style="width: 250px; height: auto; text-align: right;">詳細住所2</td>
-									<td colspan="2" style="width: 1000px;"><input type="text"
+										style="width: 300px; height: auto; text-align: right;">詳細住所2</td>
+									<td colspan="3" style="width: 750px;"><input type="text"
 										class="form-control" id="address_2" name="address_2" size="8"
 										value="${detail.address_2 }"
 										style="width: 500px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="employee_memo"
-										style="width: 250px; height: auto; text-align: right;">備考</td>
-									<td colspan="2" style="width: 1000px;"><input type="text"
+										style="width: 300px; height: auto; text-align: right;">備考</td>
+									<td colspan="3" style="width: 750px;"><input type="text"
 										class="form-control" id="employee_memo" name="employee_memo"
 										size="8" value="${detail.employee_memo }"
 										style="width: 400px; height: 300px; left: 10px;" /></td>
@@ -254,7 +262,7 @@ body,div {
 		//popupイベント
 		function openchild() {
 			window.open('child', '分類',
-					'width=800, height=700, resizeable=no, left=10 top=10');
+					'width=750, height=450, resizeable=no, left=10 top=10');
 		}
 		//日付設定(start)
 		$("#birthday_date")

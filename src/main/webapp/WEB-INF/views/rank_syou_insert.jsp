@@ -72,8 +72,7 @@
 					<div>
 						<h5 class="pull-right"
 							style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">
-							* は必ず入力してください
-						</h5>
+							* は必ず入力してください</h5>
 						<form role="form" action="/ranksyou/insertProc" id="insertForm"
 							method="post" enctype="multipart/form-data" autocomplete="off">
 							<table class="table table-bordered table-condensed"
@@ -97,14 +96,16 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_syou_code"
 										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
-										小分類コード<br>(先に分類選択を<br>してください)</td>
-									<td colspan="3" style="width: 1000px;"><input
-										type="button" class="btn btn-primary" value="分類選択"
-										onclick="openchild()"
-										style="width: 100px; height: 30px; left: 10px"><input
-										type="text" class="form-control" id="busyo_syou_code"
-										name="busyo_syou_code" placeholder="2桁の連番"
-										style="width: 150px; height: auto; left: 10px; margin-top: 10px;" /></td>
+										小分類コード
+									</td>
+									<td colspan="3" style="width: 1000px; position: relative"><div>
+											<input type="button" class="btn btn-danger" value="既存分類選択"
+												onclick="openchild()"
+												style="width: 110px; height: auto; left: 10px;"><input
+												type="text" class="form-control" id="busyo_syou_code"
+												name="busyo_syou_code" placeholder="2桁の連番"
+												style="width: 150px; height: auto; bottom: 4px; left: 120px; position: absolute" />
+										</div></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name"
@@ -112,7 +113,7 @@
 										名称</td>
 									<td colspan="3" style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_name" name="busyo_name"
-										placeholder="名称(制限 50文字まで)"
+										placeholder="大分類名/中分類名/小分類名(制限 30文字まで)"
 										style="width: 550px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
@@ -174,7 +175,7 @@ table {
 	text-align: left;
 }
 
-body, div {
+body,div {
 	font-family: 'メイリオ', Meiryo, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro',
 		'ＭＳ Ｐゴシック', sans-serif;
 }
@@ -184,7 +185,7 @@ body, div {
 		//popupイベント
 		function openchild() {
 			window.open('child', '分類',
-					'width=800, height=700, resizeable=no, left=10 top=10');
+					'width=700, height=450, resizeable=no, left=10 top=10');
 		}
 		//文字数制限
 		//Small_name제한
@@ -214,9 +215,9 @@ body, div {
 		//name 제한
 		$(document).ready(function() {
 			$('#busyo_name').on('keyup', function() {
-				if ($(this).val().length > 100) {
-					alert("文字数制限を超えました!(制限:文字-50桁、英語-100桁)");
-					$(this).val($(this).val().substring(0, 100));
+				if ($(this).val().length > 60) {
+					alert("文字数制限を超えました!(制限:文字-30桁、英語-60桁)");
+					$(this).val($(this).val().substring(0, 60));
 				}
 			});
 		});

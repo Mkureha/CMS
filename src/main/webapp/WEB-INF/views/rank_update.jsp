@@ -105,7 +105,7 @@
 										style="width: 250px; text-align: right;">名称</td>
 									<td colspan="3" style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_name" name="busyo_name"
-										value="${detail.busyo_name }"
+										value="${detail.busyo_name }" readonly="ture" 
 										style="width: 550px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
@@ -113,7 +113,7 @@
 										style="width: 250px; text-align: right;">略称</td>
 									<td colspan="3" style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_name_small"
-										name="busyo_name_small" value="${detail.busyo_name_small }"
+										name="busyo_name_small" value="${detail.busyo_name_small }" readonly="ture" 
 										style="width: 400px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
@@ -122,7 +122,7 @@
 										開始日</td>
 									<td colspan="3" style="width: 1000px; position: relative"><input
 										type="text" class="form-control" id="start_date"
-										name="busyo_start" size="8" value="${detail.busyo_start }"
+										name="busyo_start" size="8" value="${detail.busyo_start }" readonly="ture" 
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
@@ -207,9 +207,9 @@ table {
 		//name 제한
 		$(document).ready(function() {
 			$('#busyo_name').on('keyup', function() {
-				if ($(this).val().length > 100) {
-					alert("文字数制限を超えました!(制限:文字-50桁、英語-100桁)");
-					$(this).val($(this).val().substring(0, 100));
+				if ($(this).val().length > 60) {
+					alert("文字数制限を超えました!(制限:文字-30桁、英語-60桁)");
+					$(this).val($(this).val().substring(0, 60));
 				}
 			});
 		});
