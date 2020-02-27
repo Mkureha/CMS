@@ -230,9 +230,6 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		</if>
 		<if
 			test="employee_no != null and busyo_dai_code != null and busyo_cyu_code != null and busyo_syou_code != null and position_code != null and type_code != null and gender != null and birthday != null and employee_name != null and postal_code != null and address_1 != null and address_2 != null and employee_memo != null"></if>
-		<if test="employee_no != null">
-			employee_no = #{employee_no}
-		</if>
 		<if test="busyo_dai_code != null">
 			,busyo_dai_code = #{busyo_dai_code}
 		</if>

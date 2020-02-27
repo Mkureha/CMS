@@ -142,7 +142,7 @@
 										<option value="${lcc.busyo_cyu_code}" selected="selected">
 											${lcc.busyo_cyu_code }:${lcc.busyo_name }</option>
 									</c:if>
-									<c:if test="${lcc.busyo_cyu_code ne busyo_cyu_code}">
+									<c:if test="${lcc.busyo_dai_code ne busyo_dai_code}">
 										<option value="${lcc.busyo_cyu_code}">
 											${lcc.busyo_cyu_code }:${lcc.busyo_name }</option>
 									</c:if>
