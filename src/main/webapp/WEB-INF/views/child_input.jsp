@@ -19,6 +19,10 @@ function setParentText() {
 			.getElementById("Dcodeinput").value
 	opener.document.getElementById("busyo_cyu_code").value = document
 			.getElementById("Ccodeinput").value
+	opener.document.getElementById("busyo_dai_name").value = document
+			.getElementById("Dname").value
+	opener.document.getElementById("busyo_cyu_name").value = document
+			.getElementById("Cname").value
 			if (document.getElementById("Dcodeinput").value == "99") {
 				opener.document.getElementById("busyo_name").value = document.getElementById("Cname").value + "/"
 			} else if (document.getElementById("Ccodeinput").value == "99") {
@@ -107,7 +111,7 @@ function setParentText() {
 								items="${listcode}">
 								<c:if test="${lc.busyo_dai_code eq busyo_dai_code}">
 									<input id="Dname" class="form-control"
-										value="${lc.busyo_name }"
+										value="${lc.busyo_name }" readonly="true"
 										style="width: 100px; height: auto; left: 10px;">
 								</c:if>
 							</c:forEach></td>
@@ -133,7 +137,7 @@ function setParentText() {
 								items="${listcyucode}">
 								<c:if test="${lcc.busyo_cyu_code eq busyo_cyu_code}">
 									<input id="Cname" class="form-control"
-										value="${lcc.busyo_name }"
+										value="${lcc.busyo_name }" readonly="true"
 										style="width: 250px; height: auto; left: 10px;">
 								</c:if>
 							</c:forEach></td>

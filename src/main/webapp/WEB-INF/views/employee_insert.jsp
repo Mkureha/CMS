@@ -131,7 +131,7 @@
 										class="form-control form-control-sm" name="position_code"
 										id="position_code"
 										style="width: 150px; height: auto; left: 10px;">
-											<option value="999">(未配置)</option>
+											<option value="999">(未選択)</option>
 											<c:forEach var="lp" items="${listposition}">
 												<option value="${lp.position_code }">${lp.position_code }:${lp.position_name }</option>
 											</c:forEach>
@@ -144,7 +144,7 @@
 									<td colspan="3" style="width: 750px;"><select
 										class="form-control form-control-sm" name="type_code"
 										id="type_code" style="width: 150px; height: auto; left: 10px;">
-											<option value="99">(未配置)</option>
+											<option value="99">(未選択)</option>
 											<c:forEach var="ltp" items="${listtype}">
 												<option value="${ltp.type_code }">${ltp.type_code }:${ltp.type_name }</option>
 											</c:forEach>
@@ -266,7 +266,7 @@ body,div {
 													alert("役職を選択してください");
 												} else if ($("#gender").val() == "無") {
 													alert("性別を選択してください");
-												} else if ($("#birthday").val() == "") {
+												} else if ($("#birthday_date").val() == "") {
 													alert("誕生日を選択してください");
 												} else if ($("#postal_code")
 														.val().length != 7) {

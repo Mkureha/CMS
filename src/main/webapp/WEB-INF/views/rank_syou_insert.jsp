@@ -79,25 +79,35 @@
 								style="margin-top: 35px;">
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_dai_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										大分類コード</td>
-									<td style="width: 250px;"><input type="text"
+									<td style="width: 200px;"><input type="text"
 										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
-										placeholder="大分類"
-										style="width: 150px; height: auto; left: 10px;" /></td>
+										placeholder="大分類" readonly="true"
+										style="width: 170px; height: auto; left: 10px;" /></td>
+									<td style="width: 700px;"><input type="text"
+										class="form-control" id="busyo_dai_name" placeholder="大分類名"
+										readonly="true"
+										style="width: 400px; height: auto; left: 10px;" /></td>
+								</tr>
+								<tr>
 									<td class="text-center warning" for="busyo_cyu_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										中分類コード</td>
-									<td style="width: 250px;"><input type="text"
+									<td style="width: 200px;"><input type="text"
 										class="form-control" id="busyo_cyu_code" name="busyo_cyu_code"
-										placeholder="中分類"
-										style="width: 150px; height: auto; left: 10px;" /></td>
+										placeholder="中分類" readonly="true"
+										style="width: 170px; height: auto; left: 10px;" /></td>
+									<td style="width: 700px;"><input type="text"
+										class="form-control" id="busyo_cyu_name" placeholder="中分類名"
+										readonly="true"
+										style="width: 400px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_syou_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										小分類コード</td>
-									<td colspan="3" style="width: 1000px; position: relative"><div>
+									<td colspan="2" style="width: 1000px; position: relative"><div>
 											<input type="button" class="btn btn-danger" value="既存分類選択"
 												onclick="openchild()"
 												style="width: 110px; height: auto; left: 10px;"><input
@@ -108,34 +118,34 @@
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										名称</td>
-									<td colspan="3" style="width: 1000px;"><input type="text"
+									<td colspan="2" style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_name" name="busyo_name"
 										placeholder="大分類名/中分類名/小分類名(制限 30文字まで)"
 										style="width: 550px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name_small"
-										style="width: 250px; height: auto; text-align: right;">略称</td>
-									<td colspan="3" style="width: 1000px;"><input type="text"
+										style="width: 200px; height: auto; text-align: right;">略称</td>
+									<td colspan="2" style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_name_small"
 										name="busyo_name_small" placeholder="略称(制限5文字まで)"
 										style="width: 400px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_start"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										開始日</td>
-									<td colspan="3" style="width: 1000px; position: relative"><input
+									<td colspan="2" style="width: 1000px; position: relative"><input
 										type="text" class="form-control" id="start_date"
 										name="busyo_start" size="8" title="開始日"
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_end"
-										style="width: 250px; height: auto; text-align: right;">終了日</td>
-									<td colspan="3" style="width: 1000px; position: relative"><input
+										style="width: 200px; height: auto; text-align: right;">終了日</td>
+									<td colspan="2" style="width: 1000px; position: relative"><input
 										type="text" class="form-control" id="end_date"
 										name="busyo_end" size="8" title="終了日"
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;">

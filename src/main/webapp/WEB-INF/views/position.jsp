@@ -73,7 +73,8 @@
 								<tr>
 									<td scope="row"><a
 										href="/position/update/${cpn.position_code}/${cpn.position_start}">${cpn.position_code}</a></td>
-									<td>${cpn.position_name}</td>
+									<td scope="row"><a
+										href="/position/update/${cpn.position_code}/${cpn.position_start}">${cpn.position_name}</a></td>
 									<td>${cpn.position_name_small}</td>
 									<td>${cpn.position_start}</td>
 									<td>${cpn.position_end}</td>

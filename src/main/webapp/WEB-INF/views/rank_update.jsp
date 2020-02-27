@@ -77,35 +77,38 @@
 								style="margin-top: 35px;">
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_dai_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 250px; height: auto; text-align: right;">
 										大分類コード</td>
-									<td style="width: 250px;"><input type="text"
+									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
 										value="${detail.busyo_dai_code }" readonly="true"
-										style="width: 150px; height: auto; left: 10px;"></td>
+										style="width: 150px; height: auto; left: 10px;" /></td>
+								</tr>
+								<tr>
 									<td class="text-center warning" for="busyo_cyu_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 250px; height: auto; text-align: right;">
 										中分類コード</td>
-									<td style="width: 250px;"><input type="text"
+									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_cyu_code" name="busyo_cyu_code"
 										value="${detail.busyo_cyu_code }" readonly="true"
-										style="width: 150px; height: auto; left: 10px;"></td>
+										style="width: 150px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_syou_code"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 250px; height: auto; text-align: right;">
 										小分類コード</td>
-									<td colspan="3" style="width: 1000px;"><input
-										type="text" class="form-control" id="busyo_syou_code"
-										name="busyo_syou_code" value="${detail.busyo_syou_code }" readonly="ture" 
-										style="width: 150px; height: auto; left: 10px; margin-top: 10px;"></td>
+									<td colspan="3" style="width: 1000px;"><input type="text"
+										class="form-control" id="busyo_syou_code"
+										name="busyo_syou_code" value="${detail.busyo_syou_code }"
+										readonly="ture"
+										style="width: 150px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name"
 										style="width: 250px; text-align: right;">名称</td>
 									<td colspan="3" style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_name" name="busyo_name"
-										value="${detail.busyo_name }" readonly="ture" 
+										value="${detail.busyo_name }" readonly="ture"
 										style="width: 550px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
@@ -113,17 +116,18 @@
 										style="width: 250px; text-align: right;">略称</td>
 									<td colspan="3" style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_name_small"
-										name="busyo_name_small" value="${detail.busyo_name_small }" readonly="ture" 
+										name="busyo_name_small" value="${detail.busyo_name_small }"
+										readonly="ture"
 										style="width: 400px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_start"
-										style="width: 250px; height: auto; text-align: right; font-weight: bold; color: red;">*
+										style="width: 250px; height: auto; text-align: right;">
 										開始日</td>
-									<td colspan="3" style="width: 1000px; position: relative"><input
-										type="text" class="form-control" id="start_date"
-										name="busyo_start" size="8" value="${detail.busyo_start }" readonly="ture" 
-										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
+									<td colspan="3" style="width: 1000px;"><input type="text"
+										class="form-control" id="start_date" name="busyo_start"
+										size="8" value="${detail.busyo_start }" readonly="ture"
+										style="width: 200px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_end"
@@ -213,18 +217,6 @@ table {
 				}
 			});
 		});
-		//日付設定(start)
-		$("#start_date")
-				.datepicker(
-						{
-							dateFormat : 'yy-mm-dd',
-							changeYear : true,
-							changeMonth : true,
-							showOn : "both",
-							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
-						});
-
 		//日付設定(end)
 		$("#end_date")
 				.datepicker(

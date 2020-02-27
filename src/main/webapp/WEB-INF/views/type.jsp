@@ -73,7 +73,8 @@
 								<tr>
 									<td scope="row"><a
 										href="/type/update/${cpn.type_code}/${cpn.type_start}">${cpn.type_code}</a></td>
-									<td>${cpn.type_name}</td>
+									<td scope="row"><a
+										href="/type/update/${cpn.type_code}/${cpn.type_start}">${cpn.type_name}</a></td>
 									<td>${cpn.type_name_small}</td>
 									<td>${cpn.type_start}</td>
 									<td>${cpn.type_end}</td>

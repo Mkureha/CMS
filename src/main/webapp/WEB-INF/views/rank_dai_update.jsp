@@ -101,10 +101,10 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_start"
 										style="width: 250px; text-align: right;">開始日</td>
-									<td style="width: 1000px; position: relative"><input
+									<td style="width: 1000px;"><input
 										type="text" class="form-control" id="start_date"
 										name="busyo_start" size="8" value="${detail.busyo_start }" readonly="ture" 
-										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
+										style="width: 200px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_end"
@@ -189,19 +189,6 @@ table {
 				}
 			});
 		});
-
-		//日付設定(start)
-		$("#start_date")
-				.datepicker(
-						{
-							dateFormat : 'yy-mm-dd',
-							changeYear : true,
-							changeMonth : true,
-							showOn : "both",
-							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
-						});
-
 		//日付設定(end)
 		$("#end_date")
 				.datepicker(

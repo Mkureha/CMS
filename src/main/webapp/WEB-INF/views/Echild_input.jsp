@@ -126,7 +126,7 @@
 								items="${listcode}">
 								<c:if test="${lc.busyo_dai_code eq busyo_dai_code}">
 									<input id="Dname" class="form-control"
-										value="${lc.busyo_name }"
+										value="${lc.busyo_name }" readonly="true"
 										style="width: 100px; height: auto; left: 10px;">
 								</c:if>
 							</c:forEach></td>
@@ -152,7 +152,7 @@
 								items="${listcyucode}">
 								<c:if test="${lcc.busyo_cyu_code eq busyo_cyu_code}">
 									<input id="Cname" class="form-control"
-										value="${lcc.busyo_name }"
+										value="${lcc.busyo_name }" readonly="true"
 										style="width: 250px; height: auto; left: 10px;">
 								</c:if>
 							</c:forEach></td>
@@ -178,7 +178,7 @@
 								items="${listsyoucode}">
 								<c:if test="${lccc.busyo_syou_code eq busyo_syou_code}">
 									<input id="Sname" class="form-control"
-										value="${lccc.busyo_name }"
+										value="${lccc.busyo_name }" readonly="true"
 										style="width: 350px; height: auto; left: 10px;">
 								</c:if>
 							</c:forEach></td>

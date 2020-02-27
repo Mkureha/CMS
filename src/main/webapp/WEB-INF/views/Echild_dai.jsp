@@ -101,7 +101,7 @@ $(document)
 								items="${listcode}">
 								<c:if test="${lc.busyo_dai_code eq busyo_dai_code}">
 									<input id="Dname" class="form-control"
-										value="${lc.busyo_name }"
+										value="${lc.busyo_name }" readonly="true"
 										style="width: 100px; height: auto; left: 10px;">
 								</c:if>
 							</c:forEach></td>

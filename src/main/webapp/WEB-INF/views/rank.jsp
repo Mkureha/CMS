@@ -83,7 +83,8 @@
 									<td>${cpn.busyo_dai_code}</td>
 									<td>${cpn.busyo_cyu_code}</td>
 									<td>${cpn.busyo_syou_code}</td>
-									<td>${cpn.busyo_name}</td>
+									<td scope="row"><a
+										href="/ranksyou/update/${cpn.busyo_dai_code}/${cpn.busyo_cyu_code}/${cpn.busyo_syou_code}/${cpn.busyo_start}">${cpn.busyo_name}</a></td>
 									<td>${cpn.busyo_name_small}</td>
 									<td>${cpn.busyo_start}</td>
 									<td>${cpn.busyo_end}</td>

@@ -132,7 +132,7 @@
 										<select name="searchtype" id="searchtype"
 											style="width: 100px; height: 35px; margin-left: auto; margin-right: auto;">
 											<option class="active" value="employee_no">社員番号</option>
-											<option value="busyo_name">部署名</option>
+											<option value="rank_code">部署コード</option>
 											<option value="position_code">職責コード</option>
 											<option value="type_code">役職コード</option>
 											<option value="employee_name">社員名</option>
