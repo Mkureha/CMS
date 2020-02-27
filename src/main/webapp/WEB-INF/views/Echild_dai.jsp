@@ -13,6 +13,17 @@
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>分類選択</title>
 <script type="text/javascript">
+//中分類無し
+	function setParentText() {
+		opener.document.getElementById("busyo_dai_code").value = document
+				.getElementById("Dcodeinput").value
+		opener.document.getElementById("busyo_cyu_code").value = document
+				.getElementById("Ccodeinput").value
+		opener.document.getElementById("busyo_syou_code").value = "99"
+		opener.document.getElementById("busyo_name").value = document
+				.getElementById("Dname").value
+		window.close();
+	}
 //大分類イベント
 $(document)
 		.ready(
@@ -66,6 +77,7 @@ $(document)
 				<h5 class="pull-right"
 					style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">
 					(登録した後、部署名は表示されません)</h5>
+				<br>中分類が無い場合、小分類項目を'小分類コード'にしたまま'送信'を押してください
 				<table class="table table-bordered table-condensed"
 					style="margin-top: 15px;">
 					<tr class="form-group">
@@ -108,6 +120,8 @@ $(document)
 					</tr>
 				</table>
 				<div class="text-right" style="position: relative;">
+					<input class="btn btn-primary" type="button" value="送信"
+						onclick="setParentText()" style="width: 90px; height: 30px;">
 					<input class="btn btn-danger" type="button" value="閉じる"
 						onclick="window.close()" style="width: 70px; height: 30px;">
 				</div>

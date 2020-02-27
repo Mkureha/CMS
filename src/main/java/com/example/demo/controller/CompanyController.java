@@ -291,7 +291,6 @@ public class CompanyController {
 		employee.setbusyo_dai_code(request.getParameter("busyo_dai_code"));
 		employee.setbusyo_cyu_code(request.getParameter("busyo_cyu_code"));
 		employee.setbusyo_syou_code(request.getParameter("busyo_syou_code"));
-		employee.setbusyo_name(request.getParameter("busyo_name"));
 		employee.setemployee_no(request.getParameter("employee_no"));
 		employee.setposition_code(request.getParameter("position_code"));
 		employee.setemployee_name(request.getParameter("employee_name"));

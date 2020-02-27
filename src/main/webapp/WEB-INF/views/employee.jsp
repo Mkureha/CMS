@@ -81,7 +81,7 @@
 								<tr>
 									<td scope="row"><a
 										href="/employee/update/${cpn.busyo_dai_code}/${cpn.busyo_cyu_code}/${cpn.employee_no}">${cpn.employee_no}</a></td>
-									<td>${cpn.busyo_name}</td>
+									<td>${cpn.rank_code}</td>
 									<td>${cpn.position_code}</td>
 									<td>${cpn.type_code}</td>
 									<td>${cpn.employee_name}</td>

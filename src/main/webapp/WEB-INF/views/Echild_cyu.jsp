@@ -102,7 +102,7 @@
 			<div>
 				<h5 class="pull-right"
 					style="padding: 0; margin: 0; margin-bottom: 10px; 　color: red; font-weight: bold; color: red;">
-					(登録した後、部署名は自動に '名称'に入ります)</h5><br>小分類が無い場合は送信を押してください
+					(登録した後、部署名は自動に '名称'に入ります)</h5><br>小分類が無い場合、小分類項目を'小分類コード'にしたまま'送信'を押してください
 				<table class="table table-bordered table-condensed"
 					style="margin-top: 15px;">
 					<tr class="form-group">

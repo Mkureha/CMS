@@ -20,7 +20,6 @@ public class employee {
 	public String busyo_dai_code;
 	public String busyo_cyu_code;
 	public String busyo_syou_code;
-	public String busyo_name;
 	
 	public String getemployee_no() {
 		return employee_no;
@@ -131,14 +130,6 @@ public class employee {
 
 	public void setbusyo_syou_code(String busyo_syou_code) {
 		this.busyo_syou_code = busyo_syou_code;
-	}
-
-	public String getbusyo_name() {
-		return busyo_name;
-	}
-
-	public void setbusyo_name(String busyo_name) {
-		this.busyo_name = busyo_name;
 	}
 
 	// Paging ADD
