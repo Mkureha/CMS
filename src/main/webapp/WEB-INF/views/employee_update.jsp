@@ -75,7 +75,7 @@
 									<td class="text-center warning" for="employee_no"
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										社員番号</td>
-									<td colspan="2" style="width: 750px;"><input type="text"
+									<td colspan="3" style="width: 750px;"><input type="text"
 										class="form-control" id="employee_no" name="employee_no"
 										value="${detail.employee_no }"
 										style="width: 150px; height: auto; left: 10px;"></td>
@@ -84,7 +84,7 @@
 									<td class="text-center warning" for="employee_name"
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										社員名</td>
-									<td colspan="2" style="width: 750px;"><input type="text"
+									<td colspan="3" style="width: 750px;"><input type="text"
 										class="form-control" id="employee_name" name="employee_name"
 										value="${detail.employee_name }"
 										style="width: 200px; height: auto; left: 10px;"></td>
@@ -98,6 +98,10 @@
 										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
 										value="${detail.busyo_dai_code }" readonly="true"
 										style="width: 150px; height: auto; left: 10px;" /></td>
+									<td rowspan="3" style="width: 450px; vertical-align: middle;"><input
+										type="text" class="form-control" id="busyo_name"
+										placeholder="変更する場合、表示される新しい部署名" readonly="true"
+										style="width: 430px; height: auto; left: 10px;" /></td>
 									<td rowspan="3"
 										style="width: 200px; vertical-align: middle; text-align-last: center;"><input
 										type="button" class="btn btn-danger" value="分類変更"
@@ -121,7 +125,7 @@
 									<td class="text-center warning" for="position_code"
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										職責コード</td>
-									<td colspan="2" style="width: 750px;"><select
+									<td colspan="3" style="width: 750px;"><select
 										class="form-control form-control-sm" name="position_code"
 										id="position_code"
 										style="width: 150px; height: auto; left: 10px;">
@@ -141,7 +145,7 @@
 									<td class="text-center warning" for="type_code"
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										役職コード</td>
-									<td colspan="2" style="width: 750px;"><select
+									<td colspan="3" style="width: 750px;"><select
 										class="form-control form-control-sm" name="type_code"
 										id="type_code" style="width: 150px; height: auto; left: 10px;">
 											<c:forEach var="ltp" items="${listtype}">
@@ -159,7 +163,7 @@
 									<td class="text-center warning" for="gender"
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										性別</td>
-									<td colspan="2" style="width: 750px;"><select
+									<td colspan="3" style="width: 750px;"><select
 										class="form-control form-control-sm" name="gender" id="gender"
 										style="width: 150px; height: auto; left: 10px;">
 											<c:if test="${detail.gender eq 男}">
@@ -176,7 +180,7 @@
 									<td class="text-center warning" for="birthday"
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										生年月日</td>
-									<td colspan="2" style="width: 750px; position: relative"><input
+									<td colspan="3" style="width: 750px; position: relative"><input
 										type="text" class="form-control" id="birthday_date"
 										name="birthday" size="8" value="${detail.birthday }"
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
@@ -185,7 +189,7 @@
 									<td class="text-center warning" for="postal_code"
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										郵便番号</td>
-									<td colspan="2" style="width: 750px;"><input type="text"
+									<td colspan="3" style="width: 750px;"><input type="text"
 										class="form-control" id="postal_code" name="postal_code"
 										value="${detail.postal_code }"
 										style="width: 150px; height: auto; left: 10px;"></td>
@@ -193,7 +197,7 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="address_1"
 										style="width: 200px; height: auto; text-align: right;">詳細住所1</td>
-									<td colspan="2" style="width: 750px;"><input type="text"
+									<td colspan="3" style="width: 750px;"><input type="text"
 										class="form-control" id="address_1" name="address_1" size="8"
 										value="${detail.address_1 }"
 										style="width: 500px; height: auto; left: 10px;" /></td>
@@ -201,7 +205,7 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="address_2"
 										style="width: 200px; height: auto; text-align: right;">詳細住所2</td>
-									<td colspan="2" style="width: 750px;"><input type="text"
+									<td colspan="3" style="width: 750px;"><input type="text"
 										class="form-control" id="address_2" name="address_2" size="8"
 										value="${detail.address_2 }"
 										style="width: 500px; height: auto; left: 10px;" /></td>
@@ -209,7 +213,7 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="employee_memo"
 										style="width: 200px; height: auto; text-align: right;">備考</td>
-									<td colspan="2" style="width: 750px;"><input type="text"
+									<td colspan="3" style="width: 750px;"><input type="text"
 										class="form-control" id="employee_memo" name="employee_memo"
 										size="8" value="${detail.employee_memo }"
 										style="width: 400px; height: 300px; left: 10px;" /></td>
@@ -254,32 +258,39 @@ body,div {
 </style>
 
 	<script type="text/javascript">
-	//Form検査
-	$(document).ready(
-			function() {
-				$("#subend").click(
+		//Form検査
+		$(document)
+				.ready(
 						function() {
-							if ($("#employee_no").val() == "") {
-								alert("社員番号が無いです！");
-							} else if ($("#employee_name").val() == "") {
-								alert("社員名が無いです！");
-							} else if ($("#position_code").val() == "99") {
-								alert("職責が無いです！");
-							} else if ($("#type_code").val() == "99") {
-								alert("役職が無いです！");
-							} else if ($("#gender").val() == "無") {
-								alert("性別が無いです！");
-							} else if ($("#birthday").val() == "") {
-								alert("誕生日が無いです！");
-							} else if ($("#postal_code").val() == "") {
-								alert("郵便番号が無いです！");
-							} else {
-								$("#subend").attr("action",
-										"<c:url value='/employee/updateProc'/>");
-								$("#subend").submit();
-							}
+							$("#subend")
+									.click(
+											function() {
+												if ($("#employee_no").val() == "") {
+													alert("社員番号が無いです！");
+												} else if ($("#employee_name")
+														.val() == "") {
+													alert("社員名が無いです！");
+												} else if ($("#position_code")
+														.val() == "99") {
+													alert("職責が無いです！");
+												} else if ($("#type_code")
+														.val() == "99") {
+													alert("役職が無いです！");
+												} else if ($("#gender").val() == "無") {
+													alert("性別が無いです！");
+												} else if ($("#birthday").val() == "") {
+													alert("誕生日が無いです！");
+												} else if ($("#postal_code")
+														.val() == "") {
+													alert("郵便番号が無いです！");
+												} else {
+													$("#subend")
+															.attr("action",
+																	"<c:url value='/employee/updateProc'/>");
+													$("#subend").submit();
+												}
+											});
 						});
-			});
 		//popupイベント
 		function openchild() {
 			window.open('child', '分類',

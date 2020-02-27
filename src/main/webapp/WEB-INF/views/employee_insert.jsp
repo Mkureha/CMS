@@ -103,7 +103,7 @@
 										style="width: 150px; height: auto; left: 10px;" /></td>
 									<td rowspan="3" style="width: 450px; vertical-align: middle;"><input
 										type="text" class="form-control" id="busyo_name"
-										placeholder="部署名" readonly="true"
+										placeholder="コートに合う、部署名が表示されます" readonly="true"
 										style="width: 430px; height: auto; left: 10px;" /></td>
 									<td rowspan="3"
 										style="width: 100px; vertical-align: middle; text-align-last: center;"><input
