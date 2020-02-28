@@ -180,26 +180,6 @@ body,div {
 												}
 											});
 						});
-		//入力チェック /コード重複チェック
-		$(document).ready(function() {
-			$("#insertbtn").click(function() {
-				if ($("#busyo_dai_code").val().length < 2) {
-					alert("コードを入力してください");
-					return false;
-				} else if ($("#busyo_name").val() == "") {
-					alert("名称を入力してください");
-					return false;
-				} else if ($("#start_date").val() == "") {
-					alert("開始日を入力してください");
-					return false;
-				} else {
-					alert("正常的に登録しました");
-					$("#insertfrm").attr("action", "/rankdai/insertProc");
-					$("#insertfrm").submit();
-				}
-			});
-		});
-
 		//文字数制限
 		//Small_name제한
 		$(document).ready(function() {
@@ -245,10 +225,7 @@ body,div {
 							showOn : 'both',
 							buttonImage : 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif',
 							buttonImageOnly : true,
-							minDate : 0,
-							onClose: function( selectedDate ) {
-								$("#end_date").datepicker( "option", "minDate", selectedDate );									
-								}
+							minDate : 0
 							});
 
 		//日付設定(end)
@@ -261,10 +238,7 @@ body,div {
 							showOn : 'both',
 							buttonImage : 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif',
 							buttonImageOnly : true,
-							minDate : '+1d',
-							onClose: function( selectedDate ) {
-								$("#start_date").datepicker( "option", "maxDate", selectedDate );
-			                 }
+							minDate : '+1d'
 						})
 	</script>
 	<%@ include file="bootstrap.jsp"%>

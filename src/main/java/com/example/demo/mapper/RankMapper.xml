@@ -356,7 +356,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,#{busyo_name}
 		,#{busyo_name_small}
 		,#{busyo_start}
-		,#{busyo_end})
+		,#{busyo_end});
 	</insert>
 
 	<select id="RankdaiDetail"

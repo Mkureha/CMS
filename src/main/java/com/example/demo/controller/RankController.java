@@ -372,7 +372,7 @@ public class RankController {
 
 	@RequestMapping("/rankdai/insertProc")
 	private String RankdaiInsertProc(rank_dai rank_dai, MultipartFile file) throws Exception {
-
+		
 		RankService.RankdaiInsertService(rank_dai);
 
 		return "redirect:/rankdai?pagenum=1&contentnum=10&searchtype=busyo_dai_code&keyword=";
