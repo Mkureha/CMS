@@ -1,5 +1,7 @@
 package com.example.demo.domain;
 
+import java.sql.Date;
+
 public class type {
 	
 	public String type_code;
@@ -7,6 +9,8 @@ public class type {
 	public String type_name_small;
 	public String type_start;
 	public String type_end;
+	
+	public Date sysdate;
 
 	public String gettype_code() {
 		return type_code;

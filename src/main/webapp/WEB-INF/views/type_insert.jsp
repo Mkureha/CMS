@@ -221,7 +221,8 @@ body,div {
 							changeMonth : true,
 							showOn : "both",
 							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
+							buttonImageOnly : true,
+							minDate : 0
 						});
 
 		//日付設定(end)
@@ -233,7 +234,8 @@ body,div {
 							changeMonth : true,
 							showOn : "both",
 							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
+							buttonImageOnly : true,
+							minDate : 0
 						});
 	</script>
 	<%@ include file="bootstrap.jsp"%>

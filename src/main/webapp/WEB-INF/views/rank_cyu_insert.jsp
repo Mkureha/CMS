@@ -185,14 +185,11 @@ body,div {
 											function() {
 												if ($("#busyo_cyu_code").val().length != 2) {
 													alert("中分類コードを入力してください（* 2桁の連番）");
-												} else if ($("#busyo_dai_code")
-														.val() == "999") {
+												} else if ($("#busyo_dai_code").val() == "999") {
 													alert("大分類コードを選択してください");
-												} else if ($("#busyo_name")
-														.val() == "") {
+												} else if ($("#busyo_name").val() == "") {
 													alert("部署名を入力してください（* 制限:文字-20桁、英語-40桁）");
-												} else if ($("#busyo_start")
-														.val() == "") {
+												} else if ($("#busyo_start").val() == "") {
 													alert("開始日を選択してください");
 												} else {
 													$("#Cinsertfrm")
@@ -246,7 +243,8 @@ body,div {
 							changeMonth : true,
 							showOn : "both",
 							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
+							buttonImageOnly : true,
+							minDate : 0
 						});
 
 		//日付設定(end)
@@ -258,7 +256,8 @@ body,div {
 							changeMonth : true,
 							showOn : "both",
 							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
+							buttonImageOnly : true,
+							minDate : 0
 						});
 	</script>
 	<%@ include file="bootstrap.jsp"%>

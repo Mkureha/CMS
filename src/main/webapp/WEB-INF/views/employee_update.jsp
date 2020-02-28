@@ -101,7 +101,7 @@
 									<td rowspan="3" style="width: 450px; vertical-align: middle;"><input
 										type="text" class="form-control" id="busyo_name"
 										placeholder="変更する場合、表示される新しい部署名" readonly="true"
-										style="width: 470px; height: auto; left: 10px;" /></td>
+										style="width: 510px; height: auto; left: 10px;" /></td>
 									<td rowspan="3"
 										style="width: 100px; vertical-align: middle; text-align-last: center;"><input
 										type="button" class="btn btn-danger" value="分類変更"
@@ -213,10 +213,10 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="employee_memo"
 										style="width: 200px; height: auto; text-align: right;">備考</td>
-									<td colspan="3" style="width: 800px;"><input type="text"
+									<td colspan="3" style="width: 800px;"><textarea 
 										class="form-control" id="employee_memo" name="employee_memo"
-										size="8" value="${detail.employee_memo }"
-										style="width: 790px; height: auto; left: 10px;" /></td>
+										size="8"
+										style="width: 790px; height: 300px; left: 10px;">${detail.employee_memo }</textarea></td>
 								</tr>
 							</table>
 							<div class="text-right" style="position: relative;">
@@ -267,22 +267,24 @@ body,div {
 											function() {
 												if ($("#employee_no").val() == "") {
 													alert("社員番号が無いです！（* 1桁のアルファベット+3桁の連番）");
-												} else if ($("#employee_name")
-														.val() == "") {
+												} else if ($("#employee_name").val() == "") {
 													alert("社員名が無いです！（* 10桁の文字）");
-												} else if ($("#position_code")
-														.val() == "99") {
+												} else if ($("#position_code").val() == "99") {
 													alert("職責が無いです！");
-												} else if ($("#type_code")
-														.val() == "99") {
+												} else if ($("#type_code").val() == "99") {
 													alert("役職が無いです！");
 												} else if ($("#gender").val() == "無") {
 													alert("性別が無いです！");
 												} else if ($("#birthday").val() == "") {
 													alert("誕生日が無いです！");
-												} else if ($("#postal_code")
-														.val() == "") {
+												} else if ($("#postal_code").val() == "") {
 													alert("郵便番号が無いです！（* 7桁の連番、'-'無し）");
+												} else if ($("#address_1").val().length != 200) {
+													alert("文字数が超過してセーブできません（原因:詳細住所1）");
+												} else if ($("#address_2").val().length != 200) {
+													alert("文字数が超過してセーブできません（原因:詳細住所2）");
+												} else if ($("#employee_memo").val().length != 500) {
+													alert("文字数が超過してセーブできません（原因:備考）");
 												} else {
 													$("#subend")
 															.attr("action",

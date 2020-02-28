@@ -53,10 +53,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,busyo_cyu_code
 		,busyo_name
 		FROM rank_cyu
-		WHERE busyo_dai_code = #{busyo_dai_code}
-		AND
-		busyo_end = ''
-		OR busyo_end IS NULL
+		WHERE busyo_start &lt;= DATE_FORMAT(sysdate(), '%Y-%m-%d')
+		AND ((busyo_end &gt;= date_format(sysdate(), '%Y-%m-%d') and busyo_end !=
+		'')
+		or busyo_end = '')
 		ORDER BY busyo_dai_code, busyo_cyu_code
 	</select>
 
@@ -199,21 +199,24 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT DISTINCT busyo_dai_code
 		,busyo_name
 		FROM rank_dai
-		WHERE
-		busyo_end IS NULL
-		OR busyo_end = ''
-		ORDER BY busyo_dai_code
+		WHERE busyo_start &lt;= DATE_FORMAT(sysdate(), '%Y-%m-%d')
+		AND ((busyo_end &gt;= date_format(sysdate(), '%Y-%m-%d') and busyo_end !=
+		'')
+		or busyo_end = '')
+		ORDER BY
+		busyo_dai_code
 	</select>
-	
+
 	<select id="listJH"
 		resultType="com.example.demo.domain.rank_dai">
 		SELECT DISTINCT busyo_dai_code
 		,busyo_start
 		FROM rank_dai
 		WHERE busyo_dai_code = #{busyo_dai_code}
-		  AND busyo_start &lt;= #{busyo_start}
-		  AND (busyo_end &gt;= #{busyo_end} AND busyo_end = '')
-		  OR busyo_end = '';
+		AND busyo_start &lt;=
+		#{busyo_start}
+		AND ((busyo_end &gt;= #{busyo_end} AND busyo_end != '')
+		OR busyo_end = '';)
 		ORDER BY busyo_dai_code
 	</select>
 

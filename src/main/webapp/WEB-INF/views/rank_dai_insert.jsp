@@ -234,7 +234,7 @@ body,div {
 				}
 			});
 		});
-
+		//日付制限
 		//日付設定(start)
 		$("#start_date")
 				.datepicker(
@@ -242,10 +242,14 @@ body,div {
 							dateFormat : 'yy-mm-dd',
 							changeYear : true,
 							changeMonth : true,
-							showOn : "both",
-							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
-						});
+							showOn : 'both',
+							buttonImage : 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif',
+							buttonImageOnly : true,
+							minDate : 0,
+							onClose: function( selectedDate ) {
+								$("#end_date").datepicker( "option", "minDate", selectedDate );									
+								}
+							});
 
 		//日付設定(end)
 		$("#end_date")
@@ -254,10 +258,14 @@ body,div {
 							dateFormat : 'yy-mm-dd',
 							changeYear : true,
 							changeMonth : true,
-							showOn : "both",
-							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
-						});
+							showOn : 'both',
+							buttonImage : 'http://jqueryui.com/resources/demos/datepicker/images/calendar.gif',
+							buttonImageOnly : true,
+							minDate : '+1d',
+							onClose: function( selectedDate ) {
+								$("#start_date").datepicker( "option", "maxDate", selectedDate );
+			                 }
+						})
 	</script>
 	<%@ include file="bootstrap.jsp"%>
 </body>

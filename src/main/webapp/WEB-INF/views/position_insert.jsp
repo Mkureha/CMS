@@ -163,11 +163,9 @@ body,div {
 											function() {
 												if ($("#position_code").val().length != 2) {
 													alert("職責コードを入力してください（* 2桁の連番）");
-												} else if ($("#position_name")
-														.val() == "") {
+												} else if ($("#position_name").val() == "") {
 													alert("職責名を入力してください（* 制限:文字-10桁、英語-20桁）");
-												} else if ($("#position_start")
-														.val() == "") {
+												} else if ($("#position_start").val() == "") {
 													alert("開始日を選択してください");
 												} else {
 													$("#Pinsertfrm")
@@ -221,7 +219,8 @@ body,div {
 							changeMonth : true,
 							showOn : "both",
 							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
+							buttonImageOnly : true,
+							minDate : 0
 						});
 
 		//日付設定(end)
@@ -233,7 +232,8 @@ body,div {
 							changeMonth : true,
 							showOn : "both",
 							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
+							buttonImageOnly : true,
+							minDate : 0
 						});
 	</script>
 	<%@ include file="bootstrap.jsp"%>

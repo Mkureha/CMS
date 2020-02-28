@@ -192,26 +192,32 @@ body,div {
 </style>
 
 	<script type="text/javascript">
-	//Form検査
-	$(document).ready(
-			function() {
-				$("#subend").click(
+		//Form検査
+		$(document)
+				.ready(
 						function() {
-							if ($("#busyo_dai_code").val() == "") {
-								alert("部署分類コード（大、中）を選択してください");
-							} else if ($("#busyo_syou_code").val().length != 2) {
-								alert("小分類コードを入力してください（* 2桁の連番）");
-							} else if ($("#busyo_name").val() == "") {
-								alert("部署名を入力してください（* 制限:文字-30桁、英語-60桁）");
-							} else if ($("#busyo_start").val() == "") {
-								alert("開始日を選択してください");
-							} else {
-								$("#SinsertForm").attr("action",
-										"<c:url value='/ranksyou/insertProc'/>");
-								$("#SinsertForm").submit();
-							}
+							$("#subend")
+									.click(
+											function() {
+												if ($("#busyo_dai_code").val() == "") {
+													alert("部署分類コード（大、中）を選択してください");
+												} else if ($("#busyo_syou_code")
+														.val().length != 2) {
+													alert("小分類コードを入力してください（* 2桁の連番）");
+												} else if ($("#busyo_name")
+														.val() == "") {
+													alert("部署名を入力してください（* 制限:文字-30桁、英語-60桁）");
+												} else if ($("#busyo_start")
+														.val() == "") {
+													alert("開始日を選択してください");
+												} else {
+													$("#SinsertForm")
+															.attr("action",
+																	"<c:url value='/ranksyou/insertProc'/>");
+													$("#SinsertForm").submit();
+												}
+											});
 						});
-			});
 		//popupイベント
 		function openchild() {
 			window.open('child', '分類',
@@ -251,30 +257,31 @@ body,div {
 				}
 			});
 		});
+							//日付設定(start)
+							$("#start_date")
+									.datepicker(
+											{
+												dateFormat : "yy-mm-dd",
+												changeYear : true,
+												changeMonth : true,
+												showOn : "both",
+												buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+												buttonImageOnly : true,
+												minDate : 0
+											});
 
-		//日付設定(start)
-		$("#start_date")
-				.datepicker(
-						{
-							dateFormat : 'yy-mm-dd',
-							changeYear : true,
-							changeMonth : true,
-							showOn : "both",
-							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
-						});
-
-		//日付設定(end)
-		$("#end_date")
-				.datepicker(
-						{
-							dateFormat : 'yy-mm-dd',
-							changeYear : true,
-							changeMonth : true,
-							showOn : "both",
-							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
-						});
+							//日付設定(end)
+							$("#end_date")
+									.datepicker(
+											{
+												dateFormat : "yy-mm-dd",
+												changeYear : true,
+												changeMonth : true,
+												showOn : "both",
+												buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+												buttonImageOnly : true,
+												minDate : 0
+											})
 	</script>
 	<%@ include file="bootstrap.jsp"%>
 </body>

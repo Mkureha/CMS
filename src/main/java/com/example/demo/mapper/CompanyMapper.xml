@@ -14,11 +14,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		FROM rank_syou
 		WHERE busyo_dai_code =
 		#{busyo_dai_code}
-		AND busyo_cyu_code = #{busyo_cyu_code}
-		AND
-		busyo_end =
-		''
-		OR busyo_end IS NULL
+		AND busyo_cyu_code =
+		#{busyo_cyu_code}
+		AND busyo_start &lt;= DATE_FORMAT(sysdate(), '%Y-%m-%d')
+		AND ((busyo_end &gt;= date_format(sysdate(), '%Y-%m-%d') and busyo_end !=
+		'')
+		or busyo_end = '')
 		ORDER BY busyo_dai_code, busyo_cyu_code,
 		busyo_syou_code
 	</select>
@@ -30,9 +31,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		,busyo_name
 		FROM rank_cyu
 		WHERE busyo_dai_code = #{busyo_dai_code}
-		AND
-		busyo_end = ''
-		OR busyo_end IS NULL
+		AND busyo_start &lt;= DATE_FORMAT(sysdate(), '%Y-%m-%d')
+		AND ((busyo_end &gt;= date_format(sysdate(), '%Y-%m-%d') and busyo_end !=
+		'')
+		or busyo_end = '')
 		ORDER BY busyo_dai_code, busyo_cyu_code
 	</select>
 
@@ -41,9 +43,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT DISTINCT busyo_dai_code
 		,busyo_name
 		FROM rank_dai
-		WHERE
-		busyo_end IS NULL
-		OR busyo_end = ''
+		WHERE busyo_start &lt;= DATE_FORMAT(sysdate(), '%Y-%m-%d')
+		AND ((busyo_end &gt;= date_format(sysdate(), '%Y-%m-%d') and busyo_end !=
+		'')
+		or busyo_end = '')
 		ORDER BY busyo_dai_code
 	</select>
 
@@ -52,9 +55,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT DISTINCT position_code
 		,position_name
 		FROM position
-		WHERE
-		position_end IS NULL
-		OR position_end = ''
+		WHERE position_start &lt;= DATE_FORMAT(sysdate(), '%Y-%m-%d')
+		AND ((position_end &gt;= date_format(sysdate(), '%Y-%m-%d') and position_end !=
+		'')
+		or position_end = '')
 		ORDER BY position_code
 	</select>
 
@@ -62,9 +66,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT DISTINCT type_code
 		,type_name
 		FROM type
-		WHERE
-		type_end IS NULL
-		OR type_end = ''
+		WHERE type_start &lt;= DATE_FORMAT(sysdate(), '%Y-%m-%d')
+		AND ((type_end &gt;= date_format(sysdate(), '%Y-%m-%d') and type_end !=
+		'')
+		or type_end = '')
 		ORDER BY
 		type_code
 	</select>

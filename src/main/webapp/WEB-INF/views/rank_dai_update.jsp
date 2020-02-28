@@ -164,7 +164,8 @@ table {
 							changeMonth : true,
 							showOn : "both",
 							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-							buttonImageOnly : true
+							buttonImageOnly : true,
+							minDate : 0
 						});
 	</script>
 
