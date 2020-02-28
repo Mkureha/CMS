@@ -184,13 +184,13 @@ body,div {
 									.click(
 											function() {
 												if ($("#busyo_cyu_code").val().length != 2) {
-													alert("中分類コードを入力してください");
+													alert("中分類コードを入力してください（* 2桁の連番）");
 												} else if ($("#busyo_dai_code")
 														.val() == "999") {
 													alert("大分類コードを選択してください");
 												} else if ($("#busyo_name")
 														.val() == "") {
-													alert("部署名を入力してください");
+													alert("部署名を入力してください（* 制限:文字-20桁、英語-40桁）");
 												} else if ($("#busyo_start")
 														.val() == "") {
 													alert("開始日を選択してください");
@@ -207,7 +207,7 @@ body,div {
 		$(document).ready(function() {
 			$('#busyo_name_small').on('keyup', function() {
 				if ($(this).val().length > 10) {
-					alert("文字数制限を超えました!(制限:10桁の英語)");
+					alert("文字数制限を超えました!(制限:文字-5桁、英語-10桁)");
 					$(this).val($(this).val().substring(0, 10));
 				}
 			});

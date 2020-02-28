@@ -77,7 +77,7 @@
 								style="margin-top: 35px;">
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_dai_code"
-										style="width: 250px; height: auto; text-align: right;">
+										style="width: 200px; height: auto; text-align: right;">
 										大分類コード</td>
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
@@ -86,7 +86,7 @@
 								</tr>
 								<tr>
 									<td class="text-center warning" for="busyo_cyu_code"
-										style="width: 250px; height: auto; text-align: right;">
+										style="width: 200px; height: auto; text-align: right;">
 										中分類コード</td>
 									<td style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_cyu_code" name="busyo_cyu_code"
@@ -95,7 +95,7 @@
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_syou_code"
-										style="width: 250px; height: auto; text-align: right;">
+										style="width: 200px; height: auto; text-align: right;">
 										小分類コード</td>
 									<td colspan="3" style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_syou_code"
@@ -105,15 +105,15 @@
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name"
-										style="width: 250px; text-align: right;">名称</td>
+										style="width: 200px; text-align: right;">名称</td>
 									<td colspan="3" style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_name" name="busyo_name"
 										value="${detail.busyo_name }" readonly="ture"
-										style="width: 550px; height: auto; left: 10px;"></td>
+										style="width: 500px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_name_small"
-										style="width: 250px; text-align: right;">略称</td>
+										style="width: 200px; text-align: right;">略称</td>
 									<td colspan="3" style="width: 1000px;"><input type="text"
 										class="form-control" id="busyo_name_small"
 										name="busyo_name_small" value="${detail.busyo_name_small }"
@@ -122,7 +122,7 @@
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_start"
-										style="width: 250px; height: auto; text-align: right;">
+										style="width: 200px; height: auto; text-align: right;">
 										開始日</td>
 									<td colspan="3" style="width: 1000px;"><input type="text"
 										class="form-control" id="start_date" name="busyo_start"
@@ -131,7 +131,7 @@
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="busyo_end"
-										style="width: 250px; text-align: right;">終了日</td>
+										style="width: 200px; text-align: right;">終了日</td>
 									<td colspan="3" style="width: 1000px; position: relative"><input
 										type="text" class="form-control" id="end_date"
 										name="busyo_end" size="8" value="${detail.busyo_end }"
@@ -178,45 +178,6 @@ table {
 </style>
 
 	<script>
-		//popupイベント
-		function openchild() {
-			window.open('child', '分類',
-					'width=800, height=700, resizeable=no, left=10 top=10');
-		}
-		//文字数制限
-		//Small_name제한
-		$(document).ready(function() {
-			$('#busyo_name_small').on('keyup', function() {
-				if ($(this).val().length > 3) {
-					alert("文字数制限を超えました!(制限:3桁の英語)");
-					$(this).val($(this).val().substring(0, 3));
-				}
-			});
-		});
-
-		//code 제한
-		$(document).ready(function() {
-			$('#busyo_syou_code').on('keyup', function() {
-				var busyo_syou_code = $("input[name='busyo_syou_code']");
-				if ($(this).val().length > 2) {
-					alert("数字数制限を超えました!(制限:2桁の連番)");
-					$(this).val($(this).val().substring(0, 2));
-				} else if (!/^[0-9]{0,2}$/.test(busyo_syou_code.val())) {
-					alert("コードは2桁の連番で入力しでください");
-					$('#busyo_syou_code').val('');
-				}
-			});
-		});
-
-		//name 제한
-		$(document).ready(function() {
-			$('#busyo_name').on('keyup', function() {
-				if ($(this).val().length > 60) {
-					alert("文字数制限を超えました!(制限:文字-30桁、英語-60桁)");
-					$(this).val($(this).val().substring(0, 60));
-				}
-			});
-		});
 		//日付設定(end)
 		$("#end_date")
 				.datepicker(

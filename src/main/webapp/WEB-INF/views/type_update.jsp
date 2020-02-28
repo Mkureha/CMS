@@ -153,40 +153,6 @@ table {
 </style>
 
 	<script>
-		//文字数制限
-		//Small_name제한
-		$(document).ready(function() {
-			$('#type_name_small').on('keyup', function() {
-				if ($(this).val().length > 3) {
-					alert("文字数制限を超えました!(制限:3桁の英語)");
-					$(this).val($(this).val().substring(0, 3));
-				}
-			});
-		});
-
-		//code 제한
-		$(document).ready(function() {
-			$('#type_code').on('keyup', function() {
-				var type_code = $("input[name='type_code']");
-				if ($(this).val().length > 1) {
-					alert("数字数制限を超えました!(制限:1桁の番号)");
-					$(this).val($(this).val().substring(0, 1));
-				} else if (!/^[0-9]{0,1}$/.test(type_code.val())) {
-					alert("コードは1桁の番号で入力しでください");
-					$('#type_code').val('');
-				}
-			});
-		});
-
-		//name 제한
-		$(document).ready(function() {
-			$('#type_name').on('keyup', function() {
-				if ($(this).val().length > 20) {
-					alert("文字数制限を超えました!(制限:文字-10桁、英語-20桁)");
-					$(this).val($(this).val().substring(0, 100));
-				}
-			});
-		});
 		//日付設定(end)
 		$("#end_date")
 				.datepicker(

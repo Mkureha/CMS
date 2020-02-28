@@ -81,10 +81,10 @@
 									<td class="text-center warning" for="busyo_dai_code"
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										大分類コード</td>
-									<td style="width: 200px;"><input type="text"
+									<td style="width: 140px;"><input type="text"
 										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
 										placeholder="大分類" readonly="true"
-										style="width: 170px; height: auto; left: 10px;" /></td>
+										style="width: 150px; height: auto; left: 10px;" /></td>
 									<td style="width: 700px;"><input type="text"
 										class="form-control" id="busyo_dai_name" placeholder="大分類名"
 										readonly="true"
@@ -94,10 +94,10 @@
 									<td class="text-center warning" for="busyo_cyu_code"
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										中分類コード</td>
-									<td style="width: 200px;"><input type="text"
+									<td style="width: 140px;"><input type="text"
 										class="form-control" id="busyo_cyu_code" name="busyo_cyu_code"
 										placeholder="中分類" readonly="true"
-										style="width: 170px; height: auto; left: 10px;" /></td>
+										style="width: 150px; height: auto; left: 10px;" /></td>
 									<td style="width: 700px;"><input type="text"
 										class="form-control" id="busyo_cyu_name" placeholder="中分類名"
 										readonly="true"
@@ -108,12 +108,12 @@
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										小分類コード</td>
 									<td colspan="2" style="width: 1000px; position: relative"><div>
-											<input type="button" class="btn btn-danger" value="既存分類選択"
+											<input type="button" class="btn btn-danger" value="分類選択"
 												onclick="openchild()"
-												style="width: 110px; height: auto; left: 10px;"><input
+												style="width: 100px; height: auto; left: 10px;"><input
 												type="text" class="form-control" id="busyo_syou_code"
 												name="busyo_syou_code" placeholder="2桁の連番"
-												style="width: 150px; height: auto; bottom: 4px; left: 120px; position: absolute" />
+												style="width: 150px; height: auto; bottom: 4px; left: 110px; position: absolute" />
 										</div></td>
 								</tr>
 								<tr class="form-group">
@@ -200,9 +200,9 @@ body,div {
 							if ($("#busyo_dai_code").val() == "") {
 								alert("部署分類コード（大、中）を選択してください");
 							} else if ($("#busyo_syou_code").val().length != 2) {
-								alert("小分類コードを入力してください");
+								alert("小分類コードを入力してください（* 2桁の連番）");
 							} else if ($("#busyo_name").val() == "") {
-								alert("部署名を選択してください");
+								alert("部署名を入力してください（* 制限:文字-30桁、英語-60桁）");
 							} else if ($("#busyo_start").val() == "") {
 								alert("開始日を選択してください");
 							} else {
@@ -222,7 +222,7 @@ body,div {
 		$(document).ready(function() {
 			$('#busyo_name_small').on('keyup', function() {
 				if ($(this).val().length > 10) {
-					alert("文字数制限を超えました!(制限:50桁の英語)");
+					alert("文字数制限を超えました!(制限:文字-5桁、英語-10桁)");
 					$(this).val($(this).val().substring(0, 10));
 				}
 			});

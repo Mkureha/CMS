@@ -78,7 +78,7 @@
 									<td colspan="3" style="width: 750px;"><input type="text"
 										class="form-control" id="employee_no" name="employee_no"
 										value="${detail.employee_no }"
-										style="width: 150px; height: auto; left: 10px;"></td>
+										style="width: 180px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="employee_name"
@@ -87,35 +87,35 @@
 									<td colspan="3" style="width: 750px;"><input type="text"
 										class="form-control" id="employee_name" name="employee_name"
 										value="${detail.employee_name }"
-										style="width: 200px; height: auto; left: 10px;"></td>
+										style="width: 180px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td rowspan="3" class="text-center warning"
 										for="busyo_dai_code"
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										部署コード</td>
-									<td style="width: 550px;"><input type="text"
+									<td style="width: 140px;"><input type="text"
 										class="form-control" id="busyo_dai_code" name="busyo_dai_code"
 										value="${detail.busyo_dai_code }" readonly="true"
 										style="width: 150px; height: auto; left: 10px;" /></td>
 									<td rowspan="3" style="width: 450px; vertical-align: middle;"><input
 										type="text" class="form-control" id="busyo_name"
 										placeholder="変更する場合、表示される新しい部署名" readonly="true"
-										style="width: 430px; height: auto; left: 10px;" /></td>
+										style="width: 470px; height: auto; left: 10px;" /></td>
 									<td rowspan="3"
-										style="width: 200px; vertical-align: middle; text-align-last: center;"><input
+										style="width: 100px; vertical-align: middle; text-align-last: center;"><input
 										type="button" class="btn btn-danger" value="分類変更"
 										onclick="openchild()"
-										style="width: 80px; height: 50px; left: 10px"></td>
+										style="width: 100px; height: 50px; left: 10px"></td>
 								</tr>
 								<tr class="form-group">
-									<td style="width: 550px;"><input type="text"
+									<td style="width: 140px;"><input type="text"
 										class="form-control" id="busyo_cyu_code" name="busyo_cyu_code"
 										value="${detail.busyo_cyu_code }" readonly="true"
 										style="width: 150px; height: auto; left: 10px;" /></td>
 								</tr>
 								<tr class="form-group">
-									<td style="width: 550px;"><input type="text"
+									<td style="width: 140px;"><input type="text"
 										class="form-control" id="busyo_syou_code"
 										name="busyo_syou_code" value="${detail.busyo_syou_code }"
 										readonly="true"
@@ -125,7 +125,7 @@
 									<td class="text-center warning" for="position_code"
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										職責コード</td>
-									<td colspan="3" style="width: 750px;"><select
+									<td colspan="3" style="width: 700px;"><select
 										class="form-control form-control-sm" name="position_code"
 										id="position_code"
 										style="width: 150px; height: auto; left: 10px;">
@@ -145,7 +145,7 @@
 									<td class="text-center warning" for="type_code"
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										役職コード</td>
-									<td colspan="3" style="width: 750px;"><select
+									<td colspan="3" style="width: 700px;"><select
 										class="form-control form-control-sm" name="type_code"
 										id="type_code" style="width: 150px; height: auto; left: 10px;">
 											<c:forEach var="ltp" items="${listtype}">
@@ -165,7 +165,7 @@
 										性別</td>
 									<td colspan="3" style="width: 750px;"><select
 										class="form-control form-control-sm" name="gender" id="gender"
-										style="width: 150px; height: auto; left: 10px;">
+										style="width: 100px; height: auto; left: 10px;">
 											<c:if test="${detail.gender eq 男}">
 												<option value="男" selected="selected">男</option>
 												<option value="女">女</option>
@@ -180,7 +180,7 @@
 									<td class="text-center warning" for="birthday"
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										生年月日</td>
-									<td colspan="3" style="width: 750px; position: relative"><input
+									<td colspan="3" style="width: 700px; position: relative"><input
 										type="text" class="form-control" id="birthday_date"
 										name="birthday" size="8" value="${detail.birthday }"
 										style="width: 200px; height: auto; cursor: pointer; left: 10px;"></td>
@@ -189,15 +189,15 @@
 									<td class="text-center warning" for="postal_code"
 										style="width: 200px; height: auto; text-align: right; font-weight: bold; color: red;">*
 										郵便番号</td>
-									<td colspan="3" style="width: 750px;"><input type="text"
+									<td colspan="3" style="width: 700px;"><input type="text"
 										class="form-control" id="postal_code" name="postal_code"
 										value="${detail.postal_code }"
-										style="width: 150px; height: auto; left: 10px;"></td>
+										style="width: 200px; height: auto; left: 10px;"></td>
 								</tr>
 								<tr class="form-group">
 									<td class="text-center warning" for="address_1"
 										style="width: 200px; height: auto; text-align: right;">詳細住所1</td>
-									<td colspan="3" style="width: 750px;"><input type="text"
+									<td colspan="3" style="width: 700px;"><input type="text"
 										class="form-control" id="address_1" name="address_1" size="8"
 										value="${detail.address_1 }"
 										style="width: 500px; height: auto; left: 10px;" /></td>
@@ -205,7 +205,7 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="address_2"
 										style="width: 200px; height: auto; text-align: right;">詳細住所2</td>
-									<td colspan="3" style="width: 750px;"><input type="text"
+									<td colspan="3" style="width: 700px;"><input type="text"
 										class="form-control" id="address_2" name="address_2" size="8"
 										value="${detail.address_2 }"
 										style="width: 500px; height: auto; left: 10px;" /></td>
@@ -213,10 +213,10 @@
 								<tr class="form-group">
 									<td class="text-center warning" for="employee_memo"
 										style="width: 200px; height: auto; text-align: right;">備考</td>
-									<td colspan="3" style="width: 750px;"><input type="text"
+									<td colspan="3" style="width: 800px;"><input type="text"
 										class="form-control" id="employee_memo" name="employee_memo"
 										size="8" value="${detail.employee_memo }"
-										style="width: 400px; height: 300px; left: 10px;" /></td>
+										style="width: 790px; height: auto; left: 10px;" /></td>
 								</tr>
 							</table>
 							<div class="text-right" style="position: relative;">
@@ -266,10 +266,10 @@ body,div {
 									.click(
 											function() {
 												if ($("#employee_no").val() == "") {
-													alert("社員番号が無いです！");
+													alert("社員番号が無いです！（* 1桁のアルファベット+3桁の連番）");
 												} else if ($("#employee_name")
 														.val() == "") {
-													alert("社員名が無いです！");
+													alert("社員名が無いです！（* 10桁の文字）");
 												} else if ($("#position_code")
 														.val() == "99") {
 													alert("職責が無いです！");
@@ -282,7 +282,7 @@ body,div {
 													alert("誕生日が無いです！");
 												} else if ($("#postal_code")
 														.val() == "") {
-													alert("郵便番号が無いです！");
+													alert("郵便番号が無いです！（* 7桁の連番、'-'無し）");
 												} else {
 													$("#subend")
 															.attr("action",
@@ -314,6 +314,9 @@ body,div {
 				if ($(this).val().length > 7) {
 					alert("文字数制限を超えました!(制限:7桁の連番)");
 					$(this).val($(this).val().substring(0, 7));
+				} else if (!/^[0-9]{0,7}$/.test(postal_code.val())) {
+					alert("郵便番号は7桁の連番で入力しでください");
+					$('#postal_code').val('');
 				}
 			});
 		});

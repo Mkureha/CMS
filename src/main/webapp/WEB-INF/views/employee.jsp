@@ -84,7 +84,8 @@
 									<td>${cpn.rank_code}</td>
 									<td>${cpn.position_code}</td>
 									<td>${cpn.type_code}</td>
-									<td>${cpn.employee_name}</td>
+									<td scope="row"><a
+										href="/employee/update/${cpn.busyo_dai_code}/${cpn.busyo_cyu_code}/${cpn.employee_no}">${cpn.employee_name}</a></td>
 									<td>${cpn.gender}</td>
 									<td>${cpn.birthday}</td>
 									<td>${cpn.postal_code}</td>

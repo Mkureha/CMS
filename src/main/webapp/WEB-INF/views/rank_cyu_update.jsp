@@ -164,40 +164,6 @@ table {
 </style>
 
 	<script>
-		//文字数制限
-		//Small_name제한
-		$(document).ready(function() {
-			$('#busyo_name_small').on('keyup', function() {
-				if ($(this).val().length > 10) {
-					alert("文字数制限を超えました!(制限:10桁の英語)");
-					$(this).val($(this).val().substring(0, 10));
-				}
-			});
-		});
-
-		//code 제한
-		$(document).ready(function() {
-			$('#busyo_cyu_code').on('keyup', function() {
-				var busyo_cyu_code = $("input[name='busyo_cyu_code']");
-				if ($(this).val().length > 2) {
-					alert("数字数制限を超えました!(制限:2桁の連番)");
-					$(this).val($(this).val().substring(0, 2));
-				} else if (!/^[0-9]{0,2}$/.test(busyo_cyu_code.val())) {
-					alert("コードは2桁の連番で入力しでください");
-					$('#busyo_cyu_code').val('');
-				}
-			});
-		});
-
-		//name 제한
-		$(document).ready(function() {
-			$('#busyo_name').on('keyup', function() {
-				if ($(this).val().length > 40) {
-					alert("文字数制限を超えました!(制限:文字-20桁、英語-40桁)");
-					$(this).val($(this).val().substring(0, 40));
-				}
-			});
-		});
 		//日付設定(end)
 		$("#end_date")
 				.datepicker(
